@@ -43,14 +43,14 @@
 		{
 			"id": "experience_item_3",
 			"place": "@link{places.cp}",
-			"period": ["2023/01", "2023/09"],
+			"period": ["2023/06", "2023/09"],
 			"locales": {
 				"en": {
-					"title": "ML Developer",
+					"title": "Macine Learning (ML) Developer",
 					"description": "Working as a full-stack developer, with C#, Python (Flask), and Angular. Implemented a ChatGPT chatbot (via LLM) that can answer users' questions regarding his/her documents, events, and tasks."
 				},
 				"it": {
-					"title": "Sviluppatore ML",
+					"title": "Sviluppatore di Machine Learning (ML)",
 					"description": "Lavoro come sviluppatore full-stack, con C#, Python (Flask) e Angular. Implementato un chatbot ChatGPT (tramite LLM) in grado di rispondere alle domande degli utenti sui loro documenti, eventi e compiti."
 				}
 			}
