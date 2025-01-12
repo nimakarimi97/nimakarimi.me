@@ -1,4 +1,13 @@
 {
+	"capgemini": {
+		"logoUrl": "images/places/capgemini_logo.png",
+		"faIcon": "fa-solid fa-briefcase",
+		"locales": {
+			"en": {
+				"name": "Capgemini"
+			}
+		}
+	},
 	"keySolution": {
 		"logoUrl": "images/places/key_solution_srl_logo.jpeg",
 		"faIcon": "fa-solid fa-briefcase",
