@@ -51,13 +51,6 @@
 			"valueShort": "@nimakarimi97",
 			"faIcon": "fa-brands fa-linkedin",
 			"href": "https://linkedin.com/in/nimakarimi97"
-		},
-		"phone": {
-			"id": "phone",
-			"value": "+393209770034",
-			"valueShort": "3209770034",
-			"faIcon": "fa-solid fa-phone",
-			"href": "tel:3209770034"
 		}
 	}
 }
