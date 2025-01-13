@@ -1,8 +1,6 @@
 <template>
 	<a
 		@click="downloadFile"
-		:href="filePath"
-		target="_blank"
 		rel="noopener noreferrer"
 		class="button">
 		<span class="button__text">{{ text }}</span>
@@ -39,6 +37,8 @@ function downloadFile() {
 </script>
 
 <style lang="scss" scoped>
+@import '/src/scss/_theming.scss';
+
 .button {
 	--main-focus: #2d8cf0;
 	--font-color: #dedede;
@@ -49,6 +49,7 @@ function downloadFile() {
 	position: fixed;
 	right: 1%;
 	bottom: 2%;
+	z-index: 100;
 	width: 120px;
 	height: 40px;
 	cursor: pointer;
@@ -60,6 +61,31 @@ function downloadFile() {
 	border-radius: 10px;
 	overflow: hidden;
 	transition: all 0.3s;
+
+	@include media-breakpoint-down($navigation-sidebar-breakpoint) {
+		position: absolute;
+		top: 12.5rem;
+		right: 2%;
+	}
+
+	@include media-breakpoint-down(sm) {
+		top: 0.5rem;
+		right: 4rem;
+		width: 50px;
+		height: 28px;
+		box-shadow: 0px 0px var(--main-color);
+		border: none;
+		background-color: transparent;
+
+		.button__text {
+			display: none;
+		}
+
+		.button__icon {
+			background-color: transparent;
+			width: 100%;
+		}
+	}
 
 	&__text {
 		transform: translateX(21px);
