@@ -9,9 +9,7 @@
 		<router-view />
 	</Layout>
 
-	<DownloadButton
-		text="My CV"
-		link="/data/CV.pdf" />
+	<DownloadButton text="My CV" />
 </template>
 
 <script setup>

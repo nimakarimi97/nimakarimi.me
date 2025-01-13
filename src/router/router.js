@@ -14,6 +14,12 @@ export function createAppRouter() {
 			name: homeSection['id'],
 			component: RouterView,
 		},
+		{
+			path: '/cv',
+			redirect: () => {
+				window.location.href = '/data/CV.pdf';
+			}
+		}
 	];
 
 	/** Create Section Routes **/

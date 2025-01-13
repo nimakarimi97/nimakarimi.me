@@ -25,18 +25,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-const { text, link } = defineProps({
-	text: { type: String, required: true },
-	link: { type: String, required: true },
+const { text } = defineProps({
+	text: { type: String, required: true }
 });
 
-const filePath = ref(new URL(link, import.meta.url).href);
+const router = useRouter();
 
 function downloadFile() {
-	useRouter().push({ path: '/cv' });
+	window.open('/cv', '_blank');
 }
 </script>
 
