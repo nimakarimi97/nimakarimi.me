@@ -1,44 +1,44 @@
 {
-	"locales": {
-		"en": {
-			"title": "<span class='text-primary'>Educational</span> Background",
-			"description": "A glimpse into my academic trajectory and accomplishments."
-		},
-		"it": {
-			"title": "Antecedenti <span class='text-primary'>Educativi</span>",
-			"description": "Uno sguardo alla mia traiettoria accademica e ai risultati raggiunti."
-		}
-	},
-	"items": [
-		{
-			"id": "bachelor_kntu",
-			"place": "@link{places.kntu}",
-			"period": ["2016/09", "2020/01"],
-			"locales": {
-				"en": {
-					"title": "Bachelor of Science in Mechatronics Engineering",
-					"description": "Thesis: <strong>Speed and Torque Control of Motors using Arduino Microcontroller in Industrial Control Systems</strong><br/><br/>  Publication: <a href='https://scholar.google.com/citations?user=g96SedcAAAAJ&hl=en' target='_blank'>ROS-based Motion Planner for Gazebo-Simulated Rescue Robots in RoboCup</a>"
-				},
-				"it": {
-					"title": "Laurea in Ingegneria Meccatronica",
-					"description": "Tesi: <strong>Controllo della Velocità e della Coppia dei Motori con Microcontrollore Arduino (Industria del Controllo)</strong><br/><br/>  Publication: <a href='https://scholar.google.com/citations?user=g96SedcAAAAJ&hl=en' target='_blank'>ROS-based Motion Planner for Gazebo-Simulated Rescue Robots in RoboCup</a>"
-				}
-			}
-		},
-		{
-			"id": "masters_padova",
-			"place": "@link{places.unipd}",
-			"period": ["2020/09", "2022/05"],
-			"locales": {
-				"en": {
-					"title": "Master of Science in Management Engineering",
-					"description": "Thesis: <strong>Analyzing Bike Tracks Using Artificial Intelligence Algorithms</strong>"
-				},
-				"it": {
-					"title": "Laurea Magistrale in Ingegneria Gestionale",
-					"description": "Tesi: <strong>Analisi delle Tracce delle Biciclette Utilizzando Algoritmi di Intelligenza Artificiale</strong>"
-				}
-			}
-		}
-	]
+  "locales": {
+    "en": {
+      "title": "<span class='text-primary'>Educational</span> Background",
+      "description": "A glimpse into my academic trajectory and accomplishments."
+    },
+    "it": {
+      "title": "Antecedenti <span class='text-primary'>Educativi</span>",
+      "description": "Uno sguardo alla mia traiettoria accademica e ai risultati raggiunti."
+    }
+  },
+  "items": [
+    {
+      "id": "bachelor_kntu",
+      "place": "@link{places.kntu}",
+      "period": ["2016/09", "2020/01"],
+      "locales": {
+        "en": {
+          "title": "Bachelor of Science in Mechatronics Engineering",
+          "description": "Thesis: <strong>Speed and Torque Control of Motors using Arduino Microcontroller in Industrial Control Systems</strong><br/><br/>  Publication: <a href='https://scholar.google.com/citations?user=g96SedcAAAAJ&hl=en' target='_blank'>ROS-based Motion Planner for Gazebo-Simulated Rescue Robots in RoboCup</a>"
+        },
+        "it": {
+          "title": "Laurea in Ingegneria Meccatronica",
+          "description": "Tesi: <strong>Controllo della Velocità e della Coppia dei Motori con Microcontrollore Arduino (Industria del Controllo)</strong><br/><br/>  Publication: <a href='https://scholar.google.com/citations?user=g96SedcAAAAJ&hl=en' target='_blank'>ROS-based Motion Planner for Gazebo-Simulated Rescue Robots in RoboCup</a>"
+        }
+      }
+    },
+    {
+      "id": "masters_padova",
+      "place": "@link{places.unipd}",
+      "period": ["2020/09", "2022/05"],
+      "locales": {
+        "en": {
+          "title": "Master of Science in Management Engineering",
+          "description": "Thesis: <strong>Analyzing Bike Tracks Using Artificial Intelligence Algorithms</strong>"
+        },
+        "it": {
+          "title": "Laurea Magistrale in Ingegneria Gestionale",
+          "description": "Tesi: <strong>Analisi delle Tracce delle Biciclette Utilizzando Algoritmi di Intelligenza Artificiale</strong>"
+        }
+      }
+    }
+  ]
 }

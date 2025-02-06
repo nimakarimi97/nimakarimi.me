@@ -1,34 +1,39 @@
 {
-	"name": "nimakarimi",
-	"author": {
-		"name": "Nima Karimi",
-		"email": "nimakarimi676@gmail.com",
-		"link": "https://nimakarimi.me"
-	},
-	"homepage": "nimakarimi.me",
-	"private": true,
-	"version": "1.0.0",
-	"type": "module",
-	"scripts": {
-		"dev": "vite",
-		"build": "vite build",
-		"preview": "vite preview",
-		"deploy": "cp CNAME dist/ && cd dist && cp index.html 404.html"
-	},
-	"dependencies": {
-		"@fortawesome/fontawesome-free": "^6.4.0",
-		"@popperjs/core": "^2.11.7",
-		"bootstrap": "^5.2.3",
-		"chart.js": "^4.3.3",
-		"swiper": "^10.0.4",
-		"vue": "^3.2.47",
-		"vue-chartjs": "^5.2.0",
-		"vue-router": "^4.2.4"
-	},
-	"devDependencies": {
-		"@vitejs/plugin-vue": "^4.1.0",
-		"gh-pages": "^6.1.1",
-		"sass": "^1.62.1",
-		"vite": "^4.3.2"
-	}
+  "name": "nimakarimi",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "author": {
+    "name": "Nima Karimi",
+    "email": "nimakarimi676@gmail.com",
+    "link": "https://nimakarimi.me"
+  },
+  "homepage": "nimakarimi.me",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "preview": "vite preview",
+    "deploy": "cp CNAME dist/ && cd dist && cp index.html 404.html"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.4.0",
+    "@popperjs/core": "^2.11.7",
+    "bootstrap": "^5.2.3",
+    "chart.js": "^4.3.3",
+    "swiper": "^10.0.4",
+    "vue": "^3.2.47",
+    "vue-chartjs": "^5.2.0",
+    "vue-router": "^4.2.4"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.1.1",
+    "@vitejs/plugin-vue": "^4.1.0",
+    "eslint": "^9.19.0",
+    "eslint-plugin-format": "^1.0.1",
+    "gh-pages": "^6.1.1",
+    "sass": "^1.62.1",
+    "vite": "^4.3.2"
+  }
 }

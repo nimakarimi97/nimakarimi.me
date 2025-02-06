@@ -1,25 +1,25 @@
 {
-	"locales": {
-		"en": {
-			"welcome": "Welcome to my <span class='text-primary'>Résumé!</span>",
-			"welcomeShort": "Welcome!",
-			"bio": "Experienced <strong>Full-stack Web Developer</strong> and <strong>Project Manager</strong> with a proven track record in managing and delivering complex web projects. Expertise in Vue, Nuxt.JS, React, Node.JS, Python, and various databases. Strong project management skills and customer relations, backed by a Master's in <strong>Management Engineering</strong>."
-		},
-		"it": {
-			"welcome": "Benvenuto nel mio <span class='text-primary'>Curriculum!</span>",
-			"welcomeShort": "Benvenuto!",
-			"bio": "Esperto <strong>Full-stack Web Developer</strong> e <strong>Project Manager</strong> con un curriculum solido nel management e sviluppo di progetti web complessi. Esperti in Vue, Nuxt.JS, React, Node.JS, Python e diverse banche dati. Forti competenze di project management e relazioni con i clienti, supportate da un Master in <strong>Ingegneria del Management</strong>."
-		}
-	},
-	"items": {
-		"socialCircles": [
-			"@link{profile.contact.email}",
-			"@link{profile.contact.linkedin}",
-			"@link{profile.contact.github}"
-		],
-		"contactListItems": [
-			"@link{profile.contact.address}",
-			"@link{profile.contact.email}"
-		]
-	}
+  "locales": {
+    "en": {
+      "welcome": "Welcome to my <span class='text-primary'>Résumé!</span>",
+      "welcomeShort": "Welcome!",
+      "bio": "Experienced <strong>Full-stack Web Developer</strong> and <strong>Project Manager</strong> with a proven track record in managing and delivering complex web projects. Expertise in Vue, Nuxt.JS, React, Node.JS, Python, and various databases. Strong project management skills and customer relations, backed by a Master's in <strong>Management Engineering</strong>."
+    },
+    "it": {
+      "welcome": "Benvenuto nel mio <span class='text-primary'>Curriculum!</span>",
+      "welcomeShort": "Benvenuto!",
+      "bio": "Esperto <strong>Full-stack Web Developer</strong> e <strong>Project Manager</strong> con un curriculum solido nel management e sviluppo di progetti web complessi. Esperti in Vue, Nuxt.JS, React, Node.JS, Python e diverse banche dati. Forti competenze di project management e relazioni con i clienti, supportate da un Master in <strong>Ingegneria del Management</strong>."
+    }
+  },
+  "items": {
+    "socialCircles": [
+      "@link{profile.contact.email}",
+      "@link{profile.contact.linkedin}",
+      "@link{profile.contact.github}"
+    ],
+    "contactListItems": [
+      "@link{profile.contact.address}",
+      "@link{profile.contact.email}"
+    ]
+  }
 }

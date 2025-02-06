@@ -1,186 +1,186 @@
 {
-	"locales": {
-		"en": {
-			"title": "<span class='text-primary'>Hobbies</span> & Interests",
-			"description": "This is pretty much how I spend my spare time:"
-		}
-	},
-	"subcategories": [
-		{
-			"id": "activities",
-			"type": "pie",
-			"progress": "number",
-			"faIcon": "fa-solid fa-clock",
-			"locales": {
-				"en": {
-					"title": null
-				}
-			}
-		},
-		{
-			"id": "interests",
-			"type": "list",
-			"imageIconUrl": "images/pictures/interests.png",
-			"locales": {
-				"en": {
-					"title": "Interests"
-				}
-			}
-		}
-	],
-	"items": {
-		"activities": [
-			{
-				"faIcon": "fas fa-users",
-				"value": 15,
-				"locales": {
-					"en": {
-						"title": "Family & Friends",
-						"description": "Time spent with cherished loved ones."
-					}
-				}
-			},
-			{
-				"faIcon": "fas fa-tasks",
-				"value": 26,
-				"locales": {
-					"en": {
-						"title": "My Projects",
-						"description": "Pursuing my creative endeavors."
-					}
-				}
-			},
-			{
-				"faIcon": "fas fa-couch",
-				"value": 11,
-				"locales": {
-					"en": {
-						"title": "Relaxing",
-						"description": "Indulging in tranquility, unwinding the stresses of life."
-					}
-				}
-			},
-			{
-				"faIcon": "fas fa-book",
-				"value": 9,
-				"locales": {
-					"en": {
-						"title": "Studying",
-						"description": "Embarking on a continuous journey of learning."
-					}
-				}
-			},
-			{
-				"faIcon": "fas fa-dumbbell",
-				"value": 17,
-				"locales": {
-					"en": {
-						"title": "Exercise",
-						"description": "Dedicating time to physical well-being."
-					}
-				}
-			},
-			{
-				"faIcon": "fas fa-utensils",
-				"value": 19,
-				"locales": {
-					"en": {
-						"title": "Cooking",
-						"description": "Creating culinary masterpieces."
-					}
-				}
-			},
-			{
-				"faIcon": "fas fa-map",
-				"value": 4,
-				"locales": {
-					"en": {
-						"title": "Exploring",
-						"description": "Venturing into new realms, seeking the thrill of uncharted discoveries."
-					}
-				}
-			}
-		],
-		"interests": [
-			{
-				"faIcon": "fas fa-hiking",
-				"locales": {
-					"en": {
-						"title": "Hiking",
-						"description": "Love exploring nature through hiking adventures."
-					},
-					"it": {
-						"title": "Escursionismo",
-						"description": "Amo esplorare la natura attraverso avventure escursionistiche."
-					}
-				}
-			},
-			{
-				"faIcon": "fas fa-dumbbell",
-				"locales": {
-					"en": {
-						"title": "CrossFit",
-						"description": "Passionate about CrossFit and fitness."
-					},
-					"it": {
-						"title": "CrossFit",
-						"description": "Appassionato di CrossFit e fitness."
-					}
-				}
-			},
-			{
-				"faIcon": "fas fa-chess",
-				"locales": {
-					"en": {
-						"title": "Chess",
-						"description": "Enjoy playing chess and strategic thinking."
-					},
-					"it": {
-						"title": "Scacchi",
-						"description": "Divertimento nel giocare a scacchi e pensiero strategico."
-					}
-				}
-			},
-			{
-				"faIcon": "fas fa-code",
-				"locales": {
-					"en": {
-						"title": "Programming",
-						"description": "Exploring code, algorithms, and building software solutions for real-world challenges."
-					},
-					"it": {
-						"title": "Programmazione",
-						"description": "Esplorazione del codice, degli algoritmi e sviluppo di soluzioni software per sfide reali."
-					}
-				}
-			},
+  "locales": {
+    "en": {
+      "title": "<span class='text-primary'>Hobbies</span> & Interests",
+      "description": "This is pretty much how I spend my spare time:"
+    }
+  },
+  "subcategories": [
+    {
+      "id": "activities",
+      "type": "pie",
+      "progress": "number",
+      "faIcon": "fa-solid fa-clock",
+      "locales": {
+        "en": {
+          "title": null
+        }
+      }
+    },
+    {
+      "id": "interests",
+      "type": "list",
+      "imageIconUrl": "images/pictures/interests.png",
+      "locales": {
+        "en": {
+          "title": "Interests"
+        }
+      }
+    }
+  ],
+  "items": {
+    "activities": [
+      {
+        "faIcon": "fas fa-users",
+        "value": 15,
+        "locales": {
+          "en": {
+            "title": "Family & Friends",
+            "description": "Time spent with cherished loved ones."
+          }
+        }
+      },
+      {
+        "faIcon": "fas fa-tasks",
+        "value": 26,
+        "locales": {
+          "en": {
+            "title": "My Projects",
+            "description": "Pursuing my creative endeavors."
+          }
+        }
+      },
+      {
+        "faIcon": "fas fa-couch",
+        "value": 11,
+        "locales": {
+          "en": {
+            "title": "Relaxing",
+            "description": "Indulging in tranquility, unwinding the stresses of life."
+          }
+        }
+      },
+      {
+        "faIcon": "fas fa-book",
+        "value": 9,
+        "locales": {
+          "en": {
+            "title": "Studying",
+            "description": "Embarking on a continuous journey of learning."
+          }
+        }
+      },
+      {
+        "faIcon": "fas fa-dumbbell",
+        "value": 17,
+        "locales": {
+          "en": {
+            "title": "Exercise",
+            "description": "Dedicating time to physical well-being."
+          }
+        }
+      },
+      {
+        "faIcon": "fas fa-utensils",
+        "value": 19,
+        "locales": {
+          "en": {
+            "title": "Cooking",
+            "description": "Creating culinary masterpieces."
+          }
+        }
+      },
+      {
+        "faIcon": "fas fa-map",
+        "value": 4,
+        "locales": {
+          "en": {
+            "title": "Exploring",
+            "description": "Venturing into new realms, seeking the thrill of uncharted discoveries."
+          }
+        }
+      }
+    ],
+    "interests": [
+      {
+        "faIcon": "fas fa-hiking",
+        "locales": {
+          "en": {
+            "title": "Hiking",
+            "description": "Love exploring nature through hiking adventures."
+          },
+          "it": {
+            "title": "Escursionismo",
+            "description": "Amo esplorare la natura attraverso avventure escursionistiche."
+          }
+        }
+      },
+      {
+        "faIcon": "fas fa-dumbbell",
+        "locales": {
+          "en": {
+            "title": "CrossFit",
+            "description": "Passionate about CrossFit and fitness."
+          },
+          "it": {
+            "title": "CrossFit",
+            "description": "Appassionato di CrossFit e fitness."
+          }
+        }
+      },
+      {
+        "faIcon": "fas fa-chess",
+        "locales": {
+          "en": {
+            "title": "Chess",
+            "description": "Enjoy playing chess and strategic thinking."
+          },
+          "it": {
+            "title": "Scacchi",
+            "description": "Divertimento nel giocare a scacchi e pensiero strategico."
+          }
+        }
+      },
+      {
+        "faIcon": "fas fa-code",
+        "locales": {
+          "en": {
+            "title": "Programming",
+            "description": "Exploring code, algorithms, and building software solutions for real-world challenges."
+          },
+          "it": {
+            "title": "Programmazione",
+            "description": "Esplorazione del codice, degli algoritmi e sviluppo di soluzioni software per sfide reali."
+          }
+        }
+      },
 
-			{
-				"faIcon": "fas fa-coffee",
-				"locales": {
-					"en": {
-						"title": "Coffee Lover and Brewer",
-						"description": "Passionate about coffee and enjoy experimenting with various types of coffee and brewing methods."
-					},
-					"it": {
-						"title": "Appassionato di Caffè e Birraio",
-						"description": "Appassionato di caffè e ama sperimentare con vari tipi di caffè e metodi di preparazione."
-					}
-				}
-			},
-			{
-				"faIcon": "fas fa-video",
-				"locales": {
-					"en": {
-						"title": "Video Creation using Drones",
-						"description": "Create engaging videos using drones, feel free to explore my videos on <a href='https://www.youtube.com/@iamNimaKarimi' target='_blank'><i class='fa-brands fa-youtube' style='color: red;'></i> <span style='text-decoration: underline;'>my YouTube channel</span></a>."
-					},
-					"it": {
-						"title": "Creazione Video con Droni",
-						"description": "Creazione di video coinvolgenti utilizzando droni, Non esiti ad esplorare i miei video sul <a href='https://www.youtube.com/@iamNimaKarimi' target='_blank'><i class='fa-brands fa-youtube' style='color: red;'></i> <span style='text-decoration: underline;'>mio canale YouTube</span></a>."
-					}
-				}
-			}
-		]
-	}
+      {
+        "faIcon": "fas fa-coffee",
+        "locales": {
+          "en": {
+            "title": "Coffee Lover and Brewer",
+            "description": "Passionate about coffee and enjoy experimenting with various types of coffee and brewing methods."
+          },
+          "it": {
+            "title": "Appassionato di Caffè e Birraio",
+            "description": "Appassionato di caffè e ama sperimentare con vari tipi di caffè e metodi di preparazione."
+          }
+        }
+      },
+      {
+        "faIcon": "fas fa-video",
+        "locales": {
+          "en": {
+            "title": "Video Creation using Drones",
+            "description": "Create engaging videos using drones, feel free to explore my videos on <a href='https://www.youtube.com/@iamNimaKarimi' target='_blank'><i class='fa-brands fa-youtube' style='color: red;'></i> <span style='text-decoration: underline;'>my YouTube channel</span></a>."
+          },
+          "it": {
+            "title": "Creazione Video con Droni",
+            "description": "Creazione di video coinvolgenti utilizzando droni, Non esiti ad esplorare i miei video sul <a href='https://www.youtube.com/@iamNimaKarimi' target='_blank'><i class='fa-brands fa-youtube' style='color: red;'></i> <span style='text-decoration: underline;'>mio canale YouTube</span></a>."
+          }
+        }
+      }
+    ]
+  }
 }

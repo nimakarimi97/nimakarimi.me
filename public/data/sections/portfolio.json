@@ -1,166 +1,166 @@
 {
-	"locales": {
-		"en": {
-			"title": "My <span class='text-primary'>Portfolio</span>",
-			"description": "Explore a selection of my recent projects and creative works."
-		}
-	},
+  "locales": {
+    "en": {
+      "title": "My <span class='text-primary'>Portfolio</span>",
+      "description": "Explore a selection of my recent projects and creative works."
+    }
+  },
 
-	"subcategories": [
-		{
-			"id": "productivity",
-			"locales": {
-				"en": { "title": "Productivity" }
-			}
-		},
-		{
-			"id": "utilities",
-			"locales": {
-				"en": { "title": "Utilities" }
-			}
-		},
-		{
-			"id": "social",
-			"locales": {
-				"en": { "title": "Social" }
-			}
-		}
-	],
+  "subcategories": [
+    {
+      "id": "productivity",
+      "locales": {
+        "en": { "title": "Productivity" }
+      }
+    },
+    {
+      "id": "utilities",
+      "locales": {
+        "en": { "title": "Utilities" }
+      }
+    },
+    {
+      "id": "social",
+      "locales": {
+        "en": { "title": "Social" }
+      }
+    }
+  ],
 
-	"items": {
-		"productivity": [
-			{
-				"id": "brainpulse",
-				"title": "BrainPulse",
-				"logoUrl": "images/portfolio/project-logo-3.png",
-				"links": [
-					{ "faIcon": "fa-brands fa-apple", "href": "https://apple.com", "id": "App Store" },
-					{ "faIcon": "fa-brands fa-google-play", "href": "https://googleplay.com", "id": "Google Play" }
-				],
-				"locales": {
-					"en": {
-						"description": "<b>BrainPulse</b> is your ultimate productivity app, helping you manage tasks, organize your schedule, and boost your focus. With its sleek and modern interface, BrainPulse offers features like task lists, reminders, goal tracking, and customizable productivity metrics. Whether you're a student, professional, or anyone looking to optimize their time and efficiency, BrainPulse is your go-to app for achieving more while maintaining work-life balance.",
-						"tags": ["app", "productivity", "tasks", "focus"]
-					}
-				}
-			},
+  "items": {
+    "productivity": [
+      {
+        "id": "brainpulse",
+        "title": "BrainPulse",
+        "logoUrl": "images/portfolio/project-logo-3.png",
+        "links": [
+          { "faIcon": "fa-brands fa-apple", "href": "https://apple.com", "id": "App Store" },
+          { "faIcon": "fa-brands fa-google-play", "href": "https://googleplay.com", "id": "Google Play" }
+        ],
+        "locales": {
+          "en": {
+            "description": "<b>BrainPulse</b> is your ultimate productivity app, helping you manage tasks, organize your schedule, and boost your focus. With its sleek and modern interface, BrainPulse offers features like task lists, reminders, goal tracking, and customizable productivity metrics. Whether you're a student, professional, or anyone looking to optimize their time and efficiency, BrainPulse is your go-to app for achieving more while maintaining work-life balance.",
+            "tags": ["app", "productivity", "tasks", "focus"]
+          }
+        }
+      },
 
-			{
-				"id": "stackers",
-				"title": "Stackers",
-				"logoUrl": "images/portfolio/project-logo-6.png",
-				"links": [
-					{ "faIcon": "fa-brands fa-apple", "href": "https://apple.com", "id": "App Store" },
-					{ "faIcon": "fa-brands fa-google-play", "href": "https://googleplay.com", "id": "Google Play" }
-				],
-				"locales": {
-					"en": {
-						"description": "<b>Stackers</b> is your all-in-one organization and note-taking app, designed to streamline your digital life. With its seamless integration of task management, note organization, and cloud storage, Stackers helps you stay organized and productive. Create to-do lists, jot down ideas, and sync your notes across devices effortlessly. Whether you're a student, professional, or anyone seeking a clutter-free digital workspace, Stackers is here to elevate your organizational game.",
-						"tags": ["app", "organization", "notes", "productivity"]
-					}
-				}
-			},
+      {
+        "id": "stackers",
+        "title": "Stackers",
+        "logoUrl": "images/portfolio/project-logo-6.png",
+        "links": [
+          { "faIcon": "fa-brands fa-apple", "href": "https://apple.com", "id": "App Store" },
+          { "faIcon": "fa-brands fa-google-play", "href": "https://googleplay.com", "id": "Google Play" }
+        ],
+        "locales": {
+          "en": {
+            "description": "<b>Stackers</b> is your all-in-one organization and note-taking app, designed to streamline your digital life. With its seamless integration of task management, note organization, and cloud storage, Stackers helps you stay organized and productive. Create to-do lists, jot down ideas, and sync your notes across devices effortlessly. Whether you're a student, professional, or anyone seeking a clutter-free digital workspace, Stackers is here to elevate your organizational game.",
+            "tags": ["app", "organization", "notes", "productivity"]
+          }
+        }
+      },
 
-			{
-				"id": "mailm8",
-				"title": "MailM8",
-				"logoUrl": "images/portfolio/project-logo-7.png",
-				"links": [
-					{ "faIcon": "fa-brands fa-apple", "href": "https://apple.com", "id": "App Store" },
-					{ "faIcon": "fa-brands fa-google-play", "href": "https://googleplay.com", "id": "Google Play" }
-				],
-				"locales": {
-					"en": {
-						"description": "<b>MailM8</b> is your intelligent email companion, revolutionizing the way you manage and interact with your inbox. With advanced AI-powered features, <b>MailM8</b> helps you declutter your email, prioritize important messages, and compose smart replies in a breeze. Say goodbye to email overwhelm and hello to a more efficient and organized communication experience with <b>MailM8</b>.",
-						"tags": ["app", "email", "communication", "productivity"]
-					}
-				}
-			}
-		],
+      {
+        "id": "mailm8",
+        "title": "MailM8",
+        "logoUrl": "images/portfolio/project-logo-7.png",
+        "links": [
+          { "faIcon": "fa-brands fa-apple", "href": "https://apple.com", "id": "App Store" },
+          { "faIcon": "fa-brands fa-google-play", "href": "https://googleplay.com", "id": "Google Play" }
+        ],
+        "locales": {
+          "en": {
+            "description": "<b>MailM8</b> is your intelligent email companion, revolutionizing the way you manage and interact with your inbox. With advanced AI-powered features, <b>MailM8</b> helps you declutter your email, prioritize important messages, and compose smart replies in a breeze. Say goodbye to email overwhelm and hello to a more efficient and organized communication experience with <b>MailM8</b>.",
+            "tags": ["app", "email", "communication", "productivity"]
+          }
+        }
+      }
+    ],
 
-		"utilities": [
-			{
-				"id": "smartcash",
-				"title": "SmartCash",
-				"logoUrl": "images/portfolio/project-logo-1.png",
-				"links": [
-					{ "faIcon": "fa-brands fa-apple", "href": "https://apple.com", "id": "App Store" },
-					{ "faIcon": "fa-brands fa-google-play", "href": "https://googleplay.com", "id": "Google Play" },
-					{ "faIcon": "fa-brands fa-windows", "href": "https://windows.com", "id": "Windows Store" }
-				],
-				"locales": {
-					"en": {
-						"description": "<b>SmartCash</b> is your smart companion for personal finance, empowering you to take control of your money effortlessly. With its user-friendly interface, SmartCash provides real-time tracking of your expenses and income, enabling you to identify spending patterns and make informed financial decisions. Stay on top of your budget as SmartCash offers personalized recommendations to save money and achieve your financial goals without compromising your lifestyle.",
-						"tags": ["app", "finance", "money", "budget"]
-					}
-				}
-			},
+    "utilities": [
+      {
+        "id": "smartcash",
+        "title": "SmartCash",
+        "logoUrl": "images/portfolio/project-logo-1.png",
+        "links": [
+          { "faIcon": "fa-brands fa-apple", "href": "https://apple.com", "id": "App Store" },
+          { "faIcon": "fa-brands fa-google-play", "href": "https://googleplay.com", "id": "Google Play" },
+          { "faIcon": "fa-brands fa-windows", "href": "https://windows.com", "id": "Windows Store" }
+        ],
+        "locales": {
+          "en": {
+            "description": "<b>SmartCash</b> is your smart companion for personal finance, empowering you to take control of your money effortlessly. With its user-friendly interface, SmartCash provides real-time tracking of your expenses and income, enabling you to identify spending patterns and make informed financial decisions. Stay on top of your budget as SmartCash offers personalized recommendations to save money and achieve your financial goals without compromising your lifestyle.",
+            "tags": ["app", "finance", "money", "budget"]
+          }
+        }
+      },
 
-			{
-				"id": "snappy",
-				"title": "Snappy",
-				"logoUrl": "images/portfolio/project-logo-2.png",
-				"links": [
-					{ "faIcon": "fa-brands fa-apple", "href": "https://apple.com", "id": "App Store" },
-					{ "faIcon": "fa-brands fa-google-play", "href": "https://googleplay.com", "id": "Google Play" }
-				],
-				"locales": {
-					"en": {
-						"description": "<b>Snappy</b> is your ultimate photography app, empowering you to capture and edit stunning images effortlessly. With its intuitive interface, Snappy provides a wide range of powerful tools and filters to enhance your photos and bring out your creativity. Whether you're a professional photographer or just a hobbyist, Snappy offers features like manual controls, advanced editing options, and AI-powered enhancements to take your photography to the next level.",
-						"tags": ["app", "photography", "camera"]
-					}
-				}
-			},
+      {
+        "id": "snappy",
+        "title": "Snappy",
+        "logoUrl": "images/portfolio/project-logo-2.png",
+        "links": [
+          { "faIcon": "fa-brands fa-apple", "href": "https://apple.com", "id": "App Store" },
+          { "faIcon": "fa-brands fa-google-play", "href": "https://googleplay.com", "id": "Google Play" }
+        ],
+        "locales": {
+          "en": {
+            "description": "<b>Snappy</b> is your ultimate photography app, empowering you to capture and edit stunning images effortlessly. With its intuitive interface, Snappy provides a wide range of powerful tools and filters to enhance your photos and bring out your creativity. Whether you're a professional photographer or just a hobbyist, Snappy offers features like manual controls, advanced editing options, and AI-powered enhancements to take your photography to the next level.",
+            "tags": ["app", "photography", "camera"]
+          }
+        }
+      },
 
-			{
-				"id": "sweetscoops",
-				"title": "Sweet Scoops",
-				"logoUrl": "images/portfolio/project-logo-5.png",
-				"links": [
-					{ "faIcon": "fa-brands fa-apple", "href": "https://apple.com", "id": "App Store" },
-					{ "faIcon": "fa-brands fa-google-play", "href": "https://googleplay.com", "id": "Google Play" }
-				],
-				"locales": {
-					"en": {
-						"description": "Indulge in the world of delectable desserts with <b>Sweet Scoops</b>! This app is a dessert lover's paradise, offering a wide range of mouthwatering recipes, step-by-step instructions, and videos for creating your favorite sweets. From creamy ice creams to irresistible pastries, <b>Sweet Scoops</b> has you covered for all your dessert cravings. Unleash your inner pastry chef and treat yourself to a delightful dessert experience.",
-						"tags": ["app", "food", "desserts", "recipes"]
-					}
-				}
-			}
-		],
+      {
+        "id": "sweetscoops",
+        "title": "Sweet Scoops",
+        "logoUrl": "images/portfolio/project-logo-5.png",
+        "links": [
+          { "faIcon": "fa-brands fa-apple", "href": "https://apple.com", "id": "App Store" },
+          { "faIcon": "fa-brands fa-google-play", "href": "https://googleplay.com", "id": "Google Play" }
+        ],
+        "locales": {
+          "en": {
+            "description": "Indulge in the world of delectable desserts with <b>Sweet Scoops</b>! This app is a dessert lover's paradise, offering a wide range of mouthwatering recipes, step-by-step instructions, and videos for creating your favorite sweets. From creamy ice creams to irresistible pastries, <b>Sweet Scoops</b> has you covered for all your dessert cravings. Unleash your inner pastry chef and treat yourself to a delightful dessert experience.",
+            "tags": ["app", "food", "desserts", "recipes"]
+          }
+        }
+      }
+    ],
 
-		"social": [
-			{
-				"id": "findagoalie",
-				"title": "Find a Goalie",
-				"logoUrl": "images/portfolio/project-logo-4.png",
-				"links": [
-					{ "faIcon": "fa-brands fa-apple", "href": "https://apple.com", "id": "App Store" },
-					{ "faIcon": "fa-brands fa-google-play", "href": "https://googleplay.com", "id": "Google Play" }
-				],
-				"locales": {
-					"en": {
-						"description": "<b>Find a Goalie</b> is your go-to app for finding and connecting with goaltenders in your area. Whether you're organizing a pickup hockey game or need a goalie for your team's practice session, this app makes it easy to search for available goaltenders, view their profiles, and send direct messages for collaboration. Get the pads on and let <b>Find a Goalie</b> help you keep the net covered!",
-						"tags": ["app", "sports", "hockey", "goalie"]
-					}
-				}
-			},
+    "social": [
+      {
+        "id": "findagoalie",
+        "title": "Find a Goalie",
+        "logoUrl": "images/portfolio/project-logo-4.png",
+        "links": [
+          { "faIcon": "fa-brands fa-apple", "href": "https://apple.com", "id": "App Store" },
+          { "faIcon": "fa-brands fa-google-play", "href": "https://googleplay.com", "id": "Google Play" }
+        ],
+        "locales": {
+          "en": {
+            "description": "<b>Find a Goalie</b> is your go-to app for finding and connecting with goaltenders in your area. Whether you're organizing a pickup hockey game or need a goalie for your team's practice session, this app makes it easy to search for available goaltenders, view their profiles, and send direct messages for collaboration. Get the pads on and let <b>Find a Goalie</b> help you keep the net covered!",
+            "tags": ["app", "sports", "hockey", "goalie"]
+          }
+        }
+      },
 
-			{
-				"id": "rockverse",
-				"title": "RockVerse",
-				"logoUrl": "images/portfolio/project-logo-9.png",
-				"links": [
-					{ "faIcon": "fa-brands fa-apple", "href": "https://apple.com", "id": "App Store" },
-					{ "faIcon": "fa-brands fa-google-play", "href": "https://googleplay.com", "id": "Google Play" }
-				],
-				"locales": {
-					"en": {
-						"description": "Step into the electrifying world of rock music with <b>RockVerse</b>! This app is a haven for rock enthusiasts, offering a vast collection of classic and modern rock tracks, curated playlists, and behind-the-scenes content. Whether you're a die-hard fan or just discovering the genre, <b>RockVerse</b> brings you closer to the heart and soul of rock and roll. Crank up the volume and let the rock 'n' roll spirit run wild!",
-						"tags": ["app", "music", "rock", "entertainment"]
-					}
-				}
-			}
-		]
-	}
+      {
+        "id": "rockverse",
+        "title": "RockVerse",
+        "logoUrl": "images/portfolio/project-logo-9.png",
+        "links": [
+          { "faIcon": "fa-brands fa-apple", "href": "https://apple.com", "id": "App Store" },
+          { "faIcon": "fa-brands fa-google-play", "href": "https://googleplay.com", "id": "Google Play" }
+        ],
+        "locales": {
+          "en": {
+            "description": "Step into the electrifying world of rock music with <b>RockVerse</b>! This app is a haven for rock enthusiasts, offering a vast collection of classic and modern rock tracks, curated playlists, and behind-the-scenes content. Whether you're a die-hard fan or just discovering the genre, <b>RockVerse</b> brings you closer to the heart and soul of rock and roll. Crank up the volume and let the rock 'n' roll spirit run wild!",
+            "tags": ["app", "music", "rock", "entertainment"]
+          }
+        }
+      }
+    ]
+  }
 }

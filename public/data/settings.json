@@ -1,20 +1,20 @@
 {
-	"supportedLanguages": [
-		{
-			"name": "English",
-			"id": "en",
-			"flagUrl": "images/flags/en.png",
-			"default": true
-		},
+  "supportedLanguages": [
+    {
+      "name": "English",
+      "id": "en",
+      "flagUrl": "images/flags/en.png",
+      "default": true
+    },
 
-		{
-			"name": "Italiano",
-			"id": "it",
-			"flagUrl": "images/flags/it.png"
-		}
-	],
+    {
+      "name": "Italiano",
+      "id": "it",
+      "flagUrl": "images/flags/it.png"
+    }
+  ],
 
-	"preloaderEnabled": false,
-	"contactFormEnabled": false,
-	"sidebarShrinkingEnabled": false
+  "preloaderEnabled": false,
+  "contactFormEnabled": false,
+  "sidebarShrinkingEnabled": false
 }

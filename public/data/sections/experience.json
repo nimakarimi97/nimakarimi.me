@@ -1,99 +1,99 @@
 {
-	"locales": {
-		"en": {
-			"title": "<span class='text-primary'>Professional</span> Experience",
-			"description": "A look into my work experience and career journey."
-		},
-		"it": {
-			"title": "<span class='text-primary'>Esperienza</span> Professionale",
-			"description": "Un'occhiata alla mia esperienza lavorativa e percorso professionale."
-		}
-	},
-	"items": [
-		{
-			"id": "experience_item_1",
-			"place": "@link{places.leanbit}",
-			"period": ["2022/04", "2022/10"],
-			"locales": {
-				"en": {
-					"title": "Software Developer Intern",
-					"description": "Developed a <strong>full-stack tweet scheduler application</strong>, gaining hands-on experience in web development from backend to frontend.<br><strong>Skills:</strong> Ruby on Rails, React.JS, Redux, SQL"
-				},
-				"it": {
-					"title": "Sviluppatore Software Intern",
-					"description": "Ho sviluppato <strong>un’applicazione di pianificazione dei tweet full-stack</strong>, acquisendo esperienza pratica nello sviluppo web dal backend al frontend.<br><strong>Competenze:</strong> Ruby on Rails, React.JS, Redux, SQL"
-				}
-			}
-		},
-		{
-			"id": "experience_item_2",
-			"place": "@link{places.freelance}",
-			"period": ["2022/10", "now"],
-			"locales": {
-				"en": {
-					"title": "Web Developer Freelancer",
-					"description": "<strong>Skills:</strong> TypeScript, jQuery, React and React Native, Vue, Firebase, HTML and CSS (Sass, Bootstrap, Tailwind)"
-				},
-				"it": {
-					"title": "Sviluppatore Web Freelance",
-					"description": "<strong>Competenze:</strong> TypeScript, jQuery, React e React Native, Vue, Firebase, HTML e CSS (Sass, Bootstrap, Tailwind)"
-				}
-			}
-		},
-		{
-			"id": "experience_item_3",
-			"place": "@link{places.cp}",
-			"period": ["2023/06", "2023/09"],
-			"locales": {
-				"en": {
-					"title": "Macine Learning (ML) Developer",
-					"description": "Working as a full-stack developer, with C#, Python (Flask), and Angular. Implemented a ChatGPT chatbot (via LLM) that can answer users' questions regarding his/her documents, events, and tasks."
-				},
-				"it": {
-					"title": "Sviluppatore di Machine Learning (ML)",
-					"description": "Lavoro come sviluppatore full-stack, con C#, Python (Flask) e Angular. Implementato un chatbot ChatGPT (tramite LLM) in grado di rispondere alle domande degli utenti sui loro documenti, eventi e compiti."
-				}
-			}
-		},
-		{
-			"id": "experience_item_4",
-			"place": "@link{places.keySolution}",
-			"period": ["2023/10", "2024/10"],
-			"locales": {
-				"en": {
-					"title": "Full-stack Developer and Project Manager",
-					"description": "Managing team activities using Agile and Scrum methodologies to handle two projects:<br><ol><li><strong>Factory Simulation and Dashboard:</strong> A web-based application developed with Vue.js, PostgreSQL, Node.js, and Express.js to support Big Data Analytics and various lifecycle activities of a plant.</li><li><strong>CV Management Tool:</strong> Created with Vue.js, Nuxt.js, and ChatGPT integration (LLM) to enhance applicants' CV management and analysis processes.</li></ol><br>Throughout these projects, I developed and enhanced several skills and gained valuable experience:<br><ul><li><b>Organized and conducted interviews</b> to identify and select candidates who <b>fit our team dynamics and project requirements</b>.</li><li>Assisted in <b>optimizing application performance</b> to ensure <b>fast load times</b> and <b>efficient resource usage</b>.</li><li><b>Facilitated team building</b> and <b>strengthened working relationships</b> through various activities.</li></ul>"
-				},
-				"it": {
-					"title": "Sviluppatore Full-stack e Project Manager",
-					"description": "Gestione delle attività del team utilizzando metodologie Agile e Scrum per gestire due progetti:<br><ol><li><strong>Simulazione e Dashboard della Fabbrica:</strong> Un'applicazione web sviluppata con Vue.js, PostgreSQL, Node.js ed Express.js per supportare l'analisi dei Big Data e le varie attività del ciclo di vita di un impianto.</li><li><strong>Strumento di Gestione CV:</strong> Creato con Vue.js, Nuxt.js e integrazione ChatGPT (LLM) per migliorare la gestione e l'analisi dei CV dei candidati.</li></ol><br>Durante questi progetti, ho sviluppato e migliorato diverse competenze e acquisito preziosa esperienza:<br><ul><li><b>Organizzato e condotto colloqui</b> per identificare e selezionare i candidati che <b>si adattano alla dinamica del nostro team e ai requisiti del progetto</b>.</li><li>Assistenza nell'<b>ottimizzazione delle prestazioni delle applicazioni</b> per garantire <b>tempi di caricamento rapidi</b> e <b>uso efficiente delle risorse</b>.</li><li><b>Facilitato il team building</b> e <b>rafforzato le relazioni di lavoro</b> attraverso varie attività.</li></ul>"
-				}
-			}
-		},
-		{
-			"id": "experience_item_5",
-			"place": "@link{places.capgemini}",
-			"period": ["2024/11", "now"],
-			"clients": [
-				{
-					"name": "TIM",
-					"logoUrl": "images/places/tim_logo.png"
-				},
-				{
-					"name": "Cap Gemini S.P.A.",
-					"logoUrl": "images/places/capgemini_logo.png"
-				}
-			],
-			"locales": {
-				"en": {
-					"title": "Software Engineer",
-					"description": "Development and integration of prototype applications in the Smart Mobility and Connected Vehicles field for TIM as a consultant."
-				},
-				"it": {
-					"title": "Ingegnere del Software",
-					"description": "Sviluppo e integrazione di applicazioni prototipo nel campo della Smart Mobility e dei Veicoli Connessi per TIM come consulente."
-				}
-			}
-		}
-	]
+  "locales": {
+    "en": {
+      "title": "<span class='text-primary'>Professional</span> Experience",
+      "description": "A look into my work experience and career journey."
+    },
+    "it": {
+      "title": "<span class='text-primary'>Esperienza</span> Professionale",
+      "description": "Un'occhiata alla mia esperienza lavorativa e percorso professionale."
+    }
+  },
+  "items": [
+    {
+      "id": "experience_item_1",
+      "place": "@link{places.leanbit}",
+      "period": ["2022/04", "2022/10"],
+      "locales": {
+        "en": {
+          "title": "Software Developer Intern",
+          "description": "Developed a <strong>full-stack tweet scheduler application</strong>, gaining hands-on experience in web development from backend to frontend.<br><strong>Skills:</strong> Ruby on Rails, React.JS, Redux, SQL"
+        },
+        "it": {
+          "title": "Sviluppatore Software Intern",
+          "description": "Ho sviluppato <strong>un’applicazione di pianificazione dei tweet full-stack</strong>, acquisendo esperienza pratica nello sviluppo web dal backend al frontend.<br><strong>Competenze:</strong> Ruby on Rails, React.JS, Redux, SQL"
+        }
+      }
+    },
+    {
+      "id": "experience_item_2",
+      "place": "@link{places.freelance}",
+      "period": ["2022/10", "now"],
+      "locales": {
+        "en": {
+          "title": "Web Developer Freelancer",
+          "description": "<strong>Skills:</strong> TypeScript, jQuery, React and React Native, Vue, Firebase, HTML and CSS (Sass, Bootstrap, Tailwind)"
+        },
+        "it": {
+          "title": "Sviluppatore Web Freelance",
+          "description": "<strong>Competenze:</strong> TypeScript, jQuery, React e React Native, Vue, Firebase, HTML e CSS (Sass, Bootstrap, Tailwind)"
+        }
+      }
+    },
+    {
+      "id": "experience_item_3",
+      "place": "@link{places.cp}",
+      "period": ["2023/06", "2023/09"],
+      "locales": {
+        "en": {
+          "title": "Macine Learning (ML) Developer",
+          "description": "Working as a full-stack developer, with C#, Python (Flask), and Angular. Implemented a ChatGPT chatbot (via LLM) that can answer users' questions regarding his/her documents, events, and tasks."
+        },
+        "it": {
+          "title": "Sviluppatore di Machine Learning (ML)",
+          "description": "Lavoro come sviluppatore full-stack, con C#, Python (Flask) e Angular. Implementato un chatbot ChatGPT (tramite LLM) in grado di rispondere alle domande degli utenti sui loro documenti, eventi e compiti."
+        }
+      }
+    },
+    {
+      "id": "experience_item_4",
+      "place": "@link{places.keySolution}",
+      "period": ["2023/10", "2024/10"],
+      "locales": {
+        "en": {
+          "title": "Full-stack Developer and Project Manager",
+          "description": "Managing team activities using Agile and Scrum methodologies to handle two projects:<br><ol><li><strong>Factory Simulation and Dashboard:</strong> A web-based application developed with Vue.js, PostgreSQL, Node.js, and Express.js to support Big Data Analytics and various lifecycle activities of a plant.</li><li><strong>CV Management Tool:</strong> Created with Vue.js, Nuxt.js, and ChatGPT integration (LLM) to enhance applicants' CV management and analysis processes.</li></ol><br>Throughout these projects, I developed and enhanced several skills and gained valuable experience:<br><ul><li><b>Organized and conducted interviews</b> to identify and select candidates who <b>fit our team dynamics and project requirements</b>.</li><li>Assisted in <b>optimizing application performance</b> to ensure <b>fast load times</b> and <b>efficient resource usage</b>.</li><li><b>Facilitated team building</b> and <b>strengthened working relationships</b> through various activities.</li></ul>"
+        },
+        "it": {
+          "title": "Sviluppatore Full-stack e Project Manager",
+          "description": "Gestione delle attività del team utilizzando metodologie Agile e Scrum per gestire due progetti:<br><ol><li><strong>Simulazione e Dashboard della Fabbrica:</strong> Un'applicazione web sviluppata con Vue.js, PostgreSQL, Node.js ed Express.js per supportare l'analisi dei Big Data e le varie attività del ciclo di vita di un impianto.</li><li><strong>Strumento di Gestione CV:</strong> Creato con Vue.js, Nuxt.js e integrazione ChatGPT (LLM) per migliorare la gestione e l'analisi dei CV dei candidati.</li></ol><br>Durante questi progetti, ho sviluppato e migliorato diverse competenze e acquisito preziosa esperienza:<br><ul><li><b>Organizzato e condotto colloqui</b> per identificare e selezionare i candidati che <b>si adattano alla dinamica del nostro team e ai requisiti del progetto</b>.</li><li>Assistenza nell'<b>ottimizzazione delle prestazioni delle applicazioni</b> per garantire <b>tempi di caricamento rapidi</b> e <b>uso efficiente delle risorse</b>.</li><li><b>Facilitato il team building</b> e <b>rafforzato le relazioni di lavoro</b> attraverso varie attività.</li></ul>"
+        }
+      }
+    },
+    {
+      "id": "experience_item_5",
+      "place": "@link{places.capgemini}",
+      "period": ["2024/11", "now"],
+      "clients": [
+        {
+          "name": "TIM",
+          "logoUrl": "images/places/tim_logo.png"
+        },
+        {
+          "name": "Cap Gemini S.P.A.",
+          "logoUrl": "images/places/capgemini_logo.png"
+        }
+      ],
+      "locales": {
+        "en": {
+          "title": "Software Engineer",
+          "description": "Development and integration of prototype applications in the Smart Mobility and Connected Vehicles field for TIM as a consultant."
+        },
+        "it": {
+          "title": "Ingegnere del Software",
+          "description": "Sviluppo e integrazione di applicazioni prototipo nel campo della Smart Mobility e dei Veicoli Connessi per TIM come consulente."
+        }
+      }
+    }
+  ]
 }

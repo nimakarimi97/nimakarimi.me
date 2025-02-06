@@ -1,56 +1,56 @@
 {
-	"name": "Nima Karimi",
-	"profilePictureUrl": "images/pictures/avatar.png",
-	"locales": {
-		"en": {
-			"role": "Full Stack Developer"
-		},
-		"es": {
-			"role": "Sviluppatore Full Stack"
-		}
-	},
-	"contact": {
-		"address": {
-			"id": "address",
-			"value": "Milan, Italy",
-			"valueShort": "Milan, Italy",
-			"faIcon": "fa-solid fa-city",
-			"href": null
-		},
-		"email": {
-			"id": "email",
-			"value": "info@nimakarimi.me",
-			"valueShort": "info@nimakarimi.me",
-			"faIcon": "fa-solid fa-envelope",
-			"href": "mailto:info@nimakarimi.me"
-		},
-		"facebook": {
-			"id": "facebook",
-			"value": "nima karimi",
-			"valueShort": "nima karimi",
-			"faIcon": "fa-brands fa-facebook",
-			"href": "https://facebook.com"
-		},
-		"github": {
-			"id": "github",
-			"value": "@nimakarimi97",
-			"valueShort": "@nimakarimi97",
-			"faIcon": "fa-brands fa-github",
-			"href": "https://github.com/nimakarimi97"
-		},
-		"instagram": {
-			"id": "instagram",
-			"value": "@nimakarimi.official",
-			"valueShort": "@nimakarimi.official",
-			"faIcon": "fa-brands fa-instagram",
-			"href": "https://instagram.com"
-		},
-		"linkedin": {
-			"id": "linkedin",
-			"value": "@nimakarimi97",
-			"valueShort": "@nimakarimi97",
-			"faIcon": "fa-brands fa-linkedin",
-			"href": "https://linkedin.com/in/nimakarimi97"
-		}
-	}
+  "name": "Nima Karimi",
+  "profilePictureUrl": "images/pictures/avatar.png",
+  "locales": {
+    "en": {
+      "role": "Full Stack Developer"
+    },
+    "es": {
+      "role": "Sviluppatore Full Stack"
+    }
+  },
+  "contact": {
+    "address": {
+      "id": "address",
+      "value": "Milan, Italy",
+      "valueShort": "Milan, Italy",
+      "faIcon": "fa-solid fa-city",
+      "href": null
+    },
+    "email": {
+      "id": "email",
+      "value": "info@nimakarimi.me",
+      "valueShort": "info@nimakarimi.me",
+      "faIcon": "fa-solid fa-envelope",
+      "href": "mailto:info@nimakarimi.me"
+    },
+    "facebook": {
+      "id": "facebook",
+      "value": "nima karimi",
+      "valueShort": "nima karimi",
+      "faIcon": "fa-brands fa-facebook",
+      "href": "https://facebook.com"
+    },
+    "github": {
+      "id": "github",
+      "value": "@nimakarimi97",
+      "valueShort": "@nimakarimi97",
+      "faIcon": "fa-brands fa-github",
+      "href": "https://github.com/nimakarimi97"
+    },
+    "instagram": {
+      "id": "instagram",
+      "value": "@nimakarimi.official",
+      "valueShort": "@nimakarimi.official",
+      "faIcon": "fa-brands fa-instagram",
+      "href": "https://instagram.com"
+    },
+    "linkedin": {
+      "id": "linkedin",
+      "value": "@nimakarimi97",
+      "valueShort": "@nimakarimi97",
+      "faIcon": "fa-brands fa-linkedin",
+      "href": "https://linkedin.com/in/nimakarimi97"
+    }
+  }
 }

@@ -1,68 +1,68 @@
 {
-	"capgemini": {
-		"logoUrl": "images/places/capgemini_logo.png",
-		"faIcon": "fa-solid fa-briefcase",
-		"locales": {
-			"en": {
-				"name": "Capgemini"
-			}
-		}
-	},
-	"keySolution": {
-		"logoUrl": "images/places/key_solution_srl_logo.jpeg",
-		"faIcon": "fa-solid fa-briefcase",
-		"locales": {
-			"en": {
-				"name": "Key Solution"
-			}
-		}
-	},
-	"cp": {
-		"logoUrl": "images/places/gruppo_centro_paghe_logo.jpeg",
-		"faIcon": "fa-solid fa-briefcase",
-		"locales": {
-			"en": {
-				"name": "Gruppo Centro Paghe"
-			}
-		}
-	},
-	"leanbit": {
-		"logoUrl": "images/places/leanbit_logo.jpeg",
-		"faIcon": "fa-solid fa-briefcase",
-		"locales": {
-			"en": {
-				"name": "Leanbit"
-			}
-		}
-	},
-	"kntu": {
-		"logoUrl": "images/places/kntu_logo.jpeg",
-		"faIcon": "fas fa-university",
-		"locales": {
-			"en": {
-				"name": "K. N. Toosi University of Technology"
-			}
-		}
-	},
-	"unipd": {
-		"logoUrl": "images/places/unipd_logo.jpeg",
-		"faIcon": "fas fa-university",
-		"locales": {
-			"en": {
-				"name": "University of Padova"
-			},
-			"it": {
-				"name": "Università degli Studi di Padova"
-			}
-		}
-	},
-	"freelance": {
-		"logoUrl": "images/places/logo-ux-studio.png",
-		"faIcon": "fas fa-paint-brush",
-		"locales": {
-			"en": {
-				"name": "Freelance World!"
-			}
-		}
-	}
+  "capgemini": {
+    "logoUrl": "images/places/capgemini_logo.png",
+    "faIcon": "fa-solid fa-briefcase",
+    "locales": {
+      "en": {
+        "name": "Capgemini"
+      }
+    }
+  },
+  "keySolution": {
+    "logoUrl": "images/places/key_solution_srl_logo.jpeg",
+    "faIcon": "fa-solid fa-briefcase",
+    "locales": {
+      "en": {
+        "name": "Key Solution"
+      }
+    }
+  },
+  "cp": {
+    "logoUrl": "images/places/gruppo_centro_paghe_logo.jpeg",
+    "faIcon": "fa-solid fa-briefcase",
+    "locales": {
+      "en": {
+        "name": "Gruppo Centro Paghe"
+      }
+    }
+  },
+  "leanbit": {
+    "logoUrl": "images/places/leanbit_logo.jpeg",
+    "faIcon": "fa-solid fa-briefcase",
+    "locales": {
+      "en": {
+        "name": "Leanbit"
+      }
+    }
+  },
+  "kntu": {
+    "logoUrl": "images/places/kntu_logo.jpeg",
+    "faIcon": "fas fa-university",
+    "locales": {
+      "en": {
+        "name": "K. N. Toosi University of Technology"
+      }
+    }
+  },
+  "unipd": {
+    "logoUrl": "images/places/unipd_logo.jpeg",
+    "faIcon": "fas fa-university",
+    "locales": {
+      "en": {
+        "name": "University of Padova"
+      },
+      "it": {
+        "name": "Università degli Studi di Padova"
+      }
+    }
+  },
+  "freelance": {
+    "logoUrl": "images/places/logo-ux-studio.png",
+    "faIcon": "fas fa-paint-brush",
+    "locales": {
+      "en": {
+        "name": "Freelance World!"
+      }
+    }
+  }
 }

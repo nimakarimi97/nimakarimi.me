@@ -1,35 +1,39 @@
-<template>
-	<div
-		class="text-4"
-		:class="`alert alert-${props.type}`"
-		role="alert">
-		<i
-			class="me-1"
-			:class="faIcon" />
-		{{ message }}
-	</div>
-</template>
-
 <script setup>
-import { computed } from 'vue';
+import { computed } from 'vue'
 
 const props = defineProps({
-	type: String,
-	message: String,
-});
+  type: String,
+  message: String,
+})
 
 /**
- * @type {ComputedRef<String>}
+ * @type {ComputedRef<string>}
  */
 const faIcon = computed(() => {
-	switch (props.type) {
-		case 'success':
-			return 'fa-solid fa-check-circle';
-		case 'danger':
-			return 'fa-solid fa-exclamation-triangle';
-	}
-});
+  switch (props.type) {
+    case 'success':
+      return 'fa-solid fa-check-circle'
+    case 'danger':
+      return 'fa-solid fa-exclamation-triangle'
+  }
+
+  return ''
+})
 </script>
+
+<template>
+  <div
+    class="text-4"
+    :class="`alert alert-${props.type}`"
+    role="alert"
+  >
+    <i
+      class="me-1"
+      :class="faIcon"
+    />
+    {{ message }}
+  </div>
+</template>
 
 <style lang="scss" scoped>
 @import '/src/scss/_theming.scss';
