@@ -15,7 +15,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "preview": "vite preview",
-    "deploy": "cp CNAME dist/ && cd dist && cp index.html 404.html"
+    "deploy": "cp CNAME dist/ && cd dist && cp index.html 404.html",
+    "prepare": "husky"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.4.0",
@@ -33,6 +34,7 @@
     "eslint": "^9.19.0",
     "eslint-plugin-format": "^1.0.1",
     "gh-pages": "^6.1.1",
+    "husky": "^9.1.7",
     "sass": "^1.62.1",
     "vite": "^4.3.2"
   }

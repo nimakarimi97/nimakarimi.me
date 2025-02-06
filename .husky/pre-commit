@@ -1,0 +1,10 @@
+echo "🔍 Running ESLint check and fix..."
+
+if ! pnpm lint:fix; then
+  echo "🚫 ESLint check failed. Some errors could not be automatically fixed. Please resolve them manually and try committing again."
+  exit 1
+fi
+
+echo "✅ ESLint check passed. Proceeding with commit."
+
+git update-index --again
