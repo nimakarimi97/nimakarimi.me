@@ -13,7 +13,7 @@
     {
       "id": "bachelor_kntu",
       "place": "@link{places.kntu}",
-      "period": ["2016/09", "2020/01"],
+      "period": ["2015/09", "2020/01"],
       "locales": {
         "en": {
           "title": "Bachelor of Science in Mechatronics Engineering",
@@ -28,7 +28,7 @@
     {
       "id": "masters_padova",
       "place": "@link{places.unipd}",
-      "period": ["2020/09", "2022/05"],
+      "period": ["2021/10", "2023/09"],
       "locales": {
         "en": {
           "title": "Master of Science in Management Engineering",
