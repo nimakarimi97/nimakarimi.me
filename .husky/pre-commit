@@ -1,6 +1,8 @@
 echo "🔍 Running ESLint check and fix..."
 
-if ! pnpm lint:fix; then
+STAGED_FILES=$(git diff --name-only --cached)
+
+if ! eslint $STAGED_FILES --fix; then
   echo "🚫 ESLint check failed. Some errors could not be automatically fixed. Please resolve them manually and try committing again."
   exit 1
 fi
