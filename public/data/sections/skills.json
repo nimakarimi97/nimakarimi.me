@@ -190,6 +190,20 @@
         }
       },
       {
+        "faIcon": "fab fa-node-js",
+        "value": 95,
+        "locales": {
+          "en": {
+            "title": "Node JS (Express JS) and Nuxt JS",
+            "description": "Experienced in back-end development with Node.js and Express.js and building server-side rendered applications with Nuxt.js."
+          },
+          "it": {
+            "title": "Node JS (Express JS) e Nuxt JS",
+            "description": "Esperienza nello sviluppo back-end con Node.js e Express.js e nella creazione di applicazioni renderizzate lato server con Nuxt.js."
+          }
+        }
+      },
+      {
         "faIcon": "fab fa-react",
         "value": 60,
         "locales": {
@@ -200,6 +214,20 @@
           "it": {
             "title": "React",
             "description": "Esperienza nella creazione di interfacce utente interattive con React."
+          }
+        }
+      },
+      {
+        "faIcon": "fab fa-golang",
+        "value": 80,
+        "locales": {
+          "en": {
+            "title": "Go (Fiber, Gin, Echo, Fasthttp)",
+            "description": "Proficient in building high-performance web applications using Go and modern frameworks including Fiber, Gin, Echo, and Fasthttp, focusing on minimalist and efficient API development."
+          },
+          "it": {
+            "title": "Go (Framework Fiber, Gin, Echo, Fasthttp)",
+            "description": "Competente nella creazione di applicazioni web ad alte prestazioni utilizzando Go e framework moderni come Fiber, Gin, Echo e Fasthttp, con focus sullo sviluppo di API minimaliste ed efficienti."
           }
         }
       },
@@ -218,16 +246,16 @@
         }
       },
       {
-        "faIcon": "fab fa-node-js",
-        "value": 75,
+        "faIcon": "fab fa-docker",
+        "value": 70,
         "locales": {
           "en": {
-            "title": "Node JS (Express JS) and Nuxt JS",
-            "description": "Experienced in back-end development with Node.js and Express.js and building server-side rendered applications with Nuxt.js."
+            "title": "Docker & Kubernetes",
+            "description": "Experienced in containerization with Docker and orchestration with Kubernetes for deploying, scaling, and managing containerized applications."
           },
           "it": {
-            "title": "Node JS (Express JS) e Nuxt JS",
-            "description": "Esperienza nello sviluppo back-end con Node.js e Express.js e nella creazione di applicazioni renderizzate lato server con Nuxt.js."
+            "title": "Docker e Kubernetes",
+            "description": "Esperienza nella containerizzazione con Docker e nell'orchestrazione con Kubernetes per il deployment, lo scaling e la gestione di applicazioni containerizzate."
           }
         }
       },
