@@ -20,6 +20,12 @@ export function createAppRouter() {
         window.location.href = '/data/CV.pdf'
       },
     },
+    {
+      path: '/schedule',
+      redirect: () => {
+        window.location.href = 'https://calendar.app.google/CYhCbh1HjT4NtN816'
+      },
+    },
   ]
 
   /** Create Section Routes */
