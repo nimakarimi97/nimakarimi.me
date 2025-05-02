@@ -23,8 +23,18 @@ export function createAppRouter() {
     {
       path: '/schedule',
       redirect: () => {
-        window.location.href = 'https://calendar.app.google/CYhCbh1HjT4NtN816'
+        window.location.href = 'https://calendar.app.google/8e8RvMBEsiyAgNsA6'
       },
+    },
+    {
+      path: '/youtube',
+      redirect: () => {
+        window.location.href = 'https://www.youtube.com/@iamNimaKarimi'
+      },
+    },
+    {
+      path: '/yt',
+      redirect: '/youtube',
     },
   ]
 
