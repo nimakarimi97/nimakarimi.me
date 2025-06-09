@@ -36,6 +36,18 @@ export function createAppRouter() {
       path: '/yt',
       redirect: '/youtube',
     },
+    {
+      path: '/github',
+      redirect: () => {
+        window.location.href = 'https://github.com/nimakarimi97'
+      },
+    },
+    {
+      path: '/linkedin',
+      redirect: () => {
+        window.location.href = 'https://www.linkedin.com/in/nimakarimi97/'
+      },
+    },
   ]
 
   /** Create Section Routes */
