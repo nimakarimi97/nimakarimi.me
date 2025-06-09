@@ -22,8 +22,8 @@ const props = defineProps({
  * @return {string}
  * @private
  */
-function _getItemColor(item) {
-  console.log('_getItemColor ~ item:', item)
+function _getItemColor(_item) {
+  // console.log('_getItemColor ~ item:', _item)
   if (props.iconColorStyle === 'transparent') {
     return 'transparent'
   } else if (props.iconColorStyle === 'customColor') {
@@ -36,8 +36,8 @@ function _getItemColor(item) {
  * @return {string|null}
  * @private
  */
-function _getProgressBarColor(item) {
-  console.log(' _getProgressBarColor ~ item:', item)
+function _getProgressBarColor(_item) {
+  // console.log(' _getProgressBarColor ~ item:', _item)
   if (props.iconColorStyle === 'customColor') {
     return props.item.customColor
   }
@@ -50,8 +50,8 @@ function _getProgressBarColor(item) {
  * @return {string}
  * @private
  */
-function _getItemFontAwesomeTextClass(item) {
-  console.log(' _getItemFontAwesomeTextClass ~ item:', item)
+function _getItemFontAwesomeTextClass(_item) {
+  // console.log(' _getItemFontAwesomeTextClass ~ item:', _item)
   if (props.iconColorStyle === 'transparent') {
     return 'text-primary'
   }
@@ -64,20 +64,14 @@ function _getItemFontAwesomeTextClass(item) {
   <div class="info-item">
     <!-- Icon -->
     <CircleIcon
-      :src="item.imageIconUrl || item.faIcon || 'fa-regular fa-sticky-note'"
-      type="standard"
-      :color="_getItemColor(item)"
-      :text-class="_getItemFontAwesomeTextClass(item)"
-      class="info-item-icon"
+      :src="item.imageIconUrl || item.faIcon || 'fa-regular fa-sticky-note'" type="standard"
+      :color="_getItemColor(item)" :text-class="_getItemFontAwesomeTextClass(item)" class="info-item-icon"
     />
 
     <!-- Content -->
     <div class="info-item-content">
       <!-- Header (Highlighted Style) -->
-      <div
-        v-if="highlightedHeader"
-        class="info-item-content-header-highlight mb-1"
-      >
+      <div v-if="highlightedHeader" class="info-item-content-header-highlight mb-1">
         <p class="info-item-title text-4 fw-bold text-normal mb-0">
           {{ item.locales.title }}
         </p>
@@ -87,37 +81,24 @@ function _getItemFontAwesomeTextClass(item) {
       </div>
 
       <!-- Header (Simplified Style) -->
-      <div
-        v-else
-        class="info-item-content-header"
-      >
+      <div v-else class="info-item-content-header">
         <p class="text-light-7 text-4 mb-0">
           <strong>{{ item.locales.title }}</strong>
-          <span
-            v-if="item.formattedPercentage"
-            class="text-3"
-          >
+          <span v-if="item.formattedPercentage" class="text-3">
             – {{ item.formattedPercentage }}</span>
         </p>
       </div>
 
       <!-- Description With Progress Bar -->
       <ProgressBar
-        v-if="props.descriptionWithProgressBar && item.formattedPercentage"
-        :percentage="item.value"
-        :description="item.locales.description"
-        :color="_getProgressBarColor(item)"
-        class="mt-1"
+        v-if="props.descriptionWithProgressBar && item.formattedPercentage" :percentage="item.value"
+        :description="item.locales.description" :color="_getProgressBarColor(item)" class="mt-1"
       />
 
       <!-- Description -->
-      <div
-        v-else
-        class="info-item-description-wrapper"
-      >
+      <div v-else class="info-item-description-wrapper">
         <p
-          class="item-description text-muted mb-0"
-          :class="smallDescription ? 'text-1' : 'text-2'"
+          class="item-description text-muted mb-0" :class="smallDescription ? 'text-1' : 'text-2'"
           v-html="item.locales.description"
         />
       </div>

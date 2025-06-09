@@ -116,7 +116,7 @@ export function useLayout() {
    * @param {number} scrollY
    * @param {boolean} withTimeout
    */
-  const instantScrollTo = (scrollY, withTimeout) => {
+  const instantScrollTo = (scrollY, _withTimeout) => {
     _applyAfterTimeout(() => {
       window.scrollTo({
         top: scrollY ?? 0,
@@ -124,14 +124,14 @@ export function useLayout() {
         behavior: 'instant',
       })
     }, 10)
-    console.log(' instantScrollTo ~ withTimeout:', withTimeout)
+    // console.log(' instantScrollTo ~ withTimeout:', _withTimeout)
   }
 
   /**
    * @param {number} scrollY
    * @param {boolean} withTimeout
    */
-  const smoothScrollTo = (scrollY, withTimeout) => {
+  const smoothScrollTo = (scrollY, _withTimeout) => {
     _applyAfterTimeout(() => {
       window.scrollTo({
         top: scrollY ?? 0,
@@ -139,15 +139,15 @@ export function useLayout() {
         behavior: 'smooth',
       })
     }, 100)
-    console.log(' smoothScrollTo ~ withTimeout:', withTimeout)
+    // console.log(' smoothScrollTo ~ withTimeout:', _withTimeout)
   }
 
   /**
    * @param {string} elementId
    * @param {boolean} withTimeout
    */
-  const instantScrollToElement = (elementId, withTimeout) => {
-    console.log(' instantScrollToElement ~ withTimeout:', withTimeout)
+  const instantScrollToElement = (elementId, _withTimeout) => {
+    // console.log(' instantScrollToElement ~ withTimeout:', _withTimeout)
     const target = document.getElementById(elementId)
     if (!target) {
       return
@@ -165,8 +165,8 @@ export function useLayout() {
    * @param {string} elementId
    * @param {boolean} withTimeout
    */
-  const smoothScrollToElement = (elementId, withTimeout) => {
-    console.log(' smoothScrollToElement ~ withTimeout:', withTimeout)
+  const smoothScrollToElement = (elementId, _withTimeout) => {
+    // console.log(' smoothScrollToElement ~ withTimeout:', _withTimeout)
     const target = document.getElementById(elementId)
     if (!target) {
       return
