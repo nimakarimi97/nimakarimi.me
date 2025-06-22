@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import { useLanguage } from '../../../composables/language.js'
 import { useUtils } from '../../../composables/utils.js'
 import ImageView from '../../components/ImageView.vue'
+import SkillTags from '../../components/SkillTags.vue'
 import Tags from '../../components/Tags.vue'
 import SectionTemplate from '../_templates/SectionTemplate.vue'
 
@@ -88,6 +89,7 @@ function _formatItemDate(item) {
             </div>
 
             <div class="flex-column-date">
+              <!-- the calendar data badge  -->
               <Tags
                 :items="_formatItemDate(item)"
                 class="mt-1 me-1"
@@ -101,6 +103,10 @@ function _formatItemDate(item) {
               class="text-3 text-normal"
               v-html="item.locales.description"
             />
+          </div>
+
+          <div class="mt-2 pt-1 mt-md-3">
+            <SkillTags v-if="item.skills" :skills="item.skills" />
           </div>
         </div>
       </li>

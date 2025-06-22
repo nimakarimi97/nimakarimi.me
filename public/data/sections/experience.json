@@ -14,6 +14,7 @@
       "id": "experience_item_1",
       "place": "@link{places.leanbit}",
       "period": ["2022/04", "2022/10"],
+      "skills": ["Ruby on Rails", "React.js", "Redux", "SQL", "Full-stack Development", "Web Application Development"],
       "locales": {
         "en": {
           "title": "Software Developer Intern",
@@ -29,14 +30,13 @@
       "id": "experience_item_2",
       "place": "@link{places.freelance}",
       "period": ["2022/10", "now"],
+      "skills": ["TypeScript", "jQuery", "React", "React Native", "Vue", "Firebase", "HTML", "CSS", "Sass", "Bootstrap", "Tailwind", "Frontend Development", "Mobile Development"],
       "locales": {
         "en": {
-          "title": "Web Developer Freelancer",
-          "description": "<strong>Skills:</strong> TypeScript, jQuery, React and React Native, Vue, Firebase, HTML and CSS (Sass, Bootstrap, Tailwind)"
+          "title": "Web Developer Freelancer"
         },
         "it": {
-          "title": "Sviluppatore Web Freelance",
-          "description": "<strong>Competenze:</strong> TypeScript, jQuery, React e React Native, Vue, Firebase, HTML e CSS (Sass, Bootstrap, Tailwind)"
+          "title": "Sviluppatore Web Freelance"
         }
       }
     },
@@ -44,6 +44,7 @@
       "id": "experience_item_3",
       "place": "@link{places.cp}",
       "period": ["2023/06", "2023/09"],
+      "skills": ["C#", "Python", "Flask", "Angular", "Full-stack Development", "Machine Learning", "Chatbot Development", "LLM Integration"],
       "locales": {
         "en": {
           "title": "Macine Learning (ML) Developer",
@@ -59,6 +60,7 @@
       "id": "experience_item_4",
       "place": "@link{places.keySolution}",
       "period": ["2023/10", "2024/10"],
+      "skills": ["Vue.js", "Nuxt.js", "Node.js", "Express.js", "PostgreSQL", "Big Data Analytics", "Agile", "Scrum", "Project Management", "Team Leadership", "Interviewing", "Performance Optimization"],
       "locales": {
         "en": {
           "title": "Full-stack Developer and Project Manager",
@@ -84,10 +86,14 @@
           "logoUrl": "images/places/capgemini_logo.png"
         }
       ],
+      "skills": ["Go", "Node.js", "Vue.js", "Docker", "Docker Compose", "Kubernetes", "Microservices", "Backend Development", "Team Collaboration"],
       "locales": {
         "en": {
           "title": "Software Engineer",
-          "description": "<p>Develop and deploy a <b>microservice</b> to fetch <b>real-time transportation data</b> using <b>Go</b>, <b>Docker Compose</b>, and <b>Kubernetes</b>, integrated into a <b>Node.js backend data service</b>. Work as a <b>consultant at TIM</b>, contributing to <b>Smart Mobility</b> and <b>Connected Vehicles</b> projects with the following key responsibilities:</p>  <ul>  <li><b>Designing</b> and <b>implementing</b> scalable <b>server-side business logic</b>.</li>  <li><b>Developing</b> responsive <b>web</b> and <b>mobile app</b> front-end components.</li>  <li><b>Collaborating</b> with <b>multidisciplinary teams</b> to drive <b>innovation</b> and ensure <b>efficient solutions</b>.</li>  </ul>"
+          "description": "<p>Develop and deploy a <b>microservice</b> to fetch <b>real-time transportation data</b> using <b>Go</b>, <b>Docker Compose</b>, and <b>Kubernetes</b>, integrated into a <b>Node.js backend data service</b>. Work as a <b>consultant at TIM</b>, contributing to <b>Smart Mobility</b> and <b>Connected Vehicles</b> projects with the following key responsibilities:</p>  <ul>  <li><b>Designing</b> and <b>implementing</b> scalable <b>server-side business logic</b>.</li>  <li><b>Developing</b> responsive <b>web</b> and <b>mobile app</b> front-end components.</li>  <li><b>Collaborating</b> with <b>multidisciplinary teams</b> to drive <b>innovation</b> and ensure <b>efficient solutions</b>.</li>  </ul>",
+          "province": "San Francisco",
+          "country": "US",
+          "institution": "Steam Valve"
         },
         "it": {
           "title": "Ingegnere del Software",
