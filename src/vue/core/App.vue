@@ -16,6 +16,8 @@ const feedbackView = ref(null)
 const appDidLoad = ref(false)
 let intervalId = null
 
+const showDownloadButton = ref(false)
+
 onMounted(() => {
   layout.setFeedbackView(feedbackView)
   _startPreloading()
@@ -85,6 +87,7 @@ function _checkLoadProgress() {
 function _onPreloadCompleted() {
   appDidLoad.value = true
   clearInterval(intervalId)
+  showDownloadButton.value = true
 }
 </script>
 
@@ -100,5 +103,5 @@ function _onPreloadCompleted() {
     <router-view />
   </Layout>
 
-  <DownloadButton text="My CV" />
+  <DownloadButton v-if="showDownloadButton" text="My CV" />
 </template>
