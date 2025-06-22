@@ -34,7 +34,7 @@ function _formatItemDate(item) {
 
   return [
     {
-      faIcon: 'fa fa-calendar-check',
+      faIcon: 'fa-regular fa-calendar',
       label: `${from} <span class="me-1 ms-1">➔</span> ${to}`,
     },
   ]
