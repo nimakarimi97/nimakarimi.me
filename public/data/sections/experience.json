@@ -18,11 +18,11 @@
       "locales": {
         "en": {
           "title": "Software Developer Intern",
-          "description": "Developed a <strong>full-stack tweet scheduler application</strong>, gaining hands-on experience in web development from backend to frontend.<br><strong>Skills:</strong> Ruby on Rails, React.JS, Redux, SQL"
+          "description": "Developed a <strong>full-stack tweet scheduler application</strong>, gaining hands-on experience in web development from backend to frontend."
         },
         "it": {
           "title": "Sviluppatore Software Intern",
-          "description": "Ho sviluppato <strong>un’applicazione di pianificazione dei tweet full-stack</strong>, acquisendo esperienza pratica nello sviluppo web dal backend al frontend.<br><strong>Competenze:</strong> Ruby on Rails, React.JS, Redux, SQL"
+          "description": "Ho sviluppato <strong>un’applicazione di pianificazione dei tweet full-stack</strong>, acquisendo esperienza pratica nello sviluppo web dal backend al frontend."
         }
       }
     },
@@ -33,10 +33,12 @@
       "skills": ["TypeScript", "jQuery", "React", "React Native", "Vue", "Firebase", "HTML", "CSS", "Sass", "Bootstrap", "Tailwind", "Frontend Development", "Mobile Development"],
       "locales": {
         "en": {
-          "title": "Web Developer Freelancer"
+          "title": "Web Developer Freelancer",
+          "description": "Designed and developed responsive web and mobile applications for various clients, utilizing modern frameworks and tools to deliver high-quality solutions."
         },
         "it": {
-          "title": "Sviluppatore Web Freelance"
+          "title": "Sviluppatore Web Freelance",
+          "description": "Progettato e sviluppato applicazioni web e mobile responsive per diversi clienti, utilizzando framework e strumenti moderni per fornire soluzioni di alta qualità."
         }
       }
     },
