@@ -10,7 +10,7 @@
   },
   "homepage": "nimakarimi.me",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --open",
     "build": "vite build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
