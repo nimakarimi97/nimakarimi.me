@@ -36,7 +36,7 @@
       "value": "@nimakarimi97",
       "valueShort": "@nimakarimi97",
       "faIcon": "fa-brands fa-github",
-      "href": "https://github.com/nimakarimi97"
+      "href": "/github"
     },
     "instagram": {
       "id": "instagram",
@@ -50,7 +50,7 @@
       "value": "@nimakarimi97",
       "valueShort": "@nimakarimi97",
       "faIcon": "fa-brands fa-linkedin",
-      "href": "https://linkedin.com/in/nimakarimi97"
+      "href": "/linkedin"
     }
   }
 }
