@@ -163,7 +163,7 @@
       },
       {
         "faIcon": "fab fa-js-square",
-        "value": 85,
+        "value": 100,
         "locales": {
           "en": {
             "title": "JavaScript & TypeScript",
@@ -247,7 +247,7 @@
       },
       {
         "faIcon": "fab fa-docker",
-        "value": 70,
+        "value": 80,
         "locales": {
           "en": {
             "title": "Docker & Kubernetes",
