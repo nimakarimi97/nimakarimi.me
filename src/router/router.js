@@ -15,6 +15,11 @@ export function createAppRouter() {
       component: RouterView,
     },
     {
+      path: '/instagram-tracker',
+      name: 'InstagramTracker',
+      component: () => import('../vue/sections/instagram-tracker/InstagramTracker.vue'),
+    },
+    {
       path: '/cv',
       redirect: () => {
         window.location.href = '/data/CV.pdf'
