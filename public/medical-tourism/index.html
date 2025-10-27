@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medical Tourism Investment Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="dashboard">
+      <!-- Navigation -->
+      <nav class="navbar">
+        <div class="nav-content">
+          <h1 class="nav-title">Medical Tourism Investment Dashboard</h1>
+          <div class="nav-actions">
+            <button class="btn btn--sm btn--outline" onclick="_exportReport()">Export Report</button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Section Navigation -->
+        <div class="section-nav">
+          <button class="section-btn active" data-section="executive">Executive Summary</button>
+          <button class="section-btn" data-section="comparison">Destination Comparison</button>
+          <button class="section-btn" data-section="framework">Sustainability Framework</button>
+          <button class="section-btn" data-section="recommendations">Investment Recommendations</button>
+          <button class="section-btn" data-section="financial">Financial Projections</button>
+          <button class="section-btn" data-section="risk">Risk Assessment</button>
+        </div>
+
+        <!-- Executive Summary Section -->
+        <section id="executive" class="content-section active">
+          <h2 class="section-title">Executive Summary</h2>
+          <div class="stats-grid">
+            <div class="stat-card" style="background-color: var(--color-bg-1)">
+              <div class="stat-label">Global Market Size (2023)</div>
+              <div class="stat-value">$31B</div>
+            </div>
+            <div class="stat-card" style="background-color: var(--color-bg-2)">
+              <div class="stat-label">Projected by 2032</div>
+              <div class="stat-value">$58B</div>
+            </div>
+            <div class="stat-card" style="background-color: var(--color-bg-3)">
+              <div class="stat-label">Growth Rate (CAGR)</div>
+              <div class="stat-value">11.04%</div>
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <div class="card">
+              <div class="card__body">
+                <h3>Leading Destinations</h3>
+                <div class="destination-list">
+                  <div class="destination-item">🇹🇭 Thailand</div>
+                  <div class="destination-item">🇮🇳 India</div>
+                  <div class="destination-item">🇹🇷 Turkey</div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card__body">
+                <h3>Emerging Markets</h3>
+                <div class="destination-list">
+                  <div class="destination-item">🇨🇷 Costa Rica</div>
+                  <div class="destination-item">🇦🇪 UAE</div>
+                  <div class="destination-item">🇧🇷 Brazil</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card__body">
+              <h3>Investment Value Proposition</h3>
+              <ul class="value-list">
+                <li>
+                  Strong double-digit growth trajectory (11.04% CAGR) driven by cost arbitrage and quality improvements
+                </li>
+                <li>
+                  Market expansion from $31B to $58B by 2032 presents significant capital appreciation opportunity
+                </li>
+                <li>Established regulatory frameworks and international accreditations reduce entry barriers</li>
+                <li>ESG-compliant investments in emerging markets offer early-mover advantages</li>
+                <li>Diversification benefits through healthcare-tourism sector convergence</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Destination Comparison Section -->
+        <section id="comparison" class="content-section">
+          <h2 class="section-title">Destination Comparison</h2>
+          <div class="comparison-header">
+            <div class="comparison-tabs">
+              <button class="tab-btn active" data-view="chart">Visual Comparison</button>
+              <button class="tab-btn" data-view="table">Detailed Scorecard</button>
+            </div>
+          </div>
+
+          <div id="chart-view" class="comparison-view active">
+            <div class="comparison-summary">
+              <div class="summary-card" style="background-color: var(--color-bg-1)">
+                <h4>Thailand (Established)</h4>
+                <div class="summary-stat">Market Value: $2.57B</div>
+                <div class="summary-stat">Annual Tourists: 2.4M</div>
+                <div class="summary-stat">Overall Score: 71/100</div>
+              </div>
+              <div class="summary-card" style="background-color: var(--color-bg-3)">
+                <h4>Costa Rica (Emerging)</h4>
+                <div class="summary-stat">Market Value: Growing</div>
+                <div class="summary-stat">Annual Tourists: 70K</div>
+                <div class="summary-stat">Overall Score: 77/100</div>
+              </div>
+            </div>
+            <div class="chart-container">
+              <img
+                src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/c45c6efde0be5d4fafd3ef3c649169e3/fefcda4d-376b-4cb7-82f2-cc4718b4e0a6/cc791802.png"
+                alt="Destination Comparison Chart"
+                class="responsive-image"
+              />
+            </div>
+          </div>
+
+          <div id="table-view" class="comparison-view">
+            <div class="comparison-table-container">
+              <table class="comparison-table">
+                <thead>
+                  <tr>
+                    <th>Criterion</th>
+                    <th>Thailand</th>
+                    <th>Costa Rica</th>
+                    <th>Investment Insight</th>
+                  </tr>
+                </thead>
+                <tbody id="comparisonTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card__body">
+              <h3>Key Investment Lessons</h3>
+              <div class="lessons-grid">
+                <div class="lesson-card">
+                  <h4>Established Markets (Thailand)</h4>
+                  <ul>
+                    <li>Strong infrastructure and proven track record reduce operational risk</li>
+                    <li>High market saturation requires differentiation strategies</li>
+                    <li>Environmental and social impact mitigation needs investment</li>
+                    <li>Brain drain and local access issues require regulatory attention</li>
+                  </ul>
+                </div>
+                <div class="lesson-card">
+                  <h4>Emerging Markets (Costa Rica)</h4>
+                  <ul>
+                    <li>Superior ESG profile attracts socially conscious capital</li>
+                    <li>Lower market penetration offers higher growth potential</li>
+                    <li>Strong governance reduces regulatory risk</li>
+                    <li>Smaller scale allows easier implementation of ethical frameworks</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sustainability Framework Section -->
+        <section id="framework" class="content-section">
+          <h2 class="section-title">Sustainability &amp; Ethics Strategy Framework</h2>
+          <div class="framework-intro card">
+            <div class="card__body">
+              <p>
+                This comprehensive framework integrates six core principles to ensure long-term viability and ethical
+                operations. Click each principle card to explore implementation actions and key performance indicators.
+              </p>
+            </div>
+          </div>
+
+          <div class="chart-container">
+            <img src="./medical_tourism_framework.svg" alt="Sustainability Framework" class="responsive-image" />
+          </div>
+
+          <div class="framework-grid" id="frameworkGrid"></div>
+
+          <div class="card">
+            <div class="card__body">
+              <h3>Implementation Roadmap</h3>
+              <div class="chart-container">
+                <img
+                  src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/c45c6efde0be5d4fafd3ef3c649169e3/48d11b93-9a0d-41b1-a833-a913d752e07f/d7143531.png"
+                  alt="Implementation Timeline"
+                  class="responsive-image"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Investment Recommendations Section -->
+        <section id="recommendations" class="content-section">
+          <h2 class="section-title">Strategic Investment Recommendations</h2>
+          <div class="recommendations-grid" id="recommendationsGrid"></div>
+
+          <div class="card">
+            <div class="card__body">
+              <h3>Expected Outcomes &amp; Stakeholders</h3>
+              <div class="outcomes-grid">
+                <div class="outcome-card">
+                  <h4>Financial Outcomes</h4>
+                  <ul>
+                    <li>3-7 year payback periods across recommendations</li>
+                    <li>1.1-1.8x ROI range based on implementation model</li>
+                    <li>40-50% reduction in liability and regulatory violations</li>
+                    <li>Revenue growth through enhanced reputation and accreditation</li>
+                  </ul>
+                </div>
+                <div class="outcome-card">
+                  <h4>Key Stakeholders</h4>
+                  <ul>
+                    <li>Investment partners and fund managers</li>
+                    <li>National and regional governments</li>
+                    <li>Healthcare facilities and providers</li>
+                    <li>Local communities and public health systems</li>
+                    <li>International accreditation bodies</li>
+                  </ul>
+                </div>
+                <div class="outcome-card">
+                  <h4>Next Steps for Validation</h4>
+                  <ul>
+                    <li>Commission feasibility study in target market (3 months)</li>
+                    <li>Engage government stakeholders for PPP framework (6 months)</li>
+                    <li>Conduct ESG audit of existing facilities (2 months)</li>
+                    <li>Develop pilot program proposal with metrics (4 months)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Financial Projections Section -->
+        <section id="financial" class="content-section">
+          <h2 class="section-title">Financial Projections &amp; ROI Calculator</h2>
+          <div class="calculator-container">
+            <div class="card">
+              <div class="card__body">
+                <h3>Investment Calculator</h3>
+                <div class="calculator-form">
+                  <div class="form-group">
+                    <label class="form-label">Select Investment Strategy</label>
+                    <select id="strategySelect" class="form-control">
+                      <option value="esg">ESG Scorecard &amp; Accreditation Program</option>
+                      <option value="ppp">Public-Private Partnership Model</option>
+                      <option value="regulatory">Regulatory Authority</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Initial Investment Amount ($)</label>
+                    <input
+                      type="number"
+                      id="investmentAmount"
+                      class="form-control"
+                      value="1000000"
+                      min="0"
+                      step="100000"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Annual Tourism Revenue ($)</label>
+                    <input
+                      type="number"
+                      id="revenueAmount"
+                      class="form-control"
+                      value="10000000"
+                      min="0"
+                      step="500000"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Risk Tolerance</label>
+                    <select id="riskTolerance" class="form-control">
+                      <option value="conservative">Conservative</option>
+                      <option value="moderate" selected>Moderate</option>
+                      <option value="aggressive">Aggressive</option>
+                    </select>
+                  </div>
+                  <button class="btn btn--primary btn--full-width" onclick="_calculateROI()">
+                    Calculate Projections
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card__body">
+                <h3>Projected Returns</h3>
+                <div id="projectionResults" class="projection-results">
+                  <div class="projection-item">
+                    <div class="projection-label">Total Return</div>
+                    <div class="projection-value" id="totalReturn">-</div>
+                  </div>
+                  <div class="projection-item">
+                    <div class="projection-label">ROI Multiple</div>
+                    <div class="projection-value" id="roiMultiple">-</div>
+                  </div>
+                  <div class="projection-item">
+                    <div class="projection-label">Payback Period</div>
+                    <div class="projection-value" id="paybackPeriod">-</div>
+                  </div>
+                  <div class="projection-item">
+                    <div class="projection-label">Annual Cash Flow</div>
+                    <div class="projection-value" id="annualCashFlow">-</div>
+                  </div>
+                  <div class="projection-item">
+                    <div class="projection-label">Risk-Adjusted Return</div>
+                    <div class="projection-value" id="riskAdjusted">-</div>
+                  </div>
+                  <div class="projection-item">
+                    <div class="projection-label">Break-even Year</div>
+                    <div class="projection-value" id="breakEven">-</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card__body">
+              <h3>Sensitivity Analysis</h3>
+              <div id="sensitivityChart" class="chart-placeholder"></div>
+              <canvas id="sensitivityCanvas" style="display: none"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- Risk Assessment Section -->
+        <section id="risk" class="content-section">
+          <h2 class="section-title">Risk Assessment &amp; Mitigation</h2>
+          <div class="risk-grid" id="riskGrid"></div>
+
+          <div class="card">
+            <div class="card__body">
+              <h3>Risk Mitigation Implementation Plan</h3>
+              <div class="mitigation-timeline">
+                <div class="timeline-item">
+                  <div class="timeline-marker" style="background-color: var(--color-error)"></div>
+                  <div class="timeline-content">
+                    <h4>Immediate Actions (0-6 months)</h4>
+                    <ul>
+                      <li>Conduct comprehensive ESG audit</li>
+                      <li>Establish stakeholder consultation process</li>
+                      <li>Develop ethical governance charter</li>
+                      <li>Initiate JCI/GHA accreditation process</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-marker" style="background-color: var(--color-warning)"></div>
+                  <div class="timeline-content">
+                    <h4>Short-term Actions (6-18 months)</h4>
+                    <ul>
+                      <li>Implement cross-subsidization programs</li>
+                      <li>Launch environmental sustainability initiatives</li>
+                      <li>Establish regulatory compliance framework</li>
+                      <li>Create workforce retention incentives</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-marker" style="background-color: var(--color-success)"></div>
+                  <div class="timeline-content">
+                    <h4>Long-term Actions (18+ months)</h4>
+                    <ul>
+                      <li>Monitor and report ESG metrics quarterly</li>
+                      <li>Expand public-private partnerships</li>
+                      <li>Continuous improvement of sustainability practices</li>
+                      <li>Scale successful pilot programs</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card__body">
+              <h3>Overall Risk Profile</h3>
+              <div class="risk-summary">
+                <div class="risk-meter">
+                  <div class="risk-meter-bar">
+                    <div class="risk-meter-fill" id="riskMeterFill"></div>
+                  </div>
+                  <div class="risk-meter-labels">
+                    <span>Low Risk</span>
+                    <span>Medium Risk</span>
+                    <span>High Risk</span>
+                  </div>
+                </div>
+                <div class="risk-description" id="riskDescription"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Export Modal -->
+      <div id="exportModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Export Report</h3>
+            <button class="modal-close" onclick="closeExportModal()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p>Select the sections you want to include in your exported report:</p>
+            <div class="export-options">
+              <label class="checkbox-label"> <input type="checkbox" checked /> Executive Summary </label>
+              <label class="checkbox-label"> <input type="checkbox" checked /> Destination Comparison </label>
+              <label class="checkbox-label"> <input type="checkbox" checked /> Sustainability Framework </label>
+              <label class="checkbox-label"> <input type="checkbox" checked /> Investment Recommendations </label>
+              <label class="checkbox-label"> <input type="checkbox" checked /> Financial Projections </label>
+              <label class="checkbox-label"> <input type="checkbox" checked /> Risk Assessment </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn--outline" onclick="closeExportModal()">Cancel</button>
+            <button class="btn btn--primary" onclick="_confirmExport()">Generate Report</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -15,6 +15,12 @@ export function createAppRouter() {
       component: RouterView,
     },
     {
+      path: '/medical-tourism',
+      beforeEnter() {
+        window.location.href = '/medical-tourism/index.html'
+      },
+    },
+    {
       path: '/instagram-tracker',
       name: 'InstagramTracker',
       component: () => import('../vue/sections/instagram-tracker/InstagramTracker.vue'),
