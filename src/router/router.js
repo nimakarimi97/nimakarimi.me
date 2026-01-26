@@ -21,6 +21,18 @@ export function createAppRouter() {
       },
     },
     {
+      path: '/cloud',
+      redirect: () => {
+        window.location.href = 'https://patch-vole-613.notion.site/4-Recently-founded-DaaS-2f78169d6b63807bbd8accf711dc5f12'
+      },
+    },
+    {
+      path: '/crypto',
+      redirect: () => {
+        window.location.href = 'https://patch-vole-613.notion.site/Tasks-2e98169d6b63808e8fc3daac191eff58'
+      },
+    },
+    {
       path: '/instagram-tracker',
       name: 'InstagramTracker',
       component: () => import('../vue/sections/instagram-tracker/InstagramTracker.vue'),
