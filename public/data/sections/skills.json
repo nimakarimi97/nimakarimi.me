@@ -385,11 +385,11 @@
         "locales": {
           "en": {
             "title": "Video Editing",
-            "description": "Experienced in <b>video editing</b> due to managing content for <a href='https://www.youtube.com/@iamNimaKarimi' target='_blank'><i class='fa-brands fa-youtube' style='color: red;'></i> <span style='text-decoration: underline;'>my YouTube channel</span></a>.."
+            "description": "Experienced in <b>video editing</b> due to managing content for <a href='/youtube' target='_blank' class='muted'><i class='fa-brands fa-youtube' style='color: red;'></i> <span style='text-decoration: underline;'>my YouTube channel</span></a>."
           },
           "it": {
             "title": "Montaggio Video",
-            "description": "Esperienza nel <b>montaggio video</b> acquisita gestendo contenuti per <a href='https://www.youtube.com/@iamNimaKarimi' target='_blank'><i class='fa-brands fa-youtube' style='color: red;'></i> <span style='text-decoration: underline;'>mio canale YouTube</span></a>."
+            "description": "Esperienza nel <b>montaggio video</b> acquisita gestendo contenuti per <a href='/youtube' target='_blank' class='muted'><i class='fa-brands fa-youtube' style='color: red;'></i> <span style='text-decoration: underline;'>mio canale YouTube</span></a>."
           }
         }
       }

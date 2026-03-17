@@ -173,11 +173,11 @@
         "locales": {
           "en": {
             "title": "Video Creation using Drones",
-            "description": "Create engaging videos using drones, feel free to explore my videos on <a href='https://www.youtube.com/@iamNimaKarimi' target='_blank'><i class='fa-brands fa-youtube' style='color: red;'></i> <span style='text-decoration: underline;'>my YouTube channel</span></a>."
+            "description": "Create engaging videos using drones, feel free to explore my videos on <a href='/youtube' target='_blank' class='muted'><i class='fa-brands fa-youtube' style='color: red;'></i> <span style='text-decoration: underline;'>my YouTube channel</span></a>."
           },
           "it": {
             "title": "Creazione Video con Droni",
-            "description": "Creazione di video coinvolgenti utilizzando droni, Non esiti ad esplorare i miei video sul <a href='https://www.youtube.com/@iamNimaKarimi' target='_blank'><i class='fa-brands fa-youtube' style='color: red;'></i> <span style='text-decoration: underline;'>mio canale YouTube</span></a>."
+            "description": "Creazione di video coinvolgenti utilizzando droni, Non esiti ad esplorare i miei video sul <a href='/youtube' target='_blank' class='muted'><i class='fa-brands fa-youtube' style='color: red;'></i> <span style='text-decoration: underline;'>mio canale YouTube</span></a>."
           }
         }
       }

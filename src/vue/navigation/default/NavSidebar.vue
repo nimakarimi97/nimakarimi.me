@@ -180,15 +180,12 @@ function _onToggleButton() {
       i {
         min-width: 35px;
         color: $nav-item-grayed-out-color;
-        transition: color 0.2s;
+        transition: all 0.2s ease-in-out;
       }
 
-      &:hover {
+      &:hover,
+      &:hover i {
         color: darken($nav-item-lighten-color, 10%);
-
-        i {
-          color: $nav-item-lighten-strong-color;
-        }
       }
 
       &:active {
@@ -201,6 +198,7 @@ function _onToggleButton() {
       .nav-link {
         color: $nav-item-lighten-color;
         margin-left: 1.5rem;
+        font-weight: 900;
 
         i {
           color: $nav-item-lighten-strong-color;

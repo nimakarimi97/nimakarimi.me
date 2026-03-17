@@ -93,6 +93,34 @@ $spacing-between-items: 0.6rem;
   text-align: center;
 }
 
+.info-item-link {
+  color: $primary;
+  font-weight: 500;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1.5px;
+    bottom: -1px;
+    left: 0;
+    background-color: $primary;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+  }
+
+  &:hover {
+    color: darken($primary, 10%);
+
+    &::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  }
+}
+
 @include media-breakpoint-down(xl) {
   .list-item {
     @include generate-dynamic-styles-with-hash(
