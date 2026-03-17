@@ -113,22 +113,42 @@ $texts-base-sizes: (
 
 a {
   text-decoration: none;
+  transition: all 0.3s ease;
 
   &.light {
-    color: lighten($primary, 30%);
-    font-weight: bold;
+    color: lighten($primary, 25%);
+    font-weight: 500;
 
     &:hover {
-      color: lighten($primary, 20%);
+      color: $white;
+      text-shadow: 0 0 10px rgba($primary, 0.4);
     }
   }
 
   &.muted {
     color: $text-muted;
-    text-decoration: underline;
+    text-decoration: none;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: $primary;
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
 
     &:hover {
       color: $primary;
+      &::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
     }
   }
 }

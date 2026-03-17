@@ -18,19 +18,19 @@ $nav-sidebar-transition: none;
 $nav-tabs-height: 60px;
 
 /** Main Colors **/
-$primary: #5816f1;
-$dark: #021307;
-$light: #fcfcfc;
+$primary: #2629e1;
+$dark: #0f172a; // Sleek deep slate
+$light: #f8fafc;
 $white: white;
 
 /** Layout Colors **/
-$background-color: #f1eff3;
+$background-color: #f1f5f9;
 
 /** Navigation Colors **/
 $nav-background-color: $dark;
-$nav-item-lighten-color: lighten($primary, 30%);
-$nav-item-lighten-strong-color: lighten($primary, 40%);
-$nav-item-grayed-out-color: #6c757d;
+$nav-item-lighten-color: #818cf8;
+$nav-item-lighten-strong-color: #a5b4fc;
+$nav-item-grayed-out-color: #64748b;
 
 /** Text Colors **/
 $headings-color: $dark;

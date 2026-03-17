@@ -48,16 +48,13 @@ $sizes: (
   align-items: center;
 
   border-radius: 100%;
-  border-width: 4px;
-  border-color: lighten($dark, 7%);
 
-  background-color: lighten($dark, 5%);
+  background-color: lighten($dark, 15%);
   color: $white;
 
   &:hover,
   &:active {
     color: $white;
-    border-color: darken($primary, 5%);
     background-color: $primary;
   }
 

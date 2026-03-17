@@ -20,6 +20,19 @@ hr.solid-divider {
   opacity: 1;
 }
 
+.btn {
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba($primary, 0.5);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
 .btn-xl {
   @include generate-dynamic-styles-with-hash(
     (
