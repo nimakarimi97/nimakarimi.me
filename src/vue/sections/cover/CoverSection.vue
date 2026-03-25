@@ -64,6 +64,10 @@ const coverTitle = computed(() => {
   font-weight: bold;
 }
 
+.cover-description :deep(strong) {
+  font-weight: bold;
+}
+
 .solid-divider {
   @include media-breakpoint-up($navigation-sidebar-breakpoint) {
     display: none;

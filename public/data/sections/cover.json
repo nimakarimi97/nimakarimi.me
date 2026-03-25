@@ -3,12 +3,12 @@
     "en": {
       "welcome": "Welcome to my <span class='text-primary'>Résumé!</span>",
       "welcomeShort": "Welcome!",
-      "bio": "Experienced <strong>Full-stack Web Developer</strong> and <strong>Project Manager</strong> with a solid track record in managing and delivering complex web projects. Skilled in Vue, Nuxt.js, React, Node.js, Go, Python, and various databases. Strong project management and client relations skills, backed by a Master's degree in <strong>Management Engineering</strong>."
+      "bio": "Experienced <strong>Full-stack Consultant</strong> and <strong>Project Manager</strong> with a proven track record of delivering complex web projects end-to-end. Proficient in Vue, Nuxt.js, React, Node.js, Go, Python, Docker, and Kubernetes, with hands-on experience across multiple database technologies. Strong project management and client relations skills, backed by a Master's degree in <strong>Management Engineering</strong>."
     },
     "it": {
       "welcome": "Benvenuto nel mio <span class='text-primary'>Curriculum!</span>",
       "welcomeShort": "Benvenuto!",
-      "bio": "<strong>Sviluppatore Web Full-stack</strong> e <strong>Project Manager</strong> con esperienza consolidata nella realizzazione e gestione di progetti web complessi. Competenze in Vue, Nuxt.js, React, Node.js, Go, Python e diversi database. Solide capacità di project management e gestione delle relazioni con i clienti, supportate da una Laurea Magistrale in <strong>Ingegneria Gestionale</strong>."
+      "bio": "<strong>Consulente Full-stack</strong> e <strong>Project Manager</strong> con una comprovata esperienza nella consegna end-to-end di progetti web complessi. Competenze in Vue, Nuxt.js, React, Node.js, Go, Python, Docker e Kubernetes, con esperienza pratica su diverse tecnologie di database. Solide capacità di project management e gestione delle relazioni con i clienti, supportate da una Laurea Magistrale in <strong>Ingegneria Gestionale</strong>."
     }
   },
   "items": {
