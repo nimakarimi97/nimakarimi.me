@@ -175,7 +175,8 @@ function _onToggleButton() {
       text-align: center;
 
       transition: all 0.3s ease-in-out;
-      color: $light-1;
+      color: $light-5;
+      opacity: 0.8;
 
       i {
         min-width: 35px;
@@ -186,6 +187,7 @@ function _onToggleButton() {
       &:hover,
       &:hover i {
         color: darken($nav-item-lighten-color, 10%);
+        opacity: 1;
       }
 
       &:active {
@@ -199,6 +201,7 @@ function _onToggleButton() {
         color: $nav-item-lighten-color;
         margin-left: 1.5rem;
         font-weight: 900;
+        opacity: 1;
 
         i {
           color: $nav-item-lighten-strong-color;
