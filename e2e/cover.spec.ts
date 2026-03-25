@@ -13,7 +13,7 @@ test.describe('Cover Section', () => {
 
   test('should display the bio text', async ({ page }) => {
     const bio = page.locator('.cover-description')
-    await expect(bio).toContainText('Full-stack Web Developer')
+    await expect(bio).toContainText('Full-stack Consultant')
     await expect(bio).toContainText('Project Manager')
   })
 
