@@ -5,8 +5,8 @@
       "description": "A glimpse into my academic trajectory and accomplishments."
     },
     "it": {
-      "title": "Antecedenti <span class='text-primary'>Educativi</span>",
-      "description": "Uno sguardo alla mia traiettoria accademica e ai risultati raggiunti."
+      "title": "Percorso <span class='text-primary'>Formativo</span>",
+      "description": "Uno sguardo al mio percorso accademico e ai traguardi raggiunti."
     }
   },
   "items": [
@@ -21,7 +21,7 @@
         },
         "it": {
           "title": "Laurea in Ingegneria Meccatronica",
-          "description": "Tesi: <strong>Controllo della Velocità e della Coppia dei Motori con Microcontrollore Arduino (Industria del Controllo)</strong><br/><br/>  Publication: <a href='https://scholar.google.com/citations?user=g96SedcAAAAJ&hl=en' target='_blank'>ROS-based Motion Planner for Gazebo-Simulated Rescue Robots in RoboCup</a>"
+          "description": "Tesi: <strong>Controllo della Velocità e della Coppia dei Motori con Microcontrollore Arduino nei Sistemi di Controllo Industriale</strong><br/><br/>  Pubblicazione: <a href='https://scholar.google.com/citations?user=g96SedcAAAAJ&hl=en' target='_blank'>ROS-based Motion Planner for Gazebo-Simulated Rescue Robots in RoboCup</a>"
         }
       }
     },
@@ -36,7 +36,7 @@
         },
         "it": {
           "title": "Laurea Magistrale in Ingegneria Gestionale",
-          "description": "Tesi: <strong>Analisi delle Tracce delle Biciclette Utilizzando Algoritmi di Intelligenza Artificiale</strong>"
+          "description": "Tesi: <strong>Analisi dei Percorsi Ciclabili mediante Algoritmi di Intelligenza Artificiale</strong>"
         }
       }
     }

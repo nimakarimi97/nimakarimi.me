@@ -3,6 +3,10 @@
     "en": {
       "title": "My <span class='text-primary'>Portfolio</span>",
       "description": "Explore a selection of my recent projects and creative works."
+    },
+    "it": {
+      "title": "Il Mio <span class='text-primary'>Portfolio</span>",
+      "description": "Una selezione dei miei progetti e lavori recenti."
     }
   },
 

@@ -3,6 +3,10 @@
     "en": {
       "title": "<span class='text-primary'>Hobbies</span> & Interests",
       "description": "This is pretty much how I spend my spare time:"
+    },
+    "it": {
+      "title": "<span class='text-primary'>Hobby</span> e Interessi",
+      "description": "Ecco come trascorro il mio tempo libero:"
     }
   },
   "subcategories": [
@@ -14,6 +18,9 @@
       "locales": {
         "en": {
           "title": null
+        },
+        "it": {
+          "title": null
         }
       }
     },
@@ -24,6 +31,9 @@
       "locales": {
         "en": {
           "title": "Interests"
+        },
+        "it": {
+          "title": "Interessi"
         }
       }
     }
@@ -37,6 +47,10 @@
           "en": {
             "title": "Family & Friends",
             "description": "Time spent with cherished loved ones."
+          },
+          "it": {
+            "title": "Famiglia e Amici",
+            "description": "Tempo trascorso con le persone care."
           }
         }
       },
@@ -47,6 +61,10 @@
           "en": {
             "title": "My Projects",
             "description": "Pursuing my creative endeavors."
+          },
+          "it": {
+            "title": "I Miei Progetti",
+            "description": "Dedicarmi ai miei progetti creativi."
           }
         }
       },
@@ -56,7 +74,11 @@
         "locales": {
           "en": {
             "title": "Relaxing",
-            "description": "Indulging in tranquility, unwinding the stresses of life."
+            "description": "Unwinding and recharging after a busy day."
+          },
+          "it": {
+            "title": "Relax",
+            "description": "Rilassarmi e ricaricare le energie."
           }
         }
       },
@@ -66,7 +88,11 @@
         "locales": {
           "en": {
             "title": "Studying",
-            "description": "Embarking on a continuous journey of learning."
+            "description": "Continuing to learn and grow."
+          },
+          "it": {
+            "title": "Studio",
+            "description": "Continuare a imparare e crescere."
           }
         }
       },
@@ -76,7 +102,11 @@
         "locales": {
           "en": {
             "title": "Exercise",
-            "description": "Dedicating time to physical well-being."
+            "description": "Staying active and taking care of my health."
+          },
+          "it": {
+            "title": "Allenamento",
+            "description": "Mantenermi attivo e prendermi cura della mia salute."
           }
         }
       },
@@ -86,7 +116,11 @@
         "locales": {
           "en": {
             "title": "Cooking",
-            "description": "Creating culinary masterpieces."
+            "description": "Experimenting with new recipes and flavors."
+          },
+          "it": {
+            "title": "Cucina",
+            "description": "Sperimentare nuove ricette e sapori."
           }
         }
       },
@@ -96,7 +130,11 @@
         "locales": {
           "en": {
             "title": "Exploring",
-            "description": "Venturing into new realms, seeking the thrill of uncharted discoveries."
+            "description": "Discovering new places and experiences."
+          },
+          "it": {
+            "title": "Esplorare",
+            "description": "Scoprire nuovi posti e nuove esperienze."
           }
         }
       }
@@ -133,11 +171,11 @@
         "locales": {
           "en": {
             "title": "Chess",
-            "description": "Enjoy playing chess and strategic thinking."
+            "description": "Enjoy playing chess and sharpening my strategic thinking."
           },
           "it": {
             "title": "Scacchi",
-            "description": "Divertimento nel giocare a scacchi e pensiero strategico."
+            "description": "Mi piace giocare a scacchi e affinare il pensiero strategico."
           }
         }
       },
@@ -159,12 +197,12 @@
         "faIcon": "fas fa-coffee",
         "locales": {
           "en": {
-            "title": "Coffee Lover and Brewer",
-            "description": "Passionate about coffee and enjoy experimenting with various types of coffee and brewing methods."
+            "title": "Coffee Enthusiast",
+            "description": "Passionate about coffee and enjoy experimenting with different beans and brewing methods."
           },
           "it": {
-            "title": "Appassionato di Caffè e Birraio",
-            "description": "Appassionato di caffè e ama sperimentare con vari tipi di caffè e metodi di preparazione."
+            "title": "Entusiasta del Caffè",
+            "description": "Appassionato di caffè, amo sperimentare con diversi tipi di chicchi e metodi di preparazione."
           }
         }
       },
@@ -173,11 +211,11 @@
         "locales": {
           "en": {
             "title": "Video Creation using Drones",
-            "description": "Create engaging videos using drones, feel free to explore my videos on <a href='/youtube' target='_blank' class='muted'><i class='fa-brands fa-youtube' style='color: red;'></i> <span style='text-decoration: underline;'>my YouTube channel</span></a>."
+            "description": "I create engaging drone videos. Feel free to check out my work on <a href='/youtube' target='_blank' class='muted'><i class='fa-brands fa-youtube' style='color: red;'></i> <span style='text-decoration: underline;'>my YouTube channel</span></a>."
           },
           "it": {
             "title": "Creazione Video con Droni",
-            "description": "Creazione di video coinvolgenti utilizzando droni, Non esiti ad esplorare i miei video sul <a href='/youtube' target='_blank' class='muted'><i class='fa-brands fa-youtube' style='color: red;'></i> <span style='text-decoration: underline;'>mio canale YouTube</span></a>."
+            "description": "Creo video coinvolgenti con i droni. Dai un'occhiata ai miei video sul <a href='/youtube' target='_blank' class='muted'><i class='fa-brands fa-youtube' style='color: red;'></i> <span style='text-decoration: underline;'>mio canale YouTube</span></a>."
           }
         }
       }

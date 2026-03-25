@@ -2,11 +2,11 @@
   "locales": {
     "en": {
       "title": "<span class='text-primary'>Skill</span> Set",
-      "description": "Exploring the diverse range of skills I've acquired and developed:"
+      "description": "A diverse range of skills I've built and refined over the years:"
     },
     "it": {
       "title": "<span class='text-primary'>Competenze</span>",
-      "description": "Esplorando la vasta gamma di competenze acquisite e sviluppate:"
+      "description": "Una panoramica delle competenze che ho sviluppato e affinato nel corso degli anni:"
     }
   },
   "subcategories": [
@@ -16,6 +16,9 @@
       "faIcon": "fa-solid fa-square",
       "locales": {
         "en": {
+          "title": null
+        },
+        "it": {
           "title": null
         }
       }
@@ -28,6 +31,9 @@
       "locales": {
         "en": {
           "title": "Programming"
+        },
+        "it": {
+          "title": "Programmazione"
         }
       }
     },
@@ -38,6 +44,9 @@
       "locales": {
         "en": {
           "title": "Languages"
+        },
+        "it": {
+          "title": "Lingue"
         }
       }
     },
@@ -48,6 +57,9 @@
       "locales": {
         "en": {
           "title": "Bonus Skills"
+        },
+        "it": {
+          "title": "Competenze Extra"
         }
       }
     }
@@ -59,11 +71,11 @@
         "locales": {
           "en": {
             "title": "Project Management",
-            "description": "Experienced in managing project development from start to finish, ensuring timely delivery and quality. Familiar with <b>Agile and Scrum methodologies</b>, supporting flexible, iterative management and team collaboration."
+            "description": "Experienced in managing project lifecycles from start to finish, ensuring timely delivery and quality. Well-versed in <b>Agile and Scrum methodologies</b>, enabling flexible, iterative workflows and effective team collaboration."
           },
           "it": {
             "title": "Project Management",
-            "description": "Esperto nella gestione dello sviluppo di progetti dall'inizio alla fine, garantendo consegne puntuali e di qualità. Familiare con le <b>metodologie Agile e Scrum</b>, supportando una gestione flessibile e iterativa e la collaborazione di squadra."
+            "description": "Esperienza nella gestione dell'intero ciclo di vita dei progetti, garantendo consegne puntuali e qualità. Padronanza delle <b>metodologie Agile e Scrum</b>, per una gestione flessibile, iterativa e una collaborazione efficace nel team."
           }
         }
       },
@@ -76,7 +88,7 @@
           },
           "it": {
             "title": "Leadership del Team",
-            "description": "Esperienza nella gestione delle <b>attività di squadra</b>. Capacità provata di <b>favorire la costruzione del team</b> e rafforzare le relazioni di lavoro."
+            "description": "Esperienza nella gestione delle <b>attività di team</b>. Capacità comprovata nel <b>promuovere il team building</b> e rafforzare le relazioni lavorative."
           }
         }
       },
@@ -88,8 +100,8 @@
             "description": "Skilled in <b>publishing job offers</b>, conducting <b>interviews</b>, and <b>hiring candidates</b> who meet the team's needs and project requirements. Proficient in identifying talent that aligns with organizational goals and culture."
           },
           "it": {
-            "title": "Reclutamento e Assunzioni",
-            "description": "Abile nella <b>pubblicazione di offerte di lavoro</b>, nella conduzione di <b>colloqui</b> e nell'<b>assunzione di candidati</b> che soddisfano le esigenze del team e i requisiti del progetto. Esperto nell'identificare talenti in linea con gli obiettivi e la cultura organizzativa."
+            "title": "Reclutamento e Selezione",
+            "description": "Competenza nella <b>pubblicazione di offerte di lavoro</b>, nella conduzione di <b>colloqui</b> e nella <b>selezione di candidati</b> in linea con le esigenze del team e i requisiti di progetto. Abilità nell'individuare talenti coerenti con gli obiettivi e la cultura aziendale."
           }
         }
       },
@@ -102,7 +114,7 @@
           },
           "it": {
             "title": "Sviluppo Full-Stack",
-            "description": "Capacità di gestire lo sviluppo <b>front-end e back-end</b>, inclusa la creazione di <b>API RESTful affidabili e scalabili</b> per migliorare la funzionalità del front-end."
+            "description": "Capacità di gestire lo sviluppo sia <b>front-end che back-end</b>, inclusa la realizzazione di <b>API RESTful affidabili e scalabili</b> a supporto delle funzionalità del front-end."
           }
         }
       },
@@ -114,8 +126,8 @@
             "description": "Skilled in crafting <b>adaptable layouts for diverse devices</b>, ensuring optimal user experience."
           },
           "it": {
-            "title": "Layout Responsivi",
-            "description": "Competenza nella creazione di <b>layout adattabili per diversi dispositivi</b>, garantendo un'esperienza utente ottimale."
+            "title": "Layout Responsive",
+            "description": "Competenza nella realizzazione di <b>layout adattabili a diversi dispositivi</b>, garantendo un'esperienza utente ottimale."
           }
         }
       },
@@ -124,11 +136,11 @@
         "locales": {
           "en": {
             "title": "Continuous Learning",
-            "description": "<b>Possesses the confidence and ability</b> to learn new technologies and methodologies swiftly. <b>Adaptable to new challenges</b> and comfortable operating <b style='text-decoration: underline'>outside of the comfort zone</b>."
+            "description": "<b>Confidence and ability</b> to learn new technologies and methodologies quickly. <b>Adaptable to new challenges</b> and comfortable working <b style='text-decoration: underline'>outside of the comfort zone</b>."
           },
           "it": {
             "title": "Apprendimento Continuo",
-            "description": "<b>Possiede la fiducia e l'abilità</b> per apprendere rapidamente nuove tecnologie e metodologie. <b>Adattabile alle nuove sfide</b> e a suo agio nell'operare <b style='text-decoration: underline'>al di fuori della zona di comfort</b>."
+            "description": "<b>Capacità e predisposizione</b> ad apprendere rapidamente nuove tecnologie e metodologie. <b>Adattabile alle nuove sfide</b> e a proprio agio nel lavorare <b style='text-decoration: underline'>al di fuori della zona di comfort</b>."
           }
         }
       },
@@ -140,8 +152,8 @@
             "description": "Effective <b>collaboration and communication</b> within <b>cross-functional teams</b>."
           },
           "it": {
-            "title": "Lavoro di Team",
-            "description": "<b>Collaborazione e comunicazione efficaci</b> all'interno di <b>squadre cross-funzionali</b>."
+            "title": "Lavoro di Squadra",
+            "description": "<b>Collaborazione e comunicazione efficaci</b> all'interno di <b>team cross-funzionali</b>."
           }
         }
       }
@@ -157,7 +169,7 @@
           },
           "it": {
             "title": "HTML 5 e CSS 3",
-            "description": "Esperienza nella creazione di contenuti web strutturati e stilizzati con <b>HTML, CSS, SCSS, framework Bootstrap e Tailwind</b>."
+            "description": "Esperienza nella creazione di contenuti web strutturati e stilizzati con <b>HTML, CSS, SCSS, Bootstrap e Tailwind</b>."
           }
         }
       },
@@ -171,7 +183,7 @@
           },
           "it": {
             "title": "JavaScript & TypeScript",
-            "description": "Competente in JavaScript e TypeScript per lo sviluppo web versatile e robusto."
+            "description": "Competente in JavaScript e TypeScript per uno sviluppo web versatile e robusto."
           }
         }
       },
@@ -185,7 +197,7 @@
           },
           "it": {
             "title": "Vue 3",
-            "description": "Competente nello sviluppo di applicazioni responsive e dinamiche utilizzando Vue.js."
+            "description": "Competente nello sviluppo di applicazioni responsive e dinamiche con Vue.js."
           }
         }
       },
@@ -199,7 +211,7 @@
           },
           "it": {
             "title": "Node JS (Express JS) e Nuxt JS",
-            "description": "Esperienza nello sviluppo back-end con Node.js e Express.js e nella creazione di applicazioni renderizzate lato server con Nuxt.js."
+            "description": "Esperienza nello sviluppo back-end con Node.js e Express.js e nella realizzazione di applicazioni server-side rendered con Nuxt.js."
           }
         }
       },
@@ -227,7 +239,7 @@
           },
           "it": {
             "title": "Go (Framework Fiber, Gin, Echo, Fasthttp)",
-            "description": "Competente nella creazione di applicazioni web ad alte prestazioni utilizzando Go e framework moderni come Fiber, Gin, Echo e Fasthttp, con focus sullo sviluppo di API minimaliste ed efficienti."
+            "description": "Competente nella creazione di applicazioni web ad alte prestazioni con Go e framework moderni come Fiber, Gin, Echo e Fasthttp, con focus sullo sviluppo di API efficienti e leggere."
           }
         }
       },
@@ -241,7 +253,7 @@
           },
           "it": {
             "title": "Figma",
-            "description": "A suo agio nel progettare e prototipare design centrati sull'utente con Figma."
+            "description": "A proprio agio nel progettare e prototipare interfacce utente con Figma."
           }
         }
       },
@@ -255,7 +267,7 @@
           },
           "it": {
             "title": "Docker e Kubernetes",
-            "description": "Esperienza nella containerizzazione con Docker e nell'orchestrazione con Kubernetes per il deployment, lo scaling e la gestione di applicazioni containerizzate."
+            "description": "Esperienza nella containerizzazione con Docker e nell'orchestrazione con Kubernetes per il deploy, lo scaling e la gestione di applicazioni containerizzate."
           }
         }
       },
@@ -269,7 +281,7 @@
           },
           "it": {
             "title": "Database (SQL e NoSQL)",
-            "description": "Competente nell'uso di <b>PostgreSQL e MongoDB</b>."
+            "description": "Competente nell'utilizzo di <b>PostgreSQL e MongoDB</b>."
           }
         }
       }
@@ -282,6 +294,10 @@
           "en": {
             "title": "Persian",
             "description": "Native speaker"
+          },
+          "it": {
+            "title": "Persiano",
+            "description": "Madrelingua"
           }
         }
       },
@@ -291,6 +307,10 @@
           "en": {
             "title": "English",
             "description": "Advanced speaker with excellent communication and writing skills"
+          },
+          "it": {
+            "title": "Inglese",
+            "description": "Livello avanzato con ottime capacità comunicative e di scrittura"
           }
         }
       },
@@ -300,6 +320,10 @@
           "en": {
             "title": "Italian",
             "description": "Fluent in both spoken and written"
+          },
+          "it": {
+            "title": "Italiano",
+            "description": "Fluente sia nel parlato che nello scritto"
           }
         }
       },
@@ -309,6 +333,10 @@
           "en": {
             "title": "Spanish",
             "description": "Basic knowledge"
+          },
+          "it": {
+            "title": "Spagnolo",
+            "description": "Conoscenza base"
           }
         }
       }
@@ -324,7 +352,7 @@
           },
           "it": {
             "title": "Attività di Team Building",
-            "description": "Capace di organizzare e guidare attività di team building che migliorano la collaborazione tra colleghi, come eventi di apprezzamento e allenamenti durante la pausa pranzo."
+            "description": "Capacità di organizzare e guidare attività di team building per migliorare la collaborazione tra colleghi, come eventi di apprezzamento e sessioni di allenamento in pausa pranzo."
           }
         }
       },
@@ -337,7 +365,7 @@
           },
           "it": {
             "title": "Python",
-            "description": "Competente nel linguaggio di programmazione <b>Python</b>, particolarmente nell'applicazione a progetti di intelligenza artificiale e machine learning. Progetto di tesi completato utilizzando Python per l'implementazione di AI."
+            "description": "Competente nel linguaggio <b>Python</b>, in particolare nell'applicazione a progetti di intelligenza artificiale e machine learning. Tesi di laurea realizzata con Python per l'implementazione di algoritmi di AI."
           }
         }
       },
@@ -350,7 +378,7 @@
           },
           "it": {
             "title": "MATLAB",
-            "description": "Competente nell'uso di <b>MATLAB</b> per l'analisi dati, la modellazione di AI e le simulazioni."
+            "description": "Competente nell'utilizzo di <b>MATLAB</b> per analisi dati, modellazione AI e simulazioni."
           }
         }
       },
@@ -363,7 +391,7 @@
           },
           "it": {
             "title": "Software CAD",
-            "description": "Competente in <b>SolidWorks</b> per la modellazione 3D e il design meccanico."
+            "description": "Competente in <b>SolidWorks</b> per la modellazione 3D e la progettazione meccanica."
           }
         }
       },
@@ -375,8 +403,8 @@
             "description": "Understanding of <b>Mechatronics</b> principles and <b>Control Engineering</b> concepts."
           },
           "it": {
-            "title": "Comprensione dell'Ingegneria Meccatronica e del Controllo",
-            "description": "Comprensione dei principi della <b>Meccatronica</b> e dei concetti di <b>Ingegneria del Controllo</b>."
+            "title": "Conoscenze di Meccatronica e Controllo Automatico",
+            "description": "Conoscenza dei principi di <b>Meccatronica</b> e dei concetti di <b>Ingegneria del Controllo</b>."
           }
         }
       },
@@ -389,7 +417,7 @@
           },
           "it": {
             "title": "Montaggio Video",
-            "description": "Esperienza nel <b>montaggio video</b> acquisita gestendo contenuti per <a href='/youtube' target='_blank' class='muted'><i class='fa-brands fa-youtube' style='color: red;'></i> <span style='text-decoration: underline;'>mio canale YouTube</span></a>."
+            "description": "Esperienza nel <b>montaggio video</b> maturata gestendo contenuti per il <a href='/youtube' target='_blank' class='muted'><i class='fa-brands fa-youtube' style='color: red;'></i> <span style='text-decoration: underline;'>mio canale YouTube</span></a>."
           }
         }
       }

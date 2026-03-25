@@ -5,6 +5,11 @@
       "description": "My journey as a UX designer has been marked by unwavering dedication to learning and skill enhancement, along with enthusiastic participation in design events. As a result, I have collected a list of notable awards and certifications:"
     },
 
+    "it": {
+      "title": "Traguardi <span class='text-primary'>Professionali</span>",
+      "description": "Il mio percorso come UX designer è stato caratterizzato da una dedizione costante all'apprendimento e al miglioramento delle competenze, oltre a una partecipazione attiva ad eventi di design. Ecco una raccolta dei premi e delle certificazioni ottenute:"
+    },
+
     "es": {
       "title": "Logros <span class='text-primary'>Profesionales</span>",
       "description": "Mi trayectoria como diseñador de UX ha estado marcada por una dedicación inquebrantable al aprendizaje y mejora de habilidades, junto con una participación entusiasta en eventos de diseño. Como resultado, he recopilado una lista de premios y certificaciones notables:"
@@ -27,6 +32,7 @@
       "faIcon": "fa-solid fa-trophy",
       "locales": {
         "en": { "title": "Awards", "buttonLabel": "More Info" },
+        "it": { "title": "Premi", "buttonLabel": "Maggiori Info" },
         "es": { "title": "Premios", "buttonLabel": "Más Información" },
         "fr": { "title": "Prix", "buttonLabel": "Plus d'Infos" },
         "zh": { "title": "奖项", "buttonLabel": "了解更多" }
@@ -38,6 +44,7 @@
       "faIcon": "fa-solid fa-award",
       "locales": {
         "en": { "title": "Certifications", "buttonLabel": "View Certification" },
+        "it": { "title": "Certificazioni", "buttonLabel": "Vedi Certificazione" },
         "es": { "title": "Certificaciones", "buttonLabel": "Ver Certificación" },
         "fr": { "title": "Certifications", "buttonLabel": "Voir la Certification" },
         "zh": { "title": "获得的证书", "buttonLabel": "查看证书" }

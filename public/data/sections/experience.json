@@ -2,11 +2,11 @@
   "locales": {
     "en": {
       "title": "<span class='text-primary'>Professional</span> Experience",
-      "description": "A look into my work experience and career journey."
+      "description": "An overview of my work experience and career journey."
     },
     "it": {
       "title": "<span class='text-primary'>Esperienza</span> Professionale",
-      "description": "Un'occhiata alla mia esperienza lavorativa e percorso professionale."
+      "description": "Una panoramica della mia esperienza lavorativa e del mio percorso professionale."
     }
   },
   "items": [
@@ -18,11 +18,11 @@
       "locales": {
         "en": {
           "title": "Software Developer Intern",
-          "description": "Developed a <strong>full-stack tweet scheduler application</strong>, gaining hands-on experience in web development from backend to frontend."
+          "description": "Developed a <strong>full-stack tweet scheduler application</strong>, gaining hands-on experience in web development across both backend and frontend."
         },
         "it": {
-          "title": "Sviluppatore Software Intern",
-          "description": "Ho sviluppato <strong>un’applicazione di pianificazione dei tweet full-stack</strong>, acquisendo esperienza pratica nello sviluppo web dal backend al frontend."
+          "title": "Stagista Sviluppatore Software",
+          "description": "Ho sviluppato <strong>un'applicazione full-stack per la pianificazione dei tweet</strong>, acquisendo esperienza pratica nello sviluppo web sia backend che frontend."
         }
       }
     },
@@ -49,12 +49,12 @@
       "skills": ["C#", "Python", "Flask", "Angular", "Full-stack Development", "Machine Learning", "Chatbot Development", "LLM Integration"],
       "locales": {
         "en": {
-          "title": "Macine Learning (ML) Developer",
-          "description": "Working as a full-stack developer, with C#, Python (Flask), and Angular. Implemented a ChatGPT chatbot (via LLM) that can answer users' questions regarding his/her documents, events, and tasks."
+          "title": "Machine Learning (ML) Developer",
+          "description": "Worked as a full-stack developer using C#, Python (Flask), and Angular. Built a ChatGPT-powered chatbot (via LLM) capable of answering users' questions about their documents, events, and tasks."
         },
         "it": {
-          "title": "Sviluppatore di Machine Learning (ML)",
-          "description": "Lavoro come sviluppatore full-stack, con C#, Python (Flask) e Angular. Implementato un chatbot ChatGPT (tramite LLM) in grado di rispondere alle domande degli utenti sui loro documenti, eventi e compiti."
+          "title": "Sviluppatore Machine Learning (ML)",
+          "description": "Ho lavorato come sviluppatore full-stack con C#, Python (Flask) e Angular. Ho implementato un chatbot basato su ChatGPT (tramite LLM) in grado di rispondere alle domande degli utenti riguardo ai loro documenti, eventi e attività."
         }
       }
     },
@@ -66,11 +66,11 @@
       "locales": {
         "en": {
           "title": "Full-stack Developer and Project Manager",
-          "description": "Managing team activities using Agile and Scrum methodologies to handle two projects:<br><ol><li><strong>Factory Simulation and Dashboard:</strong> A web-based application developed with Vue.js, PostgreSQL, Node.js, and Express.js to support Big Data Analytics and various lifecycle activities of a plant.</li><li><strong>CV Management Tool:</strong> Created with Vue.js, Nuxt.js, and ChatGPT integration (LLM) to enhance applicants' CV management and analysis processes.</li></ol><br>Throughout these projects, I developed and enhanced several skills and gained valuable experience:<br><ul><li><b>Managed the complete interview process independently</b>, from initial screening to final candidate selection, ensuring we found candidates who <b>fit our team dynamics and project requirements</b>.</li><li>Assisted in <b>optimizing application performance</b> to ensure <b>fast load times</b> and <b>efficient resource usage</b>.</li><li><b>Facilitated team building</b> and <b>strengthened working relationships</b> through various activities.</li></ul>"
+          "description": "Managed team activities using Agile and Scrum methodologies across two projects:<br><ol><li><strong>Factory Simulation and Dashboard:</strong> A web-based application built with Vue.js, PostgreSQL, Node.js, and Express.js to support Big Data Analytics and plant lifecycle operations.</li><li><strong>CV Management Tool:</strong> Developed with Vue.js, Nuxt.js, and ChatGPT integration (LLM) to streamline applicant CV management and analysis.</li></ol><br>Throughout these projects, I developed and strengthened several key skills:<br><ul><li><b>Managed the full interview process independently</b>, from initial screening to final candidate selection, ensuring the right fit for our <b>team dynamics and project requirements</b>.</li><li>Contributed to <b>application performance optimization</b>, ensuring <b>fast load times</b> and <b>efficient resource usage</b>.</li><li><b>Facilitated team building</b> and <b>strengthened working relationships</b> through various activities.</li></ul>"
         },
         "it": {
           "title": "Sviluppatore Full-stack e Project Manager",
-          "description": "Gestione delle attività del team utilizzando metodologie Agile e Scrum per gestire due progetti:<br><ol><li><strong>Simulazione e Dashboard della Fabbrica:</strong> Un'applicazione web sviluppata con Vue.js, PostgreSQL, Node.js ed Express.js per supportare l'analisi dei Big Data e le varie attività del ciclo di vita di un impianto.</li><li><strong>Strumento di Gestione CV:</strong> Creato con Vue.js, Nuxt.js e integrazione ChatGPT (LLM) per migliorare la gestione e l'analisi dei CV dei candidati.</li></ol><br>Durante questi progetti, ho sviluppato e migliorato diverse competenze e acquisito preziosa esperienza:<br><ul><li><b>Gestito autonomamente l'intero processo di colloquio</b>, dallo screening iniziale alla selezione finale dei candidati, assicurandomi di trovare candidati che <b>si adattassero alla dinamica del nostro team e ai requisiti del progetto</b>.</li><li>Assistenza nell'<b>ottimizzazione delle prestazioni delle applicazioni</b> per garantire <b>tempi di caricamento rapidi</b> e <b>uso efficiente delle risorse</b>.</li><li><b>Facilitato il team building</b> e <b>rafforzato le relazioni di lavoro</b> attraverso varie attività.</li></ul>"
+          "description": "Gestione delle attività del team con metodologie Agile e Scrum su due progetti:<br><ol><li><strong>Simulazione e Dashboard di Fabbrica:</strong> Un'applicazione web sviluppata con Vue.js, PostgreSQL, Node.js ed Express.js per supportare l'analisi dei Big Data e le operazioni del ciclo di vita di un impianto.</li><li><strong>Strumento di Gestione CV:</strong> Realizzato con Vue.js, Nuxt.js e integrazione ChatGPT (LLM) per ottimizzare la gestione e l'analisi dei CV dei candidati.</li></ol><br>Nel corso di questi progetti, ho sviluppato e consolidato diverse competenze chiave:<br><ul><li><b>Gestione autonoma dell'intero processo di selezione</b>, dallo screening iniziale alla scelta finale dei candidati, assicurando la giusta compatibilità con <b>le dinamiche del team e i requisiti del progetto</b>.</li><li>Contributo all'<b>ottimizzazione delle prestazioni applicative</b> per garantire <b>tempi di caricamento rapidi</b> e <b>uso efficiente delle risorse</b>.</li><li><b>Promozione del team building</b> e <b>rafforzamento delle relazioni lavorative</b> attraverso varie attività.</li></ul>"
         }
       }
     },
@@ -91,14 +91,14 @@
       "skills": ["Go", "Node.js", "Vue.js", "Docker", "Kubernetes", "Microservices", "Backend Development", "Team Collaboration", "Talent Acquisition", "Candidate Assessment", "Communication", "Problem Solving", "Technical Mentoring"],
       "locales": {
         "en": {
-          "title": "Software Engineer",
-          "description": "<p>Develop and deploy a <b>microservice</b> to fetch <b>real-time transportation data</b> using <b>Go</b>, <b>Docker Compose</b>, and <b>Kubernetes</b>, integrated into a <b>Node.js backend data service</b>. Work as a <b>consultant at TIM</b>, contributing to <b>Smart Mobility</b> and <b>Connected Vehicles</b> projects with the following key responsibilities:</p>  <ul>  <li><b>Designing</b> and <b>implementing</b> scalable <b>server-side business logic</b>.</li>  <li><b>Developing</b> responsive <b>web</b> and <b>mobile app</b> front-end components.</li>  <li><b>Collaborating</b> with <b>multidisciplinary teams</b> to drive <b>innovation</b> and ensure <b>efficient solutions</b>.</li>  </ul><br><p>Additionally, I <b>assisted the talent acquisition team</b> with <b>conducting interviews</b> to find the <b>best fit candidates</b> for our company.</p>",
+          "title": "Software Engineering Consultant",
+          "description": "<p>Developed and deployed a <b>microservice</b> for fetching <b>real-time transportation data</b> using <b>Go</b>, <b>Docker Compose</b>, and <b>Kubernetes</b>, integrated into a <b>Node.js backend data service</b>. Working as a <b>consultant at TIM</b>, contributing to <b>Smart Mobility</b> and <b>Connected Vehicles</b> projects with the following key responsibilities:</p>  <ul>  <li><b>Designing</b> and <b>implementing</b> scalable <b>server-side business logic</b>.</li>  <li><b>Developing</b> responsive <b>web</b> and <b>mobile app</b> front-end components.</li>  <li><b>Collaborating</b> with <b>cross-functional teams</b> to drive <b>innovation</b> and deliver <b>efficient solutions</b>.</li>  </ul><br><p>Additionally, I <b>support the talent acquisition team</b> by <b>conducting technical interviews</b> to identify the <b>best-fit candidates</b> for our company.</p>",
           "province": "Milan",
           "country": "IT"
         },
         "it": {
-          "title": "Ingegnere del Software",
-          "description": "<p>Sviluppo un <b>microservizio</b> per il recupero di <b>dati di trasporto in tempo reale</b> utilizzando <b>Go</b>, <b>Docker Compose</b> e <b>Kubernetes</b>, come parte di un <b>servizio backend dati in Node.js</b>. Lavorato come <b>consulente presso TIM</b>, contribuendo ai progetti di <b>Smart Mobility</b> e <b>Connected Vehicles</b> con le seguenti responsabilità principali:</p>  <ul>  <li><b>Progettazione</b> e <b>implementazione</b> della <b>logica di business lato server scalabile</b>.</li>  <li><b>Sviluppo</b> di componenti <b>front-end reattivi</b> per <b>web</b> e <b>mobile app</b>.</li>  <li><b>Collaborazione</b> con <b>team multidisciplinari</b> per promuovere <b>l'innovazione</b> e garantire <b>soluzioni efficienti</b>.</li>  </ul><br><p>Inoltre, ho <b>assistito il team di talent acquisition</b> nella <b>conduzione di colloqui</b> per trovare i <b>candidati più adatti</b> per la nostra azienda.</p>"
+          "title": "Consulente di Ingegneria Software",
+          "description": "<p>Sviluppo e deploy di un <b>microservizio</b> per il recupero di <b>dati di trasporto in tempo reale</b> utilizzando <b>Go</b>, <b>Docker Compose</b> e <b>Kubernetes</b>, integrato in un <b>servizio backend dati in Node.js</b>. Lavoro come <b>consulente presso TIM</b>, contribuendo ai progetti di <b>Smart Mobility</b> e <b>Connected Vehicles</b> con le seguenti responsabilità principali:</p>  <ul>  <li><b>Progettazione</b> e <b>implementazione</b> di <b>logica di business lato server scalabile</b>.</li>  <li><b>Sviluppo</b> di componenti <b>front-end responsive</b> per <b>web</b> e <b>app mobile</b>.</li>  <li><b>Collaborazione</b> con <b>team cross-funzionali</b> per promuovere <b>l'innovazione</b> e fornire <b>soluzioni efficienti</b>.</li>  </ul><br><p>Inoltre, <b>supporto il team di talent acquisition</b> nella <b>conduzione di colloqui tecnici</b> per individuare i <b>candidati più adatti</b> per la nostra azienda.</p>"
         }
       }
     }
