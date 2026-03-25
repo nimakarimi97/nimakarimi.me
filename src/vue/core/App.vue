@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, provide, ref } from 'vue'
 
 import { useData } from '../../composables/data.js'
 import { useLayout } from '../../composables/layout.js'
@@ -17,6 +17,20 @@ const appDidLoad = ref(false)
 let intervalId = null
 
 const showDownloadButton = ref(false)
+
+const clipboardText = ref(null)
+
+async function copyToClipboard(text) {
+  try {
+    await navigator.clipboard.writeText(text)
+    clipboardText.value = text
+  } catch {
+    clipboardText.value = null
+  }
+}
+
+provide('clipboardText', clipboardText)
+provide('copyToClipboard', copyToClipboard)
 
 onMounted(() => {
   layout.setFeedbackView(feedbackView)

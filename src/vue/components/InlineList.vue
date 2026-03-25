@@ -1,4 +1,6 @@
 <script setup>
+import CopyButton from '/src/vue/components/widgets/CopyButton.vue'
+
 /**
  * @property {object}[]} items
  */
@@ -65,6 +67,11 @@ function _getItemFaIcon(item) {
         />
         {{ _getItemLabel(item) }}
       </span>
+
+      <CopyButton
+        v-if="item.copy"
+        :text="item.value"
+      />
     </div>
   </div>
 </template>

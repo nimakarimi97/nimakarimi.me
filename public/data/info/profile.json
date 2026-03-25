@@ -22,7 +22,8 @@
       "value": "info@nimakarimi.me",
       "valueShort": "info@nimakarimi.me",
       "faIcon": "fa-solid fa-envelope",
-      "href": "mailto:info@nimakarimi.me"
+      "href": "mailto:info@nimakarimi.me",
+      "copy": true
     },
     "facebook": {
       "id": "facebook",

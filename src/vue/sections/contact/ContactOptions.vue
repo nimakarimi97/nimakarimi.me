@@ -1,5 +1,6 @@
 <script setup>
 import { useData } from '../../../composables/data.js'
+import CopyButton from '/src/vue/components/widgets/CopyButton.vue'
 
 /**
  * @property {object[]} items
@@ -48,21 +49,29 @@ function _getItemLabel(item) {
             {{ data.getString(item.id) }}
           </h5>
 
-          <!-- Item Link... -->
-          <a
-            v-if="item.href"
-            :href="item.href"
-            class="text-3 muted"
-            target="_blank"
-            v-html="_getItemLabel(item)"
-          />
+          <!-- Item Value + Copy -->
+          <div class="d-flex">
+            <!-- Item Link... -->
+            <a
+              v-if="item.href"
+              :href="item.href"
+              class="text-3 muted"
+              target="_blank"
+              v-html="_getItemLabel(item)"
+            />
 
-          <!-- Fallback (if there's not a link...) -->
-          <p
-            v-else
-            class="text-3 text-muted mb-0"
-            v-html="_getItemLabel(item)"
-          />
+            <!-- Fallback (if there's not a link...) -->
+            <p
+              v-else
+              class="text-3 text-muted mb-0"
+              v-html="_getItemLabel(item)"
+            />
+
+            <CopyButton
+              v-if="item.copy"
+              :text="item.value"
+            />
+          </div>
         </div>
       </div>
     </div>
