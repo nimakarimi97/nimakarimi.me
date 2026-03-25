@@ -22,7 +22,7 @@ export function createAppRouter() {
     {
       path: '/cv',
       redirect: () => {
-        window.location.href = '/data/CV.pdf'
+        window.location.href = '/data/NimaKarimiCV.pdf'
       },
     },
     {
