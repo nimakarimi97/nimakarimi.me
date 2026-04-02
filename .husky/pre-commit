@@ -1,8 +1,20 @@
 echo "🔍 Running ESLint check and fix..."
 
+# Get staged files and print them for debugging
 STAGED_FILES=$(git diff --name-only --cached)
 
-if ! eslint $STAGED_FILES --fix; then
+# Filter out YAML files and print the result for debugging  
+FILES_TO_LINT=$(echo "$STAGED_FILES" | grep -v "\.ya\?ml$" || true)
+echo "Files to lint: $FILES_TO_LINT"
+
+# Skip linting if no lintable files
+if [ -z "$FILES_TO_LINT" ]; then
+  echo "✅ No files to lint. Proceeding with commit."
+  exit 0
+fi
+
+# Run eslint only if there are files to lint
+if ! eslint $FILES_TO_LINT --fix; then
   echo "🚫 ESLint check failed. Some errors could not be automatically fixed. Please resolve them manually and try committing again."
   exit 1
 fi
