@@ -30,10 +30,15 @@ li.skill-item {
   border-radius: 5px;
   white-space: nowrap;
   user-select: none;
-  transition: 0.5s background-color ease-in-out;
+  transition:
+    background-color 0.3s ease-in-out,
+    transform 0.2s ease-in-out,
+    box-shadow 0.3s ease-in-out;
 
   &:hover {
-    background-color: darken($primary, 20%);
+    background-color: darken($primary, 12%);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 12px rgba(38, 41, 225, 0.35);
   }
 
   margin-right: 4px;
