@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import ImageView from '../components/ImageView.vue'
+import ProgressBar from '../components/ProgressBar.vue'
 
 const emit = defineEmits(['willShow', 'shown', 'completed', 'willHide', 'hidden'])
 
@@ -199,7 +200,7 @@ defineExpose({
         </p>
 
         <!-- Progress Bar -->
-        <ProgressBars :percentage="totalPercentage" />
+        <ProgressBar :percentage="totalPercentage" />
       </div>
     </div>
   </div>
