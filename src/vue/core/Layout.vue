@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onUnmounted, watch } from 'vue'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useData } from '../../composables/data.js'
 import { useLanguage } from '../../composables/language.js'
@@ -7,6 +7,7 @@ import { useLayout } from '../../composables/layout.js'
 import { useNavigation } from '../../composables/navigation.js'
 import { useUtils } from '../../composables/utils.js'
 
+import ScrollProgressBar from '../components/ScrollProgressBar.vue'
 import NavSidebar from '../navigation/default/NavSidebar.vue'
 import NavHeader from '../navigation/mobile/NavHeader.vue'
 import NavTabs from '../navigation/mobile/NavTabs.vue'
@@ -18,6 +19,8 @@ const language = useLanguage()
 const route = useRoute()
 const router = useRouter()
 const utils = useUtils()
+
+const scrollProgress = ref(0)
 
 const _lastScrollY = { target: null, position: null }
 const _parallaxBlobs = {
@@ -122,6 +125,11 @@ function _updateParallaxBlobs() {
  * @private
  */
 function _onWindowChangeEvent() {
+  // Update scroll progress
+  const scrollTop = window.scrollY
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight
+  scrollProgress.value = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
+
   // current navigation status...
   const isNavigationModeAllAtOnce = navigation.isAllAtOnceMode()
   const activeSectionId = navigation.getActiveSectionId()
@@ -226,6 +234,9 @@ function _navigateToCategory(categoryId) {
 
 <template>
   <div class="resume">
+    <!-- Scroll Progress Bar -->
+    <ScrollProgressBar :scroll-progress="scrollProgress" />
+
     <!-- Navigation (Large Screens) -->
     <div
       class="sidebar-column"
