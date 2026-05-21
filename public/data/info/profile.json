@@ -52,6 +52,13 @@
       "valueShort": "@nimakarimi97",
       "faIcon": "fa-brands fa-linkedin",
       "href": "/linkedin"
+    },
+    "youtube": {
+      "id": "youtube",
+      "value": "@nimakarimi",
+      "valueShort": "@nimakarimi",
+      "faIcon": "fa-brands fa-youtube",
+      "href": "/youtube"
     }
   }
 }

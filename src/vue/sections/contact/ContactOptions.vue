@@ -21,6 +21,25 @@ const data = useData()
 function _getItemLabel(item) {
   return item.value || item.valueShort
 }
+
+/**
+ * @param {object} item
+ * @return {object}
+ * @private
+ */
+function _getBrandColor(item) {
+  const brandColors = {
+    email: '#0343ff',
+    youtube: '#FF0000',
+    github: '#333333',
+    linkedin: '#0A66C2',
+    instagram: '#E4405F',
+    facebook: '#1877F2',
+  }
+  return {
+    backgroundColor: brandColors[item.id] || '#2629e1',
+  }
+}
 </script>
 
 <template>
@@ -38,6 +57,7 @@ function _getItemLabel(item) {
           :href="item.href"
           target="_blank"
           class="contact-item-logo"
+          :style="_getBrandColor(item)"
         >
           <i :class="item.faIcon" />
         </a>
@@ -141,14 +161,13 @@ function _getItemLabel(item) {
   margin-right: 1rem;
 
   opacity: 0.9;
-  border-radius: 30%;
+  border-radius: 50%;
 
   color: $white;
-  background-color: darken($primary, 10%);
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    background-color: $primary;
+    filter: brightness(1.1);
     transform: scale(1.05);
   }
 }

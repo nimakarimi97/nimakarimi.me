@@ -16,6 +16,8 @@
   "items": [
     "@link{profile.contact.address}",
     "@link{profile.contact.email}",
+    "@link{profile.contact.github}",
+    "@link{profile.contact.youtube}",
     "@link{profile.contact.linkedin}"
   ]
 }
