@@ -49,7 +49,8 @@ function _formatItemDate(item) {
       <li
         v-for="item in orderedItems"
         :key="item.id"
-        class="timeline-item"
+        v-reveal
+        class="timeline-item reveal-stagger"
       >
         <!-- Logo Wrapper -->
         <div

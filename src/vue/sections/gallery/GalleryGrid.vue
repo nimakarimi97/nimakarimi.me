@@ -56,7 +56,8 @@ watch(
       v-for="item in props.items"
       v-show="item.visible"
       :key="item.id"
-      class="gallery-grid-col col-4 col-xl-3 text-center"
+      v-reveal
+      class="gallery-grid-col col-4 col-xl-3 text-center reveal-stagger"
       :class="{ 'gallery-grid-col-appear': item.visible && !isAnimating }"
     >
       <!-- Item -->

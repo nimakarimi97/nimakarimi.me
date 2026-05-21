@@ -1,0 +1,300 @@
+/* ==========================================================================
+   Animations & Transitions
+   ========================================================================== */
+
+@import 'variables';
+
+// --------------------------------------------------------------------------
+// 1. Scroll-Driven Reveal System
+// --------------------------------------------------------------------------
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+
+  &.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Staggered transitions for grid items, list items, timeline list, etc.
+.reveal-stagger {
+  @for $i from 1 through 20 {
+    &:nth-child(#{$i}) {
+      transition-delay: #{$i * 0.08}s;
+    }
+  }
+}
+
+// Directional variants — opt in with `data-reveal="left|right|scale|tilt"`.
+.reveal[data-reveal='left'] {
+  transform: translateX(-40px);
+}
+.reveal[data-reveal='right'] {
+  transform: translateX(40px);
+}
+.reveal[data-reveal='scale'] {
+  transform: scale(0.88);
+}
+.reveal[data-reveal='tilt'] {
+  transform: perspective(800px) rotateX(12deg) translateY(30px);
+  transform-origin: top center;
+}
+.reveal.revealed[data-reveal] {
+  transform: none;
+}
+
+// --------------------------------------------------------------------------
+// Scroll Progress Bar
+// --------------------------------------------------------------------------
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  z-index: 9000;
+  pointer-events: none;
+  transform-origin: left center;
+  transform: scaleX(var(--scroll-progress, 0));
+  background: linear-gradient(90deg, #818cf8 0%, #a855f7 35%, #ec4899 70%, #06b6d4 100%);
+  background-size: 200% 100%;
+  animation: gradient-shift-x 6s linear infinite;
+  box-shadow: 0 0 14px rgba(168, 85, 247, 0.55);
+  transition: transform 0.12s ease-out;
+}
+
+@keyframes gradient-shift-x {
+  0% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Floating tech icons drifting in the parallax layer
+// --------------------------------------------------------------------------
+
+.floating-icon {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  opacity: 0.1;
+  color: #a5b4fc;
+  pointer-events: none;
+  will-change: transform;
+  animation: float-icon 14s infinite ease-in-out;
+  filter: drop-shadow(0 4px 12px rgba(129, 140, 248, 0.25));
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  &.fi-1 {
+    top: 12%;
+    left: 8%;
+    animation-delay: 0s;
+  }
+  &.fi-2 {
+    top: 28%;
+    right: 12%;
+    animation-delay: -3s;
+    color: #ec4899;
+  }
+  &.fi-3 {
+    top: 55%;
+    left: 18%;
+    animation-delay: -6s;
+    color: #06b6d4;
+  }
+  &.fi-4 {
+    top: 72%;
+    right: 22%;
+    animation-delay: -9s;
+    color: #a855f7;
+  }
+  &.fi-5 {
+    top: 88%;
+    left: 60%;
+    animation-delay: -2s;
+    color: #818cf8;
+  }
+}
+
+@keyframes float-icon {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(20px, -30px, 0) rotate(12deg);
+  }
+}
+
+// --------------------------------------------------------------------------
+// 2. Parallax Blur Blobs Styles
+// --------------------------------------------------------------------------
+
+.parallax-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.8;
+  will-change: transform;
+}
+
+.blur-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  mix-blend-mode: screen;
+  will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.1, 0.8, 0.2, 1);
+  opacity: 0.12;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.blob-primary {
+  width: min(450px, 45vw);
+  height: min(450px, 45vw);
+  background: radial-gradient(circle, rgba(129, 140, 248, 0.8) 0%, rgba(30, 27, 75, 0.2) 70%);
+  top: 15%;
+  left: -5%;
+  animation: float-slow 22s infinite alternate ease-in-out;
+}
+
+.blob-accent {
+  width: min(550px, 50vw);
+  height: min(550px, 50vw);
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.7) 0%, rgba(80, 7, 43, 0.1) 70%);
+  bottom: 20%;
+  right: -10%;
+  animation: float-slow-reverse 28s infinite alternate ease-in-out;
+}
+
+.blob-highlight {
+  width: min(350px, 35vw);
+  height: min(350px, 35vw);
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.7) 0%, rgba(8, 51, 68, 0.2) 70%);
+  top: 45%;
+  left: 40%;
+  animation: float-medium 18s infinite alternate ease-in-out;
+}
+
+// --------------------------------------------------------------------------
+// 3. Preloader Walk & Pull Cycle Keyframes
+// --------------------------------------------------------------------------
+
+@keyframes float-slow {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(40px, 30px) scale(1.1);
+  }
+}
+
+@keyframes float-slow-reverse {
+  0% {
+    transform: translate(0, 0) scale(1.1);
+  }
+  100% {
+    transform: translate(-50px, -20px) scale(0.9);
+  }
+}
+
+@keyframes float-medium {
+  0% {
+    transform: translate(0, 0) scale(0.95);
+  }
+  100% {
+    transform: translate(-20px, 45px) scale(1.05);
+  }
+}
+
+// Hips & Body oscillating and bobbing up/down to simulate heavy pulling
+@keyframes avatar-body-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(18deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(21deg);
+  }
+}
+
+// Left Leg Walk Cycle (hip joint rotation)
+@keyframes avatar-left-leg-walk {
+  0%,
+  100% {
+    transform: rotate(-22deg);
+  }
+  50% {
+    transform: rotate(26deg);
+  }
+}
+
+// Right Leg Walk Cycle (hip joint rotation)
+@keyframes avatar-right-leg-walk {
+  0%,
+  100% {
+    transform: rotate(26deg);
+  }
+  50% {
+    transform: rotate(-22deg);
+  }
+}
+
+// Arm pulling holding rope (shoulders joint rotation)
+@keyframes avatar-arm-pull {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+// Rope vibration under extreme tension
+@keyframes rope-vibe {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(1.5px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .reveal-stagger {
+    transition-delay: 0s !important;
+  }
+  .blur-blob,
+  .floating-icon {
+    animation: none !important;
+  }
+}

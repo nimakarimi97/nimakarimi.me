@@ -64,6 +64,7 @@ const sectionTitle = computed(() => {
       <!-- Section Header -->
       <div
         v-if="props.sectionData.content.locales.title"
+        v-reveal
         class="section-header"
       >
         <!-- Title -->

@@ -1,5 +1,6 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'
+import { useScrollReveal } from '../../composables/scrollReveal.js'
 import { useUtils } from '../../composables/utils.js'
 
 /**
@@ -14,6 +15,43 @@ const props = defineProps({
 })
 
 const utils = useUtils()
+const { observe } = useScrollReveal()
+const barRef = ref(null)
+const revealed = ref(false)
+
+let _teardown = null
+
+onMounted(() => {
+  if (!barRef.value)
+    return
+
+  // Already in the viewport: wait for Vue to paint width:0, then animate.
+  const rect = barRef.value.getBoundingClientRect()
+  if (rect.top < window.innerHeight && rect.bottom > 0) {
+    nextTick(() => {
+      requestAnimationFrame(() => {
+        revealed.value = true
+      })
+    })
+    return
+  }
+
+  // Off-screen: directly set revealed when the element scrolls into view.
+  _teardown = observe([barRef.value], {
+    threshold: 0.15,
+    once: true,
+    onReveal: () => {
+      revealed.value = true
+    },
+  })
+})
+
+onUnmounted(() => {
+  if (_teardown) {
+    _teardown()
+    _teardown = null
+  }
+})
 
 /**
  * @type {ComputedRef<number>}
@@ -28,14 +66,27 @@ const percentage = computed(() => {
 const style = computed(() => {
   const percentageValue = percentage.value
   const opacity = (50 + percentageValue * 0.5) / 100
-  const color = props.color ? `background-color: ${props.color}` : ''
+  // width is 0 until revealed, then animates to target
+  const width = revealed.value ? percentageValue : 0
 
-  return `width: ${percentageValue}%; opacity: ${opacity}; ${color}`
+  const styleObject = {
+    width: `${width}%`,
+    opacity,
+  }
+
+  if (props.color) {
+    styleObject.backgroundColor = props.color
+  }
+
+  return styleObject
 })
 </script>
 
 <template>
-  <div class="progress-bar-wrapper">
+  <div
+    ref="barRef"
+    class="progress-bar-wrapper"
+  >
     <!-- Bootstrap Progress -->
     <div class="progress">
       <div
@@ -78,12 +129,10 @@ const style = computed(() => {
 }
 
 .progress-bar {
-  background-color: lighten($primary, 10%);
-  -webkit-transition: none;
-  -moz-transition: none;
-  -ms-transition: none;
-  -o-transition: none;
-  transition: none;
+  background: linear-gradient(90deg, lighten($primary, 15%), $primary);
+  transition: width 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 4px;
+  box-shadow: 0 1px 6px rgba(38, 41, 225, 0.3);
 }
 
 .progress-description {

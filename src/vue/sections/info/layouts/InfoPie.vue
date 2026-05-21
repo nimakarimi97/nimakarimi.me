@@ -1,6 +1,6 @@
 <script setup>
 import { ArcElement, Chart as ChartJS, Title, Tooltip } from 'chart.js'
-import { computed } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { Pie } from 'vue-chartjs'
 import InfoItem from '../InfoItem.vue'
 
@@ -13,6 +13,33 @@ const props = defineProps({
 
 ChartJS.register(Title, Tooltip, ArcElement)
 
+const isVisible = ref(false)
+const elRef = ref(null)
+let observer = null
+
+onMounted(() => {
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          isVisible.value = true
+          observer.disconnect()
+        }
+      })
+    },
+    { threshold: 0.1 },
+  )
+  if (elRef.value) {
+    observer.observe(elRef.value)
+  }
+})
+
+onUnmounted(() => {
+  if (observer) {
+    observer.disconnect()
+  }
+})
+
 /**
  * @const
  * @type {object}
@@ -20,7 +47,10 @@ ChartJS.register(Title, Tooltip, ArcElement)
 const CHART_OPTIONS = {
   responsive: true,
   maintainAspectRatio: false,
-  animation: false,
+  animation: {
+    duration: 1400,
+    easing: 'easeOutQuart',
+  },
   plugins: {
     tooltip: {
       callbacks: {
@@ -65,11 +95,12 @@ const chartData = computed(() => {
 </script>
 
 <template>
-  <div class="row gx-0 mb-1 mb-md-3 mb-xl-4">
+  <div ref="elRef" class="row gx-0 mb-1 mb-md-3 mb-xl-4">
     <!-- Chart Column -->
-    <div class="col-12 col-xl-5 col-xxl-4 d-flex">
+    <div v-reveal class="col-12 col-xl-5 col-xxl-4 d-flex">
       <div class="chart-wrapper">
         <Pie
+          v-if="isVisible"
           class="chart"
           :data="chartData"
           :options="CHART_OPTIONS"
@@ -83,7 +114,8 @@ const chartData = computed(() => {
         <div
           v-for="item in props.items"
           :key="item.id"
-          class="col-12 col-sm-6 item-container"
+          v-reveal
+          class="col-12 col-sm-6 item-container reveal-stagger"
         >
           <InfoItem
             :item="item"

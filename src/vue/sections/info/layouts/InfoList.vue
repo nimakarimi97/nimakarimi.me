@@ -11,7 +11,8 @@ const props = defineProps({
     <div
       v-for="item in props.items"
       :key="item.id"
-      class="col-12 item-container"
+      v-reveal
+      class="col-12 item-container reveal-stagger"
     >
       <InfoItem
         :item="item"

@@ -20,13 +20,23 @@ const router = useRouter()
 const utils = useUtils()
 
 const _lastScrollY = { target: null, position: null }
+const _parallaxBlobs = {
+  primary: null,
+  accent: null,
+  highlight: null,
+}
+let _scrollRafId = null
+let _prefersReducedMotion = false
 
 /**
  * @private
  */
 onMounted(() => {
+  _prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  _cacheParallaxBlobs()
+
   window.addEventListener('resize', _onWindowChangeEvent)
-  window.addEventListener('scroll', _onWindowChangeEvent)
+  window.addEventListener('scroll', _onScroll, { passive: true })
   watch(
     () => route.name,
     () => {
@@ -51,8 +61,61 @@ onMounted(() => {
  */
 onUnmounted(() => {
   window.removeEventListener('resize', _onWindowChangeEvent)
-  window.removeEventListener('scroll', _onWindowChangeEvent)
+  window.removeEventListener('scroll', _onScroll)
+  if (_scrollRafId !== null) {
+    window.cancelAnimationFrame(_scrollRafId)
+    _scrollRafId = null
+  }
 })
+
+/**
+ * @private
+ */
+function _cacheParallaxBlobs() {
+  _parallaxBlobs.primary = document.querySelector('.blob-primary')
+  _parallaxBlobs.accent = document.querySelector('.blob-accent')
+  _parallaxBlobs.highlight = document.querySelector('.blob-highlight')
+}
+
+/**
+ * @private
+ */
+function _onScroll() {
+  if (_scrollRafId !== null) {
+    return
+  }
+
+  _scrollRafId = window.requestAnimationFrame(() => {
+    _scrollRafId = null
+    // Navigation scroll-spy + parallax in one throttled frame
+    _onWindowChangeEvent()
+  })
+}
+
+/**
+ * @private
+ */
+function _updateParallaxBlobs() {
+  if (_prefersReducedMotion) {
+    return
+  }
+
+  if (!_parallaxBlobs.primary || !_parallaxBlobs.accent || !_parallaxBlobs.highlight) {
+    _cacheParallaxBlobs()
+  }
+
+  const scrollY = window.scrollY
+
+  if (_parallaxBlobs.primary) {
+    _parallaxBlobs.primary.style.transform = `translate3d(0, ${scrollY * 0.12}px, 0)`
+  }
+  if (_parallaxBlobs.accent) {
+    _parallaxBlobs.accent.style.transform = `translate3d(0, ${scrollY * -0.18}px, 0)`
+  }
+  if (_parallaxBlobs.highlight) {
+    _parallaxBlobs.highlight.style.transform = `translate3d(0, ${scrollY * 0.06}px, 0)`
+  }
+}
 
 /**
  * Triggered whenever there's a change on the scroll status / windows size.
@@ -69,6 +132,8 @@ function _onWindowChangeEvent() {
   if (isNavigationModeAllAtOnce !== navigation.isAllAtOnceMode()) {
     _onNavigationModeChanged(activeSectionId)
   }
+
+  _updateParallaxBlobs()
 }
 
 /**
@@ -175,6 +240,13 @@ function _navigateToCategory(categoryId) {
       class="content-column"
       :class="navigation.isSidebarExpanded() ? '' : 'content-column-expand'"
     >
+      <!-- Parallax Background Blobs -->
+      <div class="parallax-bg">
+        <div class="blur-blob blob-primary" />
+        <div class="blur-blob blob-accent" />
+        <div class="blur-blob blob-highlight" />
+      </div>
+
       <!-- Navigation Header (Small Screens) -->
       <NavHeader @link-clicked="_navigateToSection" />
 
@@ -221,6 +293,8 @@ function _navigateToCategory(categoryId) {
 .content-column {
   width: calc(100vw - $nav-sidebar-column-size);
   min-height: 100vh;
+  position: relative;
+  overflow: hidden;
 
   background-color: $background-color;
 
