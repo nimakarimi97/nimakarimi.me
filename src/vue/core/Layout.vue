@@ -8,6 +8,7 @@ import { useNavigation } from '../../composables/navigation.js'
 import { useUtils } from '../../composables/utils.js'
 
 import ScrollProgressBar from '../components/ScrollProgressBar.vue'
+import StoryToast from '../components/StoryToast.vue'
 import NavSidebar from '../navigation/default/NavSidebar.vue'
 import NavHeader from '../navigation/mobile/NavHeader.vue'
 import NavTabs from '../navigation/mobile/NavTabs.vue'
@@ -269,6 +270,9 @@ function _navigateToCategory(categoryId) {
     <div class="nav-tabs-column">
       <NavTabs @link-clicked="_navigateToCategory" />
     </div>
+
+    <!-- Story Toast -->
+    <StoryToast />
   </div>
 </template>
 
