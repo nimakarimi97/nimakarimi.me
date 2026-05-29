@@ -38,7 +38,7 @@ function onMouseMove(e) {
   if (cursorOuter.value)
     cursorOuter.value.style.opacity = '1'
   if (cursorInner.value)
-    cursorInner.value.style.opacity = '1'
+    cursorInner.value.style.animationPlayState = 'running'
 }
 
 function animateCursor() {
@@ -762,21 +762,57 @@ $font-body: 'Lato', sans-serif;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Custom cursor
+// Custom cursor — coding style ([ blinking caret ])
+// cursor: none is set here so it kicks in the instant the template renders,
+// not waiting for the onMounted body-class add (fixes direct-URL flash)
 // ─────────────────────────────────────────────────────────────────────────────
+$code-green: #39ff14;
+
+.story-wrapper,
+.story-wrapper * {
+  cursor: none !important;
+}
+
 .s-cur-outer {
   position: fixed;
   top: 0;
   left: 0;
-  width: 38px;
-  height: 38px;
-  border: 1.5px solid rgba($accent, 0.55);
-  border-radius: 50%;
+  width: 52px;
+  height: 30px;
+  border: none;
+  border-radius: 0;
   pointer-events: none;
   z-index: 9999;
   opacity: 0;
   will-change: transform;
-  transition: border-color 0.2s;
+
+  // Left bracket [
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 9px;
+    height: 100%;
+    border-top: 1.5px solid $code-green;
+    border-bottom: 1.5px solid $code-green;
+    border-left: 1.5px solid $code-green;
+    box-shadow: -2px 0 8px rgba($code-green, 0.35);
+  }
+
+  // Right bracket ]
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 9px;
+    height: 100%;
+    border-top: 1.5px solid $code-green;
+    border-bottom: 1.5px solid $code-green;
+    border-right: 1.5px solid $code-green;
+    box-shadow: 2px 0 8px rgba($code-green, 0.35);
+  }
 
   @media (max-width: 1023px) {
     display: none;
@@ -787,17 +823,30 @@ $font-body: 'Lato', sans-serif;
   position: fixed;
   top: 0;
   left: 0;
-  width: 7px;
-  height: 7px;
-  background: $accent;
-  border-radius: 50%;
+  width: 2px;
+  height: 20px;
+  background: $code-green;
+  border-radius: 0;
   pointer-events: none;
   z-index: 10000;
   opacity: 0;
   will-change: transform;
+  box-shadow: 0 0 8px rgba($code-green, 0.9);
+  animation: code-blink 0.8s step-end infinite;
+  animation-play-state: paused;
 
   @media (max-width: 1023px) {
     display: none;
+  }
+}
+
+@keyframes code-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
   }
 }
 
