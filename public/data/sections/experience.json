@@ -80,11 +80,11 @@
           "faIcon": "fa-solid fa-code",
           "locales": {
             "en": {
-              "title": "Full Stack Developer",
+              "title": "Full-Stack Developer",
               "description": "Built two internal products: a <b>Factory Simulation Dashboard</b> (Vue.js, Node.js, PostgreSQL, Express.js) for Big Data Analytics and plant lifecycle management, and a <b>CV Management Tool</b> (Vue.js, Nuxt.js, ChatGPT/LLM integration) to streamline applicant analysis."
             },
             "it": {
-              "title": "Sviluppatore Full Stack",
+              "title": "Sviluppatore Full-Stack",
               "description": "Sviluppato due prodotti interni: una <b>Dashboard di Simulazione di Fabbrica</b> (Vue.js, Node.js, PostgreSQL, Express.js) per Big Data Analytics e gestione del ciclo di vita degli impianti, e uno <b>Strumento di Gestione CV</b> (Vue.js, Nuxt.js, integrazione ChatGPT/LLM) per ottimizzare l'analisi dei candidati."
             }
           }
@@ -140,11 +140,11 @@
           "faIcon": "fa-solid fa-code",
           "locales": {
             "en": {
-              "title": "Full Stack Developer",
+              "title": "Full-Stack Developer",
               "description": "Working as a full-stack developer on Smart Mobility and Connected Vehicles solutions, contributing across backend services and frontend interfaces."
             },
             "it": {
-              "title": "Sviluppatore Full Stack",
+              "title": "Sviluppatore Full-Stack",
               "description": "Sviluppatore full-stack su soluzioni di Smart Mobility e Connected Vehicles, con contributi sia ai servizi backend sia alle interfacce frontend."
             }
           }

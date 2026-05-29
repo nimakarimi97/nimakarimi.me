@@ -29,9 +29,11 @@ test.describe('Experience Section', () => {
   })
 
   test('should display skill tags on experience items', async ({ page }) => {
-    const skillTags = page.locator('#experience .timeline-item').first().locator('.skill-item')
-    const count = await skillTags.count()
-    expect(count).toBeGreaterThan(0)
+    const firstItem = page.locator('#experience .timeline-item:not(.timeline-item-tail)').first()
+    const skillTags = firstItem.locator('.skill-item')
+
+    await expect(skillTags.first()).toBeVisible()
+    expect(await skillTags.count()).toBeGreaterThan(0)
   })
 
   test('should display date ranges for each experience', async ({ page }) => {
