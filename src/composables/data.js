@@ -291,6 +291,9 @@ export function useData() {
   function _cacheLocalization(object, languageId) {
     const localizedFields = {}
 
+    if (object === null || object === undefined)
+      return object
+
     if (typeof object === 'string' || typeof object === 'number' || typeof object === 'boolean')
       return object
 

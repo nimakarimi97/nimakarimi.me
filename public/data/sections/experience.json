@@ -66,13 +66,45 @@
       "locales": {
         "en": {
           "title": "Full-stack Developer and Project Manager",
-          "description": "Managed team activities using Agile and Scrum methodologies across two projects:<br><ol><li><strong>Factory Simulation and Dashboard:</strong> A web-based application built with Vue.js, PostgreSQL, Node.js, and Express.js to support Big Data Analytics and plant lifecycle operations.</li><li><strong>CV Management Tool:</strong> Developed with Vue.js, Nuxt.js, and ChatGPT integration (LLM) to streamline applicant CV management and analysis.</li></ol><br>Throughout these projects, I developed and strengthened several key skills:<br><ul><li><b>Managed the full interview process independently</b>, from initial screening to final candidate selection, ensuring the right fit for our <b>team dynamics and project requirements</b>.</li><li>Contributed to <b>application performance optimization</b>, ensuring <b>fast load times</b> and <b>efficient resource usage</b>.</li><li><b>Facilitated team building</b> and <b>strengthened working relationships</b> through various activities.</li></ul>"
+          "description": "Joined KeySolution from the ground up, contributing as a <b>full-stack developer</b> and stepping into a <b>project management and team leadership</b> role from day one through August 2024."
         },
         "it": {
           "title": "Sviluppatore Full-stack e Project Manager",
-          "description": "Gestione delle attività del team con metodologie Agile e Scrum su due progetti:<br><ol><li><strong>Simulazione e Dashboard di Fabbrica:</strong> Un'applicazione web sviluppata con Vue.js, PostgreSQL, Node.js ed Express.js per supportare l'analisi dei Big Data e le operazioni del ciclo di vita di un impianto.</li><li><strong>Strumento di Gestione CV:</strong> Realizzato con Vue.js, Nuxt.js e integrazione ChatGPT (LLM) per ottimizzare la gestione e l'analisi dei CV dei candidati.</li></ol><br>Nel corso di questi progetti, ho sviluppato e consolidato diverse competenze chiave:<br><ul><li><b>Gestione autonoma dell'intero processo di selezione</b>, dallo screening iniziale alla scelta finale dei candidati, assicurando la giusta compatibilità con <b>le dinamiche del team e i requisiti del progetto</b>.</li><li>Contributo all'<b>ottimizzazione delle prestazioni applicative</b> per garantire <b>tempi di caricamento rapidi</b> e <b>uso efficiente delle risorse</b>.</li><li><b>Promozione del team building</b> e <b>rafforzamento delle relazioni lavorative</b> attraverso varie attività.</li></ul>"
+          "description": "Entrato in KeySolution fin dall'inizio, contribuendo come <b>sviluppatore full-stack</b> e assumendo un ruolo di <b>project management e team leadership</b> fin dal primo giorno fino ad agosto 2024."
         }
-      }
+      },
+      "subItems": [
+        {
+          "id": "ks_sub_fullstack",
+          "period": ["2023/10", "2024/10"],
+          "faIcon": "fa-solid fa-code",
+          "locales": {
+            "en": {
+              "title": "Full Stack Developer",
+              "description": "Built two internal products: a <b>Factory Simulation Dashboard</b> (Vue.js, Node.js, PostgreSQL, Express.js) for Big Data Analytics and plant lifecycle management, and a <b>CV Management Tool</b> (Vue.js, Nuxt.js, ChatGPT/LLM integration) to streamline applicant analysis."
+            },
+            "it": {
+              "title": "Sviluppatore Full Stack",
+              "description": "Sviluppato due prodotti interni: una <b>Dashboard di Simulazione di Fabbrica</b> (Vue.js, Node.js, PostgreSQL, Express.js) per Big Data Analytics e gestione del ciclo di vita degli impianti, e uno <b>Strumento di Gestione CV</b> (Vue.js, Nuxt.js, integrazione ChatGPT/LLM) per ottimizzare l'analisi dei candidati."
+            }
+          }
+        },
+        {
+          "id": "ks_sub_pm",
+          "period": ["2023/10", "2024/08"],
+          "faIcon": "fa-solid fa-diagram-project",
+          "locales": {
+            "en": {
+              "title": "Agile Project Manager & Team Leader",
+              "description": "Led the team using <b>Agile and Scrum</b> methodologies from project kickoff, coordinating sprint planning, managing the full interview and hiring process independently, and driving team building initiatives."
+            },
+            "it": {
+              "title": "Agile Project Manager & Team Leader",
+              "description": "Ho guidato il team con metodologie <b>Agile e Scrum</b> fin dall'avvio del progetto, coordinando la pianificazione degli sprint, gestendo autonomamente il processo di selezione e promuovendo attività di team building."
+            }
+          }
+        }
+      ]
     },
     {
       "id": "experience_item_5",
@@ -88,19 +120,96 @@
           "logoUrl": "images/places/capgemini_logo.png"
         }
       ],
-      "skills": ["Go", "Node.js", "Vue.js", "Docker", "Kubernetes", "Microservices", "Backend Development", "Team Collaboration", "Talent Acquisition", "Candidate Assessment", "Communication", "Problem Solving", "Technical Mentoring"],
+      "skills": ["Go", "Node.js", "Vue.js", "Docker", "Kubernetes", "Microservices", "Backend Development", "Team Collaboration", "Talent Acquisition", "Candidate Assessment", "Communication", "Problem Solving", "Technical Mentoring", "React Native", "ThingsBoard", "IoT", "CI/CD"],
       "locales": {
         "en": {
           "title": "Software Engineering Consultant",
-          "description": "<p>Developed and deployed a <b>microservice</b> for fetching <b>real-time transportation data</b> using <b>Go</b>, <b>Docker Compose</b>, and <b>Kubernetes</b>, integrated into a <b>Node.js backend data service</b>. Working as a <b>consultant at TIM</b>, contributing to <b>Smart Mobility</b> and <b>Connected Vehicles</b> projects with the following key responsibilities:</p>  <ul>  <li><b>Designing</b> and <b>implementing</b> scalable <b>server-side business logic</b>.</li>  <li><b>Developing</b> responsive <b>web</b> and <b>mobile app</b> front-end components.</li>  <li><b>Collaborating</b> with <b>cross-functional teams</b> to drive <b>innovation</b> and deliver <b>efficient solutions</b>.</li>  </ul><br><p>Additionally, I <b>support the talent acquisition team</b> by <b>conducting technical interviews</b> to identify the <b>best-fit candidates</b> for our company.</p>",
+          "description": "Working as a <b>Software Engineering Consultant</b> at Capgemini, embedded as a contractor at <b>TIM (Telecom Italia)</b>. Contributing to <b>Smart Mobility</b> and <b>Connected Vehicles</b> projects, taking on multiple evolving roles across engineering, DevOps, IoT, mobile development, and talent acquisition.",
           "province": "Milan",
           "country": "IT"
         },
         "it": {
           "title": "Consulente di Ingegneria Software",
-          "description": "<p>Sviluppo e deploy di un <b>microservizio</b> per il recupero di <b>dati di trasporto in tempo reale</b> utilizzando <b>Go</b>, <b>Docker Compose</b> e <b>Kubernetes</b>, integrato in un <b>servizio backend dati in Node.js</b>. Lavoro come <b>consulente presso TIM</b>, contribuendo ai progetti di <b>Smart Mobility</b> e <b>Connected Vehicles</b> con le seguenti responsabilità principali:</p>  <ul>  <li><b>Progettazione</b> e <b>implementazione</b> di <b>logica di business lato server scalabile</b>.</li>  <li><b>Sviluppo</b> di componenti <b>front-end responsive</b> per <b>web</b> e <b>app mobile</b>.</li>  <li><b>Collaborazione</b> con <b>team cross-funzionali</b> per promuovere <b>l'innovazione</b> e fornire <b>soluzioni efficienti</b>.</li>  </ul><br><p>Inoltre, <b>supporto il team di talent acquisition</b> nella <b>conduzione di colloqui tecnici</b> per individuare i <b>candidati più adatti</b> per la nostra azienda.</p>"
+          "description": "Lavoro come <b>Consulente di Ingegneria Software</b> in Capgemini, distaccato come contractor presso <b>TIM (Telecom Italia)</b>. Contribuisco ai progetti di <b>Smart Mobility</b> e <b>Connected Vehicles</b>, ricoprendo più ruoli in continua evoluzione tra ingegneria, DevOps, IoT, sviluppo mobile e talent acquisition."
         }
-      }
+      },
+      "subItems": [
+        {
+          "id": "cap_sub_fullstack",
+          "period": ["2024/11", "now"],
+          "faIcon": "fa-solid fa-code",
+          "locales": {
+            "en": {
+              "title": "Full Stack Developer",
+              "description": "Working as a full-stack developer on Smart Mobility and Connected Vehicles solutions, contributing across backend services and frontend interfaces."
+            },
+            "it": {
+              "title": "Sviluppatore Full Stack",
+              "description": "Sviluppatore full-stack su soluzioni di Smart Mobility e Connected Vehicles, con contributi sia ai servizi backend sia alle interfacce frontend."
+            }
+          }
+        },
+        {
+          "id": "cap_sub_talent",
+          "period": ["2025/03", "now"],
+          "faIcon": "fa-solid fa-user-tie",
+          "locales": {
+            "en": {
+              "title": "Talent Acquisition Team",
+              "description": "Conducting technical interviews and acting as a <b>technical validator</b> to identify the best-fit candidates for the company."
+            },
+            "it": {
+              "title": "Team Talent Acquisition",
+              "description": "Conduco colloqui tecnici e agisco come <b>validatore tecnico</b> per individuare i candidati più adatti per l'azienda."
+            }
+          }
+        },
+        {
+          "id": "cap_sub_devops",
+          "period": ["2025/04", "now"],
+          "faIcon": "fa-solid fa-server",
+          "locales": {
+            "en": {
+              "title": "DevOps Engineer",
+              "description": "Working with <b>Kubernetes</b> and managing <b>CI/CD pipelines</b> to streamline build, test, and deployment workflows."
+            },
+            "it": {
+              "title": "DevOps Engineer",
+              "description": "Lavoro con <b>Kubernetes</b> e gestisco <b>pipeline CI/CD</b> per ottimizzare i flussi di build, test e deploy."
+            }
+          }
+        },
+        {
+          "id": "cap_sub_thingsboard",
+          "period": ["2026/03", "now"],
+          "faIcon": "fa-solid fa-microchip",
+          "locales": {
+            "en": {
+              "title": "ThingsBoard IoT Development",
+              "description": "Building on <b>ThingsBoard</b>, an open-source IoT platform for device management, data collection, processing, and visualization. Designing <b>rule chains</b> with nodes (including <b>AI nodes</b>) and creating real-time <b>dashboards</b> for monitoring."
+            },
+            "it": {
+              "title": "Sviluppo IoT con ThingsBoard",
+              "description": "Sviluppo su <b>ThingsBoard</b>, piattaforma IoT open-source per la gestione di dispositivi, raccolta, elaborazione e visualizzazione dei dati. Progetto <b>rule chain</b> con nodi (inclusi <b>nodi AI</b>) e creo <b>dashboard</b> in tempo reale per il monitoraggio."
+            }
+          }
+        },
+        {
+          "id": "cap_sub_mobile",
+          "period": ["2026/05", "now"],
+          "faIcon": "fa-solid fa-mobile-screen",
+          "locales": {
+            "en": {
+              "title": "Cross-Platform Mobile Developer",
+              "description": "Developing <b>iOS</b> and <b>Android</b> apps using <b>React Native</b>."
+            },
+            "it": {
+              "title": "Sviluppatore Mobile Cross-Platform",
+              "description": "Sviluppo di app <b>iOS</b> e <b>Android</b> utilizzando <b>React Native</b>."
+            }
+          }
+        }
+      ]
     }
   ]
 }

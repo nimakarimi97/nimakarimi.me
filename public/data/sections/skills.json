@@ -230,6 +230,20 @@
         }
       },
       {
+        "faIcon": "fa-solid fa-mobile-screen",
+        "value": 55,
+        "locales": {
+          "en": {
+            "title": "React Native",
+            "description": "Building cross-platform iOS and Android apps with React Native and the Expo toolchain."
+          },
+          "it": {
+            "title": "React Native",
+            "description": "Sviluppo di app cross-platform iOS e Android con React Native e la toolchain Expo."
+          }
+        }
+      },
+      {
         "faIcon": "fab fa-golang",
         "value": 80,
         "locales": {

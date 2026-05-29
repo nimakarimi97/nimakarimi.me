@@ -6,6 +6,7 @@ import { useUtils } from '../../../composables/utils.js'
 import ImageView from '../../components/ImageView.vue'
 import SkillTags from '../../components/SkillTags.vue'
 import Tags from '../../components/Tags.vue'
+import TimelineSubItems from '../../components/TimelineSubItems.vue'
 import SectionTemplate from '../_templates/SectionTemplate.vue'
 
 const props = defineProps({
@@ -105,6 +106,13 @@ function _formatItemDate(item) {
               v-html="item.locales.description"
             />
           </div>
+
+          <!-- Nested Sub-Items (roles within a single place) -->
+          <TimelineSubItems
+            v-if="item.subItems && item.subItems.length"
+            :items="item.subItems"
+            class="mt-3"
+          />
 
           <div class="mt-2 pt-1 mt-md-3">
             <SkillTags v-if="item.skills" :skills="item.skills" />
