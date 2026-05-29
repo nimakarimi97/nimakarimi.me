@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test.describe('Experience Section', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/')
+    await page.goto('/about')
   })
 
   test('should display the experience section title', async ({ page }) => {
@@ -23,6 +23,7 @@ test.describe('Experience Section', () => {
 
   test('should display company logos', async ({ page }) => {
     const logos = page.locator('#experience .timeline-item-img')
+    await expect(logos.first()).toBeVisible({ timeout: 10000 })
     const count = await logos.count()
     expect(count).toBeGreaterThan(0)
   })

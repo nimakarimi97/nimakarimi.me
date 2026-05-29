@@ -90,6 +90,14 @@ function _onToggleButton() {
             <span>{{ data.getString(section.id) }}</span>
           </button>
         </li>
+
+        <!-- Story page link -->
+        <li class="nav-item nav-item-story">
+          <router-link to="/" class="nav-link nav-link-story">
+            <i class="fa-solid fa-book-open" />
+            <span>My Story</span>
+          </router-link>
+        </li>
       </ul>
     </div>
 
@@ -244,6 +252,37 @@ function _onToggleButton() {
     &:hover {
       background-color: rgba(black, 0.25);
       color: $light-1;
+    }
+  }
+
+  // Story link — special accent item
+  .nav-item-story {
+    margin-top: 0.5rem;
+    border-top: 1px solid rgba(white, 0.06);
+    padding-top: 0.5rem;
+
+    .nav-link-story {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font-size: clamp(0.9rem, calc(100vh / 50), 1rem);
+      font-family: $headings-font-family;
+      text-transform: uppercase;
+      color: $nav-item-grayed-out-color;
+      opacity: 0.8;
+      transition: all 0.3s ease-in-out;
+
+      i {
+        min-width: 35px;
+        color: $nav-item-grayed-out-color;
+        transition: all 0.2s ease-in-out;
+      }
+
+      &:hover,
+      &:hover i {
+        color: #818cf8;
+        opacity: 1;
+      }
     }
   }
 

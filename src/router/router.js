@@ -11,6 +11,11 @@ export function createAppRouter() {
   const routeList = [
     {
       path: '/',
+      name: 'story',
+      component: () => import('../vue/pages/story/StoryPage.vue'),
+    },
+    {
+      path: '/about',
       name: homeSection.id,
       component: RouterView,
     },
@@ -75,5 +80,8 @@ export function createAppRouter() {
   return createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: routeList,
+    scrollBehavior() {
+      return { top: 0 }
+    },
   })
 }

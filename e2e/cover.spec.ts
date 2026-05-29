@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test.describe('Cover Section', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/')
+    await page.goto('/about')
   })
 
   test('should display the welcome title', async ({ page }) => {
@@ -13,8 +13,8 @@ test.describe('Cover Section', () => {
 
   test('should display the bio text', async ({ page }) => {
     const bio = page.locator('.cover-description')
-    await expect(bio).toContainText('Full-stack Consultant')
-    await expect(bio).toContainText('Project Manager')
+    await expect(bio).toContainText('software engineer consultant')
+    await expect(bio).toContainText('project manager')
   })
 
   test('should display contact info inline list', async ({ page }) => {

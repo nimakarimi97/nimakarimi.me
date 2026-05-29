@@ -1,5 +1,6 @@
 <script setup>
 import { computed, onMounted, provide, ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 import { useData } from '../../composables/data.js'
 import { useLayout } from '../../composables/layout.js'
@@ -11,12 +12,15 @@ import FeedbackView from './FeedbackView.vue'
 const data = useData()
 const layout = useLayout()
 const utils = useUtils()
+const route = useRoute()
 
 const feedbackView = ref(null)
 const appDidLoad = ref(false)
 let intervalId = null
 
 const showDownloadButton = ref(false)
+
+const isStoryRoute = computed(() => route.path === '/' || route.path === '/story')
 
 const clipboardText = ref(null)
 
@@ -34,7 +38,12 @@ provide('copyToClipboard', copyToClipboard)
 
 onMounted(() => {
   layout.setFeedbackView(feedbackView)
-  _startPreloading()
+  if (isStoryRoute.value) {
+    // On story page: load data silently without the preloader overlay
+    _onPreloaderShown().then(() => _onPreloadCompleted())
+  } else {
+    _startPreloading()
+  }
 })
 
 /**
@@ -109,13 +118,18 @@ function _onPreloadCompleted() {
   <!-- Feedbacks -->
   <FeedbackView ref="feedbackView" />
 
-  <!-- App Content -->
-  <Layout
-    v-if="data.getLoadProgress() >= 100"
-    v-show="!utils.isTouchDevice() || appDidLoad"
-  >
-    <router-view />
-  </Layout>
+  <!-- Story page — standalone experience, no layout or preloader -->
+  <router-view v-if="isStoryRoute" />
 
-  <DownloadButton v-if="showDownloadButton" text="My CV" />
+  <!-- Main App -->
+  <template v-else>
+    <Layout
+      v-if="data.getLoadProgress() >= 100"
+      v-show="!utils.isTouchDevice() || appDidLoad"
+    >
+      <router-view />
+    </Layout>
+
+    <DownloadButton v-if="showDownloadButton" text="My CV" />
+  </template>
 </template>

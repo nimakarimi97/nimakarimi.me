@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test.describe('Skills Section', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/')
+    await page.goto('/about')
   })
 
   test('should display the skills section title', async ({ page }) => {

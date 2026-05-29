@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test.describe('Navigation', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/')
+    await page.goto('/about')
   })
 
   test('should highlight the active section in sidebar', async ({ page }) => {
