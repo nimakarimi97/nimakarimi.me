@@ -172,6 +172,7 @@ function initAnimations() {
         ease: 'power3.out',
       }, 0.1)
       .from('.s5-uni', { scale: 0.85, opacity: 0, duration: 0.5, ease: 'back.out' }, 0.35)
+      .from('.s5-visual', { scale: 0.95, opacity: 0, duration: 0.5, ease: 'power3.out' }, 0.4)
       .from('.s5-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 0.55)
       .from('.s5-acts .ac', { x: -50, opacity: 0, stagger: 0.1, duration: 0.4 }, 0.65)
       .from('.s5-arches .arch', { scale: 0, opacity: 0, stagger: 0.12, duration: 0.5, ease: 'back.out' }, 0.1)
@@ -387,12 +388,12 @@ onUnmounted(() => {
     </nav>
 
     <!-- ════════════════════════════════════════════════════════
-         SCENE 1 · ORIGIN
+        SCENE 1 · ORIGIN
     ═════════════════════════════════════════════════════════ -->
     <section class="scene scene-origin" aria-label="Chapter 1: Origin">
       <div class="scene-bg grid-bg" aria-hidden="true" />
       <div class="s1-bg-text" aria-hidden="true">
-        2015
+        🎓 <br> 2015
       </div>
 
       <div class="scene-content">
@@ -405,7 +406,7 @@ onUnmounted(() => {
           Mechatronics gave me direction.
         </p>
         <p class="s1-detail scene-det">
-          B.Sc. Mechatronics Engineering · K.N.Toosi University of Technology · Tehran
+          B.Sc. Mechatronics Engineering
         </p>
         <div class="s1-gear" aria-hidden="true">
           <i class="fa-solid fa-gear" />
@@ -533,7 +534,7 @@ onUnmounted(() => {
         <div class="s5-text">
           <span class="s5-chapter chapter-label">Chapter 05 — Academia</span>
           <h2 class="s5-title display-title">
-            <span class="w">I</span>&#32;<span class="w">moved</span>&#32;<span class="w">to</span>&#32;<span class="w">Italy.</span>
+            <span class="w">I</span>&#32;<span class="w">moved</span>&#32;<span class="w">to</span>&#32;<span class="w">Italy 🇮🇹</span>
           </h2>
           <div class="s5-uni">
             <div class="uni-icon">
@@ -574,7 +575,7 @@ onUnmounted(() => {
             <div class="arch arch-2" />
             <div class="arch arch-1" />
             <div class="arch-label">
-              Padova
+              📌 Padova
             </div>
           </div>
         </div>
@@ -1024,10 +1025,12 @@ $code-green: #39ff14;
 }
 
 .hero-subtitle {
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
-  color: $muted;
+  font-size: clamp(0.8rem, 1.5vw, 1.25rem);
+  color: $accent;
   line-height: 1.6;
-  max-width: 500px;
+  max-width: 700px;
+  letter-spacing: 0.1em;
+  padding: 1rem;
   margin: 0 auto;
   animation: heroFadeIn 0.8s ease-out forwards 0.7s;
   opacity: 0;
@@ -1178,7 +1181,9 @@ $code-green: #39ff14;
   font-family: $font-head;
   font-size: clamp(14rem, 24vw, 30rem);
   font-weight: 900;
-  color: rgba(255, 255, 255, 0.022);
+  text-align: right;
+  color: rgba(255, 255, 255, 0.062);
+  padding-right: 24px;
   right: -1%;
   top: 50%;
   transform: translateY(-50%);
@@ -1193,7 +1198,7 @@ $code-green: #39ff14;
   margin-top: 40px;
   font-size: 2.8rem;
   color: rgba($accent, 0.28);
-  animation: gearSpin 22s linear infinite;
+  animation: gearSpin 8s linear infinite;
   display: inline-block;
   will-change: transform, opacity;
 }
