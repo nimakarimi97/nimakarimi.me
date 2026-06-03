@@ -2545,8 +2545,8 @@ $rivet: #5a6378;
   }
 
   @media (max-width: 768px) {
-    right: 18px;
-    bottom: 62px;
+    right: 42px;
+    bottom: 68px;
     width: 62px;
     height: 50px;
 
@@ -2907,6 +2907,14 @@ $rivet: #5a6378;
     &::before {
       inset: 5px 3px;
       border-radius: 12px;
+    }
+
+    &.sr-track-l {
+      left: 30px;
+    }
+
+    &.sr-track-r {
+      right: 30px;
     }
   }
 }
