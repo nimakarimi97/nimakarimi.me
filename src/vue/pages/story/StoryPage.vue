@@ -71,7 +71,7 @@ function onMouseLeaveLink() {
   targetScale = 1
 }
 
-function navigateToPortfolio() {
+function navigateToResume() {
   window.scrollTo({ top: 0, behavior: 'instant' })
   router.push('/about')
 }
@@ -393,9 +393,9 @@ onUnmounted(() => {
 
     <!-- ── Top nav ───────────────────────────────────────────── -->
     <nav class="s-nav" aria-label="Story navigation">
-      <button class="s-back" @click="navigateToPortfolio">
+      <button class="s-back" @click="navigateToResume">
         <i class="fa-solid fa-arrow-left" aria-hidden="true" />
-        <span>Portfolio</span>
+        <span>Résumé</span>
       </button>
       <span class="s-nav-label">Nima Karimi — The Story</span>
     </nav>
@@ -848,8 +848,8 @@ onUnmounted(() => {
           Always learning. Always evolving.
         </p>
         <div class="s9-cta">
-          <button class="cta-btn cta-btn--primary" @click="navigateToPortfolio">
-            View Portfolio
+          <button class="cta-btn cta-btn--primary" @click="navigateToResume">
+            View Résumé
           </button>
           <router-link to="/contact" class="cta-btn cta-btn--outline">
             Get in Touch
