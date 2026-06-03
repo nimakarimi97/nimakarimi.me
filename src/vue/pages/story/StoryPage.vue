@@ -1183,13 +1183,9 @@ $code-green: #39ff14;
 
 .s-nav-label {
   font-family: cursive, $font-head;
-  font-size: 0.78rem;
+  font-size: clamp(0.65rem, 1vw, 1rem);
   color: $text;
   letter-spacing: 0.12em;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 }
 
 .s-nav-language {
