@@ -4086,7 +4086,7 @@ $rivet: #5a6378;
   }
 
   .s6-persist {
-    height: 120px;
+    min-height: 120px;
   }
 }
 
