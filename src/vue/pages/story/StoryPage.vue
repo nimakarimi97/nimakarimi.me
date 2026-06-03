@@ -155,7 +155,20 @@ function initAnimations() {
       }, 0.15)
       .from('.s1-subtitle', { y: 40, opacity: 0, duration: 0.4 }, 0.5)
       .from('.s1-detail', { y: 20, opacity: 0, duration: 0.3 }, 0.7)
-      .from('.s1-gear', { rotation: 0, scale: 0, opacity: 0, duration: 0.6, ease: 'back.out(1.7)' }, 0)
+      .from('.s1-gear', {
+        rotation: -180,
+        scale: 0,
+        opacity: 0,
+        filter: 'drop-shadow(0 0 0px rgba(100, 200, 255, 0))',
+        duration: 0.8,
+        ease: 'back.out(1.7)',
+      }, 0.7)
+      .to('.s1-gear', {
+        filter: 'drop-shadow(0 0 20px rgba(100, 200, 255, 0.6))',
+        duration: 0.6,
+        ease: 'sine.inOut',
+        yoyo: true,
+      }, 0.8)
 
     // ── Scene 2: Robotics ────────────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-robotics') })
@@ -163,13 +176,30 @@ function initAnimations() {
       .from('.s2-title .w', {
         x: -120,
         opacity: 0,
-        stagger: 0.06,
+        stagger: 1,
         duration: 0.5,
         ease: 'power3.out',
       }, 0.1)
-      .from('.s2-robot', { scale: 0, opacity: 0, rotation: -30, duration: 0.7, ease: 'back.out(1.7)' }, 0.05)
-      .from('.s2-paper', { y: -70, opacity: 0, duration: 0.5 }, 0.5)
-      .from('.s2-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 0.7)
+      .from('.s2-robot', { scale: 0, opacity: 0, rotation: -30, duration: 0.7, ease: 'back.out(1.7)' }, 3.5)
+      .to('.sr-drone', {
+        y: -20,
+        filter: 'drop-shadow(0 20px 40px rgba(100, 200, 255, 0.3))',
+        duration: 2,
+        ease: 'power2.inOut',
+      }, 4.0)
+      .to('.sr-drone .sr-prop span', {
+        rotation: 360,
+        duration: 1,
+        ease: 'none',
+      }, 4.0)
+      .to('.sr-drone-light', {
+        opacity: 0.8,
+        filter: 'drop-shadow(0 0 15px rgba(255, 150, 0, 0.6))',
+        duration: 1.5,
+        ease: 'power2.inOut',
+      }, 2.0)
+      .from('.s2-paper', { y: -70, opacity: 0, duration: 0.5 }, 5.8)
+      .from('.s2-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 6.5)
 
     // ── Scene 3: Code revelation ─────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-code', PIN_LONG) })
@@ -217,20 +247,27 @@ function initAnimations() {
       .from('.s6-n1', { opacity: 0, y: 50, duration: 0.4 }, 0.1)
       .from('.s6-n2', { opacity: 0, y: 50, duration: 0.4 }, 0.25)
       .from('.s6-n3', { opacity: 0, y: 50, duration: 0.4 }, 0.4)
-      .from('.s6-divider', { scaleX: 0, transformOrigin: 'center', duration: 0.4 }, 0.6)
-      .from('.s6-persist', { opacity: 0, y: 30, duration: 0.5 }, 0.7)
+      .from('.s6-divider', { scaleX: 0, transformOrigin: 'center', duration: 1 }, 0.6)
+      .from('.s6-persist', {
+        opacity: 0,
+        y: 100,
+        filter: 'blur(15px)',
+        duration: 2.5,
+      }, 1.7)
 
     // ── Scene 7: Breakthrough ────────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-breakthrough', PIN_LONG) })
       .from('.s7-glow', { scale: 0, opacity: 0, duration: 0.8, ease: 'power2.out' }, 0)
       .from('.s7-chapter', { opacity: 0, duration: 0.2 }, 0)
       .from('.s7-title .w', {
-        y: 100,
         opacity: 0,
-        stagger: 0.06,
-        duration: 0.5,
-        ease: 'power3.out',
-      }, 0.1)
+        clipPath: 'inset(0 100% 0 0)',
+        duration: 2,
+      }, 0.2)
+      .from('.s7-title', {
+        opacity: 0,
+        y: 40,
+      }, 0.2)
       .from('.s7-steps .step', { x: -80, opacity: 0, stagger: 0.15, duration: 0.5 }, 0.45)
       .from('.s7-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 0.9)
 
@@ -1495,6 +1532,9 @@ $code-green: #39ff14;
   animation: gearSpin 8s linear infinite;
   display: inline-block;
   will-change: transform, opacity;
+
+  filter: drop-shadow(0 0 10px rgba(100, 200, 255, 0.1));
+  text-shadow: 0 0 10px rgba(100, 200, 255, 0.5);
 }
 
 @keyframes gearSpin {
