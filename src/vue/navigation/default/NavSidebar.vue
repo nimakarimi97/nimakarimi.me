@@ -100,7 +100,7 @@ function _onToggleButton() {
         <li class="nav-item nav-item-story">
           <button class="nav-link nav-link-story" @click="_onStoryClicked">
             <i class="fa-solid fa-book-open" />
-            <span>My Story</span>
+            <span>{{ data.getString('myStory') }}</span>
           </button>
         </li>
       </ul>

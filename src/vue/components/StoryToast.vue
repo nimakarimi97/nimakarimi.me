@@ -2,9 +2,10 @@
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useConstants } from '../../composables/constants.js'
+import { useData } from '../../composables/data.js'
 
 const router = useRouter()
-
+const data = useData()
 const constants = useConstants()
 const visible = ref(false)
 const dismissed = ref(false)
@@ -55,8 +56,8 @@ function dismiss() {
       <div class="story-toast__content" @click="goToStory">
         <i class="fa-solid fa-book-open story-toast__icon" />
         <div class="story-toast__text">
-          <span class="story-toast__title">Wanna know my story?</span>
-          <span class="story-toast__subtitle">See how I got here</span>
+          <span class="story-toast__title">{{ data.getString('wonnaKnowStory') }}</span>
+          <span class="story-toast__subtitle">{{ data.getString('seeHowIGotHere') }}</span>
         </div>
       </div>
     </div>

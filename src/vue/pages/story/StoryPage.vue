@@ -1,12 +1,26 @@
 <script setup>
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useData } from '../../../composables/data.js'
+import { useLanguage } from '../../../composables/language.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const router = useRouter()
+const language = useLanguage()
+const data = useData()
+
+// Language dropdown state
+const showLanguageDropdown = ref(false)
+
+// Computed language properties
+const selectedLanguage = computed(() => language.getSelectedLanguage())
+const availableLanguages = computed(() => language.getAvailableLanguages())
+
+// Translation helper
+const getString = key => data.getString(key)
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Refs
@@ -74,6 +88,15 @@ function onMouseLeaveLink() {
 function navigateToResume() {
   window.scrollTo({ top: 0, behavior: 'instant' })
   router.push('/about')
+}
+
+function selectLanguage(lang) {
+  language.selectLanguage(lang)
+  showLanguageDropdown.value = false
+}
+
+function toggleLanguageDropdown() {
+  showLanguageDropdown.value = !showLanguageDropdown.value
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -372,7 +395,7 @@ onUnmounted(() => {
 
     <!-- ── Scroll indicator ──────────────────────────────────── -->
     <div ref="scrollIndicator" class="s-scroll-hint" aria-hidden="true">
-      <span>Scroll to continue</span>
+      <span>{{ getString('story_scroll_hint') }}</span>
       <i class="fa-solid fa-chevron-down" />
     </div>
 
@@ -380,13 +403,13 @@ onUnmounted(() => {
     <div ref="heroSection" class="s-hero">
       <div class="hero-content">
         <h1 class="hero-title">
-          <span>Every</span>
-          <span>Expert</span>
-          <span>Started</span>
-          <span>Somewhere</span>
+          <span>{{ getString('story_hero_title_1') }}</span>
+          <span>{{ getString('story_hero_title_2') }}</span>
+          <span>{{ getString('story_hero_title_3') }}</span>
+          <span>{{ getString('story_hero_title_4') }}</span>
         </h1>
         <p class="hero-subtitle">
-          This is my journey. From curious student to building at scale.
+          {{ getString('story_hero_subtitle') }}
         </p>
       </div>
     </div>
@@ -395,9 +418,28 @@ onUnmounted(() => {
     <nav class="s-nav" aria-label="Story navigation">
       <button class="s-back" @click="navigateToResume">
         <i class="fa-solid fa-arrow-left" aria-hidden="true" />
-        <span>Résumé</span>
+        <span>{{ getString('story_resume') }}</span>
       </button>
-      <span class="s-nav-label">Nima Karimi — The Story</span>
+      <span class="s-nav-label">{{ getString('story_page_title') }}</span>
+      <div v-if="language.supportsMultipleLanguages()" class="s-nav-language">
+        <button class="s-lang-dropdown-toggle" @click="toggleLanguageDropdown">
+          <img :src="selectedLanguage.flagUrl" :alt="selectedLanguage.name" class="s-lang-flag">
+          <span class="s-lang-name">{{ selectedLanguage.id }}</span>
+          <i class="fa-solid fa-chevron-down" />
+        </button>
+
+        <div v-if="showLanguageDropdown" class="s-lang-dropdown">
+          <button
+            v-for="lang in availableLanguages"
+            :key="lang.id"
+            class="s-lang-option"
+            @click="selectLanguage(lang)"
+          >
+            <img :src="lang.flagUrl" :alt="lang.name" class="s-lang-flag">
+            <span>{{ lang.name }}</span>
+          </button>
+        </div>
+      </div>
     </nav>
 
     <!-- ════════════════════════════════════════════════════════
@@ -410,16 +452,16 @@ onUnmounted(() => {
       </div>
 
       <div class="scene-content">
-        <span class="s1-chapter chapter-label">Chapter 01 — Origin</span>
+        <span class="s1-chapter chapter-label">{{ getString('s1_ch01_label') }}</span>
         <h1 class="s1-title display-title">
-          <span class="w">Where</span>&#32;<span class="w">it</span>&#32;<span class="w">all</span>&#32;<span class="w">began</span>
+          <span class="w">{{ getString('s1_title_w1') }}</span>&#32;<span class="w">{{ getString('s1_title_w2') }}</span>&#32;<span class="w">{{ getString('s1_title_w3') }}</span>&#32;<span class="w">{{ getString('s1_title_w4') }}</span>
         </h1>
         <p class="s1-subtitle scene-sub">
-          Mechanical engineering gave me the foundation.<br>
-          Mechatronics gave me direction.
+          {{ getString('s1_subtitle_line1') }}<br>
+          {{ getString('s1_subtitle_line2') }}
         </p>
         <p class="s1-detail scene-det">
-          B.Sc. Mechatronics Engineering
+          {{ getString('s1_detail') }}
         </p>
         <div class="s1-gear" aria-hidden="true">
           <i class="fa-solid fa-gear" />
@@ -433,9 +475,9 @@ onUnmounted(() => {
     <section class="scene scene-robotics" aria-label="Chapter 2: Robotics">
       <div class="scene-content scene-content--split">
         <div class="s2-text">
-          <span class="s2-chapter chapter-label">Chapter 02 — Curiosity</span>
+          <span class="s2-chapter chapter-label">{{ getString('s2_ch02_label') }}</span>
           <h2 class="s2-title display-title">
-            <span class="w">Then</span>&#32;<span class="w">came</span>&#32;<span class="w">the</span>&#32;<span class="w">robots.</span>
+            <span class="w">{{ getString('s2_title_w1') }}</span>&#32;<span class="w">{{ getString('s2_title_w2') }}</span>&#32;<span class="w">{{ getString('s2_title_w3') }}</span>&#32;<span class="w">{{ getString('s2_title_w4') }}</span>
           </h2>
           <div class="s2-paper">
             <div class="paper-icon">
@@ -443,11 +485,11 @@ onUnmounted(() => {
             </div>
             <div class="paper-body">
               <div class="paper-tag">
-                Published Research
+                {{ getString('s2_paper_tag') }}
               </div>
               <p class="paper-title">
-                ROS-based Motion Planner for Gazebo-Simulated<br>
-                Rescue Robots in RoboCup
+                {{ getString('s2_paper_title_line1') }}<br>
+                {{ getString('s2_paper_title_line2') }}
               </p>
             </div>
             <!-- ─── Rescue Robot ───────────────────────────── -->
@@ -487,8 +529,8 @@ onUnmounted(() => {
             </div>
           </div>
           <p class="s2-subtitle scene-sub">
-            ROS. Gazebo. Inverse kinematics. Control loops.<br>
-            I was hooked — and I published to prove it.
+            {{ getString('s2_subtitle_line1') }}<br>
+            {{ getString('s2_subtitle_line2') }}
           </p>
         </div>
 
@@ -575,20 +617,20 @@ onUnmounted(() => {
       </div>
 
       <div class="scene-content scene-content--center">
-        <span class="s3-chapter chapter-label">Chapter 03 — Revelation</span>
+        <span class="s3-chapter chapter-label">{{ getString('s3_ch03_label') }}</span>
         <div class="s3-duel">
           <h2 class="s3-hate display-title display-title--dim">
-            I hated code.
+            {{ getString('s3_hate') }}
             <span class="s3-strike" aria-hidden="true" />
           </h2>
           <h2 class="s3-love display-title display-title--grad">
-            Then I loved it.
+            {{ getString('s3_love') }}
           </h2>
         </div>
         <p class="s3-subtitle scene-sub">
-          Building robots forced me into C++, Python, and ROS.<br>
-          Somewhere between debugging a control loop and watching<br>
-          a robot move for the first time — it just clicked.
+          {{ getString('s3_subtitle_line1') }}<br>
+          {{ getString('s3_subtitle_line2') }}<br>
+          {{ getString('s3_subtitle_line3') }}
         </p>
       </div>
     </section>
@@ -603,21 +645,21 @@ onUnmounted(() => {
 
       <div class="scene-content scene-content--split">
         <div class="s4-text">
-          <span class="s4-chapter chapter-label">Chapter 04 — Pivot</span>
+          <span class="s4-chapter chapter-label">{{ getString('s4_ch04_label') }}</span>
           <h2 class="s4-title display-title">
-            <span class="w">The</span>&#32;<span class="w">world</span>&#32;<span class="w">paused.</span><br>
-            <span class="w">I</span>&#32;<span class="w">started</span>&#32;<span class="w">building.</span>
+            <span class="w">{{ getString('s4_title_line1') }}</span><br>
+            <span class="w">{{ getString('s4_title_line2') }}</span>
           </h2>
           <p class="s4-subtitle scene-sub">
-            COVID-19 brought a lockdown. I used it to learn web development from scratch,
-            one tutorial at a time.
+            {{ getString('s4_subtitle_line1') }}
+            {{ getString('s4_subtitle_line2') }}
           </p>
           <div class="s4-techs">
-            <span class="tc">HTML</span>
-            <span class="tc">CSS</span>
-            <span class="tc">JavaScript</span>
-            <span class="tc">React</span>
-            <span class="tc">Vue</span>
+            <span class="tc">{{ getString('s4_tech_html') }}</span>
+            <span class="tc">{{ getString('s4_tech_css') }}</span>
+            <span class="tc">{{ getString('s4_tech_js') }}</span>
+            <span class="tc">{{ getString('s4_tech_react') }}</span>
+            <span class="tc">{{ getString('s4_tech_vue') }}</span>
           </div>
         </div>
 
@@ -669,9 +711,9 @@ onUnmounted(() => {
     <section class="scene scene-academia" aria-label="Chapter 5: Academia">
       <div class="scene-content scene-content--split">
         <div class="s5-text">
-          <span class="s5-chapter chapter-label">Chapter 05 — Academia</span>
+          <span class="s5-chapter chapter-label">{{ getString('s5_ch05_label') }}</span>
           <h2 class="s5-title display-title">
-            <span class="w">I</span>&#32;<span class="w">moved</span>&#32;<span class="w">to</span>&#32;<span class="w">Italy 🇮🇹</span>
+            <span class="w">{{ getString('s5_title') }}</span>
           </h2>
           <div class="s5-uni">
             <div class="uni-icon">
@@ -679,29 +721,29 @@ onUnmounted(() => {
             </div>
             <div class="uni-body">
               <div class="uni-name">
-                University of Padova
+                {{ getString('s5_uni_name') }}
               </div>
               <div class="uni-deg">
-                M.Sc. Management Engineering
+                {{ getString('s5_uni_degree') }}
               </div>
               <div class="uni-yr">
-                2021 — 2023
+                {{ getString('s5_uni_year') }}
               </div>
             </div>
           </div>
           <p class="s5-subtitle scene-sub">
-            While earning my Master's, I was simultaneously coding,
-            learning, and doing my first internship. All at once.
+            {{ getString('s5_subtitle_line1') }}
+            {{ getString('s5_subtitle_line2') }}
           </p>
           <div class="s5-acts">
             <div class="ac">
-              <i class="fa-solid fa-book" aria-hidden="true" />Studying
+              <i class="fa-solid fa-book" aria-hidden="true" />{{ getString('s5_act_study') }}
             </div>
             <div class="ac">
-              <i class="fa-solid fa-code" aria-hidden="true" />Building
+              <i class="fa-solid fa-code" aria-hidden="true" />{{ getString('s5_act_build') }}
             </div>
             <div class="ac">
-              <i class="fa-solid fa-briefcase" aria-hidden="true" />Working
+              <i class="fa-solid fa-briefcase" aria-hidden="true" />{{ getString('s5_act_work') }}
             </div>
           </div>
         </div>
@@ -724,21 +766,21 @@ onUnmounted(() => {
     ═════════════════════════════════════════════════════════ -->
     <section class="scene scene-challenges" aria-label="Chapter 6: The Grind">
       <div class="scene-content scene-content--center">
-        <span class="s6-chapter chapter-label">Chapter 06 — The Grind</span>
+        <span class="s6-chapter chapter-label">{{ getString('s6_ch06_label') }}</span>
         <div class="s6-negatives">
           <h2 class="s6-n1 display-title display-title--ghost">
-            No degree.
+            {{ getString('s6_negative_1') }}
           </h2>
           <h2 class="s6-n2 display-title display-title--ghost">
-            No experience.
+            {{ getString('s6_negative_2') }}
           </h2>
           <h2 class="s6-n3 display-title display-title--ghost">
-            No offers.
+            {{ getString('s6_negative_3') }}
           </h2>
         </div>
         <div class="s6-divider" aria-hidden="true" />
         <h2 class="s6-persist display-title display-title--accent">
-          I kept building anyway.
+          {{ getString('s6_persist') }}
         </h2>
       </div>
     </section>
@@ -750,34 +792,34 @@ onUnmounted(() => {
       <div class="s7-glow" aria-hidden="true" />
 
       <div class="scene-content scene-content--center">
-        <span class="s7-chapter chapter-label">Chapter 07 — Breakthrough</span>
+        <span class="s7-chapter chapter-label">{{ getString('s7_ch07_label') }}</span>
         <h2 class="s7-title display-title">
-          <span class="w">Then</span>&#32;<span class="w">it</span>&#32;<span class="w">clicked.</span>
+          <span class="w">{{ getString('s7_title') }}</span>
         </h2>
         <div class="s7-steps">
           <div class="step">
-            <span class="sn">01</span>
-            <span class="sr">Software Developer Intern</span>
-            <span class="sp">Leanbit · Apr 2022</span>
+            <span class="sn">{{ getString('s7_step_1_num') }}</span>
+            <span class="sr">{{ getString('s7_step_1_role') }}</span>
+            <span class="sp">{{ getString('s7_step_1_company') }}</span>
           </div>
           <div class="step">
-            <span class="sn">02</span>
-            <span class="sr">Web Developer Freelancer</span>
-            <span class="sp">Oct 2022 → ongoing</span>
+            <span class="sn">{{ getString('s7_step_2_num') }}</span>
+            <span class="sr">{{ getString('s7_step_2_role') }}</span>
+            <span class="sp">{{ getString('s7_step_2_company') }}</span>
           </div>
           <div class="step">
-            <span class="sn">03</span>
-            <span class="sr">ML Developer & Full-Stack</span>
-            <span class="sp">CP · Jun 2023</span>
+            <span class="sn">{{ getString('s7_step_3_num') }}</span>
+            <span class="sr">{{ getString('s7_step_3_role') }}</span>
+            <span class="sp">{{ getString('s7_step_3_company') }}</span>
           </div>
           <div class="step">
-            <span class="sn">04</span>
-            <span class="sr">Full-Stack + Project Manager</span>
-            <span class="sp">KeySolution · Oct 2023</span>
+            <span class="sn">{{ getString('s7_step_4_num') }}</span>
+            <span class="sr">{{ getString('s7_step_4_role') }}</span>
+            <span class="sp">{{ getString('s7_step_4_company') }}</span>
           </div>
         </div>
         <p class="s7-subtitle scene-sub">
-          Persistence. Consistency. Shipped code.
+          {{ getString('s7_subtitle') }}
         </p>
       </div>
     </section>
@@ -787,47 +829,47 @@ onUnmounted(() => {
     ═════════════════════════════════════════════════════════ -->
     <section class="scene scene-evolution" aria-label="Chapter 8: Evolution">
       <div class="scene-content">
-        <span class="s8-chapter chapter-label">Chapter 08 — Evolution</span>
+        <span class="s8-chapter chapter-label">{{ getString('s8_ch08_label') }}</span>
         <h2 class="s8-title display-title">
-          <span class="w">Frontend</span>&#32;<span class="w">was</span>&#32;<span class="w">just</span><br>
+          <span class="w">{{ getString('s8_title_line1') }}</span>&#32;<span class="w">was</span>&#32;<span class="w">just</span><br>
           <span class="w">the</span>&#32;<span class="w">beginning.</span>
         </h2>
 
         <div class="s8-stack">
           <div class="si si--fe">
             <i class="fa-brands fa-vuejs" aria-hidden="true" />
-            <span>Frontend</span>
+            <span>{{ getString('s8_stack_frontend') }}</span>
           </div>
           <span class="sa" aria-hidden="true"><i class="fa-solid fa-arrow-right" /></span>
           <div class="si si--be">
             <i class="fa-solid fa-server" aria-hidden="true" />
-            <span>Backend</span>
+            <span>{{ getString('s8_stack_backend') }}</span>
           </div>
           <span class="sa" aria-hidden="true"><i class="fa-solid fa-arrow-right" /></span>
           <div class="si si--do">
             <i class="fa-brands fa-docker" aria-hidden="true" />
-            <span>DevOps</span>
+            <span>{{ getString('s8_stack_devops') }}</span>
           </div>
           <span class="sa" aria-hidden="true"><i class="fa-solid fa-arrow-right" /></span>
           <div class="si si--iot">
             <i class="fa-solid fa-microchip" aria-hidden="true" />
-            <span>IoT</span>
+            <span>{{ getString('s8_stack_iot') }}</span>
           </div>
           <span class="sa" aria-hidden="true"><i class="fa-solid fa-arrow-right" /></span>
           <div class="si si--mob">
             <i class="fa-solid fa-mobile-screen" aria-hidden="true" />
-            <span>Mobile</span>
+            <span>{{ getString('s8_stack_mobile') }}</span>
           </div>
         </div>
 
         <div class="s8-badge">
           <i class="fa-solid fa-building" aria-hidden="true" />
-          <span>Software Engineering Consultant · Capgemini @ TIM · Smart Mobility</span>
+          <span>{{ getString('s8_badge') }}</span>
         </div>
 
         <p class="s8-subtitle scene-sub">
-          Full-stack across the entire stack.<br>
-          From idea to production.
+          {{ getString('s8_subtitle_line1') }}<br>
+          {{ getString('s8_subtitle_line2') }}
         </p>
       </div>
     </section>
@@ -837,26 +879,26 @@ onUnmounted(() => {
     ═════════════════════════════════════════════════════════ -->
     <section class="scene scene-present" aria-label="Chapter 9: Today">
       <div class="scene-content scene-content--center scene-present__inner">
-        <span class="s9-chapter chapter-label">Chapter 09 — Today</span>
+        <span class="s9-chapter chapter-label">{{ getString('s9_ch09_label') }}</span>
         <h2 class="s9-title display-title display-title--hero">
-          <span class="w">I</span>&#32;<span class="w">build.</span><br>
-          <span class="w">I</span>&#32;<span class="w">ship.</span><br>
-          <span class="w">I</span>&#32;<span class="w">lead.</span>
+          <span class="w">{{ getString('s9_title_line1') }}</span><br>
+          <span class="w">{{ getString('s9_title_line2') }}</span><br>
+          <span class="w">{{ getString('s9_title_line3') }}</span>
         </h2>
         <p class="s9-body scene-sub">
-          Full-stack engineer. DevOps practitioner. IoT developer. Tech interviewer.<br>
-          Always learning. Always evolving.
+          {{ getString('s9_body_line1') }}<br>
+          {{ getString('s9_body_line2') }}
         </p>
         <div class="s9-cta">
           <button class="cta-btn cta-btn--primary" @click="navigateToResume">
-            View Résumé
+            {{ getString('story_ch09_btn_resume') }}
           </button>
           <router-link to="/contact" class="cta-btn cta-btn--outline">
-            Get in Touch
+            {{ getString('story_ch09_btn_contact') }}
           </router-link>
         </div>
         <p class="s9-sig">
-          nimakarimi.me · {{ new Date().getFullYear() }}
+          {{ getString('footer_copyright') }} {{ new Date().getFullYear() }}
         </p>
       </div>
     </section>
@@ -1108,6 +1150,119 @@ $code-green: #39ff14;
 
   @media (max-width: 768px) {
     display: none;
+  }
+}
+
+.s-nav-language {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.s-lang-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: $text;
+  transition: all 0.25s ease;
+  font-size: 0.85rem;
+  font-family: $font-body;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  i {
+    font-size: 0.7rem;
+    transition: transform 0.25s ease;
+  }
+
+  &.open i {
+    transform: rotate(180deg);
+  }
+
+  @media (max-width: 768px) {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+}
+
+.s-lang-flag {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  display: block;
+}
+
+.s-lang-name {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: inline;
+  }
+}
+
+.s-lang-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: rgba(20, 20, 35, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 6px;
+  margin-top: 8px;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  min-width: 160px;
+  animation: languageDropdownIn 0.2s ease-out;
+
+  @media (max-width: 768px) {
+    min-width: 140px;
+  }
+}
+
+@keyframes languageDropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.s-lang-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: rgba($text, 0.8);
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  text-align: left;
+  font-family: $font-body;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: $text;
+  }
+
+  &:active {
+    background: rgba(255, 255, 255, 0.12);
   }
 }
 
