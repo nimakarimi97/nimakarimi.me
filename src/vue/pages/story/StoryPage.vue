@@ -420,7 +420,9 @@ onUnmounted(() => {
         <i class="fa-solid fa-arrow-left" aria-hidden="true" />
         <span>{{ getString('story_resume') }}</span>
       </button>
+
       <span class="s-nav-label">{{ getString('story_page_title') }}</span>
+
       <div v-if="language.supportsMultipleLanguages()" class="s-nav-language">
         <button class="s-lang-dropdown-toggle" @click="toggleLanguageDropdown">
           <img :src="selectedLanguage.flagUrl" :alt="selectedLanguage.name" class="s-lang-flag">
@@ -926,7 +928,7 @@ $cyan: #06b6d4;
 $amber: #f59e0b;
 $green: #10b981;
 $ghost: #1e2535;
-$font-head: 'Saira', sans-serif;
+$font-head: fantasy, cursive, 'Saira', sans-serif;
 $font-body: 'Lato', sans-serif;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1142,11 +1144,10 @@ $code-green: #39ff14;
 }
 
 .s-nav-label {
-  font-family: $font-head;
+  font-family: cursive, $font-head;
   font-size: 0.78rem;
-  color: $accent;
+  color: $text;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
 
   @media (max-width: 768px) {
     display: none;
