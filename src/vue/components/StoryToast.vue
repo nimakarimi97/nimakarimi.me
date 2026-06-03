@@ -1,13 +1,16 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useConstants } from '../../composables/constants.js'
 
 const router = useRouter()
+
+const constants = useConstants()
 const visible = ref(false)
 const dismissed = ref(false)
 
 onMounted(() => {
-  const storedData = localStorage.getItem('story-toast-dismissed')
+  const storedData = localStorage.getItem(constants.LOCAL_STORAGE_ITEMS.storyToast)
 
   if (storedData) {
     const { timestamp } = JSON.parse(storedData)
@@ -20,7 +23,7 @@ onMounted(() => {
       return
     } else {
       // Clear expired dismissal
-      localStorage.removeItem('story-toast-dismissed')
+      localStorage.removeItem(constants.LOCAL_STORAGE_ITEMS.storyToast)
     }
   }
 
@@ -37,7 +40,7 @@ function goToStory() {
 function dismiss() {
   visible.value = false
   dismissed.value = true
-  localStorage.setItem('story-toast-dismissed', JSON.stringify({
+  localStorage.setItem(constants.LOCAL_STORAGE_ITEMS.storyToast, JSON.stringify({
     timestamp: Date.now(),
   }))
 }
