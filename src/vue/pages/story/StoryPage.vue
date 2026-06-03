@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useConstants } from '../../../composables/constants.js'
 import { useData } from '../../../composables/data.js'
 import { useLanguage } from '../../../composables/language.js'
 
@@ -11,6 +12,7 @@ gsap.registerPlugin(ScrollTrigger)
 const router = useRouter()
 const language = useLanguage()
 const data = useData()
+const constants = useConstants()
 
 // Language dropdown state
 const showLanguageDropdown = ref(false)
@@ -86,6 +88,10 @@ function onMouseLeaveLink() {
 }
 
 function navigateToResume() {
+  localStorage.setItem(constants.LOCAL_STORAGE_ITEMS.storyToast, JSON.stringify({
+    timestamp: Date.now(),
+  }))
+
   window.scrollTo({ top: 0, behavior: 'instant' })
   router.push('/about')
 }
