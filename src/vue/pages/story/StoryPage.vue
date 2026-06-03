@@ -160,6 +160,7 @@ function initAnimations() {
       }, 0.2)
       .from('.s4-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 0.6)
       .from('.s4-techs .tc', { y: 22, opacity: 0, stagger: 0.07, duration: 0.3 }, 0.7)
+      .from('.s4-mac-robot', { scale: 0.85, opacity: 0, duration: 0.6, ease: 'back.out(1.5)' }, 0.4)
 
     // ── Scene 5: Academia ────────────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-academia', PIN_EASE + 100) })
@@ -415,7 +416,7 @@ onUnmounted(() => {
     </section>
 
     <!-- ════════════════════════════════════════════════════════
-         SCENE 2 · ROBOTICS
+        SCENE 2 · ROBOTICS
     ═════════════════════════════════════════════════════════ -->
     <section class="scene scene-robotics" aria-label="Chapter 2: Robotics">
       <div class="scene-content scene-content--split">
@@ -437,6 +438,41 @@ onUnmounted(() => {
                 Rescue Robots in RoboCup
               </p>
             </div>
+            <!-- ─── Rescue Robot ───────────────────────────── -->
+            <div class="sr-bot">
+              <div class="sr-cab">
+                <div class="sr-window sr-window-front" />
+                <div class="sr-window sr-window-side" />
+                <div class="sr-lamp sr-lamp-l" />
+                <div class="sr-lamp sr-lamp-r" />
+                <div class="sr-smokestack">
+                  <span class="sr-smoke sr-smoke-1" />
+                  <span class="sr-smoke sr-smoke-2" />
+                </div>
+              </div>
+
+              <div class="sr-chassis">
+                <div class="sr-hatch" />
+                <div class="sr-grille">
+                  <i /><i /><i /><i />
+                </div>
+                <div class="sr-warning-light" />
+                <div class="sr-chassis-bolt sr-cb-l" />
+                <div class="sr-chassis-bolt sr-cb-r" />
+              </div>
+
+              <div class="sr-track sr-track-l">
+                <span class="sr-wheel" />
+                <span class="sr-wheel" />
+                <span class="sr-wheel" />
+              </div>
+
+              <div class="sr-track sr-track-r">
+                <span class="sr-wheel" />
+                <span class="sr-wheel" />
+                <span class="sr-wheel" />
+              </div>
+            </div>
           </div>
           <p class="s2-subtitle scene-sub">
             ROS. Gazebo. Inverse kinematics. Control loops.<br>
@@ -445,7 +481,58 @@ onUnmounted(() => {
         </div>
 
         <div class="s2-robot" aria-hidden="true">
-          <!-- Industrial Robot Arm -->
+          <!-- ─── Drone ────────────────────────────────── -->
+          <div class="sr-drone">
+            <div class="sr-drone-body">
+              <div class="sr-drone-cam" />
+            </div>
+            <div class="sr-drone-arm sr-drone-arm-fl">
+              <div class="sr-prop">
+                <span /><span />
+              </div>
+            </div>
+            <div class="sr-drone-arm sr-drone-arm-fr">
+              <div class="sr-prop">
+                <span /><span />
+              </div>
+            </div>
+            <div class="sr-drone-arm sr-drone-arm-bl">
+              <div class="sr-prop">
+                <span /><span />
+              </div>
+            </div>
+            <div class="sr-drone-arm sr-drone-arm-br">
+              <div class="sr-prop">
+                <span /><span />
+              </div>
+            </div>
+            <div class="sr-drone-light" />
+          </div>
+
+          <!-- Ambient particles -->
+          <div class="robot-spark spark-1" />
+          <div class="robot-spark spark-2" />
+          <div class="robot-spark spark-3" />
+          <div class="robot-spark spark-4" />
+          <div class="robot-spark spark-5" />
+          <div class="robot-spark spark-6" />
+
+          <!-- Sky particles near drone -->
+          <div class="drone-star ds-1" />
+          <div class="drone-star ds-2" />
+          <div class="drone-star ds-3" />
+          <div class="drone-star ds-4" />
+          <div class="drone-star ds-5" />
+          <div class="drone-star ds-6" />
+          <div class="drone-star ds-7" />
+          <div class="drone-star ds-8" />
+          <div class="drone-star ds-9" />
+          <div class="drone-star ds-10" />
+
+          <!-- Faint constellation trail in the drone corridor -->
+          <div class="drone-trail" />
+
+          <!-- ─── Industrial Robot Arm ──────────────────── -->
           <div class="robot-base">
             <div class="robot-base-plate" />
             <div class="robot-joint robot-joint-1">
@@ -463,16 +550,12 @@ onUnmounted(() => {
               </div>
             </div>
           </div>
-          <!-- Ambient particles -->
-          <div class="robot-spark spark-1" />
-          <div class="robot-spark spark-2" />
-          <div class="robot-spark spark-3" />
         </div>
       </div>
     </section>
 
     <!-- ════════════════════════════════════════════════════════
-         SCENE 3 · CODE REVELATION
+        SCENE 3 · CODE REVELATION
     ═════════════════════════════════════════════════════════ -->
     <section class="scene scene-code" aria-label="Chapter 3: Code Revelation">
       <div class="s3-code-bg" aria-hidden="true">
@@ -499,35 +582,77 @@ onUnmounted(() => {
     </section>
 
     <!-- ════════════════════════════════════════════════════════
-         SCENE 4 · COVID
+        SCENE 4 · COVID
     ═════════════════════════════════════════════════════════ -->
     <section class="scene scene-covid" aria-label="Chapter 4: COVID era">
       <div class="s4-year" aria-hidden="true">
         2020
       </div>
 
-      <div class="scene-content">
-        <span class="s4-chapter chapter-label">Chapter 04 — Pivot</span>
-        <h2 class="s4-title display-title">
-          <span class="w">The</span>&#32;<span class="w">world</span>&#32;<span class="w">paused.</span><br>
-          <span class="w">I</span>&#32;<span class="w">started</span>&#32;<span class="w">building.</span>
-        </h2>
-        <p class="s4-subtitle scene-sub">
-          COVID-19 brought a lockdown. I used it to learn web development from scratch,
-          one tutorial at a time.
-        </p>
-        <div class="s4-techs">
-          <span class="tc">HTML</span>
-          <span class="tc">CSS</span>
-          <span class="tc">JavaScript</span>
-          <span class="tc">React</span>
-          <span class="tc">Vue</span>
+      <div class="scene-content scene-content--split">
+        <div class="s4-text">
+          <span class="s4-chapter chapter-label">Chapter 04 — Pivot</span>
+          <h2 class="s4-title display-title">
+            <span class="w">The</span>&#32;<span class="w">world</span>&#32;<span class="w">paused.</span><br>
+            <span class="w">I</span>&#32;<span class="w">started</span>&#32;<span class="w">building.</span>
+          </h2>
+          <p class="s4-subtitle scene-sub">
+            COVID-19 brought a lockdown. I used it to learn web development from scratch,
+            one tutorial at a time.
+          </p>
+          <div class="s4-techs">
+            <span class="tc">HTML</span>
+            <span class="tc">CSS</span>
+            <span class="tc">JavaScript</span>
+            <span class="tc">React</span>
+            <span class="tc">Vue</span>
+          </div>
+        </div>
+
+        <!-- typing on Mac -->
+        <div class="s4-mac-robot" aria-hidden="true">
+          <div class="rt-stage">
+            <div class="rt-mac">
+              <div class="rt-mac-lid">
+                <div class="rt-mac-bezel">
+                  <div class="rt-mac-cam" />
+                  <div class="rt-mac-screen">
+                    <div class="rt-screen-bar">
+                      <span class="rt-dot rt-dot-r" />
+                      <span class="rt-dot rt-dot-y" />
+                      <span class="rt-dot rt-dot-g" />
+                    </div>
+                    <div class="rt-screen-code">
+                      <span class="rt-line rt-l1">$ npm run dev</span>
+                      <span class="rt-line rt-l2">&gt; compiling...</span>
+                      <span class="rt-line rt-l3">const App = () =&gt; {</span>
+                      <span class="rt-line rt-l4">  return &lt;Hello /&gt;</span>
+                      <span class="rt-line rt-l5">}<span class="rt-caret">▍</span></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="rt-mac-chin">
+                  <span class="rt-mac-logo" />
+                </div>
+              </div>
+              <div class="rt-mac-base">
+                <div class="rt-mac-keyboard">
+                  <span v-for="k in 36" :key="k" class="rt-key" />
+                </div>
+                <div class="rt-mac-trackpad" />
+                <div class="rt-mac-hinge" />
+              </div>
+            </div>
+            <div class="rt-spark rt-spark-1" />
+            <div class="rt-spark rt-spark-2" />
+            <div class="rt-spark rt-spark-3" />
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ════════════════════════════════════════════════════════
-         SCENE 5 · ACADEMIA
+        SCENE 5 · ACADEMIA
     ═════════════════════════════════════════════════════════ -->
     <section class="scene scene-academia" aria-label="Chapter 5: Academia">
       <div class="scene-content scene-content--split">
@@ -583,7 +708,7 @@ onUnmounted(() => {
     </section>
 
     <!-- ════════════════════════════════════════════════════════
-         SCENE 6 · CHALLENGES
+        SCENE 6 · CHALLENGES
     ═════════════════════════════════════════════════════════ -->
     <section class="scene scene-challenges" aria-label="Chapter 6: The Grind">
       <div class="scene-content scene-content--center">
@@ -607,7 +732,7 @@ onUnmounted(() => {
     </section>
 
     <!-- ════════════════════════════════════════════════════════
-         SCENE 7 · BREAKTHROUGH
+        SCENE 7 · BREAKTHROUGH
     ═════════════════════════════════════════════════════════ -->
     <section class="scene scene-breakthrough" aria-label="Chapter 7: Breakthrough">
       <div class="s7-glow" aria-hidden="true" />
@@ -646,7 +771,7 @@ onUnmounted(() => {
     </section>
 
     <!-- ════════════════════════════════════════════════════════
-         SCENE 8 · EVOLUTION
+        SCENE 8 · EVOLUTION
     ═════════════════════════════════════════════════════════ -->
     <section class="scene scene-evolution" aria-label="Chapter 8: Evolution">
       <div class="scene-content">
@@ -696,7 +821,7 @@ onUnmounted(() => {
     </section>
 
     <!-- ════════════════════════════════════════════════════════
-         SCENE 9 · PRESENT
+        SCENE 9 · PRESENT
     ═════════════════════════════════════════════════════════ -->
     <section class="scene scene-present" aria-label="Chapter 9: Today">
       <div class="scene-content scene-content--center scene-present__inner">
@@ -1217,6 +1342,7 @@ $code-green: #39ff14;
 }
 
 .s2-paper {
+  position: relative;
   display: flex;
   align-items: flex-start;
   gap: 16px;
@@ -1224,10 +1350,23 @@ $code-green: #39ff14;
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-left: 3px solid $accent;
   border-radius: 10px;
-  padding: 18px 22px;
+  padding: 18px 118px 28px 22px;
   margin: 28px 0;
   max-width: 500px;
+  overflow: visible;
   will-change: opacity, transform;
+
+  @media (max-width: 1024px) {
+    padding: 16px 108px 26px 18px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 14px 96px 24px 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 14px 86px 22px 14px;
+  }
 
   .paper-icon {
     color: $accent;
@@ -1251,25 +1390,57 @@ $code-green: #39ff14;
   }
 }
 
+// ───  Robot + Drone ───────────────────────────────────────────
 // CSS robot visual — Industrial Robot Arm
 .s2-robot {
   position: relative;
-  width: 280px;
-  height: 280px;
+  width: min(100%, 500px);
+  height: 430px;
   margin: 0 auto;
   will-change: opacity, transform;
 
+  @media (max-width: 1024px) {
+    width: min(100%, 420px);
+    height: 390px;
+  }
+
   @media (max-width: 768px) {
-    width: 200px;
-    height: 200px;
+    width: min(100%, 330px);
+    height: 410px;
+  }
+
+  @media (max-width: 480px) {
+    width: min(100%, 290px);
+    height: 360px;
   }
 }
 
 .robot-base {
   position: absolute;
-  bottom: 10%;
-  left: 50%;
+  left: 36%;
+  top: auto;
+  bottom: 22px;
   transform: translateX(-50%);
+  transform-origin: center bottom;
+  z-index: 4;
+
+  @media (max-width: 1024px) {
+    left: 34%;
+    bottom: 20px;
+    transform: translateX(-50%) scale(0.9);
+  }
+
+  @media (max-width: 768px) {
+    left: 32%;
+    bottom: 18px;
+    transform: translateX(-50%) scale(0.8);
+  }
+
+  @media (max-width: 480px) {
+    left: 30%;
+    bottom: 14px;
+    transform: translateX(-50%) scale(0.7);
+  }
 }
 
 .robot-base-plate {
@@ -1291,7 +1462,7 @@ $code-green: #39ff14;
 }
 
 .robot-joint-1 {
-  animation: robotJ1 4s ease-in-out infinite;
+  animation: robotJ1 3.2s cubic-bezier(0.55, 0.08, 0.3, 1) infinite;
   transform-origin: center bottom;
 }
 
@@ -1305,13 +1476,13 @@ $code-green: #39ff14;
 
 .robot-seg-1 {
   width: 6px;
-  height: 80px;
+  height: 90px;
   background: linear-gradient(to top, rgba($accent, 0.6), rgba($purple, 0.4));
   border-radius: 3px;
-  animation: robotSeg1 4s ease-in-out infinite;
+  animation: robotSeg1 3.2s cubic-bezier(0.55, 0.08, 0.3, 1) infinite;
 
   @media (max-width: 768px) {
-    height: 55px;
+    height: 64px;
   }
 }
 
@@ -1324,13 +1495,13 @@ $code-green: #39ff14;
 
 .robot-seg-2 {
   width: 5px;
-  height: 60px;
+  height: 72px;
   background: linear-gradient(to top, rgba($purple, 0.5), rgba($cyan, 0.4));
   border-radius: 3px;
-  animation: robotSeg2 4s ease-in-out infinite;
+  animation: robotSeg2 3.2s cubic-bezier(0.55, 0.08, 0.3, 1) infinite;
 
   @media (max-width: 768px) {
-    height: 40px;
+    height: 50px;
   }
 }
 
@@ -1364,101 +1535,106 @@ $code-green: #39ff14;
 
   &.gripper-l {
     left: 3px;
-    animation: gripperL 2s ease-in-out infinite;
+    animation: gripperL 3.2s cubic-bezier(0.55, 0.08, 0.3, 1) infinite;
     transform-origin: top center;
   }
   &.gripper-r {
     right: 3px;
-    animation: gripperR 2s ease-in-out infinite;
+    animation: gripperR 3.2s cubic-bezier(0.55, 0.08, 0.3, 1) infinite;
     transform-origin: top center;
   }
 }
 
-.robot-spark {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: $cyan;
-  box-shadow: 0 0 8px $cyan;
-  animation: sparkFloat 3s ease-in-out infinite;
-
-  &.spark-1 {
-    top: 20%;
-    left: 60%;
-    animation-delay: 0s;
-  }
-  &.spark-2 {
-    top: 40%;
-    left: 30%;
-    animation-delay: 1s;
-  }
-  &.spark-3 {
-    top: 65%;
-    right: 25%;
-    animation-delay: 2s;
-  }
-}
-
+// Arm swings right toward drone. At 32% = "almost catch" moment.
 @keyframes robotJ1 {
   0%,
   100% {
-    transform: rotate(-5deg);
+    transform: rotate(5deg);
+  }
+  20% {
+    transform: rotate(18deg);
+  }
+  32% {
+    transform: rotate(34deg);
   }
   50% {
-    transform: rotate(5deg);
+    transform: rotate(14deg);
+  }
+  75% {
+    transform: rotate(8deg);
   }
 }
 
 @keyframes robotSeg1 {
   0%,
   100% {
-    transform: translateX(-50%) rotate(15deg);
+    transform: translateX(-50%) rotate(-8deg);
   }
-  25% {
-    transform: translateX(-50%) rotate(-20deg);
+  20% {
+    transform: translateX(-50%) rotate(10deg);
+  }
+  32% {
+    transform: translateX(-50%) rotate(22deg);
   }
   50% {
-    transform: translateX(-50%) rotate(-10deg);
+    transform: translateX(-50%) rotate(-2deg);
   }
   75% {
-    transform: translateX(-50%) rotate(20deg);
+    transform: translateX(-50%) rotate(-6deg);
   }
 }
 
 @keyframes robotSeg2 {
   0%,
   100% {
-    transform: translateX(-50%) rotate(-20deg);
+    transform: translateX(-50%) rotate(-12deg);
   }
-  25% {
-    transform: translateX(-50%) rotate(15deg);
+  20% {
+    transform: translateX(-50%) rotate(-28deg);
+  }
+  32% {
+    transform: translateX(-50%) rotate(-38deg);
   }
   50% {
-    transform: translateX(-50%) rotate(25deg);
+    transform: translateX(-50%) rotate(-18deg);
   }
   75% {
     transform: translateX(-50%) rotate(-10deg);
   }
 }
 
-@keyframes gripperL {
+// Gripper snaps almost-shut at 32% (catch attempt), open otherwise
+@keyframes robotGripReach {
   0%,
   100% {
-    transform: rotate(-8deg);
+    transform: translateX(-50%) translateY(0);
   }
-  50% {
-    transform: rotate(4deg);
+  32% {
+    transform: translateX(-50%) translateY(-4px);
+  }
+}
+
+@keyframes gripperL {
+  0%,
+  28%,
+  40%,
+  100% {
+    transform: rotate(-12deg);
+  }
+  32% {
+    transform: rotate(18deg);
   }
 }
 
 @keyframes gripperR {
   0%,
+  28%,
+  40%,
   100% {
-    transform: rotate(8deg);
+    transform: rotate(12deg);
   }
-  50% {
-    transform: rotate(-4deg);
+  32% {
+    transform: rotate(-18deg);
   }
 }
 
@@ -1471,6 +1647,1997 @@ $code-green: #39ff14;
   50% {
     opacity: 1;
     transform: translateY(-12px) scale(1);
+  }
+}
+
+$metal-1: #d6dbe6;
+$metal-2: #8a93a8;
+$metal-3: #3a4256;
+$metal-4: #1a1f2e;
+$rivet: #5a6378;
+
+// .sr-scene wrapper removed — drone and arm are direct children of .s2-robot.
+
+// ─── Drone ──────────────────────────────────────────────
+// Sits near the arm so the catch attempt reads as near-contact.
+.sr-drone {
+  --drone-x18: -10px;
+  --drone-y18: 16px;
+  --drone-x32: -16px;
+  --drone-y32: 36px;
+  --drone-x42: 40px;
+  --drone-y42: -10px;
+  --drone-x62: 30px;
+  --drone-y62: -14px;
+  --drone-x80: 5px;
+  --drone-y80: -6px;
+  position: absolute;
+  top: 114px;
+  left: 52%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 36px;
+  animation: sr-drone-escape 3.2s cubic-bezier(0.55, 0.08, 0.3, 1) infinite;
+  z-index: 10;
+
+  @media (max-width: 1024px) {
+    top: 106px;
+    left: 51%;
+    width: 72px;
+    height: 32px;
+  }
+
+  @media (max-width: 768px) {
+    top: 218px;
+    left: 63%;
+    width: 58px;
+    height: 26px;
+    --drone-x18: -14px;
+    --drone-y18: 20px;
+    --drone-x32: -26px;
+    --drone-y32: 44px;
+    --drone-x42: 50px;
+    --drone-y42: -14px;
+    --drone-x62: 36px;
+    --drone-y62: -16px;
+    --drone-x80: 8px;
+    --drone-y80: -8px;
+  }
+
+  @media (max-width: 480px) {
+    top: 190px;
+    left: 63%;
+    width: 50px;
+    height: 22px;
+    --drone-x18: -12px;
+    --drone-y18: 18px;
+    --drone-x32: -22px;
+    --drone-y32: 38px;
+    --drone-x42: 42px;
+    --drone-y42: -12px;
+    --drone-x62: 30px;
+    --drone-y62: -14px;
+    --drone-x80: 6px;
+    --drone-y80: -6px;
+  }
+}
+
+// Drone dips toward arm at 32% (sync with arm reach), then escapes
+@keyframes sr-drone-escape {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0px) rotate(-2deg);
+  }
+  18% {
+    transform: translateX(calc(-50% + var(--drone-x18))) translateY(var(--drone-y18)) rotate(-5deg);
+  }
+  32% {
+    transform: translateX(calc(-50% + var(--drone-x32))) translateY(var(--drone-y32)) rotate(0deg);
+  }
+  42% {
+    transform: translateX(calc(-50% + var(--drone-x42))) translateY(var(--drone-y42)) rotate(12deg);
+  }
+  62% {
+    transform: translateX(calc(-50% + var(--drone-x62))) translateY(var(--drone-y62)) rotate(6deg);
+  }
+  80% {
+    transform: translateX(calc(-50% + var(--drone-x80))) translateY(var(--drone-y80)) rotate(-3deg);
+  }
+}
+
+.sr-drone-body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 14px;
+  background: linear-gradient(180deg, $metal-1 0%, $metal-2 60%, $metal-3 100%);
+  border-radius: 7px;
+  border: 1px solid $metal-4;
+  box-shadow:
+    inset 0 -3px 4px rgba(0, 0, 0, 0.4),
+    inset 0 2px 2px rgba(255, 255, 255, 0.5),
+    0 4px 10px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 768px) {
+    width: 24px;
+    height: 10px;
+  }
+}
+
+.sr-drone-cam {
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #111 0%, #000 70%);
+  border: 1px solid $metal-4;
+  box-shadow: 0 0 6px rgba($cyan, 0.6);
+}
+
+.sr-drone-arm {
+  position: absolute;
+  top: 50%;
+  width: 22px;
+  height: 3px;
+  background: linear-gradient(90deg, $metal-3, $metal-2);
+  border-radius: 2px;
+  transform-origin: center center;
+
+  @media (max-width: 768px) {
+    width: 16px;
+    height: 2px;
+  }
+
+  &.sr-drone-arm-fl {
+    left: -8px;
+    transform: translateY(-50%) rotate(-15deg);
+  }
+  &.sr-drone-arm-fr {
+    right: -8px;
+    transform: translateY(-50%) rotate(15deg);
+  }
+  &.sr-drone-arm-bl {
+    left: -4px;
+    top: 65%;
+    transform: translateY(-50%) rotate(-25deg);
+  }
+  &.sr-drone-arm-br {
+    right: -4px;
+    top: 65%;
+    transform: translateY(-50%) rotate(25deg);
+  }
+}
+
+.sr-prop {
+  position: absolute;
+  top: -4px;
+  right: -2px;
+  width: 18px;
+  height: 4px;
+
+  @media (max-width: 768px) {
+    width: 14px;
+  }
+
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 1.5px;
+    background: rgba($cyan, 0.7);
+    border-radius: 2px;
+    transform-origin: center center;
+    animation: sr-prop-spin 0.08s linear infinite;
+
+    &:nth-child(2) {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+    &:nth-child(1) {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+  }
+}
+
+@keyframes sr-prop-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.sr-drone-light {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: $cyan;
+  box-shadow:
+    0 0 8px $cyan,
+    0 0 16px rgba($cyan, 0.5);
+  animation: sr-drone-led 1s ease-in-out infinite;
+}
+
+@keyframes sr-drone-led {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.robot-spark {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: $cyan;
+  box-shadow: 0 0 8px rgba($cyan, 0.9);
+  z-index: 9;
+  animation:
+    robotSparkFloat var(--spark-float-dur, 2.8s) ease-in-out infinite,
+    robotSparkDrift var(--spark-drift-dur, 5.4s) ease-in-out infinite;
+
+  &.spark-1 {
+    top: 46%;
+    left: 42%;
+    animation-delay: 0s;
+    --spark-float-dur: 2.6s;
+    --spark-drift-dur: 4.8s;
+    --spark-dx: 5px;
+  }
+  &.spark-2 {
+    top: 28%;
+    left: 56%;
+    animation-delay: 0.4s;
+    background: $purple;
+    box-shadow: 0 0 8px rgba($purple, 0.9);
+    --spark-float-dur: 3.1s;
+    --spark-drift-dur: 6.2s;
+    --spark-dx: -7px;
+  }
+  &.spark-3 {
+    top: 38%;
+    right: 18%;
+    animation-delay: 0.9s;
+    background: $accent;
+    box-shadow: 0 0 8px rgba($accent, 0.9);
+    --spark-float-dur: 2.9s;
+    --spark-drift-dur: 5.7s;
+    --spark-dx: 8px;
+  }
+  &.spark-4 {
+    top: 34%;
+    left: 48%;
+    animation-delay: 1.2s;
+    --spark-float-dur: 2.4s;
+    --spark-drift-dur: 4.4s;
+    --spark-dx: -6px;
+  }
+  &.spark-5 {
+    top: 22%;
+    right: 22%;
+    animation-delay: 1.7s;
+    background: $purple;
+    box-shadow: 0 0 8px rgba($purple, 0.8);
+    --spark-float-dur: 3.3s;
+    --spark-drift-dur: 6.8s;
+    --spark-dx: 10px;
+  }
+  &.spark-6 {
+    top: 52%;
+    right: 28%;
+    animation-delay: 2.1s;
+    background: $accent;
+    box-shadow: 0 0 8px rgba($accent, 0.8);
+    --spark-float-dur: 2.7s;
+    --spark-drift-dur: 5.1s;
+    --spark-dx: -9px;
+  }
+
+  @media (max-width: 768px) {
+    &.spark-1 {
+      top: 58%;
+      left: 38%;
+    }
+    &.spark-2 {
+      top: 44%;
+      left: 54%;
+    }
+    &.spark-3 {
+      top: 50%;
+      right: 10%;
+    }
+    &.spark-4 {
+      top: 54%;
+      left: 46%;
+    }
+    &.spark-5 {
+      top: 38%;
+      right: 14%;
+    }
+    &.spark-6 {
+      top: 64%;
+      right: 22%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &.spark-1 {
+      top: 56%;
+      left: 36%;
+    }
+    &.spark-2 {
+      top: 42%;
+      left: 52%;
+    }
+    &.spark-3 {
+      top: 48%;
+      right: 8%;
+    }
+    &.spark-4 {
+      top: 52%;
+      left: 44%;
+    }
+    &.spark-5 {
+      top: 36%;
+      right: 12%;
+    }
+    &.spark-6 {
+      top: 62%;
+      right: 20%;
+    }
+  }
+}
+
+@keyframes robotSparkFloat {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(0) scale(0.45);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-14px) scale(1);
+  }
+}
+
+@keyframes robotSparkDrift {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(var(--spark-dx, 6px));
+  }
+}
+
+.drone-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(#d7f3ff, 0.95);
+  box-shadow: 0 0 7px rgba($cyan, 0.8);
+  z-index: 8;
+  animation:
+    droneStarTwinkle var(--star-twinkle-dur, 3.2s) ease-in-out infinite,
+    droneStarDrift var(--star-drift-dur, 7s) ease-in-out infinite;
+
+  &.ds-1 {
+    top: 16%;
+    left: 48%;
+    animation-delay: 0.1s;
+    --star-twinkle-dur: 2.8s;
+    --star-drift-dur: 6.2s;
+    --star-dx: 8px;
+    --star-dy: -2px;
+  }
+  &.ds-2 {
+    top: 12%;
+    left: 54%;
+    animation-delay: 0.4s;
+    --star-twinkle-dur: 3.6s;
+    --star-drift-dur: 8.6s;
+    --star-dx: -6px;
+    --star-dy: 3px;
+  }
+  &.ds-3 {
+    top: 18%;
+    left: 58%;
+    animation-delay: 0.7s;
+    --star-twinkle-dur: 3s;
+    --star-drift-dur: 7.2s;
+    --star-dx: 10px;
+    --star-dy: -1px;
+  }
+  &.ds-4 {
+    top: 10%;
+    left: 62%;
+    animation-delay: 1s;
+    --star-twinkle-dur: 3.8s;
+    --star-drift-dur: 9.2s;
+    --star-dx: -8px;
+    --star-dy: 4px;
+  }
+  &.ds-5 {
+    top: 15%;
+    left: 66%;
+    animation-delay: 1.3s;
+    --star-twinkle-dur: 3.1s;
+    --star-drift-dur: 7.8s;
+    --star-dx: 7px;
+    --star-dy: -3px;
+  }
+  &.ds-6 {
+    top: 20%;
+    left: 64%;
+    animation-delay: 1.6s;
+    --star-twinkle-dur: 2.7s;
+    --star-drift-dur: 6.4s;
+    --star-dx: -5px;
+    --star-dy: 2px;
+  }
+  &.ds-7 {
+    top: 23%;
+    left: 60%;
+    animation-delay: 1.9s;
+    --star-twinkle-dur: 3.4s;
+    --star-drift-dur: 8.1s;
+    --star-dx: 9px;
+    --star-dy: -2px;
+  }
+  &.ds-8 {
+    top: 21%;
+    left: 52%;
+    animation-delay: 2.2s;
+    --star-twinkle-dur: 2.9s;
+    --star-drift-dur: 6.7s;
+    --star-dx: -7px;
+    --star-dy: 3px;
+  }
+  &.ds-9 {
+    top: 26%;
+    left: 56%;
+    animation-delay: 2.5s;
+    --star-twinkle-dur: 3.2s;
+    --star-drift-dur: 7.5s;
+    --star-dx: 6px;
+    --star-dy: -3px;
+  }
+  &.ds-10 {
+    top: 14%;
+    left: 70%;
+    animation-delay: 2.8s;
+    --star-twinkle-dur: 4s;
+    --star-drift-dur: 9.6s;
+    --star-dx: -10px;
+    --star-dy: 4px;
+  }
+
+  @media (max-width: 768px) {
+    &.ds-1 {
+      top: 34%;
+      left: 55%;
+    }
+    &.ds-2 {
+      top: 30%;
+      left: 61%;
+    }
+    &.ds-3 {
+      top: 36%;
+      left: 66%;
+    }
+    &.ds-4 {
+      top: 28%;
+      left: 70%;
+    }
+    &.ds-5 {
+      top: 33%;
+      left: 74%;
+    }
+    &.ds-6 {
+      top: 39%;
+      left: 72%;
+    }
+    &.ds-7 {
+      top: 42%;
+      left: 68%;
+    }
+    &.ds-8 {
+      top: 40%;
+      left: 60%;
+    }
+    &.ds-9 {
+      top: 45%;
+      left: 64%;
+    }
+    &.ds-10 {
+      top: 32%;
+      left: 78%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &.ds-1 {
+      top: 32%;
+      left: 52%;
+    }
+    &.ds-2 {
+      top: 29%;
+      left: 58%;
+    }
+    &.ds-3 {
+      top: 35%;
+      left: 63%;
+    }
+    &.ds-4 {
+      top: 27%;
+      left: 67%;
+    }
+    &.ds-5 {
+      top: 32%;
+      left: 71%;
+    }
+    &.ds-6 {
+      top: 38%;
+      left: 69%;
+    }
+    &.ds-7 {
+      top: 41%;
+      left: 65%;
+    }
+    &.ds-8 {
+      top: 39%;
+      left: 57%;
+    }
+    &.ds-9 {
+      top: 44%;
+      left: 61%;
+    }
+    &.ds-10 {
+      top: 31%;
+      left: 75%;
+    }
+  }
+}
+
+@keyframes droneStarTwinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: translateY(0) scale(0.75);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-5px) scale(1.15);
+  }
+}
+
+@keyframes droneStarDrift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(var(--star-dx, 6px), var(--star-dy, -2px));
+  }
+}
+
+.drone-trail {
+  position: absolute;
+  top: 76px;
+  left: 42%;
+  width: 180px;
+  height: 84px;
+  pointer-events: none;
+  z-index: 7;
+  opacity: 0.35;
+  filter: blur(0.35px);
+  animation: droneTrailFollow 3.2s cubic-bezier(0.55, 0.08, 0.3, 1) infinite;
+
+  background:
+    radial-gradient(circle at 10% 62%, rgba($cyan, 0.22) 0 2px, transparent 3px),
+    radial-gradient(circle at 24% 46%, rgba(#d7f3ff, 0.2) 0 1.5px, transparent 3px),
+    radial-gradient(circle at 42% 38%, rgba($cyan, 0.16) 0 1.5px, transparent 3px),
+    radial-gradient(circle at 58% 34%, rgba(#d7f3ff, 0.16) 0 1.5px, transparent 3px),
+    radial-gradient(circle at 76% 28%, rgba($cyan, 0.14) 0 1.5px, transparent 3px),
+    radial-gradient(circle at 90% 22%, rgba(#d7f3ff, 0.14) 0 1.5px, transparent 3px);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background: radial-gradient(120% 80% at 24% 74%, rgba($cyan, 0.1), transparent 72%);
+    animation: droneTrailPulse 2.1s ease-in-out infinite;
+  }
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+
+  @keyframes droneTrailFollow {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(-3deg);
+    }
+    18% {
+      transform: translate(-8px, 10px) rotate(-5deg);
+    }
+    32% {
+      transform: translate(-14px, 22px) rotate(-2deg);
+    }
+    42% {
+      transform: translate(22px, -8px) rotate(6deg);
+    }
+    62% {
+      transform: translate(15px, -10px) rotate(3deg);
+    }
+    80% {
+      transform: translate(2px, -4px) rotate(-1deg);
+    }
+  }
+
+  @keyframes droneTrailPulse {
+    0%,
+    100% {
+      opacity: 0.35;
+    }
+    50% {
+      opacity: 0.72;
+    }
+  }
+}
+
+// ─── Mechanical rescue robot ──────────────────────────────
+// Anchored to the paper card corner at a compact scale.
+.sr-bot {
+  --sr-bot-scale: 0.46;
+  position: absolute;
+  right: -18px;
+  bottom: -34px;
+  width: 190px;
+  height: 220px;
+  margin-bottom: 0;
+  transform-origin: right bottom;
+  animation: sr-mech-rock 3.6s cubic-bezier(0.45, 0.02, 0.2, 1) infinite;
+  z-index: 3;
+  pointer-events: none;
+
+  @media (max-width: 1024px) {
+    --sr-bot-scale: 0.42;
+    right: -20px;
+    bottom: -34px;
+  }
+
+  @media (max-width: 768px) {
+    --sr-bot-scale: 0.37;
+    right: -18px;
+    bottom: -32px;
+  }
+
+  @media (max-width: 480px) {
+    --sr-bot-scale: 0.33;
+    right: -16px;
+    bottom: -30px;
+  }
+}
+
+@keyframes sr-mech-rock {
+  0%,
+  18%,
+  100% {
+    transform: translateY(0) rotate(0deg) scale(var(--sr-bot-scale));
+  }
+  42% {
+    transform: translateY(-3px) rotate(-1.1deg) scale(var(--sr-bot-scale));
+  }
+  68% {
+    transform: translateY(1px) rotate(0.9deg) scale(var(--sr-bot-scale));
+  }
+}
+
+.sr-cab {
+  position: absolute;
+  right: 26px;
+  bottom: 82px;
+  width: 80px;
+  height: 66px;
+  border: 1.5px solid $metal-4;
+  border-radius: 10px 14px 8px 8px;
+  background: linear-gradient(180deg, #d7dce5 0%, #989fb0 44%, #4a5267 100%);
+  box-shadow:
+    inset 0 -5px 8px rgba(0, 0, 0, 0.4),
+    inset 0 2px 3px rgba(255, 255, 255, 0.35),
+    0 5px 12px rgba(0, 0, 0, 0.35);
+  clip-path: polygon(0 18%, 24% 0, 100% 0, 100% 100%, 0 100%);
+  z-index: 3;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 12px;
+    width: 34px;
+    height: 8px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #d64545 0%, #ffed8d 46%, #d64545 100%);
+    box-shadow: 0 0 10px rgba(#d64545, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    right: 18px;
+    bottom: 62px;
+    width: 62px;
+    height: 50px;
+
+    &::after {
+      top: 5px;
+      left: 9px;
+      width: 26px;
+      height: 6px;
+    }
+  }
+}
+
+.sr-window {
+  position: absolute;
+  background: linear-gradient(180deg, rgba(#a6d3dd, 0.85) 0%, rgba(#274050, 0.92) 100%);
+  border: 1px solid rgba($metal-4, 0.9);
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.sr-window-front {
+  top: 12px;
+  left: 10px;
+  width: 40px;
+  height: 22px;
+  border-radius: 8px 10px 4px 4px;
+
+  @media (max-width: 768px) {
+    top: 9px;
+    left: 8px;
+    width: 30px;
+    height: 17px;
+  }
+}
+
+.sr-window-side {
+  top: 14px;
+  right: 8px;
+  width: 16px;
+  height: 18px;
+  border-radius: 4px;
+
+  @media (max-width: 768px) {
+    top: 11px;
+    right: 6px;
+    width: 12px;
+    height: 14px;
+  }
+}
+
+.sr-lamp {
+  position: absolute;
+  bottom: 14px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffe59a 0%, darken($amber, 14%) 76%);
+  border: 1px solid rgba($metal-4, 0.9);
+  box-shadow: 0 0 7px rgba($amber, 0.55);
+  animation: sr-headlamp 1.6s ease-in-out infinite;
+
+  &.sr-lamp-l {
+    left: 10px;
+  }
+
+  &.sr-lamp-r {
+    left: 24px;
+    animation-delay: 0.2s;
+  }
+
+  @media (max-width: 768px) {
+    width: 8px;
+    height: 8px;
+    bottom: 11px;
+
+    &.sr-lamp-r {
+      left: 20px;
+    }
+  }
+}
+
+@keyframes sr-headlamp {
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.sr-smokestack {
+  position: absolute;
+  top: -16px;
+  right: 14px;
+  width: 10px;
+  height: 24px;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, $metal-2 0%, $metal-4 100%);
+  border: 1px solid $metal-4;
+
+  @media (max-width: 768px) {
+    top: -12px;
+    right: 10px;
+    width: 8px;
+    height: 18px;
+  }
+}
+
+.sr-smoke {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% - 2px);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba($metal-1, 0.34);
+  filter: blur(0.5px);
+  opacity: 0;
+  animation: sr-smoke-rise 2.4s ease-out infinite;
+
+  &.sr-smoke-2 {
+    animation-delay: 1.2s;
+  }
+
+  @media (max-width: 768px) {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+@keyframes sr-smoke-rise {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.45);
+  }
+  20% {
+    opacity: 0.35;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-18%, -24px) scale(1.4);
+  }
+}
+
+.sr-chassis {
+  position: absolute;
+  left: 50%;
+  bottom: 34px;
+  transform: translateX(-50%);
+  width: 138px;
+  height: 58px;
+  border: 1.5px solid $metal-4;
+  border-radius: 14px 16px 18px 18px;
+  background: linear-gradient(180deg, #d8dde6 0%, #9198aa 45%, #434b61 100%);
+  box-shadow:
+    inset 0 -6px 10px rgba(0, 0, 0, 0.45),
+    inset 0 3px 4px rgba(255, 255, 255, 0.35),
+    0 5px 12px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  z-index: 2;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 44px;
+    height: 10px;
+    border-radius: 3px;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(#d64545, 0.95) 0 8px,
+      rgba(#fff1a8, 0.96) 8px 16px,
+      rgba($metal-4, 0.95) 16px 24px
+    );
+    opacity: 0.85;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 1px solid rgba($metal-4, 0.92);
+    background:
+      linear-gradient(#d64545, #d64545) center/38% 100% no-repeat,
+      linear-gradient(#d64545, #d64545) center/100% 38% no-repeat,
+      linear-gradient(180deg, rgba($metal-1, 0.95), rgba($metal-3, 0.85));
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    bottom: 26px;
+    width: 106px;
+    height: 46px;
+
+    &::before {
+      top: 10px;
+      left: 10px;
+      width: 34px;
+      height: 8px;
+    }
+
+    &::after {
+      top: 8px;
+      right: 11px;
+      width: 14px;
+      height: 14px;
+    }
+  }
+}
+
+.sr-hatch {
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  width: 30px;
+  height: 12px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba($metal-1, 0.8), rgba($metal-3, 0.85));
+  border: 1px solid rgba($metal-4, 0.95);
+
+  @media (max-width: 768px) {
+    top: 8px;
+    right: 14px;
+    width: 22px;
+    height: 9px;
+  }
+}
+
+.sr-grille {
+  position: absolute;
+  left: 18px;
+  bottom: 13px;
+  display: flex;
+  gap: 4px;
+
+  i {
+    display: block;
+    width: 4px;
+    height: 18px;
+    border-radius: 2px;
+    background: linear-gradient(180deg, rgba($metal-4, 0.92), rgba($metal-2, 0.2));
+  }
+
+  @media (max-width: 768px) {
+    left: 14px;
+    bottom: 10px;
+    gap: 3px;
+
+    i {
+      width: 3px;
+      height: 14px;
+    }
+  }
+}
+
+.sr-warning-light {
+  position: absolute;
+  right: 16px;
+  bottom: 11px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff8a78 0%, #b11b1b 82%);
+  border: 1px solid rgba($metal-4, 0.95);
+  box-shadow: 0 0 9px rgba(#d64545, 0.6);
+  animation: sr-beacon 1.1s steps(2, end) infinite;
+
+  @media (max-width: 768px) {
+    right: 12px;
+    bottom: 9px;
+    width: 11px;
+    height: 11px;
+  }
+}
+
+@keyframes sr-beacon {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.sr-chassis-bolt {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, $metal-1, $rivet, $metal-4);
+
+  &.sr-cb-l {
+    bottom: 12px;
+    left: 64px;
+  }
+
+  &.sr-cb-r {
+    bottom: 12px;
+    right: 38px;
+  }
+
+  @media (max-width: 768px) {
+    width: 4px;
+    height: 4px;
+
+    &.sr-cb-l {
+      left: 48px;
+    }
+
+    &.sr-cb-r {
+      right: 29px;
+    }
+  }
+}
+
+.sr-track {
+  position: absolute;
+  bottom: 0;
+  width: 76px;
+  height: 44px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #394151 0%, #1b202b 100%);
+  border: 1.5px solid $metal-4;
+  box-shadow:
+    inset 0 3px 4px rgba(255, 255, 255, 0.08),
+    inset 0 -6px 8px rgba(0, 0, 0, 0.55),
+    0 4px 10px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  z-index: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 6px 4px;
+    border-radius: 16px;
+    background: repeating-linear-gradient(90deg, rgba($metal-4, 0.96) 0 8px, rgba($metal-2, 0.45) 8px 14px);
+    animation: sr-track-run 1.35s linear infinite;
+  }
+
+  &.sr-track-l {
+    left: 10px;
+  }
+
+  &.sr-track-r {
+    right: 10px;
+  }
+
+  @media (max-width: 768px) {
+    width: 58px;
+    height: 34px;
+
+    &::before {
+      inset: 5px 3px;
+      border-radius: 12px;
+    }
+  }
+}
+
+@keyframes sr-track-run {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-18px);
+  }
+}
+
+.sr-wheel {
+  position: absolute;
+  bottom: 10px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, $metal-1 0%, $metal-2 35%, $metal-4 100%);
+  border: 1px solid rgba($metal-1, 0.22);
+  box-shadow: inset 0 -1px 2px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    background: rgba($metal-4, 0.85);
+  }
+
+  &:nth-child(1) {
+    left: 10px;
+  }
+
+  &:nth-child(2) {
+    left: 30px;
+  }
+
+  &:nth-child(3) {
+    left: 50px;
+  }
+
+  @media (max-width: 768px) {
+    bottom: 8px;
+    width: 11px;
+    height: 11px;
+
+    &:nth-child(1) {
+      left: 8px;
+    }
+
+    &:nth-child(2) {
+      left: 23px;
+    }
+
+    &:nth-child(3) {
+      left: 38px;
+    }
+
+    &::after {
+      inset: 3px;
+    }
+  }
+}
+
+// Floor + shadow — sits directly under the rescue robot
+.sr-floor {
+  position: absolute;
+  right: 6%;
+  bottom: 16px;
+  width: 210px;
+  height: 6px;
+
+  @media (max-width: 1024px) {
+    right: 4%;
+    bottom: 14px;
+    width: 188px;
+  }
+
+  @media (max-width: 768px) {
+    right: 4%;
+    bottom: 12px;
+    width: 160px;
+  }
+
+  @media (max-width: 480px) {
+    right: 2%;
+    bottom: 10px;
+    width: 142px;
+  }
+}
+
+.sr-shadow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 116px;
+  height: 6px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.5) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: sr-shadow-pulse 3.6s cubic-bezier(0.45, 0.02, 0.2, 1) infinite;
+
+  @media (max-width: 768px) {
+    width: 82px;
+  }
+}
+
+@keyframes sr-shadow-pulse {
+  0%,
+  100% {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateX(-50%) scaleX(0.7);
+    opacity: 0.3;
+  }
+}
+
+// Sparks
+.sr-spark {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: $cyan;
+  box-shadow: 0 0 6px $cyan;
+  animation: sr-spark 2.8s ease-in-out infinite;
+
+  // Sparks scatter in the zone between drone, arm, and rescue robot
+  &.sr-sp-1 {
+    top: 48%;
+    left: 42%;
+    animation-delay: 0s;
+  }
+  &.sr-sp-2 {
+    top: 22%;
+    right: 10%;
+    animation-delay: 0.9s;
+    background: $purple;
+    box-shadow: 0 0 6px $purple;
+  }
+  &.sr-sp-3 {
+    top: 38%;
+    right: 8%;
+    animation-delay: 1.8s;
+    background: $accent;
+    box-shadow: 0 0 6px $accent;
+  }
+}
+
+@keyframes sr-spark {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(0) scale(0.4);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-12px) scale(1);
+  }
+}
+
+// ─── Mac Typing Robot (Scene 4) ──────────────────────────────────────────────
+.s4-mac-robot {
+  position: relative;
+  width: 320px;
+  height: 340px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    width: 240px;
+    height: 260px;
+  }
+
+  .rt-stage {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    perspective: 800px;
+  }
+
+  .rt-antenna {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 20px;
+
+    .rt-antenna-rod {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 20px;
+      background: linear-gradient($metal-2, $metal-3);
+    }
+    .rt-antenna-bulb {
+      position: absolute;
+      top: -3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: $cyan;
+      box-shadow:
+        0 0 8px rgba($cyan, 0.9),
+        0 0 16px rgba($cyan, 0.5);
+      animation: rt-blink 1.2s ease-in-out infinite;
+    }
+  }
+
+  .rt-head {
+    position: relative;
+    width: 74px;
+    height: 58px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, $metal-1 0%, $metal-2 60%, $metal-3 100%);
+    border-radius: 12px 12px 8px 8px;
+    border: 1.5px solid $metal-4;
+    box-shadow:
+      inset 0 -5px 7px rgba(0, 0, 0, 0.4),
+      inset 0 3px 4px rgba(255, 255, 255, 0.4),
+      0 3px 10px rgba(0, 0, 0, 0.5);
+
+    @media (max-width: 768px) {
+      width: 56px;
+      height: 44px;
+    }
+  }
+
+  .rt-head-plate {
+    position: absolute;
+    top: 4px;
+    left: 5px;
+    right: 5px;
+    height: 4px;
+    background: linear-gradient(90deg, $metal-3, $metal-2, $metal-3);
+    border-radius: 3px;
+  }
+
+  .rt-eye {
+    position: absolute;
+    top: 16px;
+    width: 18px;
+    height: 15px;
+    background: #0a0e18;
+    border-radius: 5px;
+    border: 1px solid $metal-4;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.9);
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+      top: 12px;
+      width: 14px;
+      height: 11px;
+    }
+
+    &.rt-eye-l {
+      left: 8px;
+    }
+    &.rt-eye-r {
+      right: 8px;
+    }
+
+    .rt-pupil {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: $cyan;
+      box-shadow:
+        0 0 6px $cyan,
+        0 0 12px rgba($cyan, 0.7);
+      animation: rt-scan 3.4s ease-in-out infinite;
+
+      @media (max-width: 768px) {
+        width: 5px;
+        height: 5px;
+      }
+    }
+  }
+
+  .rt-mouth {
+    position: absolute;
+    bottom: 7px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 2px;
+    padding: 2px 4px;
+    background: #0a0e18;
+    border-radius: 3px;
+    border: 1px solid $metal-4;
+
+    span {
+      width: 2.5px;
+      height: 4px;
+      background: $cyan;
+      box-shadow: 0 0 3px rgba($cyan, 0.8);
+      animation: rt-eq 0.6s ease-in-out infinite;
+    }
+    span:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+    span:nth-child(3) {
+      animation-delay: 0.2s;
+    }
+    span:nth-child(4) {
+      animation-delay: 0.15s;
+    }
+    span:nth-child(5) {
+      animation-delay: 0.05s;
+    }
+  }
+
+  .rt-ear {
+    position: absolute;
+    top: 20px;
+    width: 5px;
+    height: 14px;
+    background: linear-gradient($metal-3, $metal-4);
+    border-radius: 2px;
+
+    &.rt-ear-l {
+      left: -4px;
+    }
+    &.rt-ear-r {
+      right: -4px;
+    }
+  }
+
+  .rt-neck {
+    position: relative;
+    width: 26px;
+    height: 10px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span {
+      width: 3px;
+      height: 100%;
+      background: linear-gradient($metal-2, $metal-4);
+      border-radius: 2px;
+    }
+  }
+
+  .rt-torso {
+    position: relative;
+    width: 94px;
+    height: 80px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, $metal-1 0%, $metal-2 40%, $metal-3 100%);
+    border-radius: 12px;
+    border: 1.5px solid $metal-4;
+    box-shadow:
+      inset 0 -8px 12px rgba(0, 0, 0, 0.45),
+      inset 0 3px 5px rgba(255, 255, 255, 0.4),
+      0 5px 14px rgba(0, 0, 0, 0.5);
+
+    @media (max-width: 768px) {
+      width: 70px;
+      height: 60px;
+    }
+  }
+
+  .rt-chest-led {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ff4d4d 0%, #7a0c0c 80%);
+    border: 1.5px solid $metal-4;
+    box-shadow: 0 0 8px rgba(255, 80, 80, 0.7);
+    animation: rt-pulse 1.4s ease-in-out infinite;
+  }
+
+  .rt-chest-grill {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    i {
+      display: block;
+      width: 30px;
+      height: 2px;
+      background: $metal-4;
+      border-radius: 2px;
+    }
+  }
+
+  .rt-bolt {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: radial-gradient(circle, $metal-1, $rivet, $metal-4);
+    border-radius: 50%;
+
+    &.rt-bolt-tl {
+      top: 4px;
+      left: 4px;
+    }
+    &.rt-bolt-tr {
+      top: 4px;
+      right: 4px;
+    }
+    &.rt-bolt-bl {
+      bottom: 4px;
+      left: 4px;
+    }
+    &.rt-bolt-br {
+      bottom: 4px;
+      right: 4px;
+    }
+  }
+
+  .rt-arm {
+    position: absolute;
+    top: 15px;
+    width: 14px;
+    height: 68px;
+    transform-origin: 50% 7px;
+
+    @media (max-width: 768px) {
+      height: 50px;
+      width: 11px;
+    }
+
+    &.rt-arm-l {
+      left: -12px;
+      animation: rt-shoulder-l 0.42s ease-in-out infinite;
+    }
+    &.rt-arm-r {
+      right: -12px;
+      animation: rt-shoulder-r 0.38s ease-in-out infinite;
+    }
+  }
+
+  .rt-shoulder {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, $metal-1, $metal-3 70%, $metal-4);
+    border: 1.5px solid $metal-4;
+  }
+
+  .rt-upper-arm {
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 7px;
+    height: 26px;
+    background: linear-gradient(90deg, $metal-3, $metal-2, $metal-3);
+    border-radius: 3px;
+    border: 1px solid $metal-4;
+
+    @media (max-width: 768px) {
+      height: 18px;
+    }
+  }
+
+  .rt-elbow {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, $metal-1, $metal-3 70%);
+    border: 1px solid $metal-4;
+
+    @media (max-width: 768px) {
+      top: 22px;
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  .rt-forearm {
+    position: absolute;
+    top: 37px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 24px;
+    background: linear-gradient(90deg, $metal-3, $metal-2, $metal-3);
+    border-radius: 3px;
+    border: 1px solid $metal-4;
+
+    @media (max-width: 768px) {
+      top: 28px;
+      height: 16px;
+    }
+  }
+
+  .rt-hand {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 8px;
+    background: linear-gradient(180deg, $metal-2, $metal-4);
+    border-radius: 2px;
+    border: 1px solid $metal-4;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  // Mac laptop
+  .rt-mac {
+    position: relative;
+    width: 240px;
+    z-index: 3;
+    filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.55));
+
+    @media (max-width: 768px) {
+      width: 180px;
+    }
+  }
+
+  .rt-mac-lid {
+    position: relative;
+    width: 100%;
+    height: 110px;
+    background: linear-gradient(180deg, #2a2f3a 0%, #1a1f2a 100%);
+    border-radius: 8px 8px 3px 3px;
+    border: 1px solid #0a0d14;
+    padding: 5px;
+
+    @media (max-width: 768px) {
+      height: 85px;
+    }
+  }
+
+  .rt-mac-bezel {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 10px);
+    background: #050608;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid #000;
+  }
+
+  .rt-mac-cam {
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #2a3040;
+    z-index: 2;
+  }
+
+  .rt-mac-screen {
+    position: absolute;
+    inset: 8px 5px 5px 5px;
+    background: linear-gradient(180deg, #0e1422 0%, #060912 100%);
+    border-radius: 2px;
+    overflow: hidden;
+    font-family: 'Courier New', monospace;
+  }
+
+  .rt-screen-bar {
+    display: flex;
+    gap: 3px;
+    padding: 3px 4px;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    .rt-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+
+      &.rt-dot-r {
+        background: #ff5f57;
+      }
+      &.rt-dot-y {
+        background: #febc2e;
+      }
+      &.rt-dot-g {
+        background: #28c840;
+      }
+    }
+  }
+
+  .rt-screen-code {
+    padding: 4px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 6.5px;
+    line-height: 1.2;
+
+    @media (max-width: 768px) {
+      font-size: 5.5px;
+      padding: 3px 4px;
+    }
+
+    .rt-line {
+      opacity: 0;
+      color: rgba($cyan, 0.85);
+      white-space: nowrap;
+      overflow: hidden;
+      animation: rt-type 4s steps(30, end) infinite;
+    }
+    .rt-l1 {
+      color: #6fe07a;
+      animation-delay: 0s;
+    }
+    .rt-l2 {
+      color: rgba(255, 255, 255, 0.55);
+      animation-delay: 0.5s;
+    }
+    .rt-l3 {
+      color: $accent;
+      animation-delay: 1s;
+    }
+    .rt-l4 {
+      color: $purple;
+      animation-delay: 1.5s;
+    }
+    .rt-l5 {
+      color: $accent;
+      animation-delay: 2s;
+    }
+
+    .rt-caret {
+      color: $cyan;
+      animation: rt-caret-blink 0.6s step-end infinite;
+    }
+  }
+
+  .rt-mac-chin {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .rt-mac-logo {
+      width: 18px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+      border-radius: 1px;
+    }
+  }
+
+  .rt-mac-base {
+    position: relative;
+    width: 110%;
+    margin-left: -5%;
+    height: 12px;
+    background: linear-gradient(180deg, #c8ccd6 0%, #8a8f9c 60%, #5a606f 100%);
+    border-radius: 2px 2px 8px 8px;
+    border: 1px solid #2a2f3a;
+    border-top: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+    @media (max-width: 768px) {
+      height: 9px;
+    }
+  }
+
+  .rt-mac-hinge {
+    position: absolute;
+    top: 0;
+    left: 8%;
+    right: 8%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.5), transparent);
+  }
+
+  .rt-mac-keyboard {
+    position: absolute;
+    top: 2px;
+    left: 12%;
+    right: 12%;
+    height: 4px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1px;
+
+    @media (max-width: 768px) {
+      height: 3px;
+    }
+
+    .rt-key {
+      background: #1a1f2a;
+      border-radius: 1px;
+      animation: rt-key-press 0.42s ease-in-out infinite;
+    }
+
+    @for $i from 1 through 36 {
+      .rt-key:nth-child(#{$i}) {
+        animation-delay: #{($i % 7) * 0.06}s;
+      }
+    }
+  }
+
+  .rt-mac-trackpad {
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 2px;
+    background: #2a2f3a;
+    border-radius: 1px;
+  }
+
+  .rt-spark {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: $cyan;
+    box-shadow: 0 0 6px $cyan;
+    animation: rt-spark 2.4s ease-in-out infinite;
+
+    &.rt-spark-1 {
+      top: 20%;
+      left: 15%;
+      animation-delay: 0s;
+    }
+    &.rt-spark-2 {
+      top: 10%;
+      right: 20%;
+      animation-delay: 0.8s;
+      background: $purple;
+      box-shadow: 0 0 6px $purple;
+    }
+    &.rt-spark-3 {
+      top: 30%;
+      right: 8%;
+      animation-delay: 1.6s;
+      background: $accent;
+      box-shadow: 0 0 6px $accent;
+    }
+  }
+}
+
+// Shared keyframes for typing robot
+@keyframes rt-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes rt-blink {
+  0%,
+  60%,
+  100% {
+    opacity: 1;
+  }
+  70%,
+  90% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes rt-scan {
+  0%,
+  100% {
+    transform: translate(-90%, -50%);
+  }
+  25% {
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    transform: translate(-10%, -50%);
+  }
+  75% {
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes rt-eq {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes rt-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(255, 80, 80, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(255, 80, 80, 1);
+  }
+}
+
+@keyframes rt-shoulder-l {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+}
+@keyframes rt-shoulder-r {
+  0%,
+  100% {
+    transform: rotate(4deg);
+  }
+  50% {
+    transform: rotate(-8deg);
+  }
+}
+
+@keyframes rt-type {
+  0% {
+    opacity: 0;
+    max-width: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 1;
+    max-width: 100%;
+  }
+}
+
+@keyframes rt-caret-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes rt-key-press {
+  0%,
+  70%,
+  100% {
+    transform: translateY(0);
+    background: #1a1f2a;
+  }
+  35% {
+    transform: translateY(0.5px);
+    background: rgba($cyan, 0.4);
+  }
+}
+
+@keyframes rt-spark {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(0) scale(0.4);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-14px) scale(1);
   }
 }
 
