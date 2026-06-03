@@ -1436,7 +1436,7 @@ $code-green: #39ff14;
 
 .display-title {
   font-family: $font-head;
-  font-size: clamp(2.8rem, 5.5vw, 6.5rem);
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
   font-weight: 800;
   line-height: 1.04;
   letter-spacing: -0.025em;
@@ -1467,7 +1467,7 @@ $code-green: #39ff14;
     background-clip: text;
   }
   &.display-title--hero {
-    font-size: clamp(4rem, 8.5vw, 9.5rem);
+    font-size: clamp(4rem, 7vw, 7rem);
   }
 }
 
@@ -4072,7 +4072,7 @@ $rivet: #5a6378;
     margin-bottom: 48px;
 
     .display-title {
-      font-size: clamp(2.5rem, 5vw, 6rem);
+      font-size: clamp(2.5rem, 5vw, 4rem);
       margin-bottom: 4px;
     }
   }
