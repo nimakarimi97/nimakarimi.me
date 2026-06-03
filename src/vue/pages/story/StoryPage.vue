@@ -880,8 +880,9 @@ onUnmounted(() => {
         SCENE 9 · PRESENT
     ═════════════════════════════════════════════════════════ -->
     <section class="scene scene-present" aria-label="Chapter 9: Today">
-      <div class="scene-content scene-content--center scene-present__inner">
+      <div class="scene-content scene-content--center ">
         <span class="s9-chapter chapter-label">{{ getString('s9_ch09_label') }}</span>
+
         <h2 class="s9-title display-title display-title--hero">
           <span class="w">{{ getString('s9_title_line1') }}</span><br>
           <span class="w">{{ getString('s9_title_line2') }}</span><br>
@@ -1397,7 +1398,7 @@ $code-green: #39ff14;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: $accent;
-  margin-bottom: 24px;
+  margin-bottom: 2rem;
   font-family: $font-body;
 }
 
@@ -1435,7 +1436,6 @@ $code-green: #39ff14;
   }
   &.display-title--hero {
     font-size: clamp(4rem, 8.5vw, 9.5rem);
-    line-height: 0.93;
   }
 }
 
@@ -4032,23 +4032,27 @@ $rivet: #5a6378;
 // ─────────────────────────────────────────────────────────────────────────────
 .scene-challenges {
   background: #050507;
-}
 
-.s6-negatives {
-  margin-bottom: 48px;
+  .s6-negatives {
+    margin-bottom: 48px;
 
-  .display-title {
-    font-size: clamp(2.5rem, 5vw, 6rem);
-    margin-bottom: 4px;
+    .display-title {
+      font-size: clamp(2.5rem, 5vw, 6rem);
+      margin-bottom: 4px;
+    }
   }
-}
 
-.s6-divider {
-  width: 48px;
-  height: 3px;
-  background: $accent;
-  margin-bottom: 32px;
-  will-change: transform;
+  .s6-divider {
+    width: 50%;
+    height: 3px;
+    background: $accent;
+    margin-bottom: 32px;
+    will-change: transform;
+  }
+
+  .s6-persist {
+    height: 120px;
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -4220,63 +4224,63 @@ $rivet: #5a6378;
   background: linear-gradient(140deg, #06080f 0%, #080b14 100%);
   min-height: 100vh;
   padding-bottom: 0;
-}
 
-.scene-present__inner {
-  padding-top: 120px;
-}
+  .chapter-label {
+    margin-bottom: 5rem;
+  }
 
-.s9-cta {
-  display: flex;
-  gap: 14px;
-  margin-top: 48px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
+  .s9-cta {
+    display: flex;
+    gap: 14px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-.cta-btn {
-  display: inline-flex;
-  align-items: center;
-  padding: 15px 40px;
-  border-radius: 100px;
-  font-size: 0.92rem;
-  text-decoration: none;
-  letter-spacing: 0.06em;
-  font-family: $font-head;
-  text-transform: uppercase;
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
-  will-change: opacity, transform;
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 40px;
+    border-radius: 100px;
+    font-size: 0.92rem;
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    font-family: $font-head;
+    text-transform: uppercase;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      background 0.25s ease;
+    will-change: opacity, transform;
 
-  &.cta-btn--primary {
-    background: $accent;
-    color: white;
+    &.cta-btn--primary {
+      background: $accent;
+      color: white;
 
-    &:hover {
-      background: lighten($accent, 8%);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 36px rgba($accent, 0.35);
+      &:hover {
+        background: lighten($accent, 8%);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 36px rgba($accent, 0.35);
+      }
+    }
+
+    &.cta-btn--outline {
+      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      color: $text;
+
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.45);
+        transform: translateY(-3px);
+      }
     }
   }
 
-  &.cta-btn--outline {
-    border: 1.5px solid rgba(255, 255, 255, 0.18);
-    color: $text;
-
-    &:hover {
-      border-color: rgba(255, 255, 255, 0.45);
-      transform: translateY(-3px);
-    }
+  .s9-sig {
+    margin-top: 5rem;
+    font-size: 0.72rem;
+    color: $muted;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
   }
-}
-
-.s9-sig {
-  margin-top: 5rem;
-  font-size: 0.72rem;
-  color: $muted;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
 }
 </style>
