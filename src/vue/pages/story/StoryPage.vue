@@ -1102,7 +1102,7 @@ $code-green: #39ff14;
 .s-nav-label {
   font-family: $font-head;
   font-size: 0.78rem;
-  color: $muted;
+  color: $accent;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 
@@ -4055,11 +4055,11 @@ $rivet: #5a6378;
 .scene-present {
   background: linear-gradient(140deg, #06080f 0%, #080b14 100%);
   min-height: 100vh;
+  padding-bottom: 0;
 }
 
 .scene-present__inner {
   padding-top: 120px;
-  padding-bottom: 120px;
 }
 
 .s9-cta {
@@ -4109,9 +4109,9 @@ $rivet: #5a6378;
 }
 
 .s9-sig {
-  margin-top: 64px;
+  margin-top: 5rem;
   font-size: 0.72rem;
-  color: rgba($muted, 0.5);
+  color: $muted;
   letter-spacing: 0.22em;
   text-transform: uppercase;
 }
