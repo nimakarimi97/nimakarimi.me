@@ -59,6 +59,7 @@ const coverTitle = computed(() => {
 @import '/src/scss/_theming.scss';
 
 .cover-title {
+  font-family: cursive, $headings-font-family;
   margin-bottom: 1rem;
   text-transform: uppercase;
   font-weight: bold;

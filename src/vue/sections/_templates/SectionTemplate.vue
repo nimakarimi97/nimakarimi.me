@@ -163,5 +163,9 @@ const sectionTitle = computed(() => {
       ),
     )
   );
+
+  .section-title {
+    font-family: $section-title-font-family;
+  }
 }
 </style>
