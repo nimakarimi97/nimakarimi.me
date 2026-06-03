@@ -27,6 +27,8 @@ let outerX = 0
 let outerY = 0
 let cursorRaf = null
 let isTouch = false
+let curScale = 1
+let targetScale = 1
 
 function lerp(a, b, t) {
   return a + (b - a) * t
@@ -35,17 +37,26 @@ function lerp(a, b, t) {
 function onMouseMove(e) {
   mouseX = e.clientX
   mouseY = e.clientY
+  // Activate custom cursor on first move (fallback: system cursor stays until then)
+  if (wrapper.value && !wrapper.value.classList.contains('cursor-active')) {
+    wrapper.value.classList.add('cursor-active')
+    document.body.classList.add('story-cursor-active')
+  }
   if (cursorOuter.value)
     cursorOuter.value.style.opacity = '1'
-  if (cursorInner.value)
+  if (cursorInner.value) {
+    cursorInner.value.style.opacity = '1'
     cursorInner.value.style.animationPlayState = 'running'
+  }
 }
 
 function animateCursor() {
   outerX = lerp(outerX, mouseX, 0.09)
   outerY = lerp(outerY, mouseY, 0.09)
+  // Lerp scale inside RAF so it never conflicts with the translate transform
+  curScale = lerp(curScale, targetScale, 0.15)
   if (cursorOuter.value) {
-    cursorOuter.value.style.transform = `translate3d(${outerX}px,${outerY}px,0) translate(-50%,-50%)`
+    cursorOuter.value.style.transform = `translate3d(${outerX}px,${outerY}px,0) translate(-50%,-50%) scale(${curScale})`
   }
   if (cursorInner.value) {
     cursorInner.value.style.transform = `translate3d(${mouseX}px,${mouseY}px,0) translate(-50%,-50%)`
@@ -54,15 +65,14 @@ function animateCursor() {
 }
 
 function onMouseEnterLink() {
-  if (cursorOuter.value)
-    gsap.to(cursorOuter.value, { scale: 2.2, duration: 0.3, ease: 'power2.out' })
+  targetScale = 2.2
 }
 function onMouseLeaveLink() {
-  if (cursorOuter.value)
-    gsap.to(cursorOuter.value, { scale: 1, duration: 0.3, ease: 'power2.out' })
+  targetScale = 1
 }
 
 function navigateToPortfolio() {
+  window.scrollTo({ top: 0, behavior: 'instant' })
   router.push('/about')
 }
 
@@ -318,6 +328,7 @@ function initAnimations() {
 // Lifecycle
 // ─────────────────────────────────────────────────────────────────────────────
 onMounted(() => {
+  window.scrollTo({ top: 0, behavior: 'instant' })
   isTouch = 'ontouchstart' in window
   document.body.classList.add('story-mode')
 
@@ -341,6 +352,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   document.body.classList.remove('story-mode')
+  document.body.classList.remove('story-cursor-active')
   window.removeEventListener('mousemove', onMouseMove)
   if (cursorRaf)
     cancelAnimationFrame(cursorRaf)
@@ -852,9 +864,9 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss">
-/* Global: hide system cursor on story page */
-body.story-mode,
-body.story-mode * {
+/* Hide system cursor only after custom cursor is confirmed working via JS */
+body.story-cursor-active,
+body.story-cursor-active * {
   cursor: none !important;
 }
 </style>
@@ -894,8 +906,9 @@ $font-body: 'Lato', sans-serif;
 // ─────────────────────────────────────────────────────────────────────────────
 $code-green: #39ff14;
 
-.story-wrapper,
-.story-wrapper * {
+// Only suppress system cursor after custom cursor confirms working via JS class
+.story-wrapper.cursor-active,
+.story-wrapper.cursor-active * {
   cursor: none !important;
 }
 

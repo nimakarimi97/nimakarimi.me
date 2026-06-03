@@ -50,6 +50,11 @@ function _onLinkClicked(section) {
   router.push({ name: section.id })
 }
 
+function _onStoryClicked() {
+  window.scrollTo({ top: 0, behavior: 'instant' })
+  router.push('/')
+}
+
 /**
  * @private
  */
@@ -93,10 +98,10 @@ function _onToggleButton() {
 
         <!-- Story page link -->
         <li class="nav-item nav-item-story">
-          <router-link to="/" class="nav-link nav-link-story">
+          <button class="nav-link nav-link-story" @click="_onStoryClicked">
             <i class="fa-solid fa-book-open" />
             <span>My Story</span>
-          </router-link>
+          </button>
         </li>
       </ul>
     </div>
