@@ -870,8 +870,7 @@ onUnmounted(() => {
       <div class="scene-content">
         <span class="s8-chapter chapter-label">{{ getString('s8_ch08_label') }}</span>
         <h2 class="s8-title display-title">
-          <span class="w">{{ getString('s8_title_line1') }}</span>&#32;<span class="w">was</span>&#32;<span class="w">just</span><br>
-          <span class="w">the</span>&#32;<span class="w">beginning.</span>
+          <span class="w" v-html="getString('s8_title')" />
         </h2>
 
         <div class="s8-stack">
@@ -4276,13 +4275,12 @@ $rivet: #5a6378;
   .cta-btn {
     display: inline-flex;
     align-items: center;
-    padding: 15px 40px;
+    padding: 15px 2rem;
     border-radius: 100px;
     font-size: 0.92rem;
     text-decoration: none;
     letter-spacing: 0.06em;
-    font-family: $font-head;
-    text-transform: uppercase;
+    font-family: cursive, $font-head;
     transition:
       transform 0.25s ease,
       box-shadow 0.25s ease,
