@@ -1,13 +1,17 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useConstants } from '../../composables/constants.js'
+import { useData } from '../../composables/data.js'
 
 const router = useRouter()
+const data = useData()
+const constants = useConstants()
 const visible = ref(false)
 const dismissed = ref(false)
 
 onMounted(() => {
-  const storedData = localStorage.getItem('story-toast-dismissed')
+  const storedData = localStorage.getItem(constants.LOCAL_STORAGE_ITEMS.storyToast)
 
   if (storedData) {
     const { timestamp } = JSON.parse(storedData)
@@ -20,7 +24,7 @@ onMounted(() => {
       return
     } else {
       // Clear expired dismissal
-      localStorage.removeItem('story-toast-dismissed')
+      localStorage.removeItem(constants.LOCAL_STORAGE_ITEMS.storyToast)
     }
   }
 
@@ -37,7 +41,7 @@ function goToStory() {
 function dismiss() {
   visible.value = false
   dismissed.value = true
-  localStorage.setItem('story-toast-dismissed', JSON.stringify({
+  localStorage.setItem(constants.LOCAL_STORAGE_ITEMS.storyToast, JSON.stringify({
     timestamp: Date.now(),
   }))
 }
@@ -52,8 +56,8 @@ function dismiss() {
       <div class="story-toast__content" @click="goToStory">
         <i class="fa-solid fa-book-open story-toast__icon" />
         <div class="story-toast__text">
-          <span class="story-toast__title">Wanna know my story?</span>
-          <span class="story-toast__subtitle">See how I got here</span>
+          <span class="story-toast__title">{{ data.getString('wonnaKnowStory') }}</span>
+          <span class="story-toast__subtitle">{{ data.getString('seeHowIGotHere') }}</span>
         </div>
       </div>
     </div>

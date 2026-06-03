@@ -27,6 +27,7 @@ export function useConstants() {
   /** @const **/
   const LOCAL_STORAGE_ITEMS = {
     language: 'app.preferences.language',
+    storyToast: 'story.toast.dismissed',
   }
 
   /** @const **/
