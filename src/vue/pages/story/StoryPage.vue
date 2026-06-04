@@ -976,7 +976,7 @@ $cyan: #06b6d4;
 $amber: #f59e0b;
 $green: #10b981;
 $ghost: #1e2535;
-$font-head: fantasy, cursive, 'Saira', sans-serif;
+$font-head: 'Caveat', cursive, 'Saira', sans-serif;
 $font-body: 'Lato', sans-serif;
 
 // ─────────────────────────────────────────────────────────────────────────────
