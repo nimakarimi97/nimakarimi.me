@@ -80,7 +80,13 @@ export function createAppRouter() {
   return createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: routeList,
-    scrollBehavior() {
+    scrollBehavior(to, from, savedPosition) {
+      if (savedPosition) {
+        return savedPosition
+      }
+      if (window.innerWidth >= 992) {
+        return false
+      }
       return { top: 0 }
     },
   })
