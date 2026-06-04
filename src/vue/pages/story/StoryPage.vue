@@ -1332,6 +1332,9 @@ $code-green: #39ff14;
 
 .hero-title {
   font-family: $font-head;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
   font-size: clamp(2.5rem, 6vw, 5.5rem);
   font-weight: 800;
   line-height: 1.2;
@@ -1447,6 +1450,9 @@ $code-green: #39ff14;
 
 .display-title {
   font-family: $font-head;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
   font-size: clamp(2.8rem, 5.5vw, 5rem);
   font-weight: 800;
   line-height: 1.04;
