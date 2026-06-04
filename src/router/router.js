@@ -81,12 +81,16 @@ export function createAppRouter() {
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: routeList,
     scrollBehavior(to, from, savedPosition) {
-      if (savedPosition) {
+      if (savedPosition && to.path !== '/') {
         return savedPosition
       }
-      if (window.innerWidth >= 992) {
+
+      // Desktop (all sections on one page): preserve scroll position
+      if (to.path === '/' || window.innerWidth >= 992) {
         return false
       }
+
+      // Mobile/small screens (separate section pages): scroll to top on navigation
       return { top: 0 }
     },
   })
