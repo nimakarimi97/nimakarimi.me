@@ -1457,6 +1457,7 @@ $code-green: #39ff14;
   .w {
     display: inline-block;
     will-change: transform, opacity;
+    padding-right: 0.08em;
   }
 
   &.display-title--dim {
