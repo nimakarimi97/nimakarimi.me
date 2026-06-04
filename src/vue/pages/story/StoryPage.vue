@@ -87,10 +87,14 @@ function onMouseLeaveLink() {
   targetScale = 1
 }
 
-function navigateToResume() {
+function persistStoryToast() {
   localStorage.setItem(constants.LOCAL_STORAGE_ITEMS.storyToast, JSON.stringify({
     timestamp: Date.now(),
   }))
+}
+
+function navigateToResume() {
+  persistStoryToast()
 
   window.scrollTo({ top: 0, behavior: 'instant' })
   router.push('/about')
@@ -934,11 +938,12 @@ onUnmounted(() => {
           {{ getString('s9_body_line1') }}<br>
           {{ getString('s9_body_line2') }}
         </p>
+
         <div class="s9-cta">
           <button class="cta-btn cta-btn--primary" @click="navigateToResume">
             {{ getString('story_ch09_btn_resume') }}
           </button>
-          <router-link to="/contact" class="cta-btn cta-btn--outline">
+          <router-link to="/contact" class="cta-btn cta-btn--outline" @click="persistStoryToast">
             {{ getString('story_ch09_btn_contact') }}
           </router-link>
         </div>
@@ -4298,19 +4303,21 @@ $rivet: #5a6378;
       color: white;
 
       &:hover {
-        background: lighten($accent, 8%);
+        background: lighten($accent, 5%);
         transform: translateY(-3px);
         box-shadow: 0 10px 36px rgba($accent, 0.35);
       }
     }
 
     &.cta-btn--outline {
+      background: transparent;
       border: 1.5px solid rgba(255, 255, 255, 0.18);
       color: $text;
 
       &:hover {
         border-color: rgba(255, 255, 255, 0.45);
         transform: translateY(-3px);
+        box-shadow: 0 10px 36px rgba($text, 0.3);
       }
     }
   }
