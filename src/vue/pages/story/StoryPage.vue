@@ -1526,7 +1526,8 @@ $code-green: #39ff14;
   font-size: clamp(14rem, 24vw, 30rem);
   font-weight: 900;
   text-align: right;
-  color: rgba(255, 255, 255, 0.062);
+  color: rgb(255, 255, 255);
+  opacity: 0.1;
   padding-right: 24px;
   right: -1%;
   top: 50%;
@@ -3892,7 +3893,7 @@ $rivet: #5a6378;
     display: block;
     font-family: 'Courier New', monospace;
     font-size: clamp(0.7rem, 1vw, 0.9rem);
-    color: rgba(255, 255, 255, 0.038);
+    color: rgba(255, 255, 255, 0.1);
     padding: 3px 0;
     white-space: nowrap;
     will-change: opacity, transform;
@@ -4282,6 +4283,14 @@ $rivet: #5a6378;
     margin-bottom: 5rem;
   }
 
+  // on Safari the last letter gets cut off without extra padding
+  h2 > span:nth-child(1),
+  h2 > span:last-child {
+    @supports (-webkit-hyphens: none) {
+      padding-right: 1.5rem;
+    }
+  }
+
   .s9-cta {
     display: flex;
     gap: 14px;
@@ -4298,7 +4307,7 @@ $rivet: #5a6378;
     font-size: 0.92rem;
     text-decoration: none;
     letter-spacing: 0.06em;
-    font-family: cursive, $font-head;
+    font-family: $font-head;
     transition:
       transform 0.25s ease,
       box-shadow 0.25s ease,
@@ -4308,6 +4317,7 @@ $rivet: #5a6378;
     &.cta-btn--primary {
       background: $accent;
       color: white;
+      border: none;
 
       &:hover {
         background: lighten($accent, 5%);
