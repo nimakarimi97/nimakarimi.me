@@ -69,7 +69,7 @@ const sectionTitle = computed(() => {
       >
         <!-- Title -->
         <h1
-          class="section-title mb-1 mb-lg-2 fw-bold text-uppercase"
+          class="section-title mb-1 mb-lg-2 fw-bold"
           v-html="sectionTitle"
         />
 

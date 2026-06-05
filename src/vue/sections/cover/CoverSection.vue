@@ -61,7 +61,6 @@ const coverTitle = computed(() => {
 .cover-title {
   font-family: cursive, $headings-font-family;
   margin-bottom: 1rem;
-  text-transform: uppercase;
   font-weight: bold;
 }
 
