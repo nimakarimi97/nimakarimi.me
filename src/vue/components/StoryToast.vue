@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useConstants } from '../../composables/constants.js'
 import { useData } from '../../composables/data.js'
@@ -13,7 +13,7 @@ const dismissed = ref(false)
 onMounted(() => {
   const storedData = localStorage.getItem(constants.LOCAL_STORAGE_ITEMS.storyToast)
 
-  if (storedData) {
+  if (storedData && window.innerWidth >= constants.BOOTSTRAP_BREAKPOINTS.lg) {
     const { timestamp } = JSON.parse(storedData)
     const now = Date.now()
     const oneDayMs = 24 * 60 * 60 * 1000
@@ -31,6 +31,13 @@ onMounted(() => {
   setTimeout(() => {
     visible.value = true
   }, 3000)
+})
+
+watch(() => router.currentRoute.value.path, () => {
+  if (router.currentRoute.value.path === '/about')
+    visible.value = true
+  else
+    visible.value = false
 })
 
 function goToStory() {
@@ -56,7 +63,7 @@ function dismiss() {
       <div class="story-toast__content" @click="goToStory">
         <i class="fa-solid fa-book-open story-toast__icon" />
         <div class="story-toast__text">
-          <span class="story-toast__title">{{ data.getString('wonnaKnowStory') }}</span>
+          <span class="story-toast__title">{{ data.getString('wannaKnowStory') }}</span>
           <span class="story-toast__subtitle">{{ data.getString('seeHowIGotHere') }}</span>
         </div>
       </div>
@@ -84,7 +91,7 @@ function dismiss() {
     0 0 0 1px rgba(129, 140, 248, 0.08);
 
   @media (max-width: 1024px) {
-    bottom: $nav-tabs-height + 10px;
+    bottom: $story-toast-height;
     left: 20%;
     right: 20%;
     min-width: auto;
@@ -93,7 +100,7 @@ function dismiss() {
   }
 
   @media (max-width: 768px) {
-    bottom: $nav-tabs-height + 10px;
+    bottom: $story-toast-height;
     left: 16px;
     right: 16px;
     transform: none;
