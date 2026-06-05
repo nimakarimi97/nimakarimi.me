@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, watch } from 'vue'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useConstants } from '../../composables/constants.js'
 import { useData } from '../../composables/data.js'
@@ -9,11 +9,39 @@ const data = useData()
 const constants = useConstants()
 const visible = ref(false)
 const dismissed = ref(false)
+let toastTimeoutId = null
+
+const TOAST_SHOW_DELAY_MS = 3000
+
+function clearToastTimeout() {
+  if (toastTimeoutId !== null) {
+    clearTimeout(toastTimeoutId)
+    toastTimeoutId = null
+  }
+}
+
+function scheduleToastShow() {
+  clearToastTimeout()
+  toastTimeoutId = setTimeout(() => {
+    if (router.currentRoute.value.path === '/about')
+      visible.value = true
+
+    toastTimeoutId = null
+  }, TOAST_SHOW_DELAY_MS)
+}
+
+const isSmallScreen = window.innerWidth <= constants.BOOTSTRAP_BREAKPOINTS.lg
 
 onMounted(() => {
+  // Show the toast only on larger screens and on the about page of mobile
+  if (isSmallScreen && router.currentRoute.value.path !== '/about')
+    return
+  else if (isSmallScreen && router.currentRoute.value.path === '/about')
+    return syncToastWithRoute()
+
   const storedData = localStorage.getItem(constants.LOCAL_STORAGE_ITEMS.storyToast)
 
-  if (storedData && window.innerWidth >= constants.BOOTSTRAP_BREAKPOINTS.lg) {
+  if (storedData) {
     const { timestamp } = JSON.parse(storedData)
     const now = Date.now()
     const oneDayMs = 24 * 60 * 60 * 1000
@@ -28,17 +56,24 @@ onMounted(() => {
     }
   }
 
-  setTimeout(() => {
-    visible.value = true
-  }, 3000)
+  scheduleToastShow()
 })
 
-watch(() => router.currentRoute.value.path, () => {
-  if (router.currentRoute.value.path === '/about')
-    visible.value = true
-  else
+/**
+ * Shows the toast when navigating to the about page, and hides it when navigating away.
+ */
+function syncToastWithRoute() {
+  if (router.currentRoute.value.path === '/about') {
+    scheduleToastShow()
+  } else {
+    clearToastTimeout()
     visible.value = false
-})
+  }
+}
+
+watch(() => router.currentRoute.value.path, isSmallScreen ? syncToastWithRoute : () => {})
+
+onBeforeUnmount(clearToastTimeout)
 
 function goToStory() {
   dismiss()
