@@ -58,6 +58,13 @@ export function createAppRouter() {
         window.location.href = 'https://www.linkedin.com/in/nimakarimi97/'
       },
     },
+    {
+      path: '/cosmetic-medical-investment',
+      redirect: () => {
+        window.location.href
+          = 'https://patch-vole-613.notion.site/Cosmetic-Medical-Business-Investment-Opportunities-in-Iran-3828169d6b63807b9f99c0503975b9db?pvs=74'
+      },
+    },
   ]
 
   /** Create Section Routes */
