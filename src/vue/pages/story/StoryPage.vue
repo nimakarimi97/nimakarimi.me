@@ -80,11 +80,29 @@ function animateCursor() {
   cursorRaf = requestAnimationFrame(animateCursor)
 }
 
-function onMouseEnterLink() {
-  targetScale = 2.2
+function onMouseOver(e) {
+  const target = e.target.closest('a, button, [role="button"]')
+  if (target) {
+    targetScale = 2.2
+  }
 }
-function onMouseLeaveLink() {
-  targetScale = 1
+function onMouseOut(e) {
+  const target = e.target.closest('a, button, [role="button"]')
+  if (target) {
+    targetScale = 1
+  }
+}
+
+function onWindowClick(e) {
+  if (showLanguageDropdown.value && !e.target.closest('.s-nav-language')) {
+    showLanguageDropdown.value = false
+  }
+}
+
+function onKeyDown(e) {
+  if (e.key === 'Escape' && showLanguageDropdown.value) {
+    showLanguageDropdown.value = false
+  }
 }
 
 function persistStoryToast() {
@@ -191,7 +209,7 @@ function initAnimations() {
         ease: 'power3.out',
       }, 0.1)
       .from('.s2-robot', { scale: 0, opacity: 0, rotation: -30, duration: 0.7, ease: 'back.out(1.7)' }, 3.5)
-      .to('.sr-drone', {
+      .to('.sr-drone-container', {
         y: -20,
         filter: 'drop-shadow(0 20px 40px rgba(100, 200, 255, 0.3))',
         duration: 2,
@@ -402,14 +420,14 @@ onMounted(() => {
   isTouch = 'ontouchstart' in window
   document.body.classList.add('story-mode')
 
+  window.addEventListener('click', onWindowClick)
+  window.addEventListener('keydown', onKeyDown)
+
   if (!isTouch) {
     window.addEventListener('mousemove', onMouseMove, { passive: true })
+    window.addEventListener('mouseover', onMouseOver)
+    window.addEventListener('mouseout', onMouseOut)
     cursorRaf = requestAnimationFrame(animateCursor)
-
-    document.querySelectorAll('a, button').forEach((el) => {
-      el.addEventListener('mouseenter', onMouseEnterLink)
-      el.addEventListener('mouseleave', onMouseLeaveLink)
-    })
   }
 
   // two rAF frames to ensure DOM + GSAP are ready
@@ -423,7 +441,11 @@ onMounted(() => {
 onUnmounted(() => {
   document.body.classList.remove('story-mode')
   document.body.classList.remove('story-cursor-active')
+  window.removeEventListener('click', onWindowClick)
+  window.removeEventListener('keydown', onKeyDown)
   window.removeEventListener('mousemove', onMouseMove)
+  window.removeEventListener('mouseover', onMouseOver)
+  window.removeEventListener('mouseout', onMouseOut)
   if (cursorRaf)
     cancelAnimationFrame(cursorRaf)
   ScrollTrigger.getAll().forEach(t => t.kill())
@@ -584,32 +606,35 @@ onUnmounted(() => {
         </div>
 
         <div class="s2-robot" aria-hidden="true">
-          <!-- ─── Drone ────────────────────────────────── -->
-          <div class="sr-drone">
-            <div class="sr-drone-body">
-              <div class="sr-drone-cam" />
-            </div>
-            <div class="sr-drone-arm sr-drone-arm-fl">
-              <div class="sr-prop">
-                <span /><span />
+          <!-- ─── Drone Container ──────────────────────── -->
+          <div class="sr-drone-container">
+            <!-- ─── Drone ────────────────────────────────── -->
+            <div class="sr-drone">
+              <div class="sr-drone-body">
+                <div class="sr-drone-cam" />
               </div>
-            </div>
-            <div class="sr-drone-arm sr-drone-arm-fr">
-              <div class="sr-prop">
-                <span /><span />
+              <div class="sr-drone-arm sr-drone-arm-fl">
+                <div class="sr-prop">
+                  <span /><span />
+                </div>
               </div>
-            </div>
-            <div class="sr-drone-arm sr-drone-arm-bl">
-              <div class="sr-prop">
-                <span /><span />
+              <div class="sr-drone-arm sr-drone-arm-fr">
+                <div class="sr-prop">
+                  <span /><span />
+                </div>
               </div>
-            </div>
-            <div class="sr-drone-arm sr-drone-arm-br">
-              <div class="sr-prop">
-                <span /><span />
+              <div class="sr-drone-arm sr-drone-arm-bl">
+                <div class="sr-prop">
+                  <span /><span />
+                </div>
               </div>
+              <div class="sr-drone-arm sr-drone-arm-br">
+                <div class="sr-prop">
+                  <span /><span />
+                </div>
+              </div>
+              <div class="sr-drone-light" />
             </div>
-            <div class="sr-drone-light" />
           </div>
 
           <!-- Ambient particles -->
@@ -1881,6 +1906,31 @@ $rivet: #5a6378;
 
 // .sr-scene wrapper removed — drone and arm are direct children of .s2-robot.
 
+// ─── Drone Container ────────────────────────────────────
+.sr-drone-container {
+  position: absolute;
+  top: 114px;
+  left: 52%;
+  transform: translateX(-50%);
+  z-index: 10;
+  will-change: transform, filter;
+
+  @media (max-width: 1024px) {
+    top: 106px;
+    left: 51%;
+  }
+
+  @media (max-width: 768px) {
+    top: 218px;
+    left: 63%;
+  }
+
+  @media (max-width: 480px) {
+    top: 190px;
+    left: 63%;
+  }
+}
+
 // ─── Drone ──────────────────────────────────────────────
 // Sits near the arm so the catch attempt reads as near-contact.
 .sr-drone {
@@ -1894,25 +1944,17 @@ $rivet: #5a6378;
   --drone-y62: -14px;
   --drone-x80: 5px;
   --drone-y80: -6px;
-  position: absolute;
-  top: 114px;
-  left: 52%;
-  transform: translateX(-50%);
+  position: relative;
   width: 80px;
   height: 36px;
   animation: sr-drone-escape 3.2s cubic-bezier(0.55, 0.08, 0.3, 1) infinite;
-  z-index: 10;
 
   @media (max-width: 1024px) {
-    top: 106px;
-    left: 51%;
     width: 72px;
     height: 32px;
   }
 
   @media (max-width: 768px) {
-    top: 218px;
-    left: 63%;
     width: 58px;
     height: 26px;
     --drone-x18: -14px;
@@ -1928,8 +1970,6 @@ $rivet: #5a6378;
   }
 
   @media (max-width: 480px) {
-    top: 190px;
-    left: 63%;
     width: 50px;
     height: 22px;
     --drone-x18: -12px;
@@ -1949,22 +1989,22 @@ $rivet: #5a6378;
 @keyframes sr-drone-escape {
   0%,
   100% {
-    transform: translateX(-50%) translateY(0px) rotate(-2deg);
+    transform: translateY(0px) rotate(-2deg);
   }
   18% {
-    transform: translateX(calc(-50% + var(--drone-x18))) translateY(var(--drone-y18)) rotate(-5deg);
+    transform: translateX(var(--drone-x18)) translateY(var(--drone-y18)) rotate(-5deg);
   }
   32% {
-    transform: translateX(calc(-50% + var(--drone-x32))) translateY(var(--drone-y32)) rotate(0deg);
+    transform: translateX(var(--drone-x32)) translateY(var(--drone-y32)) rotate(0deg);
   }
   42% {
-    transform: translateX(calc(-50% + var(--drone-x42))) translateY(var(--drone-y42)) rotate(12deg);
+    transform: translateX(var(--drone-x42)) translateY(var(--drone-y42)) rotate(12deg);
   }
   62% {
-    transform: translateX(calc(-50% + var(--drone-x62))) translateY(var(--drone-y62)) rotate(6deg);
+    transform: translateX(var(--drone-x62)) translateY(var(--drone-y62)) rotate(6deg);
   }
   80% {
-    transform: translateX(calc(-50% + var(--drone-x80))) translateY(var(--drone-y80)) rotate(-3deg);
+    transform: translateX(var(--drone-x80)) translateY(var(--drone-y80)) rotate(-3deg);
   }
 }
 
