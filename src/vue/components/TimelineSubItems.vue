@@ -27,30 +27,18 @@ function formatPeriod(period) {
 
 <template>
   <ul class="sub-timeline">
-    <li
-      v-for="sub in props.items"
-      :key="sub.id"
-      class="sub-timeline-item"
-    >
+    <li v-for="sub in props.items" :key="sub.id" class="sub-timeline-item">
       <span class="sub-timeline-dot">
         <i :class="sub.faIcon || 'fa-solid fa-circle-dot'" />
       </span>
 
       <div class="sub-timeline-content">
         <div class="sub-timeline-header">
-          <h6
-            class="sub-timeline-title fw-bold mb-0"
-            v-html="sub.locales.title"
-          />
-          <span
-            v-if="sub.period"
-            class="sub-timeline-period text-light-6 text-1"
-            v-html="formatPeriod(sub.period)"
-          />
+          <h6 class="sub-timeline-title fw-bold mb-0" v-html="sub.locales.title" />
+          <span v-if="sub.period" class="sub-timeline-period text-light-6 text-1" v-html="formatPeriod(sub.period)" />
         </div>
         <p
-          v-if="sub.locales.description"
-          class="sub-timeline-desc text-2 text-normal mb-0 mt-1"
+          v-if="sub.locales.description" class="sub-timeline-desc text-2 text-normal mb-0 mt-1"
           v-html="sub.locales.description"
         />
       </div>
@@ -119,6 +107,7 @@ ul.sub-timeline {
     0 1px 3px 0 rgba(0, 0, 0, 0.04);
   transition:
     transform 0.2s ease-in-out,
+    border-color 0.3s ease,
     box-shadow 0.25s ease-in-out;
 
   &:hover {
@@ -145,6 +134,7 @@ ul.sub-timeline {
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
+
   &:before {
     content: '\f133';
     font-family: 'Font Awesome 6 Free';

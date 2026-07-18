@@ -1,7 +1,5 @@
 <script setup>
 import { computed } from 'vue'
-// import { useData } from '../../../composables/data.js'
-// import { useNavigation } from '../../../composables/navigation.js'
 import InlineList from '../../components/InlineList.vue'
 import SocialLinks from '../../components/SocialLinks.vue'
 import SectionTemplate from '../_templates/SectionTemplate.vue'
@@ -12,46 +10,37 @@ import SectionTemplate from '../_templates/SectionTemplate.vue'
 const props = defineProps({
   sectionData: Object,
 })
-// const data = useData()
-// const navigation = useNavigation()
 
 /**
  * @type {ComputedRef<string>}
  */
 const coverTitle = computed(() => {
-  // if (navigation.isAllAtOnceMode()) {
   return props.sectionData.content.locales.welcome
-  // } else {
-  // return props.sectionData.content.locales.welcomeShort
-  // }
 })
 </script>
 
 <template>
   <SectionTemplate :section-data="props.sectionData">
     <!-- Title -->
-    <h1
-      class="cover-title display-1"
-      v-html="coverTitle"
-    />
+    <h1 class="cover-title display-1 mb-3">
+      <span v-html="coverTitle" />
+    </h1>
 
-    <!-- Divider -->
-    <hr class="solid-divider ms-1 me-1">
+    <!-- Gradient Divider -->
+    <hr class="gradient-divider ms-1 me-1 mb-4">
 
-    <!-- Info Items -->
-    <InlineList
-      class="info-list"
-      :items="props.sectionData.content.items.contactListItems"
-    />
+    <!-- Contact Info Card (21st.dev Glassmorphism inspired) -->
+    <InlineList class="info-list" :items="props.sectionData.content.items.contactListItems" />
 
     <!-- Description -->
-    <p
-      class="cover-description lead text-normal mb-4 mb-md-5"
-      v-html="props.sectionData.content.locales.bio"
-    />
+    <p class="cover-description lead text-normal mb-4 mb-md-5">
+      <span v-html="props.sectionData.content.locales.bio" />
+    </p>
 
     <!-- Social Links -->
-    <SocialLinks :items="props.sectionData.content.items.socialCircles" />
+    <div>
+      <SocialLinks :items="props.sectionData.content.items.socialCircles" />
+    </div>
   </SectionTemplate>
 </template>
 
@@ -59,13 +48,16 @@ const coverTitle = computed(() => {
 @import '/src/scss/_theming.scss';
 
 .cover-title {
-  font-family: cursive, $headings-font-family;
-  margin-bottom: 1rem;
+  font-family: $headings-font-family;
   font-weight: bold;
+  background: linear-gradient(135deg, $headings-color 30%, lighten($headings-color, 15%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .cover-description :deep(strong) {
   font-weight: bold;
+  color: $primary;
 }
 
 .solid-divider {

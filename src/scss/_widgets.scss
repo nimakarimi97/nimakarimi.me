@@ -20,6 +20,12 @@ hr.solid-divider {
   opacity: 1;
 }
 
+.gradient-divider {
+  height: 2px;
+  border: none;
+  background: linear-gradient(90deg, transparent, #6366f1 50%, transparent);
+}
+
 .btn {
   transition: all 0.3s ease-in-out;
 
