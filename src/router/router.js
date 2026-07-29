@@ -65,6 +65,13 @@ export function createAppRouter() {
           = 'https://patch-vole-613.notion.site/Cosmetic-Medical-Business-Investment-Opportunities-in-Iran-3998169d6b63803e9c78ed8c058dbe4e'
       },
     },
+    {
+      path: '/beauty-industry-list',
+      redirect: () => {
+        window.location.href
+          = 'https://patch-vole-613.notion.site/Beauty-Industry-List-3ab8169d6b6380389cc7c7c967ccd640?source=copy_link'
+      },
+    },
   ]
 
   /** Create Section Routes */
