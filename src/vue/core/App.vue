@@ -20,7 +20,10 @@ let intervalId = null
 
 const showDownloadButton = ref(false)
 
-const isStoryRoute = computed(() => route.path === '/' || route.path === '/story')
+const isStandaloneRoute = computed(() => {
+  const p = route.path.toLowerCase()
+  return p === '/' || p === '/story' || p.startsWith('/partners') || p === '/biz' || p === '/business' || p === '/partner'
+})
 
 const clipboardText = ref(null)
 
@@ -38,8 +41,8 @@ provide('copyToClipboard', copyToClipboard)
 
 onMounted(() => {
   layout.setFeedbackView(feedbackView)
-  if (isStoryRoute.value) {
-    // On story page: load data silently without the preloader overlay
+  if (isStandaloneRoute.value) {
+    // On standalone pages (story, partners): load data silently without the preloader overlay
     _onPreloaderShown().then(() => _onPreloadCompleted())
   } else {
     _startPreloading()
@@ -118,8 +121,8 @@ function _onPreloadCompleted() {
   <!-- Feedbacks -->
   <FeedbackView ref="feedbackView" />
 
-  <!-- Story page — standalone experience, no layout or preloader -->
-  <router-view v-if="isStoryRoute" />
+  <!-- Standalone pages (Story, Business Development / Partners) -->
+  <router-view v-if="isStandaloneRoute" />
 
   <!-- Main App -->
   <template v-else>

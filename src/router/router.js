@@ -20,6 +20,23 @@ export function createAppRouter() {
       component: RouterView,
     },
     {
+      path: '/partners',
+      name: 'Partners',
+      component: () => import('../vue/pages/partners/PartnersPage.vue'),
+    },
+    {
+      path: '/biz',
+      redirect: '/partners',
+    },
+    {
+      path: '/business',
+      redirect: '/partners',
+    },
+    {
+      path: '/partner',
+      redirect: '/partners',
+    },
+    {
       path: '/instagram-tracker',
       name: 'InstagramTracker',
       component: () => import('../vue/sections/instagram-tracker/InstagramTracker.vue'),
