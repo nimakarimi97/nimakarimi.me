@@ -639,7 +639,7 @@ onUnmounted(() => {
             </a>
 
             <a
-              href="mailto:nimakarimi676@gmail.com?subject=Business%20Partnership%20Inquiry"
+              href="mailto:partner@nimakarimi.me?subject=Business%20Partnership%20Inquiry"
               class="alt-btn btn-email"
             >
               <i class="fa-solid fa-envelope" />
