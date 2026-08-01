@@ -31,7 +31,4 @@ test('partners landing page renders all elements cleanly', async ({ page }) => {
   // Verify contact form is visible
   const contactCard = page.locator('.contact-card')
   await expect(contactCard).toBeVisible()
-
-  // Take screenshot for visual verification
-  await page.screenshot({ path: '/Users/nkarimi/.gemini/antigravity/brain/72101145-dc86-4411-badc-edac1a1ab9c7/partners_e2e_screenshot.png', fullPage: true })
 })
