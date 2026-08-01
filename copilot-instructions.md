@@ -16,6 +16,7 @@ This project uses **pnpm** as the package manager. Always use `pnpm` instead of 
 ### Installation
 
 When installing new packages, use:
+
 ```bash
 pnpm add <package-name>
 pnpm add -D <package-name>  # for devDependencies
