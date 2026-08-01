@@ -52,7 +52,7 @@ async function handleSubmit() {
         'Accept': 'application/json',
       },
       body: JSON.stringify({
-        access_key: '55776d65-3841-477d-b5c4-7faed02c91b5',
+        access_key: '7b52875b-2dc3-434c-b646-67e66b1b258a',
         subject: `New Business Partner Lead: ${formData.value.fullName} (${formData.value.category})`,
         from_name: formData.value.fullName,
         replyto: formData.value.email,
@@ -498,11 +498,7 @@ onUnmounted(() => {
               <div class="form-group col-half">
                 <label for="fullName">{{ t.fieldName }} *</label>
                 <input
-                  id="fullName"
-                  v-model="formData.fullName"
-                  type="text"
-                  required
-                  :placeholder="t.placeholderName"
+                  id="fullName" v-model="formData.fullName" type="text" required :placeholder="t.placeholderName"
                   autocomplete="name"
                 >
               </div>
@@ -536,23 +532,14 @@ onUnmounted(() => {
               <div class="form-group col-half">
                 <label for="city">{{ t.fieldCity }} *</label>
                 <input
-                  id="city"
-                  v-model="formData.city"
-                  type="text"
-                  required
-                  :placeholder="t.placeholderCity"
+                  id="city" v-model="formData.city" type="text" required :placeholder="t.placeholderCity"
                   autocomplete="address-level2"
                 >
               </div>
 
               <div class="form-group col-half">
                 <label for="instagram">{{ t.fieldInstagram }}</label>
-                <input
-                  id="instagram"
-                  v-model="formData.instagram"
-                  type="text"
-                  :placeholder="t.placeholderInstagram"
-                >
+                <input id="instagram" v-model="formData.instagram" type="text" :placeholder="t.placeholderInstagram">
               </div>
             </div>
 
@@ -560,11 +547,7 @@ onUnmounted(() => {
               <div class="form-group col-half">
                 <label for="phone">{{ t.fieldPhone }} *</label>
                 <input
-                  id="phone"
-                  v-model="formData.phone"
-                  type="tel"
-                  required
-                  :placeholder="t.placeholderPhone"
+                  id="phone" v-model="formData.phone" type="tel" required :placeholder="t.placeholderPhone"
                   autocomplete="tel"
                 >
               </div>
@@ -572,11 +555,7 @@ onUnmounted(() => {
               <div class="form-group col-half">
                 <label for="email">{{ t.fieldEmail }} *</label>
                 <input
-                  id="email"
-                  v-model="formData.email"
-                  type="email"
-                  required
-                  :placeholder="t.placeholderEmail"
+                  id="email" v-model="formData.email" type="email" required :placeholder="t.placeholderEmail"
                   autocomplete="email"
                 >
               </div>
@@ -584,21 +563,11 @@ onUnmounted(() => {
 
             <div class="form-group col-full">
               <label for="message">{{ t.fieldMessage }} *</label>
-              <textarea
-                id="message"
-                v-model="formData.message"
-                rows="4"
-                required
-                :placeholder="t.placeholderMessage"
-              />
+              <textarea id="message" v-model="formData.message" rows="4" required :placeholder="t.placeholderMessage" />
             </div>
 
             <div class="form-submit-wrapper">
-              <button
-                type="submit"
-                class="btn-submit"
-                :disabled="isSubmitting"
-              >
+              <button type="submit" class="btn-submit" :disabled="isSubmitting">
                 <span v-if="!isSubmitting"><i class="fa-solid fa-paper-plane me-1" /> {{ t.btnSubmit }}</span>
                 <span v-else><i class="fa-solid fa-spinner fa-spin me-1" /> {{ t.btnSubmitting }}</span>
               </button>
@@ -618,10 +587,7 @@ onUnmounted(() => {
 
           <div class="alt-buttons-grid">
             <a
-              href="https://wa.me/4915781234567"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="alt-btn btn-wa"
+              href="https://wa.me/4915781234567" target="_blank" rel="noopener noreferrer" class="alt-btn btn-wa"
               @click.prevent="openWhatsApp()"
             >
               <i class="fa-brands fa-whatsapp" />
@@ -629,19 +595,14 @@ onUnmounted(() => {
             </a>
 
             <a
-              href="https://www.instagram.com/nima.__.karimi/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="https://www.instagram.com/nima.__.karimi/" target="_blank" rel="noopener noreferrer"
               class="alt-btn btn-ig"
             >
               <i class="fa-brands fa-instagram" />
               <span>{{ t.btnInstagram }}</span>
             </a>
 
-            <a
-              href="mailto:partner@nimakarimi.me?subject=Business%20Partnership%20Inquiry"
-              class="alt-btn btn-email"
-            >
+            <a href="mailto:partner@nimakarimi.me?subject=Business%20Partnership%20Inquiry" class="alt-btn btn-email">
               <i class="fa-solid fa-envelope" />
               <span>{{ t.btnEmail }}</span>
             </a>
@@ -1131,14 +1092,17 @@ $text-sub: #cbd5e1;
       background: rgba(16, 185, 129, 0.2);
       color: $accent-emerald !important;
     }
+
     .icon-gold {
       background: rgba(245, 158, 11, 0.2);
       color: $accent-gold !important;
     }
+
     .icon-blue {
       background: rgba(59, 130, 246, 0.2);
       color: $accent-blue !important;
     }
+
     .icon-rose {
       background: rgba(236, 72, 153, 0.2);
       color: $accent-rose !important;
@@ -1424,6 +1388,7 @@ $text-sub: #cbd5e1;
 
       select {
         cursor: pointer;
+
         option {
           background-color: $bg-dark;
           color: #ffffff;
