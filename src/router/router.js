@@ -50,7 +50,7 @@ export function createAppRouter() {
     {
       path: '/schedule',
       redirect: () => {
-        window.location.href = 'https://calendar.app.google/8e8RvMBEsiyAgNsA6'
+        window.location.href = 'https://cal.com/nimakarimi/schedule'
       },
     },
     {

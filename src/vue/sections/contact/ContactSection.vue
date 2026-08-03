@@ -20,7 +20,7 @@ const contactFormEnabled = computed(() => {
 })
 
 onMounted(() => {
-  ;(function (C, A, L) {
+  ; (function (C, A, L) {
     const p = function (a, ar) {
       a.q.push(ar)
     }
@@ -80,10 +80,8 @@ onMounted(() => {
 
         <!-- SubHeading -->
         <SubHeading
-          v-if="contactFormEnabled"
-          :title="props.sectionData.content.locales.subtitle"
-          :description="props.sectionData.content.locales.subtitleDescription"
-          class="mt-4"
+          v-if="contactFormEnabled" :title="props.sectionData.content.locales.subtitle"
+          :description="props.sectionData.content.locales.subtitleDescription" class="mt-4"
         />
 
         <!-- Contact Items -->
