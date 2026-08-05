@@ -182,23 +182,6 @@ function initAnimations() {
     },
   )
 
-  // Trust section reveal
-  gsap.fromTo(
-    '.trust-box',
-    { autoAlpha: 0.3, y: 30, scale: 0.97 },
-    {
-      scrollTrigger: {
-        trigger: '.trust-section',
-        start: 'top 85%',
-      },
-      autoAlpha: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.7,
-      ease: 'power2.out',
-    },
-  )
-
   // Contact card reveal
   gsap.fromTo(
     '.contact-card',
@@ -432,42 +415,7 @@ onUnmounted(() => {
       </div>
     </section>
 
-    <!-- SECTION 4: CREDIBILITY / TRUST SIGNALS -->
-    <section class="trust-section">
-      <div class="content-wrapper">
-        <div class="trust-box">
-          <h2 class="trust-title">
-            {{ t.trustTitle }}
-          </h2>
-
-          <div class="trust-grid">
-            <div class="trust-item">
-              <i class="fa-solid fa-circle-check text-emerald" />
-              <span>{{ t.badge1 }}</span>
-            </div>
-            <div class="trust-item">
-              <i class="fa-solid fa-circle-check text-emerald" />
-              <span>{{ t.badge2 }}</span>
-            </div>
-            <div class="trust-item">
-              <i class="fa-solid fa-circle-check text-emerald" />
-              <span>{{ t.badge3 }}</span>
-            </div>
-            <div class="trust-item">
-              <i class="fa-solid fa-circle-check text-emerald" />
-              <span>{{ t.badge4 }}</span>
-            </div>
-          </div>
-
-          <p class="trust-note">
-            <i class="fa-solid fa-quote-left me-2 opacity-50" />
-            {{ t.trustNote }}
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 5: CONTACT FORM -->
+    <!-- SECTION 4: CONTACT FORM -->
     <section id="contact-section" class="contact-section">
       <div class="content-wrapper">
         <div class="contact-card">
@@ -578,7 +526,7 @@ onUnmounted(() => {
           </form>
         </div>
 
-        <!-- SECTION 6: ALTERNATIVE CONTACT OPTIONS -->
+        <!-- SECTION 5: ALTERNATIVE CONTACT OPTIONS -->
         <div class="alt-contact-wrapper">
           <div class="alt-header text-center">
             <h3>{{ t.altTitle }}</h3>
@@ -611,7 +559,7 @@ onUnmounted(() => {
       </div>
     </section>
 
-    <!-- SECTION 7: FOOTER -->
+    <!-- SECTION 6: FOOTER -->
     <footer class="partners-footer">
       <div class="content-wrapper text-center">
         <h4 class="footer-brand">
@@ -1215,81 +1163,6 @@ $text-sub: #cbd5e1;
       color: #cbd5e1 !important;
       line-height: 1.6;
     }
-  }
-}
-
-/* TRUST SECTION */
-.trust-section {
-  padding: 3.5rem 0;
-
-  .trust-box {
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(15, 23, 42, 0.9) 100%);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    border-radius: 24px;
-    padding: 2.5rem 2rem;
-    text-align: center;
-    transition: all 0.4s ease;
-
-    &:hover {
-      border-color: rgba(16, 185, 129, 0.6);
-      box-shadow: 0 20px 50px rgba(16, 185, 129, 0.2);
-    }
-  }
-
-  .trust-title {
-    font-size: 1.55rem;
-    font-weight: 800;
-    color: #ffffff !important;
-    margin-bottom: 1.75rem;
-  }
-
-  .trust-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    margin-bottom: 2rem;
-
-    @media (min-width: 576px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media (min-width: 992px) {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-
-  .trust-item {
-    background: rgba(0, 0, 0, 0.45);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    padding: 0.9rem 1rem;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #ffffff !important;
-    transition: all 0.3s ease;
-
-    &:hover {
-      transform: translateY(-3px) scale(1.03);
-      background: rgba(16, 185, 129, 0.18);
-      border-color: rgba(16, 185, 129, 0.45);
-      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
-    }
-
-    .text-emerald {
-      color: $accent-emerald !important;
-    }
-  }
-
-  .trust-note {
-    font-size: 0.92rem;
-    color: #cbd5e1 !important;
-    max-width: 700px;
-    margin: 0 auto;
-    font-style: italic;
   }
 }
 
