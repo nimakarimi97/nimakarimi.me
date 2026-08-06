@@ -158,7 +158,7 @@ function _onToggleButton() {
   .nav-sidebar-content {
     width: 100%;
     margin: auto 0;
-    padding: 0 2.7rem;
+    padding: 0 min(10%, 2.5rem);
   }
 
   ul.nav-links {

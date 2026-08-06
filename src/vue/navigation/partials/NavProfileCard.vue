@@ -44,13 +44,10 @@ const props = defineProps({
   @include generate-dynamic-styles-with-hash(
     (
       xxxl: (
-        padding: 1.5rem,
+        padding: 0,
       ),
       lg: (
-        padding: 2rem,
-      ),
-      md: (
-        padding: 1.5rem,
+        padding: 1rem,
       ),
     )
   );
