@@ -780,6 +780,7 @@ $text-sub: #cbd5e1;
     margin-bottom: 1rem;
     color: #ffffff !important;
     background: linear-gradient(135deg, #ffffff 50%, #a7f3d0 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
@@ -1075,7 +1076,8 @@ $text-sub: #cbd5e1;
 .offer-section {
   padding: 4rem 0;
   background: rgba(255, 255, 255, 0.03);
-  border-y: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
   .offer-grid {
     display: grid;
