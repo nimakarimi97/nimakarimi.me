@@ -110,7 +110,7 @@ onMounted(() => {
   .contact-right {
     flex: 1 1 0;
     min-width: 0;
-    margin-top: -5rem;
+    margin-top: -2rem;
 
     #my-cal-inline-schedule {
       width: 100%;
