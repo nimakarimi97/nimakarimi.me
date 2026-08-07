@@ -92,24 +92,26 @@ function openWhatsApp(customMsg = null) {
 
     if (currentLang.value === 'fa') {
       text = `سلام نیما
-      *فرم درخواست همکاری*
-      -------------------
-      - *نام و نام‌خانوادگی:* ${name}
-      - *زمینه همکاری:* ${category}
-      - *اینستاگرام / وب‌سایت:* ${instagram}
-      - *نقش / سمت:* 
-      - *توضیحات:* ${msg}
-      -------------------`
+
+*فرم درخواست همکاری*
+-------------------
+- *نام و نام‌خانوادگی:* ${name}
+- *زمینه همکاری:* ${category}
+- *اینستاگرام / وب‌سایت:* ${instagram}
+- *نقش / سمت:* 
+- *توضیحات:* ${msg}
+-------------------`
     } else {
       text = `Hello Nima
-      *Partnership Contact Form*
-      -------------------
-      - *Full Name:* ${name}
-      - *Category:* ${category}
-      - *Instagram / Website:* ${instagram}
-      - *Role / Position:* 
-      - *Message:* ${msg}
-      -------------------`
+
+*Partnership Contact Form*
+-------------------
+- *Full Name:* ${name}
+- *Category:* ${category}
+- *Instagram / Website:* ${instagram}
+- *Role / Position:* 
+- *Message:* ${msg}
+-------------------`
     }
   }
 
@@ -275,9 +277,9 @@ onUnmounted(() => {
           <button class="btn-lang" @click="toggleLanguage">
             <span>{{ t.langToggle }}</span>
           </button>
-          <button class="btn-contact-header" @click="scrollToContact">
+          <!-- <button class="btn-contact-header" @click="scrollToContact">
             {{ t.ctaPrimary }}
-          </button>
+          </button> -->
         </div>
       </div>
     </header>

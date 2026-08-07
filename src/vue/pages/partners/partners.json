@@ -36,13 +36,13 @@
     "cat3": "مشاور / نماینده فروش / بازاریاب",
     "cat4": "اینفلوئنسر / تولیدکننده محتوا",
     "cat5": "سایر موارد",
-    "fieldCity": "شهر / استان محل فعالیت",
+    "fieldCity": "شهر",
     "fieldInstagram": "آیدی اینستاگرام یا پیج کاری (اختیاری)",
     "fieldPhone": "شماره تماس یا واتساپ",
     "fieldEmail": "آدرس ایمیل",
     "fieldMessage": "توضیحات مختصر / زمینه همکاری مورد نظر",
     "placeholderName": "نام و نام خانوادگی",
-    "placeholderCity": "تهران / شیراز / اصفهان...",
+    "placeholderCity": "شهر / استان محل فعالیت",
     "placeholderInstagram": "آیدی اینستاگرام / پیج کاری",
     "placeholderPhone": "۰۹۱۲...",
     "placeholderEmail": "name@example.com",
@@ -58,7 +58,7 @@
     "btnWhatsapp": "چت مستقیم در واتساپ",
     "btnInstagram": "دایرکت در اینستاگرام",
     "btnEmail": "ارسال ایمیل مستقیم",
-    "footerTagline": "گروه تجهیزات زیبایی و محصولات پوستی اروپا — توسعه بازار ایران",
+    "footerTagline": "گروه تجهیزات زیبایی و محصولات پوستی اروپا",
     "copyright": "© ۲۰۲۶ نیما کریمی. تمامی حقوق محفوظ است."
   },
   "en": {
@@ -98,7 +98,7 @@
     "cat3": "Consultant or sales rep",
     "cat4": "Influencer or content creator",
     "cat5": "Other",
-    "fieldCity": "City / Region in Iran",
+    "fieldCity": "City",
     "fieldInstagram": "Instagram handle or business page (optional)",
     "fieldPhone": "Phone / WhatsApp number",
     "fieldEmail": "Email Address",
@@ -120,7 +120,7 @@
     "btnWhatsapp": "WhatsApp Chat",
     "btnInstagram": "Instagram DM",
     "btnEmail": "Send Direct Email",
-    "footerTagline": "European Beauty & Skincare Group — Business Development in Iran",
+    "footerTagline": "European Beauty & Skincare Group",
     "copyright": "© 2026 Nima Karimi. All rights reserved."
   }
 }
