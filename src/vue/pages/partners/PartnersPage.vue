@@ -19,6 +19,8 @@ function toggleLanguage() {
   }
 }
 
+const WHATSAPP_NUMBER = '989375740341'
+
 // Form state
 const formData = ref({
   fullName: '',
@@ -81,12 +83,38 @@ async function handleSubmit() {
 }
 
 function openWhatsApp(customMsg = null) {
-  const text = customMsg || (currentLang.value === 'fa'
-    ? `سلام نیما، من ${formData.value.fullName || 'یکی از مخاطبان پیج'} هستم در زمینه ${formData.value.category || 'توسعه همکاری'} مایل به گفتگو هستم.`
-    : `Hello Nima, my name is ${formData.value.fullName || 'a contact'}. I would like to discuss partnership regarding ${formData.value.category || 'business opportunity'}.`)
+  let text = customMsg
+  if (!text) {
+    const name = formData.value.fullName?.trim() || ''
+    const category = formData.value.category?.trim() || ''
+    const instagram = formData.value.instagram?.trim() || ''
+    const msg = formData.value.message?.trim() || ''
+
+    if (currentLang.value === 'fa') {
+      text = `سلام نیما
+      *فرم درخواست همکاری*
+      -------------------
+      - *نام و نام‌خانوادگی:* ${name}
+      - *زمینه همکاری:* ${category}
+      - *اینستاگرام / وب‌سایت:* ${instagram}
+      - *نقش / سمت:* 
+      - *توضیحات:* ${msg}
+      -------------------`
+    } else {
+      text = `Hello Nima
+      *Partnership Contact Form*
+      -------------------
+      - *Full Name:* ${name}
+      - *Category:* ${category}
+      - *Instagram / Website:* ${instagram}
+      - *Role / Position:* 
+      - *Message:* ${msg}
+      -------------------`
+    }
+  }
 
   const encoded = encodeURIComponent(text)
-  window.open(`https://wa.me/?text=${encoded}`, '_blank')
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`, '_blank')
 }
 
 // Strings dictionary computed from external JSON
@@ -535,7 +563,7 @@ onUnmounted(() => {
 
           <div class="alt-buttons-grid">
             <a
-              href="https://wa.me/4915781234567" target="_blank" rel="noopener noreferrer" class="alt-btn btn-wa"
+              :href="`https://wa.me/${WHATSAPP_NUMBER}`" target="_blank" rel="noopener noreferrer" class="alt-btn btn-wa"
               @click.prevent="openWhatsApp()"
             >
               <i class="fa-brands fa-whatsapp" />
