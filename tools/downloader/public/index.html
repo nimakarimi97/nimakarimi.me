@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Downloader · nimakarimi.me</title>
+    <style>
+      :root {
+        --bg: #0f1115;
+        --card: #191c23;
+        --border: #2a2f3a;
+        --text: #e8eaed;
+        --muted: #9aa0aa;
+        --accent: #4f8cff;
+        --accent-2: #7c5cff;
+        --ok: #35c46b;
+        --err: #ff5c66;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: radial-gradient(1200px 600px at 20% -10%, #1b2030 0%, var(--bg) 60%);
+        color: var(--text);
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 48px 16px;
+      }
+      .wrap {
+        width: 100%;
+        max-width: 640px;
+      }
+      h1 {
+        font-size: 1.6rem;
+        margin: 0 0 4px;
+      }
+      .sub {
+        color: var(--muted);
+        margin: 0 0 24px;
+        font-size: 0.95rem;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      }
+      label {
+        display: block;
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin: 0 0 6px;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 12px 14px;
+        background: #11141a;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        color: var(--text);
+        font-size: 1rem;
+        outline: none;
+      }
+      input:focus,
+      select:focus {
+        border-color: var(--accent);
+      }
+      .row {
+        display: flex;
+        gap: 12px;
+        margin-top: 16px;
+      }
+      .row > div {
+        flex: 1;
+      }
+      button {
+        margin-top: 20px;
+        width: 100%;
+        padding: 13px 16px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          opacity 0.2s,
+          transform 0.05s;
+      }
+      button:hover {
+        opacity: 0.92;
+      }
+      button:active {
+        transform: translateY(1px);
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .bar-wrap {
+        margin-top: 20px;
+        height: 10px;
+        background: #11141a;
+        border-radius: 999px;
+        overflow: hidden;
+        display: none;
+      }
+      .bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        transition: width 0.2s ease;
+      }
+      .status {
+        margin-top: 14px;
+        font-size: 0.9rem;
+        min-height: 20px;
+      }
+      .status.ok {
+        color: var(--ok);
+      }
+      .status.err {
+        color: var(--err);
+      }
+      .log {
+        margin-top: 14px;
+        max-height: 180px;
+        overflow: auto;
+        background: #0c0e12;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.78rem;
+        color: var(--muted);
+        white-space: pre-wrap;
+        display: none;
+      }
+      .warn {
+        margin-top: 16px;
+        padding: 12px 14px;
+        border: 1px solid #7a5b18;
+        background: #2a2310;
+        color: #f0c964;
+        border-radius: 10px;
+        font-size: 0.85rem;
+        display: none;
+      }
+      .foot {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 0.78rem;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Video Downloader</h1>
+      <p class="sub">Paste a YouTube or Instagram link and download it locally in the best quality.</p>
+
+      <div class="card">
+        <div id="ytdlpWarn" class="warn">
+          ⚠️ <b>yt-dlp not found.</b> Install it first: <code>brew install yt-dlp ffmpeg</code>
+        </div>
+
+        <label for="url">Video URL</label>
+        <input
+          id="url"
+          type="url"
+          placeholder="https://www.youtube.com/watch?v=... or instagram.com/reel/..."
+          autocomplete="off"
+        />
+
+        <div class="row">
+          <div>
+            <label for="quality">Quality</label>
+            <select id="quality">
+              <option value="best">Best available</option>
+              <option value="2160">2160p (4K)</option>
+              <option value="1440">1440p (2K)</option>
+              <option value="1080" selected>1080p (Full HD)</option>
+              <option value="720">720p (HD)</option>
+              <option value="480">480p</option>
+              <option value="audio">Audio only (MP3)</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="go">Download</button>
+
+        <div class="bar-wrap" id="barWrap"><div class="bar" id="bar"></div></div>
+        <div class="status" id="status"></div>
+        <pre class="log" id="log"></pre>
+      </div>
+
+      <p class="foot">Runs locally on your machine · Files saved to the downloads folder</p>
+    </div>
+
+    <script>
+      const $ = (id) => document.getElementById(id)
+      const urlEl = $('url')
+      const qualityEl = $('quality')
+      const goEl = $('go')
+      const barWrap = $('barWrap')
+      const bar = $('bar')
+      const statusEl = $('status')
+      const logEl = $('log')
+
+      // Check yt-dlp availability on load.
+      fetch('/api/health')
+        .then((r) => r.json())
+        .then((d) => {
+          if (!d.ytDlp) $('ytdlpWarn').style.display = 'block'
+        })
+        .catch(() => {})
+
+      let source = null
+
+      function setStatus(text, kind = '') {
+        statusEl.textContent = text
+        statusEl.className = 'status' + (kind ? ' ' + kind : '')
+      }
+
+      function appendLog(line) {
+        logEl.style.display = 'block'
+        logEl.textContent += line + '\n'
+        logEl.scrollTop = logEl.scrollHeight
+      }
+
+      function reset(disabled) {
+        goEl.disabled = disabled
+        goEl.textContent = disabled ? 'Downloading…' : 'Download'
+      }
+
+      function start() {
+        const url = urlEl.value.trim()
+        if (!url) {
+          setStatus('Please paste a video URL.', 'err')
+          return
+        }
+
+        if (source) source.close()
+        logEl.textContent = ''
+        logEl.style.display = 'none'
+        barWrap.style.display = 'block'
+        bar.style.width = '0%'
+        setStatus('Connecting…')
+        reset(true)
+
+        const q = encodeURIComponent(qualityEl.value)
+        const u = encodeURIComponent(url)
+        source = new EventSource(`/api/download?url=${u}&quality=${q}`)
+
+        source.addEventListener('progress', (e) => {
+          const { percent } = JSON.parse(e.data)
+          bar.style.width = percent + '%'
+          setStatus(`Downloading… ${percent.toFixed(1)}%`)
+        })
+
+        source.addEventListener('log', (e) => appendLog(JSON.parse(e.data).line))
+
+        source.addEventListener('done', (e) => {
+          const { file, dir } = JSON.parse(e.data)
+          bar.style.width = '100%'
+          setStatus('✅ Done! Saved to: ' + (file || dir), 'ok')
+          reset(false)
+          source.close()
+        })
+
+        source.addEventListener('error', (e) => {
+          let msg = 'Download failed.'
+          try {
+            msg = JSON.parse(e.data).message
+          } catch {}
+          setStatus('❌ ' + msg, 'err')
+          reset(false)
+          source.close()
+        })
+
+        source.onerror = () => {
+          // Connection dropped without an explicit error event.
+          if (goEl.disabled) {
+            setStatus('❌ Connection lost.', 'err')
+            reset(false)
+          }
+          source.close()
+        }
+      }
+
+      goEl.addEventListener('click', start)
+      urlEl.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') start()
+      })
+    </script>
+  </body>
+</html>

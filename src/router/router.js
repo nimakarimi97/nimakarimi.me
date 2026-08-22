@@ -42,6 +42,11 @@ export function createAppRouter() {
       component: () => import('../vue/sections/instagram-tracker/InstagramTracker.vue'),
     },
     {
+      path: '/downloader',
+      name: 'Downloader',
+      component: () => import('../vue/pages/downloader/DownloaderPage.vue'),
+    },
+    {
       path: '/cv',
       redirect: () => {
         window.location.href = '/data/NimaKarimiCV.pdf'

@@ -5,6 +5,16 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   base: '/',
   plugins: [vue()],
+  server: {
+    proxy: {
+      // Proxy downloader API to the local backend (tools/downloader/server.mjs)
+      '/api/downloader': {
+        target: 'http://localhost:8787',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api\/downloader/, '/api'),
+      },
+    },
+  },
   build: {
     rollupOptions: {
       output: {

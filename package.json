@@ -17,6 +17,7 @@
     "preview": "vite preview",
     "test:e2e": "playwright test",
     "deploy": "cp CNAME dist/ && cd dist && cp index.html 404.html",
+    "downloader": "node tools/downloader/server.mjs",
     "prepare": "husky"
   },
   "dependencies": {
