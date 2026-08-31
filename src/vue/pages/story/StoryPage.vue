@@ -172,33 +172,82 @@ function initAnimations() {
       anticipatePin: 1,
     })
 
+    // ── Hero Zoom Portal ─────────────────────────────────────────────────────
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '.s-hero-portal',
+        start: 'top top',
+        end: '+=1500',
+        pin: true,
+        pinSpacing: true,
+        scrub: 0.8,
+        anticipatePin: 1,
+      },
+    })
+      .to('.portal-zoom-sub', { opacity: 0, y: -24, duration: 0.2 }, 0)
+      .to('.portal-zoom-title', {
+        scale: 42,
+        opacity: 0,
+        transformOrigin: '50% 50%',
+        duration: 0.9,
+        ease: 'power2.inOut',
+      }, 0.05)
+      .fromTo(
+        '.hero-portal-bg',
+        { scale: 0.72, opacity: 0, filter: 'blur(10px)' },
+        { scale: 1, opacity: 1, filter: 'blur(0px)', duration: 0.95, ease: 'power2.out' },
+        0.05,
+      )
+      .fromTo(
+        '.pbc-gear-1',
+        { rotation: 0 },
+        { rotation: 220, duration: 1, ease: 'none' },
+        0,
+      )
+      .fromTo(
+        '.pbc-gear-2',
+        { rotation: 0 },
+        { rotation: -220, duration: 1, ease: 'none' },
+        0,
+      )
+      .to('.hero-portal-bg', { opacity: 0.05, duration: 0.15 }, 0.9)
+
     // ── Scene 1: Origin ──────────────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-origin') })
-      .from('.s1-bg-text', { opacity: 0, scale: 0.85, duration: 0.5 })
+      .fromTo(
+        '.s1-bg-text',
+        { opacity: 0, y: 70, scale: 0.85 },
+        { opacity: 0.2, y: -40, scale: 1.12, duration: 0.65, ease: 'power2.out' },
+        0,
+      )
       .from('.s1-chapter', { opacity: 0, y: -24, duration: 0.25 }, 0.05)
       .from('.s1-title .w', {
-        y: 100,
+        y: 90,
         opacity: 0,
+        rotateX: 35,
         stagger: 0.05,
         duration: 0.5,
         ease: 'power3.out',
       }, 0.15)
       .from('.s1-subtitle', { y: 40, opacity: 0, duration: 0.4 }, 0.45)
       .from('.s1-detail', { y: 20, opacity: 0, duration: 0.3 }, 0.65)
-      .from('.s1-gear', {
-        rotation: -180,
-        scale: 0,
-        opacity: 0,
-        filter: 'drop-shadow(0 0 0px rgba(100, 200, 255, 0))',
-        duration: 0.7,
-        ease: 'back.out(1.7)',
-      }, 0.65)
-      .to('.s1-gear', {
-        filter: 'drop-shadow(0 0 20px rgba(100, 200, 255, 0.6))',
-        duration: 0.5,
-        ease: 'sine.inOut',
-        yoyo: true,
-      }, 0.8)
+      .fromTo(
+        '.s1-gear',
+        { rotation: -360, scale: 0, opacity: 0 },
+        { rotation: 0, scale: 1.15, opacity: 1, duration: 0.7, ease: 'back.out(1.7)' },
+        0.4,
+      )
+      .to(
+        '.s1-gear',
+        {
+          rotation: 120,
+          scale: 1,
+          filter: 'drop-shadow(0 0 25px rgba(59, 130, 246, 0.7))',
+          duration: 0.4,
+          ease: 'power1.out',
+        },
+        0.75,
+      )
 
     // ── Scene 2: Robotics ────────────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-robotics') })
@@ -210,39 +259,68 @@ function initAnimations() {
         duration: 0.5,
         ease: 'power3.out',
       }, 0.1)
-      .from('.s2-robot', { scale: 0, opacity: 0, rotation: -30, duration: 0.7, ease: 'back.out(1.7)' }, 0.35)
+      .from('.s2-robot', { scale: 0.6, opacity: 0, y: 50, duration: 0.6, ease: 'back.out(1.5)' }, 0.2)
       .to('.sr-drone-container', {
-        y: -20,
-        filter: 'drop-shadow(0 20px 40px rgba(100, 200, 255, 0.3))',
-        duration: 0.8,
+        y: -28,
+        x: 14,
+        rotation: 5,
+        filter: 'drop-shadow(0 25px 50px rgba(59, 130, 246, 0.4))',
+        duration: 0.7,
         ease: 'power2.inOut',
-      }, 0.5)
+      }, 0.35)
       .to('.sr-drone .sr-prop span', {
-        rotation: 360,
+        rotation: 1080,
         duration: 0.8,
         ease: 'none',
-      }, 0.5)
+      }, 0.35)
       .to('.sr-drone-light', {
-        opacity: 0.8,
-        filter: 'drop-shadow(0 0 15px rgba(255, 150, 0, 0.6))',
-        duration: 0.6,
+        opacity: 1,
+        scale: 1.4,
+        filter: 'drop-shadow(0 0 25px rgba(255, 165, 0, 0.8))',
+        duration: 0.5,
         ease: 'power2.inOut',
       }, 0.4)
+      .fromTo('.robot-joint-1', { rotation: -20 }, { rotation: 15, duration: 0.6, ease: 'power2.inOut' }, 0.4)
+      .fromTo('.robot-joint-2', { rotation: 30 }, { rotation: -20, duration: 0.6, ease: 'power2.inOut' }, 0.45)
+      .fromTo('.gripper-l', { x: -6 }, { x: 0, duration: 0.4 }, 0.6)
+      .fromTo('.gripper-r', { x: 6 }, { x: 0, duration: 0.4 }, 0.6)
+      .fromTo('.robot-spark', { y: 25, opacity: 0 }, { y: -35, opacity: 0.8, stagger: 0.05, duration: 0.6 }, 0.3)
       .from('.s2-paper', { y: -70, opacity: 0, duration: 0.5 }, 0.75)
       .from('.s2-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 0.95)
 
     // ── Scene 3: Code revelation ─────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-code', PIN_LONG) })
       .from('.s3-chapter', { opacity: 0, duration: 0.2 }, 0.05)
-      .from('.s3-code-bg .cl', { opacity: 0, x: 40, stagger: 0.03, duration: 0.3 }, 0)
-      .from('.s3-hate', { opacity: 0, y: 70, duration: 0.5 }, 0.15)
-      .from('.s3-strike', { scaleX: 0, transformOrigin: 'left center', duration: 0.4 }, 0.6)
-      .from('.s3-love', { opacity: 0, y: 70, duration: 0.5 }, 0.6)
+      .fromTo(
+        '.s3-code-bg .cl',
+        { opacity: 0, x: i => (i % 2 === 0 ? 60 : -60) },
+        { opacity: 0.25, x: 0, stagger: 0.02, duration: 0.4 },
+        0,
+      )
+      .from('.s3-hate', { opacity: 0, y: 60, scale: 0.95, duration: 0.4 }, 0.1)
+      .fromTo(
+        '.s3-strike',
+        { scaleX: 0 },
+        { scaleX: 1, transformOrigin: 'left center', duration: 0.35, ease: 'power3.out' },
+        0.45,
+      )
+      .fromTo(
+        '.s3-love',
+        { opacity: 0, y: 60, scale: 0.8 },
+        { opacity: 1, y: 0, scale: 1.12, duration: 0.5, ease: 'back.out(1.7)' },
+        0.5,
+      )
+      .to('.s3-love', { scale: 1, duration: 0.2 }, 0.8)
       .from('.s3-subtitle', { opacity: 0, y: 30, duration: 0.4 }, 0.9)
 
     // ── Scene 4: COVID ───────────────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-covid') })
-      .from('.s4-year', { opacity: 0, scale: 1.1, duration: 0.4 }, 0)
+      .fromTo(
+        '.s4-year',
+        { opacity: 0, scale: 0.8, y: 40 },
+        { opacity: 0.18, scale: 1.15, y: -25, duration: 0.6 },
+        0,
+      )
       .from('.s4-chapter', { opacity: 0, y: -24, duration: 0.25 }, 0.05)
       .from('.s4-title .w', {
         y: 80,
@@ -251,9 +329,26 @@ function initAnimations() {
         duration: 0.5,
         ease: 'power3.out',
       }, 0.2)
+      .fromTo(
+        '.rt-mac',
+        { rotateX: 25, opacity: 0, scale: 0.85 },
+        { rotateX: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.4)' },
+        0.15,
+      )
+      .fromTo('.rt-l1', { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.15 }, 0.35)
+      .fromTo('.rt-l2', { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.15 }, 0.45)
+      .fromTo('.rt-l3', { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.15 }, 0.55)
+      .fromTo('.rt-l4', { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.15 }, 0.65)
+      .fromTo('.rt-l5', { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.15 }, 0.72)
       .from('.s4-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 0.55)
-      .from('.s4-techs .tc', { y: 22, opacity: 0, stagger: 0.07, duration: 0.35 }, 0.65)
-      .from('.s4-mac-robot', { scale: 0.85, opacity: 0, duration: 0.6, ease: 'back.out(1.5)' }, 0.4)
+      .from('.s4-techs .tc', {
+        y: 35,
+        opacity: 0,
+        scale: 0.8,
+        stagger: 0.06,
+        duration: 0.4,
+        ease: 'back.out(1.6)',
+      }, 0.5)
 
     // ── Scene 5: Academia ────────────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-academia', PIN_EASE + 200) })
@@ -265,41 +360,56 @@ function initAnimations() {
         duration: 0.5,
         ease: 'power3.out',
       }, 0.1)
-      .from('.s5-uni', { scale: 0.85, opacity: 0, duration: 0.5, ease: 'back.out' }, 0.35)
+      .fromTo(
+        '.s5-arches .arch',
+        { scale: 0.3, opacity: 0, y: 60 },
+        { scale: 1, opacity: 0.8, y: 0, stagger: 0.08, duration: 0.6, ease: 'power2.out' },
+        0.1,
+      )
+      .from('.s5-uni', { scale: 0.85, opacity: 0, y: 40, duration: 0.5, ease: 'back.out(1.5)' }, 0.3)
       .from('.s5-visual', { scale: 0.95, opacity: 0, duration: 0.5, ease: 'power3.out' }, 0.4)
       .from('.s5-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 0.55)
-      .from('.s5-acts .ac', { x: -50, opacity: 0, stagger: 0.1, duration: 0.4 }, 0.65)
-      .from('.s5-arches .arch', { scale: 0, opacity: 0, stagger: 0.12, duration: 0.5, ease: 'back.out' }, 0.1)
+      .from('.s5-acts .ac', { x: -40, opacity: 0, stagger: 0.08, duration: 0.4, ease: 'power2.out' }, 0.55)
 
     // ── Scene 6: Challenges ──────────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-challenges', PIN_EASE + 200) })
       .from('.s6-chapter', { opacity: 0, duration: 0.2 }, 0.05)
-      .from('.s6-n1', { opacity: 0, y: 50, duration: 0.4 }, 0.15)
-      .from('.s6-n2', { opacity: 0, y: 50, duration: 0.4 }, 0.35)
-      .from('.s6-n3', { opacity: 0, y: 50, duration: 0.4 }, 0.55)
-      .from('.s6-divider', { scaleX: 0, transformOrigin: 'center', duration: 0.6 }, 0.75)
-      .from('.s6-persist', {
-        opacity: 0,
-        y: 80,
-        filter: 'blur(12px)',
-        duration: 0.7,
-      }, 1.0)
+      .from('.s6-n1', { opacity: 0, y: 35, duration: 0.35 }, 0.1)
+      .from('.s6-n2', { opacity: 0, y: 35, duration: 0.35 }, 0.25)
+      .from('.s6-n3', { opacity: 0, y: 35, duration: 0.35 }, 0.4)
+      .fromTo('.s6-divider', { scaleX: 0 }, { scaleX: 1, transformOrigin: 'center', duration: 0.45 }, 0.55)
+      .fromTo(
+        '.s6-persist',
+        { opacity: 0, scale: 0.8, y: 50 },
+        { opacity: 1, scale: 1.1, y: 0, duration: 0.55, ease: 'power2.out' },
+        0.6,
+      )
+      .to('.s6-persist', { scale: 1, duration: 0.2 }, 0.85)
 
     // ── Scene 7: Breakthrough ────────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-breakthrough', PIN_LONG) })
-      .from('.s7-glow', { scale: 0, opacity: 0, duration: 0.8, ease: 'power2.out' }, 0)
+      .fromTo(
+        '.s7-glow',
+        { scale: 0, opacity: 0 },
+        { scale: 2.2, opacity: 0.85, duration: 0.8, ease: 'power2.out' },
+        0,
+      )
       .from('.s7-chapter', { opacity: 0, duration: 0.2 }, 0.05)
-      .from('.s7-title .w', {
+      .fromTo(
+        '.s7-title .w',
+        { clipPath: 'inset(0 100% 0 0)', opacity: 0, y: 30 },
+        { clipPath: 'inset(0 0% 0 0)', opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
+        0.15,
+      )
+      .from('.s7-title', { opacity: 0, y: 40, duration: 0.5 }, 0.2)
+      .from('.s7-steps .step', {
+        x: -60,
         opacity: 0,
-        clipPath: 'inset(0 100% 0 0)',
-        duration: 0.6,
-      }, 0.2)
-      .from('.s7-title', {
-        opacity: 0,
-        y: 40,
-        duration: 0.5,
-      }, 0.2)
-      .from('.s7-steps .step', { x: -80, opacity: 0, stagger: 0.15, duration: 0.5 }, 0.45)
+        scale: 0.92,
+        stagger: 0.1,
+        duration: 0.45,
+        ease: 'back.out(1.4)',
+      }, 0.4)
       .from('.s7-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 0.8)
 
     // ── Scene 8: Evolution ───────────────────────────────────────────────────
@@ -312,9 +422,16 @@ function initAnimations() {
         duration: 0.5,
         ease: 'power3.out',
       }, 0.1)
-      .from('.s8-stack .si', { y: 50, opacity: 0, stagger: 0.08, duration: 0.4 }, 0.45)
-      .from('.s8-stack .sa', { opacity: 0, duration: 0.3, stagger: 0.08 }, 0.5)
-      .from('.s8-badge', { scale: 0.85, opacity: 0, duration: 0.5 }, 0.75)
+      .from('.s8-stack .si', {
+        y: 45,
+        opacity: 0,
+        scale: 0.85,
+        stagger: 0.07,
+        duration: 0.4,
+        ease: 'back.out(1.5)',
+      }, 0.35)
+      .fromTo('.s8-stack .sa', { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, stagger: 0.07, duration: 0.3 }, 0.45)
+      .from('.s8-badge', { scale: 0.8, opacity: 0, y: 25, duration: 0.45, ease: 'back.out(1.5)' }, 0.7)
       .from('.s8-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 0.9)
 
     return () => {
@@ -324,6 +441,18 @@ function initAnimations() {
 
   // ── Tablet & Mobile: entrance reveals (no pins) ───────────────────────────
   mm.add('(max-width: 1023px)', () => {
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '.s-hero-portal',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    })
+      .to('.portal-zoom-title', { scale: 2.2, opacity: 0, ease: 'power1.in' })
+      .to('.portal-zoom-sub', { opacity: 0 }, 0)
+      .fromTo('.hero-portal-bg', { opacity: 0, scale: 0.85 }, { scale: 1.1, opacity: 0.8 }, 0)
+
     document.querySelectorAll('.scene').forEach((scene) => {
       gsap.timeline({
         scrollTrigger: {
@@ -351,6 +480,7 @@ function initAnimations() {
 
   // ── Background color transitions (all screen sizes) ────────────────────────
   const bgMap = [
+    ['.s-hero-portal', '#06080f'],
     ['.scene-origin', '#06080f'],
     ['.scene-robotics', '#080b18'],
     ['.scene-code', '#0a0b1e'],
@@ -472,16 +602,55 @@ onUnmounted(() => {
       <i class="fa-solid fa-chevron-down" />
     </div>
 
-    <!-- ── Hero Intro ────────────────────────────────────────── -->
-    <div ref="heroSection" class="s-hero">
-      <div class="hero-content">
-        <h1 class="hero-title">
+    <!-- ── Hero Zoom Portal (Every Expert Started Somewhere) ────── -->
+    <div ref="heroSection" class="s-hero s-hero-portal">
+      <!-- Section 2 Content Sitting Behind The Letters -->
+      <div class="hero-portal-bg" aria-hidden="true">
+        <div class="portal-grid-lines" />
+        <div class="portal-ambient-glow" />
+
+        <div class="portal-behind-content">
+          <div class="pbc-badge">
+            <span class="pbc-badge-icon">🎓</span>
+            <span class="pbc-badge-text">2015 · WHERE IT ALL BEGAN</span>
+          </div>
+
+          <h2 class="pbc-heading">
+            <span class="pbc-heading-title">Into Robotics & Physical Systems</span>
+          </h2>
+
+          <div class="pbc-visual">
+            <div class="pbc-orbit">
+              <div class="pbc-gear pbc-gear-1">
+                <i class="fa-solid fa-gear" />
+              </div>
+              <div class="pbc-gear pbc-gear-2">
+                <i class="fa-solid fa-gear" />
+              </div>
+            </div>
+
+            <div class="pbc-core">
+              <i class="fa-solid fa-robot" />
+              <div class="pbc-core-pulse" />
+            </div>
+          </div>
+
+          <div class="pbc-hint">
+            <span>{{ getString('story_scroll_hint') }}</span>
+            <i class="fa-solid fa-chevron-down" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Foreground Scaling Typography -->
+      <div class="hero-content portal-text-layer">
+        <h1 class="hero-title portal-zoom-title">
           <span>{{ getString('story_hero_title_1') }}</span>
           <span>{{ getString('story_hero_title_2') }}</span>
           <span>{{ getString('story_hero_title_3') }}</span>
           <span>{{ getString('story_hero_title_4') }}</span>
         </h1>
-        <p class="hero-subtitle">
+        <p class="hero-subtitle portal-zoom-sub">
           {{ getString('story_hero_subtitle') }}
         </p>
       </div>
@@ -1341,79 +1510,247 @@ $code-green: #39ff14;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Hero intro
+// Hero Zoom Portal (Text Scale & Fly-Through)
 // ─────────────────────────────────────────────────────────────────────────────
-.s-hero {
+.s-hero-portal {
   position: relative;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(140deg, #06080f 0%, #080c1a 100%);
+  background: radial-gradient(circle at center, #090e20 0%, #06080f 100%);
   z-index: 1;
+  perspective: 1200px;
 
-  .hero-content {
-    text-align: center;
-    z-index: 2;
+  .hero-portal-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    pointer-events: none;
+    transform-origin: center center;
+    will-change: transform, opacity, filter;
+    opacity: 0;
   }
-}
 
-.hero-title {
-  font-family: $font-head;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
-  font-size: clamp(2.5rem, 6vw, 5.5rem);
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.025em;
-  color: $text;
-  margin-bottom: 24px;
+  .portal-grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(59, 130, 246, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 75%);
+  }
 
-  span {
-    display: block;
+  .portal-ambient-glow {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.22) 0%, rgba(139, 92, 246, 0.15) 45%, transparent 70%);
+    filter: blur(50px);
+  }
+
+  .portal-behind-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    padding: 0 24px;
+  }
+
+  .pbc-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    backdrop-filter: blur(8px);
+    margin-bottom: 20px;
+
+    .pbc-badge-icon {
+      font-size: 1rem;
+    }
+    .pbc-badge-text {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      font-weight: 700;
+      color: $accent;
+    }
+  }
+
+  .pbc-heading {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    .pbc-heading-title {
+      font-family: $font-head;
+      font-size: clamp(2rem, 4.5vw, 3.8rem);
+      font-weight: 800;
+      color: $text;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff 0%, rgba(200, 225, 255, 0.85) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+
+  .pbc-visual {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    .pbc-orbit {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .pbc-gear {
+      position: absolute;
+      color: rgba(59, 130, 246, 0.5);
+      filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.4));
+    }
+
+    .pbc-gear-1 {
+      top: 10px;
+      left: 15px;
+      font-size: 2.2rem;
+    }
+
+    .pbc-gear-2 {
+      bottom: 12px;
+      right: 15px;
+      font-size: 1.7rem;
+      color: rgba(139, 92, 246, 0.5);
+    }
+
+    .pbc-core {
+      position: relative;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #60a5fa;
+      font-size: 1.5rem;
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+
+      .pbc-core-pulse {
+        position: absolute;
+        inset: -6px;
+        border-radius: 50%;
+        border: 1px dashed rgba(59, 130, 246, 0.35);
+        animation: rotateCore 12s linear infinite;
+      }
+    }
+  }
+
+  .pbc-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba($text, 0.4);
+    animation: pbcBounce 2s ease-in-out infinite;
+
+    i {
+      font-size: 0.65rem;
+      color: $accent;
+    }
+  }
+
+  .portal-text-layer {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    pointer-events: none;
+    transform-origin: center center;
+    will-change: transform, opacity;
+  }
+
+  .portal-zoom-title {
+    font-family: $font-head;
+    font-optical-sizing: auto;
+    font-size: clamp(2.8rem, 6.5vw, 6rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: $text;
+    margin-bottom: 24px;
+    text-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.8),
+      0 0 60px rgba(59, 130, 246, 0.25);
+    transform-origin: center center;
+    will-change: transform, opacity;
+
+    span {
+      display: block;
+    }
+
+    span:nth-child(4) {
+      background: linear-gradient(135deg, $accent 0%, $purple 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+
+  .portal-zoom-sub {
+    font-size: clamp(0.85rem, 1.5vw, 1.25rem);
+    color: $accent;
+    line-height: 1.6;
+    max-width: 700px;
+    letter-spacing: 0.1em;
+    padding: 1rem;
+    margin: 0 auto;
     will-change: opacity, transform;
   }
-
-  span:nth-child(1) {
-    animation: heroFadeIn 0.8s ease-out forwards 0.1s;
-  }
-  span:nth-child(2) {
-    animation: heroFadeIn 0.8s ease-out forwards 0.25s;
-  }
-  span:nth-child(3) {
-    animation: heroFadeIn 0.8s ease-out forwards 0.4s;
-  }
-  span:nth-child(4) {
-    background: linear-gradient(135deg, $accent 0%, $purple 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: heroFadeIn 0.8s ease-out forwards 0.55s;
-  }
 }
 
-.hero-subtitle {
-  font-size: clamp(0.8rem, 1.5vw, 1.25rem);
-  color: $accent;
-  line-height: 1.6;
-  max-width: 700px;
-  letter-spacing: 0.1em;
-  padding: 1rem;
-  margin: 0 auto;
-  animation: heroFadeIn 0.8s ease-out forwards 0.7s;
-  opacity: 0;
-}
-
-@keyframes heroFadeIn {
+@keyframes rotateCore {
   from {
-    opacity: 0;
-    transform: translateY(24px);
+    transform: rotate(0deg);
   }
   to {
-    opacity: 1;
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pbcBounce {
+  0%,
+  100% {
     transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
   }
 }
 
@@ -1499,7 +1836,7 @@ $code-green: #39ff14;
     color: rgba($text, 0.15);
   }
   &.display-title--ghost {
-    color: $ghost;
+    color: rgba($text, 0.42);
   }
   &.display-title--accent {
     background: linear-gradient(135deg, $accent 0%, $purple 100%);
