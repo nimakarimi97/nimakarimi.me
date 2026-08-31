@@ -61,6 +61,7 @@ defineExpose({
     tabindex="-1"
     :aria-labelledby="`${UNIQUE_ID}-label`"
     aria-hidden="true"
+    data-lenis-prevent
   >
     <div class="modal-dialog modal-dialog-centered">
       <!-- Modal Content -->

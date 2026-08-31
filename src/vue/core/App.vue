@@ -1,9 +1,11 @@
 <script setup>
-import { computed, onMounted, provide, ref } from 'vue'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { computed, nextTick, onMounted, onUnmounted, provide, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 import { useData } from '../../composables/data.js'
 import { useLayout } from '../../composables/layout.js'
+import { useLenis } from '../../composables/lenis.js'
 import { useUtils } from '../../composables/utils.js'
 import DownloadButton from '../components/DownloadButton.vue'
 import Layout from '../core/Layout.vue'
@@ -11,6 +13,7 @@ import FeedbackView from './FeedbackView.vue'
 
 const data = useData()
 const layout = useLayout()
+const lenis = useLenis()
 const utils = useUtils()
 const route = useRoute()
 
@@ -39,7 +42,20 @@ async function copyToClipboard(text) {
 provide('clipboardText', clipboardText)
 provide('copyToClipboard', copyToClipboard)
 
+watch(
+  () => route.path,
+  (newPath, oldPath) => {
+    if (newPath !== oldPath) {
+      lenis.scrollTo(0, { immediate: true })
+      nextTick(() => {
+        ScrollTrigger.refresh()
+      })
+    }
+  },
+)
+
 onMounted(() => {
+  lenis.initLenis()
   layout.setFeedbackView(feedbackView)
   if (isStandaloneRoute.value) {
     // On standalone pages (story, partners): load data silently without the preloader overlay
@@ -47,6 +63,10 @@ onMounted(() => {
   } else {
     _startPreloading()
   }
+})
+
+onUnmounted(() => {
+  lenis.destroy()
 })
 
 /**

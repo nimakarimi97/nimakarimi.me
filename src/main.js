@@ -4,6 +4,7 @@ import { useLanguage } from './composables/language.js'
 import { useNavigation } from './composables/navigation.js'
 import { createAppRouter } from './router/router.js'
 import App from './vue/core/App.vue'
+import 'lenis/dist/lenis.css'
 import './scss/style.scss'
 
 const data = useData()

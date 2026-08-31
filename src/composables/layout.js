@@ -3,6 +3,7 @@
  * This composable will implement helper methods that manipulate DOM elements.
  */
 import { useConstants } from './constants.js'
+import { useLenis } from './lenis.js'
 
 const constants = useConstants()
 
@@ -13,6 +14,8 @@ const constants = useConstants()
 let _feedbackView = null
 
 export function useLayout() {
+  const lenis = useLenis()
+
   /**
    * @param {string} breakpoint
    * @return {boolean}
@@ -61,9 +64,11 @@ export function useLayout() {
   const setPageScrollingEnabled = (enabled) => {
     const root = document.getElementsByTagName('html')[0]
     if (!enabled) {
+      lenis.stop()
       document.body.className = constants.HTML_CLASSES.bodyNoScroll
       root.className += ` ${constants.HTML_CLASSES.bodyNoScroll}`
     } else {
+      lenis.start()
       document.body.className = constants.HTML_CLASSES.bodyScroll
       root.className = ''
     }
@@ -116,68 +121,50 @@ export function useLayout() {
    * @param {number} scrollY
    * @param {boolean} withTimeout
    */
-  const instantScrollTo = (scrollY, _withTimeout) => {
+  const instantScrollTo = (scrollY, withTimeout) => {
     _applyAfterTimeout(() => {
-      window.scrollTo({
-        top: scrollY ?? 0,
-        left: 0,
-        behavior: 'instant',
-      })
-    }, 10)
-    // console.log(' instantScrollTo ~ withTimeout:', _withTimeout)
+      lenis.scrollTo(scrollY ?? 0, { immediate: true })
+    }, withTimeout ? 10 : 0)
   }
 
   /**
    * @param {number} scrollY
    * @param {boolean} withTimeout
    */
-  const smoothScrollTo = (scrollY, _withTimeout) => {
+  const smoothScrollTo = (scrollY, withTimeout) => {
     _applyAfterTimeout(() => {
-      window.scrollTo({
-        top: scrollY ?? 0,
-        left: 0,
-        behavior: 'smooth',
-      })
-    }, 100)
-    // console.log(' smoothScrollTo ~ withTimeout:', _withTimeout)
+      lenis.scrollTo(scrollY ?? 0)
+    }, withTimeout ? 50 : 0)
   }
 
   /**
    * @param {string} elementId
    * @param {boolean} withTimeout
    */
-  const instantScrollToElement = (elementId, _withTimeout) => {
-    // console.log(' instantScrollToElement ~ withTimeout:', _withTimeout)
+  const instantScrollToElement = (elementId, withTimeout) => {
     const target = document.getElementById(elementId)
     if (!target) {
       return
     }
 
     _applyAfterTimeout(() => {
-      target.scrollIntoView({
-        behavior: 'instant',
-        block: 'start',
-      })
-    }, 10)
+      lenis.scrollTo(target, { immediate: true })
+    }, withTimeout ? 10 : 0)
   }
 
   /**
    * @param {string} elementId
    * @param {boolean} withTimeout
    */
-  const smoothScrollToElement = (elementId, _withTimeout) => {
-    // console.log(' smoothScrollToElement ~ withTimeout:', _withTimeout)
+  const smoothScrollToElement = (elementId, withTimeout) => {
     const target = document.getElementById(elementId)
     if (!target) {
       return
     }
 
     _applyAfterTimeout(() => {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      })
-    }, 100)
+      lenis.scrollTo(target)
+    }, withTimeout ? 50 : 0)
   }
 
   /**
