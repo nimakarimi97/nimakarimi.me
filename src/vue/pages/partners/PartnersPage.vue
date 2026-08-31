@@ -2,11 +2,14 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { useLenis } from '../../../composables/lenis.js'
 
 // Import localized strings from separate JSON file
 import partnersLocale from './partners.json'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const lenis = useLenis()
 
 // Language toggle state: 'fa' (Persian, default) or 'en' (English)
 const currentLang = ref('fa')
@@ -36,10 +39,7 @@ const isSubmitting = ref(false)
 const submitStatus = ref(null) // null | 'success' | 'error'
 
 function scrollToContact() {
-  const el = document.getElementById('contact-section')
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth' })
-  }
+  lenis.scrollTo('#contact-section')
 }
 
 async function handleSubmit() {

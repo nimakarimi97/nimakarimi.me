@@ -6,6 +6,7 @@ import { useRouter } from 'vue-router'
 import { useConstants } from '../../../composables/constants.js'
 import { useData } from '../../../composables/data.js'
 import { useLanguage } from '../../../composables/language.js'
+import { useLenis } from '../../../composables/lenis.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -13,6 +14,7 @@ const router = useRouter()
 const language = useLanguage()
 const data = useData()
 const constants = useConstants()
+const lenis = useLenis()
 
 // Language dropdown state
 const showLanguageDropdown = ref(false)
@@ -114,7 +116,7 @@ function persistStoryToast() {
 function navigateToResume() {
   persistStoryToast()
 
-  window.scrollTo({ top: 0, behavior: 'instant' })
+  lenis.scrollTo(0, { immediate: true })
   router.push('/about')
 }
 
@@ -157,8 +159,8 @@ function initAnimations() {
 
   // ── Desktop: full pinned scroll-driven experience ─────────────────────────
   mm.add('(min-width: 1024px)', () => {
-    const PIN_EASE = 600
-    const PIN_LONG = 900
+    const PIN_EASE = 1300
+    const PIN_LONG = 1900
 
     const mkTrigger = (selector, dur = PIN_EASE) => ({
       trigger: selector,
@@ -166,7 +168,7 @@ function initAnimations() {
       end: `+=${dur}`,
       pin: true,
       pinSpacing: true,
-      scrub: 1.2,
+      scrub: 0.8,
       anticipatePin: 1,
     })
 
@@ -177,70 +179,70 @@ function initAnimations() {
       .from('.s1-title .w', {
         y: 100,
         opacity: 0,
-        stagger: 0.04,
+        stagger: 0.05,
         duration: 0.5,
         ease: 'power3.out',
       }, 0.15)
-      .from('.s1-subtitle', { y: 40, opacity: 0, duration: 0.4 }, 0.5)
-      .from('.s1-detail', { y: 20, opacity: 0, duration: 0.3 }, 0.7)
+      .from('.s1-subtitle', { y: 40, opacity: 0, duration: 0.4 }, 0.45)
+      .from('.s1-detail', { y: 20, opacity: 0, duration: 0.3 }, 0.65)
       .from('.s1-gear', {
         rotation: -180,
         scale: 0,
         opacity: 0,
         filter: 'drop-shadow(0 0 0px rgba(100, 200, 255, 0))',
-        duration: 0.8,
+        duration: 0.7,
         ease: 'back.out(1.7)',
-      }, 0.7)
+      }, 0.65)
       .to('.s1-gear', {
         filter: 'drop-shadow(0 0 20px rgba(100, 200, 255, 0.6))',
-        duration: 0.6,
+        duration: 0.5,
         ease: 'sine.inOut',
         yoyo: true,
       }, 0.8)
 
     // ── Scene 2: Robotics ────────────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-robotics') })
-      .from('.s2-chapter', { opacity: 0, y: -24, duration: 0.25 })
+      .from('.s2-chapter', { opacity: 0, y: -24, duration: 0.25 }, 0.05)
       .from('.s2-title .w', {
-        x: -120,
+        x: -100,
         opacity: 0,
-        stagger: 1,
+        stagger: 0.08,
         duration: 0.5,
         ease: 'power3.out',
       }, 0.1)
-      .from('.s2-robot', { scale: 0, opacity: 0, rotation: -30, duration: 0.7, ease: 'back.out(1.7)' }, 3.5)
+      .from('.s2-robot', { scale: 0, opacity: 0, rotation: -30, duration: 0.7, ease: 'back.out(1.7)' }, 0.35)
       .to('.sr-drone-container', {
         y: -20,
         filter: 'drop-shadow(0 20px 40px rgba(100, 200, 255, 0.3))',
-        duration: 2,
+        duration: 0.8,
         ease: 'power2.inOut',
-      }, 4.0)
+      }, 0.5)
       .to('.sr-drone .sr-prop span', {
         rotation: 360,
-        duration: 1,
+        duration: 0.8,
         ease: 'none',
-      }, 4.0)
+      }, 0.5)
       .to('.sr-drone-light', {
         opacity: 0.8,
         filter: 'drop-shadow(0 0 15px rgba(255, 150, 0, 0.6))',
-        duration: 1.5,
+        duration: 0.6,
         ease: 'power2.inOut',
-      }, 2.0)
-      .from('.s2-paper', { y: -70, opacity: 0, duration: 0.5 }, 5.8)
-      .from('.s2-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 6.5)
+      }, 0.4)
+      .from('.s2-paper', { y: -70, opacity: 0, duration: 0.5 }, 0.75)
+      .from('.s2-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 0.95)
 
     // ── Scene 3: Code revelation ─────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-code', PIN_LONG) })
-      .from('.s3-chapter', { opacity: 0, duration: 0.2 })
-      .from('.s3-code-bg .cl', { opacity: 0, x: 40, stagger: 0.02, duration: 0.15 }, 0)
-      .from('.s3-hate', { opacity: 0, y: 70, duration: 0.4 }, 0.1)
-      .from('.s3-strike', { scaleX: 0, transformOrigin: 'left center', duration: 0.35 }, 0.5)
-      .from('.s3-love', { opacity: 0, y: 70, duration: 0.4 }, 0.5)
-      .from('.s3-subtitle', { opacity: 0, y: 30, duration: 0.4 }, 0.75)
+      .from('.s3-chapter', { opacity: 0, duration: 0.2 }, 0.05)
+      .from('.s3-code-bg .cl', { opacity: 0, x: 40, stagger: 0.03, duration: 0.3 }, 0)
+      .from('.s3-hate', { opacity: 0, y: 70, duration: 0.5 }, 0.15)
+      .from('.s3-strike', { scaleX: 0, transformOrigin: 'left center', duration: 0.4 }, 0.6)
+      .from('.s3-love', { opacity: 0, y: 70, duration: 0.5 }, 0.6)
+      .from('.s3-subtitle', { opacity: 0, y: 30, duration: 0.4 }, 0.9)
 
     // ── Scene 4: COVID ───────────────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-covid') })
-      .from('.s4-year', { opacity: 0, scale: 1.1, duration: 0.4 })
+      .from('.s4-year', { opacity: 0, scale: 1.1, duration: 0.4 }, 0)
       .from('.s4-chapter', { opacity: 0, y: -24, duration: 0.25 }, 0.05)
       .from('.s4-title .w', {
         y: 80,
@@ -249,13 +251,13 @@ function initAnimations() {
         duration: 0.5,
         ease: 'power3.out',
       }, 0.2)
-      .from('.s4-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 0.6)
-      .from('.s4-techs .tc', { y: 22, opacity: 0, stagger: 0.07, duration: 0.3 }, 0.7)
+      .from('.s4-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 0.55)
+      .from('.s4-techs .tc', { y: 22, opacity: 0, stagger: 0.07, duration: 0.35 }, 0.65)
       .from('.s4-mac-robot', { scale: 0.85, opacity: 0, duration: 0.6, ease: 'back.out(1.5)' }, 0.4)
 
     // ── Scene 5: Academia ────────────────────────────────────────────────────
-    gsap.timeline({ scrollTrigger: mkTrigger('.scene-academia', PIN_EASE + 100) })
-      .from('.s5-chapter', { opacity: 0, y: -24, duration: 0.25 })
+    gsap.timeline({ scrollTrigger: mkTrigger('.scene-academia', PIN_EASE + 200) })
+      .from('.s5-chapter', { opacity: 0, y: -24, duration: 0.25 }, 0.05)
       .from('.s5-title .w', {
         y: 80,
         opacity: 0,
@@ -270,38 +272,39 @@ function initAnimations() {
       .from('.s5-arches .arch', { scale: 0, opacity: 0, stagger: 0.12, duration: 0.5, ease: 'back.out' }, 0.1)
 
     // ── Scene 6: Challenges ──────────────────────────────────────────────────
-    gsap.timeline({ scrollTrigger: mkTrigger('.scene-challenges', PIN_EASE + 100) })
-      .from('.s6-chapter', { opacity: 0, duration: 0.2 })
-      .from('.s6-n1', { opacity: 0, y: 50, duration: 0.4 }, 0.1)
-      .from('.s6-n2', { opacity: 0, y: 50, duration: 0.4 }, 0.25)
-      .from('.s6-n3', { opacity: 0, y: 50, duration: 0.4 }, 0.4)
-      .from('.s6-divider', { scaleX: 0, transformOrigin: 'center', duration: 1 }, 0.6)
+    gsap.timeline({ scrollTrigger: mkTrigger('.scene-challenges', PIN_EASE + 200) })
+      .from('.s6-chapter', { opacity: 0, duration: 0.2 }, 0.05)
+      .from('.s6-n1', { opacity: 0, y: 50, duration: 0.4 }, 0.15)
+      .from('.s6-n2', { opacity: 0, y: 50, duration: 0.4 }, 0.35)
+      .from('.s6-n3', { opacity: 0, y: 50, duration: 0.4 }, 0.55)
+      .from('.s6-divider', { scaleX: 0, transformOrigin: 'center', duration: 0.6 }, 0.75)
       .from('.s6-persist', {
         opacity: 0,
-        y: 100,
-        filter: 'blur(15px)',
-        duration: 2.5,
-      }, 1.7)
+        y: 80,
+        filter: 'blur(12px)',
+        duration: 0.7,
+      }, 1.0)
 
     // ── Scene 7: Breakthrough ────────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-breakthrough', PIN_LONG) })
       .from('.s7-glow', { scale: 0, opacity: 0, duration: 0.8, ease: 'power2.out' }, 0)
-      .from('.s7-chapter', { opacity: 0, duration: 0.2 }, 0)
+      .from('.s7-chapter', { opacity: 0, duration: 0.2 }, 0.05)
       .from('.s7-title .w', {
         opacity: 0,
         clipPath: 'inset(0 100% 0 0)',
-        duration: 2,
+        duration: 0.6,
       }, 0.2)
       .from('.s7-title', {
         opacity: 0,
         y: 40,
+        duration: 0.5,
       }, 0.2)
       .from('.s7-steps .step', { x: -80, opacity: 0, stagger: 0.15, duration: 0.5 }, 0.45)
-      .from('.s7-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 0.9)
+      .from('.s7-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 0.8)
 
     // ── Scene 8: Evolution ───────────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-evolution', PIN_LONG) })
-      .from('.s8-chapter', { opacity: 0, y: -24, duration: 0.25 })
+      .from('.s8-chapter', { opacity: 0, y: -24, duration: 0.25 }, 0.05)
       .from('.s8-title .w', {
         y: 80,
         opacity: 0,
@@ -416,7 +419,7 @@ function initAnimations() {
 // Lifecycle
 // ─────────────────────────────────────────────────────────────────────────────
 onMounted(() => {
-  window.scrollTo({ top: 0, behavior: 'instant' })
+  lenis.scrollTo(0, { immediate: true })
   isTouch = 'ontouchstart' in window
   document.body.classList.add('story-mode')
 
@@ -434,6 +437,7 @@ onMounted(() => {
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       initAnimations()
+      ScrollTrigger.refresh()
     })
   })
 })
