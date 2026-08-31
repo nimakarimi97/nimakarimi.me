@@ -142,14 +142,19 @@ export function useLayout() {
    * @param {boolean} withTimeout
    */
   const instantScrollToElement = (elementId, withTimeout) => {
-    const target = document.getElementById(elementId)
-    if (!target) {
-      return
-    }
-
     _applyAfterTimeout(() => {
-      lenis.scrollTo(target, { immediate: true })
-    }, withTimeout ? 10 : 0)
+      const target = typeof elementId === 'string' ? document.getElementById(elementId) : elementId
+      if (target) {
+        lenis.scrollTo(target, { immediate: true })
+      } else {
+        setTimeout(() => {
+          const el = typeof elementId === 'string' ? document.getElementById(elementId) : elementId
+          if (el) {
+            lenis.scrollTo(el, { immediate: true })
+          }
+        }, 200)
+      }
+    }, withTimeout ? 500 : 0)
   }
 
   /**
@@ -157,14 +162,19 @@ export function useLayout() {
    * @param {boolean} withTimeout
    */
   const smoothScrollToElement = (elementId, withTimeout) => {
-    const target = document.getElementById(elementId)
-    if (!target) {
-      return
-    }
-
     _applyAfterTimeout(() => {
-      lenis.scrollTo(target)
-    }, withTimeout ? 50 : 0)
+      const target = typeof elementId === 'string' ? document.getElementById(elementId) : elementId
+      if (target) {
+        lenis.scrollTo(target)
+      } else {
+        setTimeout(() => {
+          const el = typeof elementId === 'string' ? document.getElementById(elementId) : elementId
+          if (el) {
+            lenis.scrollTo(el)
+          }
+        }, 200)
+      }
+    }, withTimeout ? 500 : 0)
   }
 
   /**

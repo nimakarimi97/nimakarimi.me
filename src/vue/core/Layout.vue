@@ -55,8 +55,9 @@ onMounted(() => {
   )
   _onWindowChangeEvent()
 
-  if (navigation.isAllAtOnceMode()) {
-    layout.smoothScrollToElement(route.name, true)
+  const targetSection = route.name || route.path.replace(/^\//, '')
+  if (navigation.isAllAtOnceMode() && targetSection && targetSection !== 'about' && targetSection !== 'story') {
+    layout.smoothScrollToElement(targetSection, true)
   }
 })
 

@@ -46,7 +46,18 @@ watch(
   () => route.path,
   (newPath, oldPath) => {
     if (newPath !== oldPath) {
-      lenis.scrollTo(0, { immediate: true })
+      const isResumePath = (p) => {
+        if (!p)
+          return false
+        const normalized = p.toLowerCase().replace(/^\//, '')
+        return ['about', 'home', 'experience', 'education', 'skills', 'hobbies', 'contact'].includes(normalized)
+      }
+
+      const isSwitchingResumeSections = isResumePath(newPath) && isResumePath(oldPath) && window.innerWidth >= 992
+
+      if (!isSwitchingResumeSections) {
+        lenis.scrollTo(0, { immediate: true })
+      }
       nextTick(() => {
         ScrollTrigger.refresh()
       })

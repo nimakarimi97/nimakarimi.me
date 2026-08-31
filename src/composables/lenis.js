@@ -88,6 +88,10 @@ export function useLenis() {
       return
     }
 
+    if (_lenis.isStopped) {
+      _lenis.start()
+    }
+
     _lenis.scrollTo(target, {
       offset: 0,
       duration: 1.3,
