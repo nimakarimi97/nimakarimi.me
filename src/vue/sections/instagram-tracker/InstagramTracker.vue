@@ -1,236 +1,384 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import MetricStatCards from './components/MetricStatCards.vue'
+import PastePayloadModal from './components/PastePayloadModal.vue'
+import ScanOptionsCard from './components/ScanOptionsCard.vue'
+import SnapshotHistoryBar from './components/SnapshotHistoryBar.vue'
+import ThemeSwitch from './components/ThemeSwitch.vue'
+import TrackerGuideModal from './components/TrackerGuideModal.vue'
+import {
+  fetchFollowersList,
+  fetchFollowingList,
+  fetchUserProfile,
+  generateBookmarkletHref,
+  generateSyncScript,
+} from './instagramService.js'
+import {
+  clearAllSnapshots,
+  clearSession,
+  computeDiff,
+  deleteSnapshot,
+  getSavedSession,
+  getSavedSnapshots,
+  migrateLegacyData,
+  saveSession,
+  saveSnapshot,
+} from './trackerStorage.js'
 import UserList from './UserList.vue'
 
-// Reactive state
-const isDragging = ref(false)
-const isLoading = ref(false)
+// --- Modals State ---
+const showNewScanModal = ref(false)
+const showPasteModal = ref(false)
+const showHelpModal = ref(false)
+
+// --- Direct Session State ---
+const savedSession = ref({
+  sessionid: '',
+  userId: '',
+  username: '',
+  remember: true,
+})
+const isSyncing = ref(false)
+const syncProgress = ref({ stage: '', fetched: 0, message: '' })
+let abortController = null
+
+const isDark = ref(true)
+
+watch(isDark, (val) => {
+  if (typeof localStorage !== 'undefined') {
+    localStorage.setItem('ig_tracker_theme', val ? 'dark' : 'light')
+  }
+})
+
+// --- General UI State ---
 const errorMessage = ref('')
+const successMessage = ref('')
 const searchQuery = ref('')
-const activeTab = ref('notFollowingBack')
-const followersFileInput = ref(null)
-const followingFileInput = ref(null)
-const followersRaw = ref(null)
-const followingRaw = ref(null)
+const activeTab = ref('lostFollowers')
 
-const results = ref({
-  notFollowingBack: [],
-  youDontFollowBack: [],
-  mutualFollowers: [],
-  notFollowingBackCount: 0,
-  youDontFollowBackCount: 0,
-  mutualFollowersCount: 0,
+// --- Snapshots & History State ---
+const snapshots = ref([])
+const activeSnapshotId = ref('')
+const compareSnapshotId = ref('')
+
+// --- BroadcastChannel for same-browser sync ---
+let broadcastChannel = null
+
+// --- Computed Properties ---
+const currentSnapshot = computed(() => {
+  if (!snapshots.value.length)
+    return null
+  return snapshots.value.find(s => s.id === activeSnapshotId.value) || snapshots.value[0]
 })
 
-const stats = ref({
-  totalFollowers: 0,
-  totalFollowing: 0,
+const compareSnapshot = computed(() => {
+  if (snapshots.value.length < 2)
+    return null
+  if (compareSnapshotId.value) {
+    return snapshots.value.find(s => s.id === compareSnapshotId.value) || null
+  }
+  const currentIndex = snapshots.value.findIndex(s => s.id === currentSnapshot.value?.id)
+  return snapshots.value[currentIndex + 1] || null
 })
 
-const lastUpdated = ref('')
+const diff = computed(() => {
+  return computeDiff(currentSnapshot.value, compareSnapshot.value)
+})
 
-// Computed properties
 const hasData = computed(() => {
-  return results.value.notFollowingBackCount > 0
-    || results.value.youDontFollowBackCount > 0
-    || results.value.mutualFollowersCount > 0
+  return Boolean(
+    currentSnapshot.value
+    && (diff.value.stats.totalFollowers > 0 || diff.value.stats.totalFollowing > 0),
+  )
 })
 
-const filteredNotFollowingBack = computed(() => filterUsers(results.value.notFollowingBack))
-const filteredYouDontFollowBack = computed(() => filterUsers(results.value.youDontFollowBack))
-const filteredMutualFollowers = computed(() => filterUsers(results.value.mutualFollowers))
-const canProcess = computed(() => followersRaw.value && followingRaw.value)
+const targetEnvironment = ref('production')
+const isLocalhost = computed(() => {
+  if (typeof window === 'undefined')
+    return false
+  return window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+})
 
-// Methods
+const targetTrackerUrl = computed(() => {
+  if (targetEnvironment.value === 'local' && isLocalhost.value) {
+    return `${window.location.origin}/instagram-tracker`
+  }
+  return 'https://nimakarimi.me/instagram-tracker'
+})
+
+const bookmarkletHref = computed(() => {
+  return generateBookmarkletHref(targetTrackerUrl.value)
+})
+
+const consoleScript = computed(() => {
+  return generateSyncScript(targetTrackerUrl.value)
+})
+
+// Filtered Lists by Search Query
+const filteredLostFollowers = computed(() => filterUsers(diff.value.lostFollowers))
+const filteredNewFollowers = computed(() => filterUsers(diff.value.newFollowers))
+const filteredNotFollowingBack = computed(() => filterUsers(diff.value.notFollowingBack))
+const filteredYouDontFollowBack = computed(() => filterUsers(diff.value.youDontFollowBack))
+const filteredMutualFollowers = computed(() => filterUsers(diff.value.mutualFollowers))
+const filteredLostFollowing = computed(() => filterUsers(diff.value.lostFollowing))
+
 function filterUsers(users) {
   if (!searchQuery.value)
     return users
-  const query = searchQuery.value.toLowerCase()
-  return users.filter(user => user.toLowerCase().includes(query))
-}
-
-function handleFollowersFileSelect(event) {
-  const file = event.target.files[0]
-  if (file) {
-    readFile(file, 'followers')
-  }
-}
-
-function handleFollowingFileSelect(event) {
-  const file = event.target.files[0]
-  if (file) {
-    readFile(file, 'following')
-  }
-}
-
-function handleFollowersDrop(event) {
-  isDragging.value = false
-  const file = event.dataTransfer.files[0]
-  if (file && file.type === 'application/json') {
-    readFile(file, 'followers')
-  } else {
-    errorMessage.value = 'Please upload a valid JSON file for followers.'
-  }
-}
-
-function handleFollowingDrop(event) {
-  isDragging.value = false
-  const file = event.dataTransfer.files[0]
-  if (file && file.type === 'application/json') {
-    readFile(file, 'following')
-  } else {
-    errorMessage.value = 'Please upload a valid JSON file for followings.'
-  }
-}
-
-function readFile(file, type) {
-  isLoading.value = true
-  errorMessage.value = ''
-  file.text().then((text) => {
-    try {
-      const data = JSON.parse(text)
-      if (type === 'followers') {
-        followersRaw.value = data
-      } else {
-        followingRaw.value = data
-      }
-    } catch {
-      errorMessage.value = 'Invalid JSON format.'
-    } finally {
-      isLoading.value = false
-    }
+  const q = searchQuery.value.toLowerCase().trim()
+  return users.filter((user) => {
+    const name = typeof user === 'string' ? user : (user.username || '')
+    const fullName = typeof user === 'object' ? (user.full_name || '') : ''
+    return name.toLowerCase().includes(q) || fullName.toLowerCase().includes(q)
   })
 }
 
-function processBothFiles() {
-  isLoading.value = true
+// --- Direct Session Fetch ---
+async function handleStartSessionSync(config) {
+  errorMessage.value = ''
+  successMessage.value = ''
+  isSyncing.value = true
+  syncProgress.value = { stage: 'init', fetched: 0, message: 'Connecting to Instagram...' }
+  abortController = new AbortController()
+
+  if (config.remember) {
+    saveSession(config)
+  } else {
+    clearSession()
+  }
+  savedSession.value = { ...config }
+
+  try {
+    let resolvedUserId = config.userId
+
+    if (!resolvedUserId && config.username) {
+      syncProgress.value = { stage: 'profile', fetched: 0, message: `Resolving user profile @${config.username}...` }
+      const profile = await fetchUserProfile(config.username, config, abortController.signal)
+      resolvedUserId = profile.id
+      savedSession.value.userId = profile.id
+    }
+
+    if (!resolvedUserId) {
+      throw new Error('Please provide either your Instagram Username or User ID (ds_user_id).')
+    }
+
+    // 1. Fetch Followers
+    syncProgress.value = { stage: 'followers', fetched: 0, message: 'Fetching followers list...' }
+    const followers = await fetchFollowersList(
+      resolvedUserId,
+      config,
+      (prog) => {
+        syncProgress.value = {
+          stage: 'followers',
+          fetched: prog.fetched,
+          message: `Scanning followers: ${prog.fetched} loaded (page ${prog.page})...`,
+        }
+      },
+      abortController.signal,
+    )
+
+    // 2. Fetch Following
+    syncProgress.value = { stage: 'following', fetched: 0, message: 'Fetching following list...' }
+    const following = await fetchFollowingList(
+      resolvedUserId,
+      config,
+      (prog) => {
+        syncProgress.value = {
+          stage: 'following',
+          fetched: prog.fetched,
+          message: `Scanning following: ${prog.fetched} loaded (page ${prog.page})...`,
+        }
+      },
+      abortController.signal,
+    )
+
+    // 3. Save new snapshot
+    const newSnap = saveSnapshot({
+      followers,
+      following,
+      userId: resolvedUserId,
+      username: config.username || '',
+      timestamp: Date.now(),
+      dateStr: new Date().toLocaleString(),
+    })
+
+    refreshSnapshots(newSnap.id)
+    successMessage.value = `Scan complete! Saved snapshot with ${followers.length} followers and ${following.length} following.`
+    showNewScanModal.value = false
+
+    if (diff.value.counts.lostFollowers > 0) {
+      activeTab.value = 'lostFollowers'
+    } else {
+      activeTab.value = 'notFollowingBack'
+    }
+  } catch (err) {
+    if (err.message !== 'Sync aborted by user') {
+      errorMessage.value = err.message || 'Failed to sync with Instagram.'
+    }
+  } finally {
+    isSyncing.value = false
+    abortController = null
+  }
+}
+
+function cancelSync() {
+  if (abortController) {
+    abortController.abort()
+    syncProgress.value.message = 'Sync cancelled.'
+    isSyncing.value = false
+  }
+}
+
+// --- Payload Handlers ---
+function handleSyncPayload(payload) {
+  if (!payload || !payload.followers || !payload.following) {
+    errorMessage.value = 'Invalid sync payload received.'
+    return
+  }
+
+  try {
+    const newSnap = saveSnapshot({
+      followers: payload.followers,
+      following: payload.following,
+      userId: payload.userId || '',
+      username: payload.username || '',
+      timestamp: payload.timestamp || Date.now(),
+      dateStr: payload.dateStr || new Date().toLocaleString(),
+    })
+
+    refreshSnapshots(newSnap.id)
+    successMessage.value = `Snapshot synced successfully! (${payload.followers.length} followers, ${payload.following.length} following)`
+    showNewScanModal.value = false
+    showPasteModal.value = false
+
+    if (diff.value.counts.lostFollowers > 0) {
+      activeTab.value = 'lostFollowers'
+    } else {
+      activeTab.value = 'notFollowingBack'
+    }
+  } catch (err) {
+    errorMessage.value = `Failed to process sync data: ${err.message}`
+  }
+}
+
+// Check URL hash for payload data (#sync=...)
+function checkHashSyncData() {
+  const hash = window.location.hash
+  if (hash && hash.startsWith('#sync=')) {
+    try {
+      const encoded = hash.slice(6)
+      const jsonStr = decodeURIComponent(encoded)
+      const data = JSON.parse(jsonStr)
+      if (data && data.followers && data.following) {
+        handleSyncPayload(data)
+        history.replaceState(null, '', window.location.pathname + window.location.search)
+        return true
+      }
+    } catch (e) {
+      console.error('Failed to parse hash sync data', e)
+      errorMessage.value = 'Received sync data from Instagram, but failed to parse it. Please try the clipboard paste option.'
+    }
+  }
+  return false
+}
+
+// Clipboard Auto-Import
+async function importFromClipboard() {
   errorMessage.value = ''
   try {
-    const followers = parseFollowersData(followersRaw.value)
-    const following = parseFollowingData(followingRaw.value)
-    if (!followers || !following) {
-      throw new Error('Invalid Instagram data format. Please make sure you uploaded the correct files.')
+    const text = await navigator.clipboard.readText()
+    if (!text || !text.trim()) {
+      showPasteModal.value = true
+      return
     }
-    const comparison = compareFollowers(followers, following)
-    results.value = comparison
-    stats.value = {
-      totalFollowers: followers.length,
-      totalFollowing: following.length,
+    const data = JSON.parse(text.trim())
+    if (data && data.followers && data.following) {
+      handleSyncPayload(data)
+    } else {
+      showPasteModal.value = true
     }
-    lastUpdated.value = new Date().toLocaleString()
-    saveToLocalStorage()
-  } catch (error) {
-    errorMessage.value = error.message || 'Failed to process files.'
-  } finally {
-    isLoading.value = false
+  } catch {
+    showPasteModal.value = true
   }
 }
 
-function parseFollowersData(data) {
-  if (!data || !data.length)
-    return null
+function handleFilesAnalyzed({ followers, following }) {
+  const newSnap = saveSnapshot({
+    followers,
+    following,
+    timestamp: Date.now(),
+    dateStr: new Date().toLocaleString(),
+  })
 
-  return data.map((item) => {
-    return item.string_list_data?.[0]?.value || item.title || item.username || ''
-  }).filter(Boolean)
+  refreshSnapshots(newSnap.id)
+  successMessage.value = `Files analyzed and snapshot saved! (${followers.length} followers, ${following.length} following)`
+  showNewScanModal.value = false
 }
 
-function parseFollowingData(data) {
-  // Handle different possible Instagram data structures
-  if (data.following) {
-    return data.following.map((item) => {
-      return item.string_list_data?.[0]?.value || item.title || item.username || ''
-    }).filter(Boolean)
-  } else if (data.relationships_following) {
-    return data.relationships_following.map((item) => {
-      return item.string_list_data?.[0]?.value || item.title || item.username || ''
-    }).filter(Boolean)
-  }
-  return null
-}
-
-function compareFollowers(followers, following) {
-  const followersSet = new Set(followers)
-  const followingSet = new Set(following)
-
-  const notFollowingBack = following.filter(user => !followersSet.has(user))
-  const youDontFollowBack = followers.filter(user => !followingSet.has(user))
-  const mutualFollowers = followers.filter(user => followingSet.has(user))
-
-  return {
-    notFollowingBack,
-    youDontFollowBack,
-    mutualFollowers,
-    notFollowingBackCount: notFollowingBack.length,
-    youDontFollowBackCount: youDontFollowBack.length,
-    mutualFollowersCount: mutualFollowers.length,
+// --- Snapshot Management ---
+function refreshSnapshots(selectId = null) {
+  snapshots.value = getSavedSnapshots()
+  if (selectId) {
+    activeSnapshotId.value = selectId
+  } else if (!activeSnapshotId.value && snapshots.value.length > 0) {
+    activeSnapshotId.value = snapshots.value[0].id
   }
 }
 
-function saveToLocalStorage() {
-  const dataToSave = {
-    results: results.value,
-    stats: stats.value,
-    lastUpdated: lastUpdated.value,
-  }
-  localStorage.setItem('instagram_tracker_data', JSON.stringify(dataToSave))
-}
-
-function loadFromLocalStorage() {
-  const savedData = localStorage.getItem('instagram_tracker_data')
-  if (savedData) {
-    try {
-      const parsed = JSON.parse(savedData)
-      results.value = parsed.results
-      stats.value = parsed.stats
-      lastUpdated.value = parsed.lastUpdated
-    } catch (error) {
-      console.error('Error loading saved data:', error)
-    }
-  }
-}
-
-function clearData() {
+function removeCurrentSnapshot() {
   // eslint-disable-next-line no-alert
-  if (confirm('Are you sure you want to clear all data and upload new data?')) {
-    results.value = {
-      notFollowingBack: [],
-      youDontFollowBack: [],
-      mutualFollowers: [],
-      notFollowingBackCount: 0,
-      youDontFollowBackCount: 0,
-      mutualFollowersCount: 0,
-    }
-    stats.value = {
-      totalFollowers: 0,
-      totalFollowing: 0,
-    }
-    lastUpdated.value = ''
-    followersRaw.value = null
-    followingRaw.value = null
-    localStorage.removeItem('instagram_tracker_data')
+  if (confirm('Are you sure you want to delete this scan snapshot?')) {
+    const idToDelete = activeSnapshotId.value
+    deleteSnapshot(idToDelete)
+    activeSnapshotId.value = ''
+    refreshSnapshots()
   }
 }
 
-function exportToCSV() {
-  const csvContent = [
-    ['Category', 'Username'],
-    ...results.value.notFollowingBack.map(u => ['Not Following Back', u]),
-    ...results.value.youDontFollowBack.map(u => ['You Don\'t Follow Back', u]),
-    ...results.value.mutualFollowers.map(u => ['Mutual Followers', u]),
-  ].map(row => row.join(',')).join('\n')
+function clearAllData() {
+  // eslint-disable-next-line no-alert
+  if (confirm('Are you sure you want to delete ALL saved snapshots and history from this browser?')) {
+    clearAllSnapshots()
+    snapshots.value = []
+    activeSnapshotId.value = ''
+    compareSnapshotId.value = ''
+    successMessage.value = 'All data cleared successfully.'
+  }
+}
 
-  downloadFile(csvContent, 'instagram-tracker-results.csv', 'text/csv')
+// --- Exports ---
+function exportToCSV() {
+  const rows = [
+    ['Category', 'Username', 'Full Name'],
+    ...diff.value.lostFollowers.map(u => ['Lost Follower (Unfollowed You)', u.username, u.full_name || '']),
+    ...diff.value.newFollowers.map(u => ['New Follower', u.username, u.full_name || '']),
+    ...diff.value.notFollowingBack.map(u => ['Not Following Back', u.username, u.full_name || '']),
+    ...diff.value.youDontFollowBack.map(u => ['You Don\'t Follow Back', u.username, u.full_name || '']),
+    ...diff.value.mutualFollowers.map(u => ['Mutual Follower', u.username, u.full_name || '']),
+    ...diff.value.lostFollowing.map(u => ['Unfollowed by You', u.username, u.full_name || '']),
+  ]
+
+  const csvContent = rows.map(r => r.map(c => `"${(c || '').replace(/"/g, '""')}"`).join(',')).join('\n')
+  downloadFile(csvContent, `instagram-tracker-${currentSnapshot.value?.dateStr || 'results'}.csv`, 'text/csv')
 }
 
 function exportToJSON() {
   const jsonContent = JSON.stringify({
-    stats: stats.value,
-    results: results.value,
-    lastUpdated: lastUpdated.value,
+    snapshot: currentSnapshot.value,
+    comparisonWith: compareSnapshot.value?.dateStr || null,
+    stats: diff.value.stats,
+    counts: diff.value.counts,
+    results: {
+      lostFollowers: diff.value.lostFollowers,
+      newFollowers: diff.value.newFollowers,
+      notFollowingBack: diff.value.notFollowingBack,
+      youDontFollowBack: diff.value.youDontFollowBack,
+      mutualFollowers: diff.value.mutualFollowers,
+      lostFollowing: diff.value.lostFollowing,
+    },
   }, null, 2)
 
-  downloadFile(jsonContent, 'instagram-tracker-results.json', 'application/json')
+  downloadFile(jsonContent, `instagram-tracker-${currentSnapshot.value?.dateStr || 'results'}.json`, 'application/json')
 }
 
 function downloadFile(content, filename, contentType) {
@@ -245,391 +393,896 @@ function downloadFile(content, filename, contentType) {
   window.URL.revokeObjectURL(url)
 }
 
-// Lifecycle hooks
+function handleMessage(event) {
+  if (event.data && event.data.type === 'IG_TRACKER_SYNC') {
+    handleSyncPayload(event.data.data)
+    if (event.source) {
+      try {
+        event.source.postMessage({ type: 'IG_TRACKER_ACK' }, '*')
+      } catch {}
+    }
+  }
+}
+
+async function checkClipboardOnFocus() {
+  if (hasData.value)
+    return
+  try {
+    const text = await navigator.clipboard.readText()
+    if (text && text.includes('"followers"') && text.includes('"following"')) {
+      const data = JSON.parse(text.trim())
+      if (data && data.followers && data.following) {
+        handleSyncPayload(data)
+      }
+    }
+  } catch {}
+}
+
+// Lifecycle Hooks
 onMounted(() => {
-  loadFromLocalStorage()
+  const savedTheme = typeof localStorage !== 'undefined' ? localStorage.getItem('ig_tracker_theme') : null
+  if (savedTheme) {
+    isDark.value = savedTheme === 'dark'
+  } else {
+    // Default to dark mode per user request
+    isDark.value = true
+  }
+
+  migrateLegacyData()
+
+  const session = getSavedSession()
+  if (session) {
+    savedSession.value = {
+      sessionid: session.sessionid || '',
+      userId: session.userId || '',
+      username: session.username || '',
+      remember: Boolean(session.remember),
+    }
+  }
+
+  refreshSnapshots()
+
+  // 1. Check URL hash for payload (backwards-compat for existing bookmarks)
+  checkHashSyncData()
+  window.addEventListener('hashchange', checkHashSyncData)
+
+  // 2. Listen for cross-window message events
+  window.addEventListener('message', handleMessage)
+
+  // 3. Handshake with opener tab if opened from Instagram tab
+  if (window.opener) {
+    try {
+      window.opener.postMessage({ type: 'IG_TRACKER_READY' }, '*')
+    } catch (e) {
+      console.debug('Opener handshake failed', e)
+    }
+  }
+
+  // 4. Auto-detect clipboard data when window is focused
+  window.addEventListener('focus', checkClipboardOnFocus)
+
+  // 5. Listen for BroadcastChannel messages
+  try {
+    broadcastChannel = new BroadcastChannel('ig_tracker_channel')
+    broadcastChannel.onmessage = (event) => {
+      if (event.data && event.data.type === 'IG_TRACKER_SYNC') {
+        handleSyncPayload(event.data.data)
+      }
+    }
+  } catch (e) {
+    console.debug('BroadcastChannel not supported', e)
+  }
+
+  if (diff.value.counts.lostFollowers > 0) {
+    activeTab.value = 'lostFollowers'
+  } else {
+    activeTab.value = 'notFollowingBack'
+  }
+})
+
+onUnmounted(() => {
+  window.removeEventListener('message', handleMessage)
+  window.removeEventListener('hashchange', checkHashSyncData)
+  window.removeEventListener('focus', checkClipboardOnFocus)
+  if (broadcastChannel)
+    broadcastChannel.close()
+  if (abortController)
+    abortController.abort()
+})
+
+watch(activeSnapshotId, () => {
+  if (diff.value.counts.lostFollowers > 0) {
+    activeTab.value = 'lostFollowers'
+  }
 })
 </script>
 
 <template>
-  <div class="instagram-tracker">
-    <div class="container py-5">
-      <!-- Header -->
-      <div class="text-center mb-5">
-        <h1 class="display-4 mb-3">
-          <i class="fab fa-instagram text-gradient" />
-          Instagram Follower Tracker
-        </h1>
-        <p class="lead text-muted">
-          Discover who doesn't follow you back and track your follower relationships
-        </p>
-      </div>
-
-      <!-- Instructions Section -->
-      <div v-if="!hasData" class="card shadow-sm mb-4">
-        <div class="card-body">
-          <h5 class="card-title">
-            <i class="fas fa-info-circle text-primary" />
-            How to Get Your Instagram Data
-          </h5>
-          <ol class="mb-0">
-            <li>Open Instagram app or website</li>
-            <li>Go to <strong>Settings → Accounts Center → Your information and permissions → Export your information → Create export</strong></li>
-            <li>Select your Instagram account</li>
-            <li>Click <strong>Export to device</strong></li>
-            <li>Select <strong>customize information</strong></li>
-            <li>Check only <strong>Followers and following</strong></li>
-            <li>Format: <strong>JSON</strong>, Date range: <strong>All time</strong></li>
-            <li>Wait for Instagram to prepare your data (can take up to 48 hours)</li>
-            <li>Download the ZIP file, extract it, and upload the JSON file here</li>
-          </ol>
+  <div
+    class="instagram-tracker-page d-flex flex-column min-vh-100"
+    :class="{ 'theme-dark': isDark, 'theme-light bg-white': !isDark }"
+  >
+    <!-- Standalone Top Navigation Bar -->
+    <header class="tracker-navbar border-bottom py-2 px-3 shadow-sm">
+      <div class="container d-flex justify-content-between align-items-center">
+        <a href="/" class="brand-link text-decoration-none d-flex align-items-center">
+          <img
+            src="/images/icons/resume.ico"
+            alt="Nima Karimi"
+            class="brand-icon me-2 rounded-circle"
+            width="26"
+            height="26"
+          >
+          <span class="brand-name fw-bold fs-6">Nima Karimi</span>
+        </a>
+        <div class="d-flex align-items-center">
+          <!-- Theme Switcher -->
+          <ThemeSwitch v-model="isDark" />
         </div>
       </div>
+    </header>
 
-      <div v-if="!hasData" class="card shadow-sm mb-4">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-6 mb-3 mb-md-0">
-              <div
-                class="upload-zone"
-                :class="{ 'drag-over': isDragging }"
-                @drop.prevent="handleFollowersDrop"
-                @dragover.prevent="isDragging = true"
-                @dragleave.prevent="isDragging = false"
-                @click="followersFileInput.click()"
-              >
-                <input
-                  ref="followersFileInput"
-                  type="file"
-                  accept=".json"
-                  style="display: none"
-                  @change="handleFollowersFileSelect"
-                >
-                <div class="text-center">
-                  <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3" />
-                  <h5>Drop your <strong>Followers</strong> JSON file here</h5>
-                  <p class="text-muted mb-0">
-                    or click to browse
-                  </p>
-                  <div v-if="followersRaw" class="mt-2 text-success small">
-                    Followers file loaded!
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div
-                class="upload-zone"
-                :class="{ 'drag-over': isDragging }"
-                @drop.prevent="handleFollowingDrop"
-                @dragover.prevent="isDragging = true"
-                @dragleave.prevent="isDragging = false"
-                @click="followingFileInput.click()"
-              >
-                <input
-                  ref="followingFileInput"
-                  type="file"
-                  accept=".json"
-                  style="display: none"
-                  @change="handleFollowingFileSelect"
-                >
-                <div class="text-center">
-                  <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3" />
-                  <h5>Drop your <strong>Following</strong> JSON file here</h5>
-                  <p class="text-muted mb-0">
-                    or click to browse
-                  </p>
-                  <div v-if="followingRaw" class="mt-2 text-success small">
-                    Following file loaded!
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div v-if="canProcess" class="text-center mt-4">
-            <button class="btn btn-primary" @click="processBothFiles">
-              <i class="fas fa-play" /> Analyze Data
+    <main class="flex-grow-1">
+      <div class="container py-4">
+        <!-- Header -->
+        <div class="text-center mb-5">
+          <h1 class="display-5 fw-bold mb-2 tracker-heading">
+            <i class="fab fa-instagram text-gradient me-2" />
+            Instagram Follower &amp; Unfollower Tracker
+          </h1>
+          <p class="lead text-muted mx-auto" style="max-width: 720px;">
+            Track who unfollowed you, discovered new followers, and inspect relationships directly in your browser with zero external backend.
+          </p>
+          <div class="d-flex justify-content-center align-items-center gap-2 mt-3 flex-wrap">
+            <span class="personal-use-badge px-3 py-2">
+              <i class="fas fa-lock me-1 text-warning" />
+              For Personal Use
+            </span>
+            <button
+              class="btn btn-sm guide-modal-btn rounded-pill px-3 shadow-sm"
+              type="button"
+              @click="showHelpModal = true"
+            >
+              <i class="fas fa-question-circle me-1" />
+              How to Use &amp; Guide
             </button>
           </div>
+        </div>
 
-          <!-- Loading State -->
-          <div v-if="isLoading" class="text-center mt-4">
-            <div class="spinner-border text-primary" role="status">
-              <span class="visually-hidden">Loading...</span>
+        <!-- Alerts -->
+        <div
+          v-if="errorMessage"
+          class="alert alert-danger alert-dismissible fade show shadow-sm"
+          role="alert"
+        >
+          <i class="fas fa-exclamation-triangle me-2" />
+          {{ errorMessage }}
+          <button
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+            @click="errorMessage = ''"
+          />
+        </div>
+
+        <div
+          v-if="successMessage"
+          class="alert alert-success alert-dismissible fade show shadow-sm"
+          role="alert"
+        >
+          <i class="fas fa-check-circle me-2" />
+          {{ successMessage }}
+          <button
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+            @click="successMessage = ''"
+          />
+        </div>
+
+        <!-- Main Scan Options Card -->
+        <ScanOptionsCard
+          v-if="!hasData || showNewScanModal"
+          :has-data="hasData"
+          :is-syncing="isSyncing"
+          :sync-progress="syncProgress"
+          :bookmarklet-href="bookmarkletHref"
+          :console-script="consoleScript"
+          :initial-session="savedSession"
+          :target-environment="targetEnvironment"
+          :target-tracker-url="targetTrackerUrl"
+          :is-local-dev="isLocalhost"
+          @update:target-environment="targetEnvironment = $event"
+          @close="showNewScanModal = false"
+          @open-guide="showHelpModal = true"
+          @open-paste-modal="showPasteModal = true"
+          @import-from-clipboard="importFromClipboard"
+          @start-session-sync="handleStartSessionSync"
+          @cancel-sync="cancelSync"
+          @files-analyzed="handleFilesAnalyzed"
+          @error-message="errorMessage = $event"
+        />
+
+        <!-- RESULTS DASHBOARD -->
+        <div v-if="hasData">
+          <!-- Snapshot History Bar -->
+          <SnapshotHistoryBar
+            :snapshots="snapshots"
+            :active-snapshot-id="activeSnapshotId"
+            :compare-snapshot-id="compareSnapshotId"
+            :compare-snapshot="compareSnapshot"
+            @update:active-snapshot-id="activeSnapshotId = $event"
+            @update:compare-snapshot-id="compareSnapshotId = $event"
+            @new-scan="showNewScanModal = !showNewScanModal"
+            @open-guide="showHelpModal = true"
+            @delete-snapshot="removeCurrentSnapshot"
+            @clear-all="clearAllData"
+          />
+
+          <!-- Metric Stat Cards -->
+          <MetricStatCards
+            :stats="diff.stats"
+            :counts="diff.counts"
+            :active-tab="activeTab"
+            @select-tab="activeTab = $event"
+          />
+
+          <!-- Tabs & User Lists -->
+          <div class="card shadow-sm border-0">
+            <div class="card-header bg-white border-bottom p-0 tracker-tabs-header">
+              <ul class="nav nav-tabs card-header-tabs flex-nowrap overflow-x-auto" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    :class="{ active: activeTab === 'lostFollowers' }"
+                    type="button"
+                    @click="activeTab = 'lostFollowers'"
+                  >
+                    <i class="fas fa-user-minus text-danger me-1" />
+                    Unfollowers
+                    <span class="badge bg-danger ms-2">{{ diff.counts.lostFollowers }}</span>
+                  </button>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    :class="{ active: activeTab === 'newFollowers' }"
+                    type="button"
+                    @click="activeTab = 'newFollowers'"
+                  >
+                    <i class="fas fa-user-check text-success me-1" />
+                    New Followers
+                    <span class="badge bg-success ms-2">{{ diff.counts.newFollowers }}</span>
+                  </button>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    :class="{ active: activeTab === 'notFollowingBack' }"
+                    type="button"
+                    @click="activeTab = 'notFollowingBack'"
+                  >
+                    <i class="fas fa-user-times me-1" />
+                    Not Following Back
+                    <span class="badge bg-warning text-dark ms-2">{{ diff.counts.notFollowingBack }}</span>
+                  </button>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    :class="{ active: activeTab === 'youDontFollowBack' }"
+                    type="button"
+                    @click="activeTab = 'youDontFollowBack'"
+                  >
+                    <i class="fas fa-user-clock me-1" />
+                    Fans (You Don't Follow)
+                    <span class="badge bg-secondary ms-2">{{ diff.counts.youDontFollowBack }}</span>
+                  </button>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    :class="{ active: activeTab === 'mutualFollowers' }"
+                    type="button"
+                    @click="activeTab = 'mutualFollowers'"
+                  >
+                    <i class="fas fa-heart text-danger me-1" />
+                    Mutual
+                    <span class="badge bg-primary ms-2">{{ diff.counts.mutualFollowers }}</span>
+                  </button>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    :class="{ active: activeTab === 'lostFollowing' }"
+                    type="button"
+                    @click="activeTab = 'lostFollowing'"
+                  >
+                    <i class="fas fa-user-slash me-1" />
+                    Unfollowed by You
+                    <span class="badge bg-secondary ms-2">{{ diff.counts.lostFollowing }}</span>
+                  </button>
+                </li>
+              </ul>
             </div>
-            <p class="mt-2 text-muted">
-              Analyzing your data...
-            </p>
-          </div>
 
-          <!-- Error Message -->
-          <div v-if="errorMessage" class="alert alert-danger mt-3" role="alert">
-            <i class="fas fa-exclamation-triangle" />
-            {{ errorMessage }}
+            <div class="card-body p-4">
+              <!-- Search & Filters -->
+              <div class="row g-2 mb-4">
+                <div class="col-md-8">
+                  <div class="input-group">
+                    <span class="input-group-text bg-white">
+                      <i class="fas fa-search text-muted" />
+                    </span>
+                    <input
+                      v-model="searchQuery"
+                      type="text"
+                      class="form-control border-start-0"
+                      placeholder="Search by username or full name..."
+                    >
+                    <button
+                      v-if="searchQuery"
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      @click="searchQuery = ''"
+                    >
+                      Clear
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-4 text-md-end">
+                  <div class="d-flex gap-2 justify-content-md-end">
+                    <button class="btn btn-outline-primary btn-sm" @click="exportToCSV">
+                      <i class="fas fa-file-csv me-1" />
+                      Export CSV
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm" @click="exportToJSON">
+                      <i class="fas fa-file-code me-1" />
+                      Export JSON
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tab Contents -->
+              <div class="tab-content">
+                <div v-if="activeTab === 'lostFollowers'">
+                  <div class="alert alert-danger-subtle border-0 mb-3 d-flex align-items-center">
+                    <i class="fas fa-exclamation-circle text-danger fs-5 me-2" />
+                    <div>
+                      <strong>Lost Followers:</strong> People who followed you in the previous scan but are no longer following you.
+                    </div>
+                  </div>
+                  <UserList
+                    :users="filteredLostFollowers"
+                    empty-message="No one has unfollowed you since the last scan! 🎉"
+                  />
+                </div>
+
+                <div v-if="activeTab === 'newFollowers'">
+                  <div class="alert alert-success-subtle border-0 mb-3 d-flex align-items-center">
+                    <i class="fas fa-smile-beam text-success fs-5 me-2" />
+                    <div>
+                      <strong>New Followers:</strong> Accounts that followed you since the previous scan.
+                    </div>
+                  </div>
+                  <UserList
+                    :users="filteredNewFollowers"
+                    empty-message="No new followers recorded between these two scans."
+                  />
+                </div>
+
+                <div v-if="activeTab === 'notFollowingBack'">
+                  <div class="alert alert-warning-subtle border-0 mb-3 d-flex align-items-center">
+                    <i class="fas fa-user-times text-warning fs-5 me-2" />
+                    <div>
+                      <strong>Not Following Back:</strong> Accounts you follow who don't follow your account back.
+                    </div>
+                  </div>
+                  <UserList
+                    :users="filteredNotFollowingBack"
+                    empty-message="Everyone you follow is following you back! 🎉"
+                  />
+                </div>
+
+                <div v-if="activeTab === 'youDontFollowBack'">
+                  <div class="alert alert-secondary-subtle border-0 mb-3 d-flex align-items-center">
+                    <i class="fas fa-user-clock text-secondary fs-5 me-2" />
+                    <div>
+                      <strong>Fans:</strong> People who follow you, but you don't follow back.
+                    </div>
+                  </div>
+                  <UserList
+                    :users="filteredYouDontFollowBack"
+                    empty-message="You follow back all of your followers!"
+                  />
+                </div>
+
+                <div v-if="activeTab === 'mutualFollowers'">
+                  <div class="alert alert-primary-subtle border-0 mb-3 d-flex align-items-center">
+                    <i class="fas fa-heart text-danger fs-5 me-2" />
+                    <div>
+                      <strong>Mutual Followers:</strong> Accounts where you both follow each other.
+                    </div>
+                  </div>
+                  <UserList
+                    :users="filteredMutualFollowers"
+                    empty-message="No mutual followers found."
+                  />
+                </div>
+
+                <div v-if="activeTab === 'lostFollowing'">
+                  <div class="alert alert-light border mb-3 d-flex align-items-center">
+                    <i class="fas fa-user-slash text-muted fs-5 me-2" />
+                    <div>
+                      <strong>Unfollowed by You:</strong> Accounts you stopped following since the previous scan.
+                    </div>
+                  </div>
+                  <UserList
+                    :users="filteredLostFollowing"
+                    empty-message="You haven't unfollowed anyone since the last scan."
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </main>
 
-      <!-- Results Dashboard -->
-      <div v-if="hasData">
-        <!-- Stats Overview -->
-        <div class="row g-4 mb-4">
-          <div class="col-md-3">
-            <div class="stat-card card shadow-sm h-100">
-              <div class="card-body text-center">
-                <i class="fas fa-users fa-2x text-primary mb-3" />
-                <h3 class="display-6 mb-0">
-                  {{ stats.totalFollowers }}
-                </h3>
-                <p class="text-muted mb-0">
-                  Followers
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="stat-card card shadow-sm h-100">
-              <div class="card-body text-center">
-                <i class="fas fa-user-plus fa-2x text-success mb-3" />
-                <h3 class="display-6 mb-0">
-                  {{ stats.totalFollowing }}
-                </h3>
-                <p class="text-muted mb-0">
-                  Following
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="stat-card card shadow-sm h-100">
-              <div class="card-body text-center">
-                <i class="fas fa-handshake fa-2x text-info mb-3" />
-                <h3 class="display-6 mb-0">
-                  {{ results.mutualFollowersCount }}
-                </h3>
-                <p class="text-muted mb-0">
-                  Mutual
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="stat-card card shadow-sm h-100">
-              <div class="card-body text-center">
-                <i class="fas fa-user-minus fa-2x text-danger mb-3" />
-                <h3 class="display-6 mb-0">
-                  {{ results.notFollowingBackCount }}
-                </h3>
-                <p class="text-muted mb-0">
-                  Not Following Back
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Last Updated Info -->
-        <div class="alert alert-info d-flex justify-content-between align-items-center" role="alert">
-          <span>
-            <i class="fas fa-clock" />
-            Last updated: {{ lastUpdated }}
-          </span>
-          <button class="btn btn-sm btn-outline-primary" @click="clearData">
-            <i class="fas fa-sync-alt" />
-            Upload New Data
-          </button>
-        </div>
-
-        <!-- Tabs for Different Categories -->
-        <div class="card shadow-sm">
-          <div class="card-header">
-            <ul class="nav nav-tabs card-header-tabs" role="tablist">
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link"
-                  :class="{ active: activeTab === 'notFollowingBack' }"
-                  type="button"
-                  role="tab"
-                  @click="activeTab = 'notFollowingBack'"
-                >
-                  <i class="fas fa-user-times" />
-                  Not Following Back
-                  <span class="badge bg-danger ms-2">{{ results.notFollowingBackCount }}</span>
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link"
-                  :class="{ active: activeTab === 'youDontFollowBack' }"
-                  type="button"
-                  role="tab"
-                  @click="activeTab = 'youDontFollowBack'"
-                >
-                  <i class="fas fa-user-clock" />
-                  You Don't Follow Back
-                  <span class="badge bg-warning ms-2">{{ results.youDontFollowBackCount }}</span>
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link"
-                  :class="{ active: activeTab === 'mutualFollowers' }"
-                  type="button"
-                  role="tab"
-                  @click="activeTab = 'mutualFollowers'"
-                >
-                  <i class="fas fa-heart" />
-                  Mutual Followers
-                  <span class="badge bg-success ms-2">{{ results.mutualFollowersCount }}</span>
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          <div class="card-body">
-            <!-- Search Bar -->
-            <div class="mb-3">
-              <div class="input-group">
-                <span class="input-group-text">
-                  <i class="fas fa-search" />
-                </span>
-                <input
-                  v-model="searchQuery"
-                  type="text"
-                  class="form-control"
-                  placeholder="Search usernames..."
-                >
-              </div>
-            </div>
-
-            <!-- User List -->
-            <div class="tab-content">
-              <div v-if="activeTab === 'notFollowingBack'" class="tab-pane fade show active">
-                <p class="text-muted mb-3">
-                  <i class="fas fa-info-circle" />
-                  People you follow but who don't follow you back
-                </p>
-                <UserList :users="filteredNotFollowingBack" empty-message="Everyone follows you back! 🎉" />
-              </div>
-
-              <div v-if="activeTab === 'youDontFollowBack'" class="tab-pane fade show active">
-                <p class="text-muted mb-3">
-                  <i class="fas fa-info-circle" />
-                  People who follow you but you don't follow back
-                </p>
-                <UserList :users="filteredYouDontFollowBack" empty-message="You follow everyone back!" />
-              </div>
-
-              <div v-if="activeTab === 'mutualFollowers'" class="tab-pane fade show active">
-                <p class="text-muted mb-3">
-                  <i class="fas fa-info-circle" />
-                  People you follow and who follow you back
-                </p>
-                <UserList :users="filteredMutualFollowers" empty-message="No mutual followers found." />
-              </div>
-            </div>
-
-            <!-- Export Buttons -->
-            <div class="d-flex gap-2 mt-4">
-              <button class="btn btn-outline-primary" @click="exportToCSV">
-                <i class="fas fa-download" />
-                Export to CSV
-              </button>
-              <button class="btn btn-outline-secondary" @click="exportToJSON">
-                <i class="fas fa-file-code" />
-                Export to JSON
-              </button>
-            </div>
-          </div>
-        </div>
+    <!-- Footer Trademark -->
+    <footer class="tracker-footer text-center text-muted small py-4 border-top mt-auto bg-light">
+      <div class="container">
+        <p class="mb-1">
+          &copy; 2026 <strong>Nima Karimi</strong> &bull;
+          <a href="https://nimakarimi.me" class="text-decoration-none text-muted">nimakarimi.me</a>
+          &bull; All Rights Reserved.
+        </p>
+        <p class="mb-0 text-secondary" style="font-size: 0.8rem;">
+          Personal Instagram Follower &amp; Unfollower Tracker &bull; 100% Client-Side &amp; Private.
+        </p>
       </div>
-    </div>
+    </footer>
+
+    <!-- Modals -->
+    <TrackerGuideModal
+      :show="showHelpModal"
+      @close="showHelpModal = false"
+    />
+
+    <PastePayloadModal
+      :show="showPasteModal"
+      @close="showPasteModal = false"
+      @import="handleSyncPayload"
+    />
   </div>
 </template>
 
-<style scoped lang="scss">
-.instagram-tracker {
+<style lang="scss">
+.instagram-tracker-page {
   min-height: 100vh;
-  padding: 2rem 0;
-}
-
-.text-gradient {
-  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.upload-zone {
-  border: 3px dashed #dee2e6;
-  border-radius: 12px;
-  padding: 3rem 2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background-color: #f8f9fa;
-
-  &:hover,
-  &.drag-over {
-    border-color: #0d6efd;
-    background-color: #e7f1ff;
-    transform: translateY(-2px);
-  }
-
-  i {
-    transition: transform 0.3s ease;
-  }
-
-  &:hover i {
-    transform: scale(1.1);
-  }
-}
-
-.stat-card {
   transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+    background-color 0.25s ease,
+    color 0.25s ease;
 
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  .tracker-navbar {
+    z-index: 1020;
+    transition:
+      background-color 0.25s ease,
+      border-color 0.25s ease;
   }
-}
 
-.nav-tabs {
-  border-bottom: none;
-
-  .nav-link {
-    border: none;
-    color: #6c757d;
-    padding: 1rem 1.5rem;
-    transition: all 0.3s ease;
+  .theme-toggle-btn {
+    border: 1px solid #dee2e6;
+    background: #f8fafc;
+    color: #475569;
+    font-weight: 500;
+    transition: all 0.2s ease;
 
     &:hover {
-      color: #0d6efd;
-    }
-
-    &.active {
-      color: #0d6efd;
-      background-color: transparent;
-      border-bottom: 3px solid #0d6efd;
-      font-weight: 600;
-    }
-
-    .badge {
-      font-size: 0.75rem;
+      background: #e2e8f0;
+      color: #0f172a;
     }
   }
-}
 
-.card {
-  border: none;
-  border-radius: 12px;
-}
+  .text-gradient {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-.card-header {
-  background-color: transparent;
-  border-bottom: 1px solid #dee2e6;
-  padding: 0;
+  .nav-tabs {
+    border-bottom: 1px solid #dee2e6;
+    flex-wrap: nowrap !important;
+    white-space: nowrap !important;
+    scrollbar-width: none; // Firefox
+    -ms-overflow-style: none; // IE/Edge
+    &::-webkit-scrollbar {
+      display: none; // Chrome/Safari
+    }
+
+    .nav-item {
+      flex-shrink: 0;
+    }
+
+    .nav-link {
+      border: none;
+      color: #64748b;
+      padding: 0.85rem 1rem;
+      font-weight: 500;
+      white-space: nowrap !important;
+      display: inline-flex;
+      align-items: center;
+      transition: all 0.2s ease;
+
+      &:hover {
+        color: #0d6efd;
+      }
+
+      &.active {
+        color: #0d6efd;
+        background-color: transparent;
+        border-bottom: 3px solid #0d6efd;
+        font-weight: 600;
+      }
+
+      .badge {
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+  .personal-use-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.82rem;
+    font-weight: 500;
+    border-radius: 50rem;
+    background: #ffffff;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    letter-spacing: 0.01em;
+    transition: all 0.2s ease;
+  }
+
+  .guide-modal-btn {
+    border-color: #3b82f6;
+    color: #2563eb;
+    background: transparent;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      background: #eff6ff;
+      color: #1d4ed8;
+      border-color: #2563eb;
+    }
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // DARK THEME (Story Page Aesthetic: Deep Navy-Black #070913 with Distinct Cards)
+  // ─────────────────────────────────────────────────────────────────────────────
+  &.theme-dark {
+    background-color: #070913 !important;
+    color: #e8eaf6;
+
+    .personal-use-badge {
+      background-color: #12192e !important;
+      border: 1px solid rgba(255, 255, 255, 0.14) !important;
+      color: #f1f5f9 !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
+    }
+
+    .guide-modal-btn {
+      border: 1px solid rgba(96, 165, 250, 0.7) !important;
+      color: #93c5fd !important;
+      background: rgba(59, 130, 246, 0.12) !important;
+      font-weight: 600 !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+
+      i {
+        color: #60a5fa !important;
+      }
+
+      &:hover {
+        background: rgba(59, 130, 246, 0.25) !important;
+        border-color: #60a5fa !important;
+        color: #ffffff !important;
+        box-shadow: 0 0 14px rgba(59, 130, 246, 0.35) !important;
+      }
+    }
+
+    .tracker-heading,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #ffffff !important;
+    }
+
+    .lead.text-muted {
+      color: #94a3b8 !important;
+    }
+
+    .tracker-feature-badge {
+      background-color: #12192e !important;
+      border-color: rgba(255, 255, 255, 0.14) !important;
+      color: #e2e8f0 !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .tracker-navbar {
+      background-color: #0a0e1a !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    .brand-name {
+      color: #f8fafc !important;
+    }
+
+    .brand-subtitle {
+      color: #94a3b8 !important;
+    }
+
+    .card {
+      background-color: #11192e !important;
+      border: 1px solid rgba(255, 255, 255, 0.13) !important;
+      box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(255, 255, 255, 0.04) !important;
+      color: #e2e8f0;
+
+      &.bg-light {
+        background-color: #0d1426 !important;
+        border: 1px solid rgba(255, 255, 255, 0.11) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+      }
+    }
+
+    .card-header {
+      background-color: #0e162a !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .bg-white {
+      background-color: #11192e !important;
+      color: #e2e8f0 !important;
+    }
+
+    .bg-light {
+      background-color: #0d1426 !important;
+      color: #cbd5e1 !important;
+    }
+
+    .text-dark {
+      color: #f8fafc !important;
+    }
+
+    .text-muted {
+      color: #94a3b8 !important;
+    }
+
+    .text-secondary {
+      color: #cbd5e1 !important;
+    }
+
+    .form-control,
+    .form-select {
+      background-color: #0b1122 !important;
+      border: 1px solid rgba(255, 255, 255, 0.16) !important;
+      color: #f1f5f9 !important;
+
+      &::placeholder {
+        color: #64748b !important;
+      }
+
+      &:focus {
+        border-color: #3b82f6 !important;
+        box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25) !important;
+      }
+
+      option {
+        background-color: #0d1426;
+        color: #f1f5f9;
+      }
+    }
+
+    .input-group-text {
+      background-color: #141e36 !important;
+      border: 1px solid rgba(255, 255, 255, 0.16) !important;
+      color: #cbd5e1 !important;
+    }
+
+    .nav-tabs {
+      border-color: rgba(255, 255, 255, 0.1) !important;
+
+      .nav-link {
+        color: #94a3b8;
+
+        &:hover {
+          color: #60a5fa;
+        }
+
+        &.active {
+          color: #60a5fa !important;
+          background-color: transparent !important;
+          border-bottom-color: #60a5fa !important;
+        }
+      }
+    }
+
+    .nav-pills {
+      .nav-link {
+        color: #cbd5e1;
+
+        &.active {
+          background-color: #2563eb !important;
+          color: #ffffff !important;
+        }
+      }
+    }
+
+    .stat-card {
+      background-color: #131c33 !important;
+      border: 1px solid rgba(255, 255, 255, 0.13) !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
+      color: #ffffff !important;
+
+      h4 {
+        color: #ffffff !important;
+      }
+
+      &:hover {
+        border-color: rgba(96, 165, 250, 0.6) !important;
+        box-shadow:
+          0 8px 24px rgba(0, 0, 0, 0.5),
+          0 0 12px rgba(59, 130, 246, 0.25) !important;
+        background-color: #172340 !important;
+      }
+
+      &.border-danger-subtle {
+        border-color: rgba(239, 68, 68, 0.35) !important;
+      }
+
+      &.border-success-subtle {
+        border-color: rgba(16, 185, 129, 0.35) !important;
+      }
+    }
+
+    .user-card {
+      background-color: #11192e !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
+      color: #ffffff !important;
+
+      &:hover {
+        border-color: #3b82f6 !important;
+        background-color: #16223d !important;
+        box-shadow:
+          0 8px 24px rgba(0, 0, 0, 0.5),
+          0 0 12px rgba(59, 130, 246, 0.2) !important;
+      }
+
+      .user-link {
+        color: #ffffff !important;
+
+        &:hover {
+          color: #60a5fa !important;
+        }
+      }
+
+      .user-avatar-img {
+        border-color: rgba(255, 255, 255, 0.15) !important;
+      }
+    }
+
+    .upload-zone {
+      background-color: #0b1122 !important;
+      border: 2px dashed rgba(255, 255, 255, 0.2) !important;
+      color: #e2e8f0 !important;
+
+      &:hover,
+      &.drag-over {
+        background-color: #131d36 !important;
+        border-color: #3b82f6 !important;
+      }
+    }
+
+    .pagination {
+      .page-link {
+        background-color: #11192e !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        color: #60a5fa !important;
+
+        &:hover:not(:disabled) {
+          background-color: #1c2848 !important;
+          color: #93c5fd !important;
+        }
+      }
+
+      .page-item.active .page-link {
+        background-color: #2563eb !important;
+        border-color: #2563eb !important;
+        color: #fff !important;
+      }
+    }
+
+    .modal-content {
+      background-color: #10172a !important;
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7) !important;
+      color: #e2e8f0 !important;
+    }
+
+    .modal-header,
+    .modal-footer {
+      background-color: #0b101f !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+      color: #f8fafc !important;
+    }
+
+    .btn-close {
+      filter: invert(1) grayscale(100%) brightness(200%);
+    }
+
+    .alert-primary,
+    .alert-primary-subtle {
+      background-color: rgba(59, 130, 246, 0.15) !important;
+      border-color: rgba(59, 130, 246, 0.3) !important;
+      color: #93c5fd !important;
+    }
+
+    .alert-danger-subtle {
+      background-color: rgba(239, 68, 68, 0.15) !important;
+      border-color: rgba(239, 68, 68, 0.3) !important;
+      color: #fca5a5 !important;
+    }
+
+    .alert-success-subtle {
+      background-color: rgba(16, 185, 129, 0.15) !important;
+      border-color: rgba(16, 185, 129, 0.3) !important;
+      color: #6ee7b7 !important;
+    }
+
+    .alert-info-subtle {
+      background-color: rgba(6, 182, 212, 0.15) !important;
+      border-color: rgba(6, 182, 212, 0.3) !important;
+      color: #67e8f9 !important;
+    }
+
+    .alert-light,
+    .alert-secondary {
+      background-color: rgba(255, 255, 255, 0.06) !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+      color: #cbd5e1 !important;
+    }
+
+    .badge.bg-secondary-subtle {
+      background-color: rgba(255, 255, 255, 0.07) !important;
+      border-color: rgba(255, 255, 255, 0.12) !important;
+      color: #cbd5e1 !important;
+    }
+
+    .tracker-footer {
+      background-color: #05070d !important;
+      border-color: rgba(255, 255, 255, 0.08) !important;
+      color: #94a3b8 !important;
+
+      a {
+        color: #cbd5e1 !important;
+      }
+    }
+  }
 }
 </style>
