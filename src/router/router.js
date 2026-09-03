@@ -42,6 +42,18 @@ export function createAppRouter() {
       component: () => import('../vue/sections/instagram-tracker/InstagramTracker.vue'),
     },
     {
+      path: '/ig',
+      redirect: '/instagram-tracker',
+    },
+    {
+      path: '/ig-tracker',
+      redirect: '/instagram-tracker',
+    },
+    {
+      path: '/ig-insights',
+      redirect: '/instagram-tracker',
+    },
+    {
       path: '/downloader',
       name: 'Downloader',
       component: () => import('../vue/pages/downloader/DownloaderPage.vue'),

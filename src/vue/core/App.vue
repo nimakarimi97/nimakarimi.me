@@ -25,7 +25,18 @@ const showDownloadButton = ref(false)
 
 const isStandaloneRoute = computed(() => {
   const p = route.path.toLowerCase()
-  return p === '/' || p === '/story' || p.startsWith('/partners') || p === '/biz' || p === '/business' || p === '/partner'
+  return (
+    p === '/'
+    || p === '/story'
+    || p.startsWith('/partners')
+    || p === '/biz'
+    || p === '/business'
+    || p === '/partner'
+    || p.startsWith('/instagram-tracker')
+    || p === '/ig'
+    || p === '/ig-tracker'
+    || p === '/ig-insights'
+  )
 })
 
 const clipboardText = ref(null)
