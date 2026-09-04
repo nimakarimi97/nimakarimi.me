@@ -70,14 +70,6 @@ const emit = defineEmits([
             </option>
           </select>
         </div>
-
-        <!-- Comparison Status Badges -->
-        <span v-if="compareSnapshot" class="comparing-text small text-nowrap">
-          Comparing vs {{ compareSnapshot.dateStr }}
-        </span>
-        <span v-else class="comparing-text small text-nowrap text-secondary">
-          First snapshot (no previous comparison)
-        </span>
       </div>
 
       <!-- Action Buttons -->
@@ -116,11 +108,3 @@ const emit = defineEmits([
     </div>
   </div>
 </template>
-
-<style scoped lang="scss">
-.comparing-text {
-  color: #698bda !important;
-  background: transparent !important;
-  font-weight: 500;
-}
-</style>
