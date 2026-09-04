@@ -56,7 +56,7 @@ const emit = defineEmits([
         <div v-if="snapshots.length > 1" class="d-flex align-items-center">
           <label class="small text-muted fw-bold me-2 mb-0 text-nowrap">Compare with:</label>
           <select
-            :value="compareSnapshotId"
+            :value="compareSnapshot?.id || compareSnapshotId"
             class="form-select form-select-sm"
             style="min-width: 200px;"
             @change="emit('update:compareSnapshotId', $event.target.value)"

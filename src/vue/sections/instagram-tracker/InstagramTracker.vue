@@ -74,11 +74,13 @@ const currentSnapshot = computed(() => {
 const compareSnapshot = computed(() => {
   if (snapshots.value.length < 2)
     return null
-  if (compareSnapshotId.value) {
-    return snapshots.value.find(s => s.id === compareSnapshotId.value) || null
+  if (compareSnapshotId.value && compareSnapshotId.value !== currentSnapshot.value?.id) {
+    const found = snapshots.value.find(s => s.id === compareSnapshotId.value)
+    if (found)
+      return found
   }
   const currentIndex = snapshots.value.findIndex(s => s.id === currentSnapshot.value?.id)
-  return snapshots.value[currentIndex + 1] || null
+  return snapshots.value[currentIndex + 1] || snapshots.value.find(s => s.id !== currentSnapshot.value?.id) || null
 })
 
 const diff = computed(() => {
@@ -115,6 +117,8 @@ const consoleScript = computed(() => {
 })
 
 // Filtered Lists by Search Query
+const filteredAllFollowers = computed(() => filterUsers(currentSnapshot.value?.followers || []))
+const filteredAllFollowing = computed(() => filterUsers(currentSnapshot.value?.following || []))
 const filteredLostFollowers = computed(() => filterUsers(diff.value.lostFollowers))
 const filteredNewFollowers = computed(() => filterUsers(diff.value.newFollowers))
 const filteredNotFollowingBack = computed(() => filterUsers(diff.value.notFollowingBack))
@@ -320,8 +324,11 @@ function refreshSnapshots(selectId = null) {
   snapshots.value = getSavedSnapshots()
   if (selectId) {
     activeSnapshotId.value = selectId
-  } else if (!activeSnapshotId.value && snapshots.value.length > 0) {
+  } else if ((!activeSnapshotId.value || !snapshots.value.some(s => s.id === activeSnapshotId.value)) && snapshots.value.length > 0) {
     activeSnapshotId.value = snapshots.value[0].id
+  }
+  if (compareSnapshotId.value && !snapshots.value.some(s => s.id === compareSnapshotId.value)) {
+    compareSnapshotId.value = ''
   }
 }
 
@@ -330,6 +337,9 @@ function removeCurrentSnapshot() {
   if (confirm('Are you sure you want to delete this scan snapshot?')) {
     const idToDelete = activeSnapshotId.value
     deleteSnapshot(idToDelete)
+    if (compareSnapshotId.value === idToDelete) {
+      compareSnapshotId.value = ''
+    }
     activeSnapshotId.value = ''
     refreshSnapshots()
   }
@@ -490,7 +500,10 @@ onUnmounted(() => {
     abortController.abort()
 })
 
-watch(activeSnapshotId, () => {
+watch(activeSnapshotId, (newId) => {
+  if (compareSnapshotId.value === newId) {
+    compareSnapshotId.value = ''
+  }
   if (diff.value.counts.lostFollowers > 0) {
     activeTab.value = 'lostFollowers'
   }
@@ -627,90 +640,8 @@ watch(activeSnapshotId, () => {
             @select-tab="activeTab = $event"
           />
 
-          <!-- Tabs & User Lists -->
+          <!-- User Lists & Search -->
           <div class="card shadow-sm border-0">
-            <div class="card-header bg-white border-bottom p-0 tracker-tabs-header">
-              <ul class="nav nav-tabs card-header-tabs flex-nowrap overflow-x-auto" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <button
-                    class="nav-link"
-                    :class="{ active: activeTab === 'lostFollowers' }"
-                    type="button"
-                    @click="activeTab = 'lostFollowers'"
-                  >
-                    <i class="fas fa-user-minus text-danger me-1" />
-                    Unfollowers
-                    <span class="badge bg-danger ms-2">{{ diff.counts.lostFollowers }}</span>
-                  </button>
-                </li>
-
-                <li class="nav-item" role="presentation">
-                  <button
-                    class="nav-link"
-                    :class="{ active: activeTab === 'newFollowers' }"
-                    type="button"
-                    @click="activeTab = 'newFollowers'"
-                  >
-                    <i class="fas fa-user-check text-success me-1" />
-                    New Followers
-                    <span class="badge bg-success ms-2">{{ diff.counts.newFollowers }}</span>
-                  </button>
-                </li>
-
-                <li class="nav-item" role="presentation">
-                  <button
-                    class="nav-link"
-                    :class="{ active: activeTab === 'notFollowingBack' }"
-                    type="button"
-                    @click="activeTab = 'notFollowingBack'"
-                  >
-                    <i class="fas fa-user-times me-1" />
-                    Not Following Back
-                    <span class="badge bg-warning text-dark ms-2">{{ diff.counts.notFollowingBack }}</span>
-                  </button>
-                </li>
-
-                <li class="nav-item" role="presentation">
-                  <button
-                    class="nav-link"
-                    :class="{ active: activeTab === 'youDontFollowBack' }"
-                    type="button"
-                    @click="activeTab = 'youDontFollowBack'"
-                  >
-                    <i class="fas fa-user-clock me-1" />
-                    Fans (You Don't Follow)
-                    <span class="badge bg-secondary ms-2">{{ diff.counts.youDontFollowBack }}</span>
-                  </button>
-                </li>
-
-                <li class="nav-item" role="presentation">
-                  <button
-                    class="nav-link"
-                    :class="{ active: activeTab === 'mutualFollowers' }"
-                    type="button"
-                    @click="activeTab = 'mutualFollowers'"
-                  >
-                    <i class="fas fa-heart text-danger me-1" />
-                    Mutual
-                    <span class="badge bg-primary ms-2">{{ diff.counts.mutualFollowers }}</span>
-                  </button>
-                </li>
-
-                <li class="nav-item" role="presentation">
-                  <button
-                    class="nav-link"
-                    :class="{ active: activeTab === 'lostFollowing' }"
-                    type="button"
-                    @click="activeTab = 'lostFollowing'"
-                  >
-                    <i class="fas fa-user-slash me-1" />
-                    Unfollowed by You
-                    <span class="badge bg-secondary ms-2">{{ diff.counts.lostFollowing }}</span>
-                  </button>
-                </li>
-              </ul>
-            </div>
-
             <div class="card-body p-4">
               <!-- Search & Filters -->
               <div class="row g-2 mb-4">
@@ -751,6 +682,32 @@ watch(activeSnapshotId, () => {
 
               <!-- Tab Contents -->
               <div class="tab-content">
+                <div v-if="activeTab === 'allFollowers'">
+                  <div class="alert alert-primary-subtle border-0 mb-3 d-flex align-items-center">
+                    <i class="fas fa-users text-primary fs-5 me-2" />
+                    <div>
+                      <strong>All Followers:</strong> Total accounts currently following your profile ({{ currentSnapshot?.stats?.totalFollowers || 0 }} accounts).
+                    </div>
+                  </div>
+                  <UserList
+                    :users="filteredAllFollowers"
+                    empty-message="No followers found in this scan."
+                  />
+                </div>
+
+                <div v-if="activeTab === 'allFollowing'">
+                  <div class="alert alert-secondary-subtle border-0 mb-3 d-flex align-items-center">
+                    <i class="fas fa-user-plus text-secondary fs-5 me-2" />
+                    <div>
+                      <strong>All Following:</strong> Total accounts you are currently following ({{ currentSnapshot?.stats?.totalFollowing || 0 }} accounts).
+                    </div>
+                  </div>
+                  <UserList
+                    :users="filteredAllFollowing"
+                    empty-message="You are not following anyone."
+                  />
+                </div>
+
                 <div v-if="activeTab === 'lostFollowers'">
                   <div class="alert alert-danger-subtle border-0 mb-3 d-flex align-items-center">
                     <i class="fas fa-exclamation-circle text-danger fs-5 me-2" />
@@ -1149,6 +1106,15 @@ watch(activeSnapshotId, () => {
           0 8px 24px rgba(0, 0, 0, 0.5),
           0 0 12px rgba(59, 130, 246, 0.25) !important;
         background-color: #172340 !important;
+      }
+
+      &.active-card {
+        border-color: #60a5fa !important;
+        border-width: 2px !important;
+        background-color: #172340 !important;
+        box-shadow:
+          0 8px 24px rgba(0, 0, 0, 0.5),
+          0 0 14px rgba(96, 165, 250, 0.35) !important;
       }
 
       &.border-danger-subtle {
