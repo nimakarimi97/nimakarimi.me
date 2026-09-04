@@ -64,7 +64,23 @@ function getFullName(user) {
 function getProfilePic(user) {
   if (!user || typeof user === 'string')
     return ''
-  return user.profile_pic_url || ''
+  const url = user.profile_pic_url || ''
+  if (!url)
+    return ''
+
+  // If already proxied, data URI, or relative URL, return as-is
+  if (url.startsWith('data:') || url.startsWith('/') || url.includes('wsrv.nl') || url.includes('weserv.nl')) {
+    return url
+  }
+
+  // Instagram and Facebook CDNs send 'Cross-Origin-Resource-Policy: same-origin',
+  // which blocks direct <img> rendering from third-party websites.
+  // We route through wsrv.nl (Cloudflare-backed edge image cache) to serve with cross-origin headers safely.
+  if (url.includes('cdninstagram.com') || url.includes('fbcdn.net')) {
+    return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=120&h=120&fit=cover`
+  }
+
+  return url
 }
 
 function isVerified(user) {
