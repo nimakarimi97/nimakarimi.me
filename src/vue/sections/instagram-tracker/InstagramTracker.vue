@@ -1096,8 +1096,33 @@ watch(activeSnapshotId, (newId) => {
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
       color: #ffffff !important;
 
+      .stat-number,
       h4 {
         color: #ffffff !important;
+
+        &.text-danger {
+          color: #f87171 !important;
+        }
+
+        &.text-success {
+          color: #34d399 !important;
+        }
+
+        &.text-warning {
+          color: #fbbf24 !important;
+        }
+
+        &.text-info {
+          color: #38bdf8 !important;
+        }
+
+        &.text-secondary {
+          color: #94a3b8 !important;
+        }
+      }
+
+      .stat-label {
+        color: #94a3b8 !important;
       }
 
       &:hover {
