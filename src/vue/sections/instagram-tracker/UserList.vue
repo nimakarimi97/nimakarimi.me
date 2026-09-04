@@ -14,7 +14,7 @@ const props = defineProps({
 
 const currentPage = ref(1)
 const itemsPerPage = 30
-const brokenImages = ref(new Set())
+const brokenImages = ref({})
 
 const totalPages = computed(() => {
   return Math.ceil(props.users.length / itemsPerPage)
@@ -74,7 +74,9 @@ function isVerified(user) {
 }
 
 function handleImageError(username) {
-  brokenImages.value.add(username)
+  if (username) {
+    brokenImages.value[username] = true
+  }
 }
 
 // Reset to first page when users array changes
@@ -104,7 +106,7 @@ watch(() => props.users, () => {
               <!-- Avatar -->
               <div class="user-avatar-wrapper me-3 flex-shrink-0">
                 <img
-                  v-if="getProfilePic(user) && !brokenImages.has(getUsername(user))"
+                  v-if="getProfilePic(user) && !brokenImages[getUsername(user)]"
                   :src="getProfilePic(user)"
                   :alt="getUsername(user)"
                   class="user-avatar-img"
@@ -131,7 +133,7 @@ watch(() => props.users, () => {
                   </a>
                   <i
                     v-if="isVerified(user)"
-                    class="fas fa-badge-check text-primary ms-1 small"
+                    class="fas fa-circle-check text-primary ms-1 small"
                     title="Verified"
                   />
                 </div>
