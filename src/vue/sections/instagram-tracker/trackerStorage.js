@@ -90,9 +90,27 @@ export function saveSnapshot(snapshot) {
       following: normalizeUserList(snapshot.following),
     }
 
-    // Keep up to 30 snapshots to avoid localStorage quota issues
-    const updated = [newSnapshot, ...snapshots.filter(s => s.id !== newSnapshot.id)].slice(0, 30)
-    localStorage.setItem(STORAGE_KEY_SNAPSHOTS, JSON.stringify(updated))
+    // Keep up to 20 snapshots, auto-pruning older ones if localStorage quota is constrained
+    const allFiltered = [newSnapshot, ...snapshots.filter(s => s.id !== newSnapshot.id)]
+    let maxKeep = Math.min(allFiltered.length, 20)
+    let saved = false
+
+    while (maxKeep >= 2 && !saved) {
+      try {
+        const slice = allFiltered.slice(0, maxKeep)
+        localStorage.setItem(STORAGE_KEY_SNAPSHOTS, JSON.stringify(slice))
+        saved = true
+      } catch (quotaErr) {
+        console.warn(`localStorage quota warning, reducing snapshots from ${maxKeep} to ${maxKeep - 3}`, quotaErr)
+        maxKeep -= 3
+      }
+    }
+
+    if (!saved) {
+      // Last resort fallback: save current snapshot
+      localStorage.setItem(STORAGE_KEY_SNAPSHOTS, JSON.stringify([newSnapshot]))
+    }
+
     return newSnapshot
   } catch (err) {
     console.error('Failed to save snapshot:', err)
