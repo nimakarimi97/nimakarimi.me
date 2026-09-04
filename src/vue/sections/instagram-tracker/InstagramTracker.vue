@@ -1265,6 +1265,64 @@ watch(activeSnapshotId, (newId) => {
       color: #cbd5e1 !important;
     }
 
+    // High-contrast outline buttons in Dark Mode
+    .btn-outline-primary {
+      color: #93c5fd !important;
+      border-color: rgba(96, 165, 250, 0.5) !important;
+      background-color: rgba(59, 130, 246, 0.12) !important;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: #ffffff !important;
+        background-color: #2563eb !important;
+        border-color: #3b82f6 !important;
+        box-shadow: 0 0 12px rgba(59, 130, 246, 0.35) !important;
+      }
+    }
+
+    .btn-outline-secondary {
+      color: #e2e8f0 !important;
+      border-color: rgba(255, 255, 255, 0.22) !important;
+      background-color: rgba(255, 255, 255, 0.06) !important;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: #ffffff !important;
+        background-color: rgba(255, 255, 255, 0.18) !important;
+        border-color: rgba(255, 255, 255, 0.4) !important;
+      }
+    }
+
+    .btn-outline-info {
+      color: #7dd3fc !important;
+      border-color: rgba(56, 189, 248, 0.5) !important;
+      background-color: rgba(56, 189, 248, 0.1) !important;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: #ffffff !important;
+        background-color: #0284c7 !important;
+        border-color: #38bdf8 !important;
+      }
+    }
+
+    .btn-outline-danger {
+      color: #fca5a5 !important;
+      border-color: rgba(239, 68, 68, 0.45) !important;
+      background-color: rgba(239, 68, 68, 0.1) !important;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: #ffffff !important;
+        background-color: #dc2626 !important;
+        border-color: #ef4444 !important;
+      }
+    }
+
     .tracker-footer {
       background-color: #05070d !important;
       border-color: rgba(255, 255, 255, 0.08) !important;
