@@ -440,9 +440,14 @@ function parseFollowingData(data) {
               <i class="fas fa-key text-info me-2" />
               Connect via Instagram Session ID
             </h5>
-            <p class="text-muted small">
+            <p class="text-muted small mb-2">
               Connect directly to Instagram web endpoints using your authenticated session ID cookie.
             </p>
+
+            <div v-if="!isLocalDev" class="alert alert-info small py-2 px-3 mb-3">
+              <i class="fas fa-info-circle me-1" />
+              <strong>Recommended for live site:</strong> For 100% serverless sync without a local backend, use <strong>Method 1 (Instant Browser Sync)</strong> above.
+            </div>
 
             <div class="mb-3">
               <label class="form-label fw-bold small">Instagram Username or User ID</label>

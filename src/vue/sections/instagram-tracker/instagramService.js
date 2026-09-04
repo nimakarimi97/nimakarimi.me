@@ -42,6 +42,9 @@ export async function fetchUserProfile(username, sessionConfig, signal) {
     if (res.status === 401 || res.status === 403) {
       throw new Error('Authentication failed. Your sessionid cookie may have expired. Please refresh your Instagram session.')
     }
+    if (res.status === 404) {
+      throw new Error('Direct session proxy is not available in production without a backend server. Please use Method 1 (1-Click Bookmarklet) or Method 3 (JSON Files) instead.')
+    }
     throw new Error(`Profile fetch failed: HTTP ${res.status}`)
   }
 
@@ -88,6 +91,9 @@ export async function fetchFollowersList(userId, sessionConfig, onProgress, sign
     })
 
     if (!res.ok) {
+      if (res.status === 404) {
+        throw new Error('Direct session proxy is not available in production without a backend server. Please use Method 1 (1-Click Bookmarklet) or Method 3 (JSON Files) instead.')
+      }
       if (res.status === 429) {
         throw new Error('Rate limit reached on Instagram. Please pause and try again in 10-15 minutes.')
       }
@@ -149,6 +155,9 @@ export async function fetchFollowingList(userId, sessionConfig, onProgress, sign
     })
 
     if (!res.ok) {
+      if (res.status === 404) {
+        throw new Error('Direct session proxy is not available in production without a backend server. Please use Method 1 (1-Click Bookmarklet) or Method 3 (JSON Files) instead.')
+      }
       if (res.status === 429) {
         throw new Error('Rate limit reached on Instagram. Please pause and try again in 10-15 minutes.')
       }
