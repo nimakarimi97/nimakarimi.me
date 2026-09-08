@@ -137,7 +137,6 @@ function initAnimations() {
     .fromTo('.hero-headline', { autoAlpha: 0, y: 25 }, { autoAlpha: 1, y: 0 }, '-=0.5')
     .fromTo('.hero-subheadline', { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0 }, '-=0.6')
     .fromTo('.btn-primary-cta', { autoAlpha: 0, scale: 0.9, y: 15 }, { autoAlpha: 1, scale: 1, y: 0 }, '-=0.5')
-    .fromTo('.hero-profile-card', { autoAlpha: 0, y: 30, scale: 0.96 }, { autoAlpha: 1, y: 0, scale: 1 }, '-=0.7')
 
   // Avatar continuous floating
   gsap.to('.profile-avatar-wrapper', {
@@ -313,23 +312,25 @@ onUnmounted(() => {
           </div>
 
           <!-- Representative Profile Card -->
-          <div class="hero-profile-card">
-            <div class="profile-glow" />
-            <div class="profile-inner">
-              <div class="profile-avatar-wrapper">
-                <img src="/images/pictures/avatar.png" alt="Nima Karimi" class="profile-avatar">
-                <span class="online-indicator" title="Available for partnerships" />
-              </div>
-              <h2 class="profile-name">
-                {{ t.profileName }}
-              </h2>
-              <p class="profile-title">
-                {{ t.repTitle }}
-              </p>
-              <div class="profile-tags">
-                <span class="tag">🇪🇺 European Portfolio</span>
-                <span class="tag">✨ Skincare & Creams</span>
-                <span class="tag">⚡ Medical Laser Tech</span>
+          <div class="hero-profile-card-wrapper">
+            <div class="hero-profile-card">
+              <div class="profile-glow" />
+              <div class="profile-inner">
+                <div class="profile-avatar-wrapper">
+                  <img src="/images/pictures/avatar.png" alt="Nima Karimi" class="profile-avatar">
+                  <span class="online-indicator" title="Available for partnerships" />
+                </div>
+                <h2 class="profile-name">
+                  {{ t.profileName }}
+                </h2>
+                <p class="profile-title">
+                  {{ t.repTitle }}
+                </p>
+                <div class="profile-tags">
+                  <span class="tag">🇪🇺 European Portfolio</span>
+                  <span class="tag">✨ Skincare & Creams</span>
+                  <span class="tag">⚡ Medical Laser Tech</span>
+                </div>
               </div>
             </div>
           </div>
@@ -857,42 +858,112 @@ $text-sub: #cbd5e1;
   }
 }
 
+/* Hero Profile Card Wrapper & Animations */
+.hero-profile-card-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  animation: heroCardEntrance 2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@keyframes heroCardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
 /* Hero Profile Card */
 .hero-profile-card {
   position: relative;
+  width: 100%;
+  max-width: 440px;
   background: $bg-card;
-  border: 1px solid $border-color;
+  border: 1px solid rgba(16, 185, 129, 0.25);
   border-radius: 24px;
   padding: 2.25rem 1.75rem;
   text-align: center;
   backdrop-filter: blur(16px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(16, 185, 129, 0.08);
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+
+  // Refined glass sheen reflection on hover
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      115deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.05) 45%,
+      rgba(16, 185, 129, 0.1) 55%,
+      transparent 100%
+    );
+    transform: skewX(-20deg);
+    pointer-events: none;
+    transition: left 0s;
+  }
 
   .profile-glow {
     position: absolute;
-    inset: 0;
-    border-radius: 24px;
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(59, 130, 246, 0.1));
-    opacity: 0.4;
-    transition: opacity 0.4s ease;
+    inset: -6px;
+    border-radius: 28px;
+    background: radial-gradient(
+      circle at 50% 35%,
+      rgba(16, 185, 129, 0.35) 0%,
+      rgba(59, 130, 246, 0.15) 55%,
+      transparent 75%
+    );
+    opacity: 0.45;
+    filter: blur(20px);
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
     pointer-events: none;
+    animation: glow-breathe 4.5s ease-in-out infinite alternate;
   }
 
   &:hover {
     transform: translateY(-8px) scale(1.02);
-    border-color: rgba(16, 185, 129, 0.6);
+    border-color: rgba(16, 185, 129, 0.65);
     box-shadow:
-      0 25px 55px rgba(16, 185, 129, 0.25),
-      0 0 35px rgba(16, 185, 129, 0.2);
+      0 25px 60px rgba(0, 0, 0, 0.6),
+      0 0 40px rgba(16, 185, 129, 0.25);
+
+    &::before {
+      left: 160%;
+      transition: left 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
     .profile-glow {
       opacity: 0.85;
+      transform: scale(1.06);
     }
 
     .profile-avatar-wrapper .profile-avatar {
       transform: scale(1.06);
-      box-shadow: 0 0 30px rgba(16, 185, 129, 0.6);
+      box-shadow: 0 0 35px rgba(16, 185, 129, 0.7);
     }
   }
 
@@ -909,7 +980,9 @@ $text-sub: #cbd5e1;
       border-radius: 50%;
       border: 3px solid $accent-emerald;
       box-shadow: 0 0 25px $accent-emerald-glow;
-      transition: all 0.4s ease;
+      transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
     }
 
     .online-indicator {
@@ -921,6 +994,16 @@ $text-sub: #cbd5e1;
       background-color: $accent-emerald;
       border: 3px solid $bg-dark;
       border-radius: 50%;
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        border-radius: 50%;
+        border: 2px solid $accent-emerald;
+        animation: radar-ping 2.2s cubic-bezier(0.1, 0.5, 0.1, 1) infinite;
+        pointer-events: none;
+      }
     }
   }
 
@@ -955,7 +1038,38 @@ $text-sub: #cbd5e1;
       font-size: 0.78rem;
       color: #ffffff !important;
       font-weight: 500;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+      &:hover {
+        background: rgba(16, 185, 129, 0.16);
+        border-color: rgba(16, 185, 129, 0.4);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+      }
     }
+  }
+}
+
+@keyframes glow-breathe {
+  0% {
+    opacity: 0.35;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 0.65;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes radar-ping {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.9;
+  }
+  60%,
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
   }
 }
 
