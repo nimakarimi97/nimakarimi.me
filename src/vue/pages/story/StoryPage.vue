@@ -120,6 +120,13 @@ function navigateToResume() {
   router.push('/about')
 }
 
+function navigateToPartners() {
+  persistStoryToast()
+
+  lenis.scrollTo(0, { immediate: true })
+  router.push('/partners')
+}
+
 function selectLanguage(lang) {
   language.selectLanguage(lang)
   showLanguageDropdown.value = false
@@ -130,21 +137,20 @@ function toggleLanguageDropdown() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Code lines for scene 3
+// Code lines for scene 3 (Telemetry & Control Architecture)
 // ─────────────────────────────────────────────────────────────────────────────
 const codeLines = [
-  'import { Robot } from "ros/control"',
-  'const joints = new KinematicChain({ dof: 6 })',
-  'function pid(desired, actual, Kp, Ki, Kd) {',
-  '  const error = desired - actual',
-  '  return Kp * error + Ki * ∫error + Kd * Δerror',
+  '// Closed-loop kinematic controller',
+  'const joints = new KinematicChain({ dof: 6, precision: "0.01mm" })',
+  'function computeControlLoop(state, target) {',
+  '  const torque = pid.evaluate(state.velocity, target.velocity)',
+  '  return actuators.applyTorque(torque)',
   '}',
-  'planner.computePath(start, goal)',
-  'robot.execute(trajectory)',
-  'gazebo.simulate(world, dt=0.001)',
-  'console.log("wait... this is actually fun")',
-  'ros.subscribe("/joint_states", handler)',
-  'while (true) { await controlLoop() }',
+  'planner.computeTrajectory(start, goal, constraints)',
+  'ros.publish("/system_state", telemetry)',
+  'const telemetry = await hardware.streamSensors()',
+  'while (system.active) { await controlLoop() }',
+  '// Hardware is the vessel. Software is the soul.',
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -611,12 +617,12 @@ onUnmounted(() => {
 
         <div class="portal-behind-content">
           <div class="pbc-badge">
-            <span class="pbc-badge-icon">🎓</span>
-            <span class="pbc-badge-text">2015 · WHERE IT ALL BEGAN</span>
+            <span class="pbc-badge-icon">🏛️</span>
+            <span class="pbc-badge-text">TECHNO-COMMERCIAL LEADERSHIP</span>
           </div>
 
           <h2 class="pbc-heading">
-            <span class="pbc-heading-title">Into Robotics & Physical Systems</span>
+            <span class="pbc-heading-title">Physical Systems · Management · Global Ventures</span>
           </h2>
 
           <div class="pbc-visual">
@@ -856,9 +862,9 @@ onUnmounted(() => {
     </section>
 
     <!-- ════════════════════════════════════════════════════════
-        SCENE 3 · CODE REVELATION
+        SCENE 3 · THE CONVERGENCE
     ═════════════════════════════════════════════════════════ -->
-    <section class="scene scene-code" aria-label="Chapter 3: Code Revelation">
+    <section class="scene scene-code" aria-label="Chapter 3: The Convergence">
       <div class="s3-code-bg" aria-hidden="true">
         <span v-for="(line, i) in codeLines" :key="i" class="cl">{{ line }}</span>
       </div>
@@ -868,8 +874,10 @@ onUnmounted(() => {
         <div class="s3-duel">
           <h2 class="s3-hate display-title display-title--dim">
             {{ getString('s3_hate') }}
-            <span class="s3-strike" aria-hidden="true" />
           </h2>
+          <div class="s3-strike-wrap">
+            <span class="s3-strike" aria-hidden="true" />
+          </div>
           <h2 class="s3-love display-title display-title--grad">
             {{ getString('s3_love') }}
           </h2>
@@ -883,11 +891,11 @@ onUnmounted(() => {
     </section>
 
     <!-- ════════════════════════════════════════════════════════
-        SCENE 4 · COVID
+        SCENE 4 · STRATEGY & OPERATIONS
     ═════════════════════════════════════════════════════════ -->
-    <section class="scene scene-covid" aria-label="Chapter 4: COVID era">
+    <section class="scene scene-covid" aria-label="Chapter 4: Strategy & Operations">
       <div class="s4-year" aria-hidden="true">
-        2020
+        M.Sc.
       </div>
 
       <div class="scene-content scene-content--split">
@@ -910,7 +918,7 @@ onUnmounted(() => {
           </div>
         </div>
 
-        <!-- typing on Mac -->
+        <!-- Workstation Monitor -->
         <div class="s4-mac-robot" aria-hidden="true">
           <div class="rt-stage">
             <div class="rt-mac">
@@ -924,11 +932,11 @@ onUnmounted(() => {
                       <span class="rt-dot rt-dot-g" />
                     </div>
                     <div class="rt-screen-code">
-                      <span class="rt-line rt-l1">$ npm run dev</span>
-                      <span class="rt-line rt-l2">&gt; compiling...</span>
-                      <span class="rt-line rt-l3">const App = () =&gt; {</span>
-                      <span class="rt-line rt-l4">  return &lt;Hello /&gt;</span>
-                      <span class="rt-line rt-l5">}<span class="rt-caret">▍</span></span>
+                      <span class="rt-line rt-l1">&gt; System: Supply Chain &amp; Ops</span>
+                      <span class="rt-line rt-l2">&gt; Status: Optimization Active</span>
+                      <span class="rt-line rt-l3">KPI: Operations Efficiency +34%</span>
+                      <span class="rt-line rt-l4">Governance: Agile Delivery On-Track</span>
+                      <span class="rt-line rt-l5">Region: Europe ➔ International<span class="rt-caret">▍</span></span>
                     </div>
                   </div>
                 </div>
@@ -1027,7 +1035,7 @@ onUnmounted(() => {
         </div>
         <div class="s6-divider" aria-hidden="true" />
         <h2 class="s6-persist display-title display-title--accent">
-          {{ getString('s6_persist') }}
+          <span class="s6-persist-text">{{ getString('s6_persist') }}</span>
         </h2>
       </div>
     </section>
@@ -1072,9 +1080,9 @@ onUnmounted(() => {
     </section>
 
     <!-- ════════════════════════════════════════════════════════
-        SCENE 8 · EVOLUTION
+        SCENE 8 · GLOBAL EXPANSION
     ═════════════════════════════════════════════════════════ -->
-    <section class="scene scene-evolution" aria-label="Chapter 8: Evolution">
+    <section class="scene scene-evolution" aria-label="Chapter 8: Global Expansion">
       <div class="scene-content">
         <span class="s8-chapter chapter-label">{{ getString('s8_ch08_label') }}</span>
         <h2 class="s8-title display-title">
@@ -1083,33 +1091,33 @@ onUnmounted(() => {
 
         <div class="s8-stack">
           <div class="si si--fe">
-            <i class="fa-brands fa-vuejs" aria-hidden="true" />
+            <i class="fa-solid fa-certificate" aria-hidden="true" />
             <span>{{ getString('s8_stack_frontend') }}</span>
           </div>
           <span class="sa" aria-hidden="true"><i class="fa-solid fa-arrow-right" /></span>
           <div class="si si--be">
-            <i class="fa-solid fa-server" aria-hidden="true" />
+            <i class="fa-solid fa-bolt-lightning" aria-hidden="true" />
             <span>{{ getString('s8_stack_backend') }}</span>
           </div>
           <span class="sa" aria-hidden="true"><i class="fa-solid fa-arrow-right" /></span>
           <div class="si si--do">
-            <i class="fa-brands fa-docker" aria-hidden="true" />
+            <i class="fa-solid fa-bottle-droplet" aria-hidden="true" />
             <span>{{ getString('s8_stack_devops') }}</span>
           </div>
           <span class="sa" aria-hidden="true"><i class="fa-solid fa-arrow-right" /></span>
           <div class="si si--iot">
-            <i class="fa-solid fa-microchip" aria-hidden="true" />
+            <i class="fa-solid fa-truck-fast" aria-hidden="true" />
             <span>{{ getString('s8_stack_iot') }}</span>
           </div>
           <span class="sa" aria-hidden="true"><i class="fa-solid fa-arrow-right" /></span>
           <div class="si si--mob">
-            <i class="fa-solid fa-mobile-screen" aria-hidden="true" />
+            <i class="fa-solid fa-handshake" aria-hidden="true" />
             <span>{{ getString('s8_stack_mobile') }}</span>
           </div>
         </div>
 
         <div class="s8-badge">
-          <i class="fa-solid fa-building" aria-hidden="true" />
+          <i class="fa-solid fa-globe" aria-hidden="true" />
           <span>{{ getString('s8_badge') }}</span>
         </div>
 
@@ -1121,7 +1129,7 @@ onUnmounted(() => {
     </section>
 
     <!-- ════════════════════════════════════════════════════════
-        SCENE 9 · PRESENT
+        SCENE 9 · TODAY
     ═════════════════════════════════════════════════════════ -->
     <section class="scene scene-present" aria-label="Chapter 9: Today">
       <div class="scene-content scene-content--center ">
@@ -1138,12 +1146,14 @@ onUnmounted(() => {
         </p>
 
         <div class="s9-cta">
-          <button class="cta-btn cta-btn--primary" @click="navigateToResume">
-            {{ getString('story_ch09_btn_resume') }}
+          <button class="cta-btn cta-btn--partners" @click="navigateToPartners">
+            <i class="fa-solid fa-handshake me-1" />
+            <span>{{ getString('story_ch09_btn_contact') }}</span>
           </button>
-          <router-link to="/contact" class="cta-btn cta-btn--outline" @click="persistStoryToast">
-            {{ getString('story_ch09_btn_contact') }}
-          </router-link>
+          <button class="cta-btn cta-btn--primary" @click="navigateToResume">
+            <i class="fa-solid fa-file-lines me-1" />
+            <span>{{ getString('story_ch09_btn_resume') }}</span>
+          </button>
         </div>
         <p class="s9-sig">
           {{ getString('footer_copyright') }} {{ new Date().getFullYear() }}
@@ -1843,12 +1853,14 @@ $code-green: #39ff14;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    padding-right: 0.25em;
   }
   &.display-title--grad {
     background: linear-gradient(135deg, $accent 0%, $cyan 50%, $purple 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    padding-right: 0.25em;
   }
   &.display-title--hero {
     font-size: clamp(4rem, 7vw, 7rem);
@@ -4284,22 +4296,36 @@ $rivet: #5a6378;
 .s3-duel {
   position: relative;
   margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
 }
 
 .s3-hate {
   position: relative;
   display: inline-block;
-  margin-bottom: 8px;
+  margin-bottom: 0;
   will-change: opacity, transform;
+  color: #94a3b8 !important;
+}
+
+.s3-strike-wrap {
+  position: relative;
+  width: 140px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .s3-strike {
-  position: absolute;
-  bottom: 48%;
-  left: -3%;
-  width: 106%;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, rgba($purple, 0.8), transparent);
+  position: relative;
+  width: 100%;
+  height: 2.5px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, transparent, $accent, $purple, transparent);
+  box-shadow: 0 0 12px rgba($accent, 0.6);
   will-change: transform;
 }
 
@@ -4487,6 +4513,17 @@ $rivet: #5a6378;
 
   .s6-persist {
     min-height: 120px;
+    display: inline-block;
+    max-width: 100%;
+    font-size: clamp(2.2rem, 4.4vw, 4.4rem);
+    padding: 0 0.4em 0 0.1em;
+    overflow: visible;
+
+    .s6-persist-text {
+      display: inline-block;
+      padding-right: 0.35em;
+      white-space: normal;
+    }
   }
 }
 
@@ -4695,15 +4732,31 @@ $rivet: #5a6378;
       background 0.25s ease;
     will-change: opacity, transform;
 
-    &.cta-btn--primary {
-      background: $accent;
+    &.cta-btn--partners {
+      background: linear-gradient(135deg, $green, darken($green, 8%));
       color: white;
-      border: none;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 4px 20px rgba($green, 0.35);
+      cursor: pointer;
 
       &:hover {
-        background: lighten($accent, 5%);
+        background: linear-gradient(135deg, lighten($green, 5%), $green);
         transform: translateY(-3px);
-        box-shadow: 0 10px 36px rgba($accent, 0.35);
+        box-shadow: 0 10px 36px rgba($green, 0.55);
+        color: white;
+      }
+    }
+
+    &.cta-btn--primary {
+      background: transparent;
+      color: $text;
+      border: 1.5px solid rgba(255, 255, 255, 0.22);
+      cursor: pointer;
+
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 36px rgba(255, 255, 255, 0.15);
       }
     }
 
