@@ -11,8 +11,8 @@ gsap.registerPlugin(ScrollTrigger)
 
 const lenis = useLenis()
 
-// Language toggle state: 'fa' (Persian, default) or 'en' (English)
-const currentLang = ref('fa')
+// Language toggle state: 'en' (English, default) or 'fa' (Persian)
+const currentLang = ref('en')
 
 function toggleLanguage() {
   currentLang.value = currentLang.value === 'fa' ? 'en' : 'fa'
@@ -261,6 +261,9 @@ onMounted(() => {
 
 onUnmounted(() => {
   ScrollTrigger.getAll().forEach(t => t.kill())
+  if (typeof window !== 'undefined') {
+    document.documentElement.dir = 'ltr'
+  }
 })
 </script>
 
