@@ -222,8 +222,8 @@ function initAnimations() {
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-origin') })
       .fromTo(
         '.s1-bg-text',
-        { opacity: 0, y: 70, scale: 0.85 },
-        { opacity: 0.2, y: -40, scale: 1.12, duration: 0.65, ease: 'power2.out' },
+        { opacity: 0, y: 35, scale: 0.92 },
+        { opacity: 1, y: -15, scale: 1, duration: 0.65, ease: 'power2.out' },
         0,
       )
       .from('.s1-chapter', { opacity: 0, y: -24, duration: 0.25 }, 0.05)
@@ -319,7 +319,7 @@ function initAnimations() {
       .to('.s3-love', { scale: 1, duration: 0.2 }, 0.8)
       .from('.s3-subtitle', { opacity: 0, y: 30, duration: 0.4 }, 0.9)
 
-    // ── Scene 4: COVID ───────────────────────────────────────────────────────
+    // ── Scene 4: Strategy ─────────────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-covid') })
       .fromTo(
         '.s4-year',
@@ -335,18 +335,8 @@ function initAnimations() {
         duration: 0.5,
         ease: 'power3.out',
       }, 0.2)
-      .fromTo(
-        '.rt-mac',
-        { rotateX: 25, opacity: 0, scale: 0.85 },
-        { rotateX: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.4)' },
-        0.15,
-      )
-      .fromTo('.rt-l1', { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.15 }, 0.35)
-      .fromTo('.rt-l2', { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.15 }, 0.45)
-      .fromTo('.rt-l3', { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.15 }, 0.55)
-      .fromTo('.rt-l4', { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.15 }, 0.65)
-      .fromTo('.rt-l5', { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.15 }, 0.72)
-      .from('.s4-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 0.55)
+      .from('.s4-uni', { scale: 0.85, opacity: 0, y: 40, duration: 0.5, ease: 'back.out(1.5)' }, 0.25)
+      .from('.s4-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 0.35)
       .from('.s4-techs .tc', {
         y: 35,
         opacity: 0,
@@ -354,7 +344,7 @@ function initAnimations() {
         stagger: 0.06,
         duration: 0.4,
         ease: 'back.out(1.6)',
-      }, 0.5)
+      }, 0.45)
 
     // ── Scene 5: Academia ────────────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-academia', PIN_EASE + 200) })
@@ -367,15 +357,18 @@ function initAnimations() {
         ease: 'power3.out',
       }, 0.1)
       .fromTo(
-        '.s5-arches .arch',
-        { scale: 0.3, opacity: 0, y: 60 },
-        { scale: 1, opacity: 0.8, y: 0, stagger: 0.08, duration: 0.6, ease: 'power2.out' },
-        0.1,
+        '.rt-mac',
+        { rotateX: 25, opacity: 0, scale: 0.85 },
+        { rotateX: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.4)' },
+        0.15,
       )
-      .from('.s5-uni', { scale: 0.85, opacity: 0, y: 40, duration: 0.5, ease: 'back.out(1.5)' }, 0.3)
-      .from('.s5-visual', { scale: 0.95, opacity: 0, duration: 0.5, ease: 'power3.out' }, 0.4)
-      .from('.s5-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 0.55)
-      .from('.s5-acts .ac', { x: -40, opacity: 0, stagger: 0.08, duration: 0.4, ease: 'power2.out' }, 0.55)
+      .fromTo('.rt-l1', { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.15 }, 0.35)
+      .fromTo('.rt-l2', { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.15 }, 0.45)
+      .fromTo('.rt-l3', { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.15 }, 0.55)
+      .fromTo('.rt-l4', { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.15 }, 0.65)
+      .fromTo('.rt-l5', { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.15 }, 0.72)
+      .from('.s5-subtitle', { y: 30, opacity: 0, duration: 0.4 }, 0.4)
+      .from('.s5-acts .ac', { x: -40, opacity: 0, stagger: 0.08, duration: 0.4, ease: 'power2.out' }, 0.45)
 
     // ── Scene 6: Challenges ──────────────────────────────────────────────────
     gsap.timeline({ scrollTrigger: mkTrigger('.scene-challenges', PIN_EASE + 200) })
@@ -474,7 +467,7 @@ function initAnimations() {
           duration: 0.8,
           ease: 'power2.out',
         })
-        .from(scene.querySelectorAll('.s2-paper, .s4-techs, .s5-uni, .s5-acts, .s7-steps, .s8-stack, .s8-badge'), {
+        .from(scene.querySelectorAll('.s2-paper, .s4-techs, .s4-uni, .s5-acts, .s7-steps, .s8-stack, .s8-badge'), {
           y: 30,
           opacity: 0,
           stagger: 0.1,
@@ -698,7 +691,8 @@ onUnmounted(() => {
     <section class="scene scene-origin" aria-label="Chapter 1: Origin">
       <div class="scene-bg grid-bg" aria-hidden="true" />
       <div class="s1-bg-text" aria-hidden="true">
-        🎓 <br> 2015
+        <span class="s1-bg-cap">🎓</span>
+        <span class="s1-bg-year">2015</span>
       </div>
 
       <div class="scene-content">
@@ -873,13 +867,13 @@ onUnmounted(() => {
         <span class="s3-chapter chapter-label">{{ getString('s3_ch03_label') }}</span>
         <div class="s3-duel">
           <h2 class="s3-hate display-title display-title--dim">
-            {{ getString('s3_hate') }}
+            <span class="s3-title-inner">{{ getString('s3_hate') }}</span>
           </h2>
           <div class="s3-strike-wrap">
             <span class="s3-strike" aria-hidden="true" />
           </div>
           <h2 class="s3-love display-title display-title--grad">
-            {{ getString('s3_love') }}
+            <span class="s3-title-inner">{{ getString('s3_love') }}</span>
           </h2>
         </div>
         <p class="s3-subtitle scene-sub">
@@ -902,8 +896,7 @@ onUnmounted(() => {
         <div class="s4-text">
           <span class="s4-chapter chapter-label">{{ getString('s4_ch04_label') }}</span>
           <h2 class="s4-title display-title">
-            <span class="w">{{ getString('s4_title_line1') }}</span><br>
-            <span class="w">{{ getString('s4_title_line2') }}</span>
+            <span class="w">{{ getString('s4_title') }}</span>
           </h2>
           <p class="s4-subtitle scene-sub">
             {{ getString('s4_subtitle_line1') }}
@@ -918,8 +911,56 @@ onUnmounted(() => {
           </div>
         </div>
 
-        <!-- Workstation Monitor -->
-        <div class="s4-mac-robot" aria-hidden="true">
+        <div class="s4-visual">
+          <div class="s4-uni">
+            <div class="uni-icon">
+              <i class="fa-solid fa-graduation-cap" aria-hidden="true" />
+            </div>
+            <div class="uni-body">
+              <div class="uni-name">
+                <span class="uni-flag" aria-hidden="true">🇮🇹</span> {{ getString('s4_uni_name') }}
+              </div>
+              <div class="uni-deg">
+                {{ getString('s4_uni_degree') }}
+              </div>
+              <div class="uni-yr">
+                {{ getString('s4_uni_year') }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════
+        SCENE 5 · ACADEMIA
+    ═════════════════════════════════════════════════════════ -->
+    <section class="scene scene-academia" aria-label="Chapter 5: Academia">
+      <div class="scene-content scene-content--split">
+        <div class="s5-text">
+          <span class="s5-chapter chapter-label">{{ getString('s5_ch05_label') }}</span>
+          <h2 class="s5-title display-title">
+            <span class="w">{{ getString('s5_title') }}</span>
+          </h2>
+          <p class="s5-subtitle scene-sub">
+            {{ getString('s5_subtitle_line1') }}
+            {{ getString('s5_subtitle_line2') }}
+          </p>
+          <div class="s5-acts">
+            <div class="ac">
+              <i class="fa-solid fa-book" aria-hidden="true" />{{ getString('s5_act_study') }}
+            </div>
+            <div class="ac">
+              <i class="fa-solid fa-code" aria-hidden="true" />{{ getString('s5_act_build') }}
+            </div>
+            <div class="ac">
+              <i class="fa-solid fa-briefcase" aria-hidden="true" />{{ getString('s5_act_work') }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Workstation Monitor / Laptop Typing Animation -->
+        <div class="s5-mac-robot" aria-hidden="true">
           <div class="rt-stage">
             <div class="rt-mac">
               <div class="rt-mac-lid">
@@ -955,62 +996,6 @@ onUnmounted(() => {
             <div class="rt-spark rt-spark-1" />
             <div class="rt-spark rt-spark-2" />
             <div class="rt-spark rt-spark-3" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ════════════════════════════════════════════════════════
-        SCENE 5 · ACADEMIA
-    ═════════════════════════════════════════════════════════ -->
-    <section class="scene scene-academia" aria-label="Chapter 5: Academia">
-      <div class="scene-content scene-content--split">
-        <div class="s5-text">
-          <span class="s5-chapter chapter-label">{{ getString('s5_ch05_label') }}</span>
-          <h2 class="s5-title display-title">
-            <span class="w">{{ getString('s5_title') }}</span>
-          </h2>
-          <div class="s5-uni">
-            <div class="uni-icon">
-              <i class="fa-solid fa-graduation-cap" aria-hidden="true" />
-            </div>
-            <div class="uni-body">
-              <div class="uni-name">
-                {{ getString('s5_uni_name') }}
-              </div>
-              <div class="uni-deg">
-                {{ getString('s5_uni_degree') }}
-              </div>
-              <div class="uni-yr">
-                {{ getString('s5_uni_year') }}
-              </div>
-            </div>
-          </div>
-          <p class="s5-subtitle scene-sub">
-            {{ getString('s5_subtitle_line1') }}
-            {{ getString('s5_subtitle_line2') }}
-          </p>
-          <div class="s5-acts">
-            <div class="ac">
-              <i class="fa-solid fa-book" aria-hidden="true" />{{ getString('s5_act_study') }}
-            </div>
-            <div class="ac">
-              <i class="fa-solid fa-code" aria-hidden="true" />{{ getString('s5_act_build') }}
-            </div>
-            <div class="ac">
-              <i class="fa-solid fa-briefcase" aria-hidden="true" />{{ getString('s5_act_work') }}
-            </div>
-          </div>
-        </div>
-
-        <div class="s5-visual" aria-hidden="true">
-          <div class="s5-arches">
-            <div class="arch arch-3" />
-            <div class="arch arch-2" />
-            <div class="arch arch-1" />
-            <div class="arch-label">
-              📌 Padova
-            </div>
           </div>
         </div>
       </div>
@@ -1839,7 +1824,7 @@ $code-green: #39ff14;
   .w {
     display: inline-block;
     will-change: transform, opacity;
-    padding-right: 0.08em;
+    padding-right: 0.12em;
   }
 
   &.display-title--dim {
@@ -1900,21 +1885,88 @@ $code-green: #39ff14;
 
 .s1-bg-text {
   position: absolute;
-  font-family: $font-head;
-  font-size: clamp(14rem, 24vw, 30rem);
-  font-weight: 900;
-  text-align: right;
-  color: rgb(255, 255, 255);
-  opacity: 0.1;
-  padding-right: 24px;
-  right: -1%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  right: clamp(2rem, 6.5vw, 6.5rem);
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
   z-index: 0;
-  letter-spacing: -0.04em;
-  line-height: 1;
+  overflow: visible;
   will-change: opacity, transform;
+
+  .s1-bg-cap {
+    font-size: clamp(3.2rem, 5.8vw, 5.8rem);
+    line-height: 1;
+    opacity: 0.28;
+    margin-bottom: 6px;
+    margin-right: clamp(1rem, 2vw, 2.2rem);
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 16px rgba(59, 130, 246, 0.08));
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
+  }
+
+  .s1-bg-year {
+    display: inline-block;
+    font-family: $font-head;
+    font-size: clamp(5.2rem, 10.5vw, 10.5rem);
+    font-weight: 900;
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+    padding-right: 0.35em;
+    overflow: visible;
+    user-select: none;
+
+    /* Subtle architectural gradient watermark */
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.11) 0%,
+      rgba(147, 197, 253, 0.05) 45%,
+      rgba(255, 255, 255, 0.012) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    /* Delicate crisp edge and soft ambient background shadow */
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.035);
+    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.8));
+    text-shadow: 0 0 35px rgba(59, 130, 246, 0.05);
+  }
+
+  @media (max-width: 1024px) {
+    right: clamp(1.5rem, 5vw, 4rem);
+
+    .s1-bg-cap {
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      opacity: 0.26;
+      margin-right: 1rem;
+    }
+
+    .s1-bg-year {
+      font-size: clamp(4rem, 8vw, 7.2rem);
+    }
+  }
+
+  @media (max-width: 768px) {
+    right: clamp(1rem, 4vw, 2.5rem);
+    top: 52%;
+
+    .s1-bg-cap {
+      font-size: clamp(2.2rem, 6.5vw, 3.2rem);
+      opacity: 0.24;
+      margin-right: 0.6rem;
+    }
+
+    .s1-bg-year {
+      font-size: clamp(3.2rem, 9.5vw, 5rem);
+      padding-right: 0.25em;
+      -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.025);
+    }
+  }
 }
 
 .s1-gear {
@@ -3528,11 +3580,11 @@ $rivet: #5a6378;
   }
 }
 
-// ─── Mac Typing Robot (Scene 4) ──────────────────────────────────────────────
-.s4-mac-robot {
+// ─── Mac Typing Robot (Scene 5) ──────────────────────────────────────────
+.s5-mac-robot {
   position: relative;
   width: 320px;
-  height: 340px;
+  height: 170px;
   margin: 0 auto;
 
   @media (max-width: 768px) {
@@ -4300,13 +4352,27 @@ $rivet: #5a6378;
   flex-direction: column;
   align-items: center;
   gap: 6px;
+  overflow: visible;
 }
 
-.s3-hate {
+.s3-hate,
+.s3-love {
   position: relative;
   display: inline-block;
   margin-bottom: 0;
   will-change: opacity, transform;
+  padding: 0 0.35em;
+  overflow: visible;
+
+  .s3-title-inner {
+    display: inline-block;
+    padding-right: 0.35em;
+    padding-left: 0.05em;
+    overflow: visible;
+  }
+}
+
+.s3-hate {
   color: #94a3b8 !important;
 }
 
@@ -4329,15 +4395,31 @@ $rivet: #5a6378;
   will-change: transform;
 }
 
-.s3-love {
-  will-change: opacity, transform;
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // Scene 4 · COVID
 // ─────────────────────────────────────────────────────────────────────────────
 .scene-covid {
   background: linear-gradient(140deg, #060608 0%, #080810 100%);
+
+  .s4-title {
+    white-space: nowrap;
+    overflow: visible;
+
+    .w {
+      display: inline-block;
+      white-space: nowrap;
+      padding-right: 0.25em;
+      overflow: visible;
+    }
+
+    @media (max-width: 768px) {
+      white-space: normal;
+
+      .w {
+        white-space: normal;
+      }
+    }
+  }
 }
 
 .s4-year {
@@ -4378,45 +4460,130 @@ $rivet: #5a6378;
   }
 }
 
+.s4-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  align-self: flex-end;
+  margin-top: clamp(60px, 8vh, 120px);
+
+  @media (max-width: 768px) {
+    margin-top: 24px;
+    align-self: center;
+  }
+}
+
+.s4-uni {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba($accent, 0.2);
+  border-radius: 16px;
+  padding: 24px 28px;
+  max-width: 460px;
+  width: 100%;
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.4),
+    0 0 24px rgba($accent, 0.06);
+  backdrop-filter: blur(12px);
+  will-change: opacity, transform;
+
+  .uni-icon {
+    font-size: 2.2rem;
+    color: $amber;
+    flex-shrink: 0;
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: rgba($amber, 0.08);
+    border: 1px solid rgba($amber, 0.25);
+  }
+
+  .uni-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .uni-name {
+    font-weight: 700;
+    color: $text;
+    font-size: 1.12rem;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .uni-flag {
+      font-size: 1.25rem;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+
+  .uni-deg {
+    font-size: 0.9rem;
+    color: rgba($text, 0.85);
+    margin-bottom: 3px;
+    font-weight: 500;
+  }
+
+  .uni-yr {
+    font-size: 0.78rem;
+    color: $accent;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+
+  @media (max-width: 480px) {
+    padding: 18px 20px;
+    gap: 14px;
+
+    .uni-icon {
+      width: 46px;
+      height: 46px;
+      font-size: 1.6rem;
+    }
+
+    .uni-name {
+      font-size: 1rem;
+    }
+
+    .uni-deg {
+      font-size: 0.82rem;
+    }
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Scene 5 · Academia
 // ─────────────────────────────────────────────────────────────────────────────
 .scene-academia {
   background: linear-gradient(140deg, #08101e 0%, #0a1428 100%);
-}
 
-.s5-uni {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 12px;
-  padding: 20px 24px;
-  margin: 28px 0;
-  max-width: 440px;
-  will-change: opacity, transform;
+  .s5-title {
+    white-space: nowrap;
+    overflow: visible;
 
-  .uni-icon {
-    font-size: 2rem;
-    color: $amber;
-    flex-shrink: 0;
-  }
-  .uni-name {
-    font-weight: 700;
-    color: $text;
-    font-size: 1rem;
-    margin-bottom: 3px;
-  }
-  .uni-deg {
-    font-size: 0.83rem;
-    color: $muted;
-    margin-bottom: 2px;
-  }
-  .uni-yr {
-    font-size: 0.72rem;
-    color: $accent;
-    letter-spacing: 0.1em;
+    .w {
+      display: inline-block;
+      white-space: nowrap;
+      padding-right: 0.25em;
+      overflow: visible;
+    }
+
+    @media (max-width: 768px) {
+      white-space: normal;
+
+      .w {
+        white-space: normal;
+      }
+    }
   }
 }
 
@@ -4424,7 +4591,7 @@ $rivet: #5a6378;
   display: flex;
   gap: 24px;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 28px;
 
   .ac {
     display: flex;
@@ -4438,54 +4605,6 @@ $rivet: #5a6378;
       color: $accent;
     }
   }
-}
-
-.s5-visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-}
-
-.s5-arches {
-  position: relative;
-  width: 260px;
-  height: 260px;
-}
-
-.arch {
-  position: absolute;
-  border-radius: 50% 50% 0 0;
-  border: 1.5px solid;
-  will-change: opacity, transform;
-
-  &.arch-1 {
-    inset: 0;
-    border-color: rgba($amber, 0.15);
-  }
-  &.arch-2 {
-    inset: 20%;
-    border-color: rgba($amber, 0.2);
-  }
-  &.arch-3 {
-    inset: 40%;
-    border-color: rgba($amber, 0.35);
-    background: rgba($amber, 0.04);
-  }
-}
-
-.arch-label {
-  position: absolute;
-  bottom: -28px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba($amber, 0.5);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
