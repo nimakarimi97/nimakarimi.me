@@ -658,7 +658,7 @@ onUnmounted(() => {
     <!-- ── Top nav ───────────────────────────────────────────── -->
     <nav class="s-nav" aria-label="Story navigation">
       <button class="s-back" @click="navigateToResume">
-        <i class="fa-solid fa-arrow-left" aria-hidden="true" />
+        <i class="fa-regular fa-file-lines" aria-hidden="true" />
         <span>{{ getString('story_resume') }}</span>
       </button>
 
