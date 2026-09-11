@@ -73,6 +73,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         api: 'modern-compiler',
+        loadPaths: ['.', 'node_modules'],
         quietDeps: true,
         silenceDeprecations: ['color-functions', 'import', 'global-builtin', 'legacy-js-api'],
       },

@@ -6,5 +6,6 @@ export default antfu({
     'no-console': 'off',
     'style/brace-style': ['error', '1tbs', { allowSingleLine: true }],
     'jsdoc/require-property-description': 'off',
+    'pnpm/yaml-enforce-settings': 'off',
   },
 })
