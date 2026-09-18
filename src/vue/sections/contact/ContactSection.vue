@@ -59,7 +59,7 @@ onMounted(() => {
   window.Cal.ns.schedule('inline', {
     elementOrSelector: '#my-cal-inline-schedule',
     config: { layout: 'month_view', useSlotsViewOnSmallScreen: 'true', theme: 'light' },
-    calLink: 'nimakarimi/schedule',
+    calLink: 'nimakarimi/meet',
   })
 
   window.Cal.ns.schedule('ui', {
