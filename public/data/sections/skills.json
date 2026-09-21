@@ -83,12 +83,12 @@
         "faIcon": "fas fa-user-tie",
         "locales": {
           "en": {
-            "title": "Team Leadership",
-            "description": "Experienced in managing <b>team activities</b>. Proven ability to <b>facilitate team building</b> and strengthen working relationships."
+            "title": "Team Leadership & Junior Mentorship",
+            "description": "Experienced in leading and mentoring <b>teams of junior software engineers</b>. Skilled in architectural guidance, code reviews, Agile delivery, and facilitating collaborative team building."
           },
           "it": {
-            "title": "Leadership del Team",
-            "description": "Esperienza nella gestione delle <b>attività di team</b>. Capacità comprovata nel <b>promuovere il team building</b> e rafforzare le relazioni lavorative."
+            "title": "Leadership del Team & Mentoring Junior",
+            "description": "Esperienza nella guida e nel mentoring di <b>team di sviluppatori junior</b>. Competenze in guida architetturale, code review, metodologie Agile e team building collaborativo."
           }
         }
       },
@@ -296,6 +296,34 @@
           "it": {
             "title": "Database (SQL e NoSQL)",
             "description": "Competente nell'utilizzo di <b>PostgreSQL e MongoDB</b>."
+          }
+        }
+      },
+      {
+        "faIcon": "fa-solid fa-robot",
+        "value": 85,
+        "locales": {
+          "en": {
+            "title": "Agentic AI, LangGraph & MCP",
+            "description": "Architecting autonomous agents with <b>LangGraph</b>, multi-turn reasoning, PostgreSQL checkpointers, <b>Model Context Protocol (MCP)</b> tools, and LLM integrations (OpenAI GPT, Claude on AWS Bedrock)."
+          },
+          "it": {
+            "title": "Agentic AI, LangGraph & MCP",
+            "description": "Progettazione di agenti autonomi con <b>LangGraph</b>, reasoning multi-turn, checkpointer PostgreSQL, strumenti <b>Model Context Protocol (MCP)</b> e integrazioni LLM (OpenAI GPT, Claude su AWS Bedrock)."
+          }
+        }
+      },
+      {
+        "faIcon": "fa-brands fa-aws",
+        "value": 80,
+        "locales": {
+          "en": {
+            "title": "AWS & Cloud Infrastructure",
+            "description": "Experienced with <b>AWS cloud services</b>, AWS Bedrock, and <b>Agentic AI workflows</b> (🏆 3rd place global winner in the 2025 AWS Agentic AI Hackathon), alongside Azure and Firebase."
+          },
+          "it": {
+            "title": "AWS e Infrastruttura Cloud",
+            "description": "Esperienza con i <b>servizi cloud AWS</b>, AWS Bedrock e workflow di <b>Agentic AI</b> (🏆 3° posto globale all'AWS Agentic AI Hackathon 2025), oltre ad Azure e Firebase."
           }
         }
       }
