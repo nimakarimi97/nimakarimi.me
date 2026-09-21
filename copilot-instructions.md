@@ -23,3 +23,8 @@ pnpm add -D <package-name>  # for devDependencies
 ```
 
 Do not use `npm install` or `yarn add`.
+
+## Testing Guidelines
+
+- Always run `pnpm run test:e2e` (or relevant spec files) and update tests whenever changing copy, data, or components.
+- Keep tests resilient: avoid overly strict, brittle exact string assertions on paragraph text or bio descriptions that frequently change. Test element presence, structure, and general keywords instead.
