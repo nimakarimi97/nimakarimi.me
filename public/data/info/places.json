@@ -1,4 +1,12 @@
 {
+  "aws": {
+    "faIcon": "fa-brands fa-aws",
+    "locales": {
+      "en": {
+        "name": "Amazon Web Services (AWS)"
+      }
+    }
+  },
   "capgemini": {
     "logoUrl": "images/places/capgemini_logo.png",
     "faIcon": "fa-solid fa-briefcase",

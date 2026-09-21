@@ -120,47 +120,92 @@
           "logoUrl": "images/places/capgemini_logo.png"
         }
       ],
-      "skills": ["Go", "Node.js", "Vue.js", "Docker", "Kubernetes", "Microservices", "Backend Development", "Team Collaboration", "Talent Acquisition", "Candidate Assessment", "Communication", "Problem Solving", "Technical Mentoring", "React Native", "ThingsBoard", "IoT", "CI/CD"],
+      "skills": ["AWS", "Agentic AI", "LangGraph", "Model Context Protocol (MCP)", "LLMs", "Go", "Python", "Node.js", "Vue.js", "React Native", "Docker", "Kubernetes", "PostgreSQL", "ThingsBoard", "IoT", "Microservices", "Team Leadership", "Technical Mentoring", "Talent Acquisition", "CI/CD"],
       "locales": {
         "en": {
-          "title": "Software Engineering Consultant",
-          "description": "Working as a <b>Software Engineering Consultant</b> at Capgemini, embedded as a contractor at <b>TIM (Telecom Italia)</b>. Contributing to <b>Smart Mobility</b> and <b>Connected Vehicles</b> projects, taking on multiple evolving roles across engineering, DevOps, IoT, mobile development, and talent acquisition.",
+          "title": "Software Engineering Consultant & Technical Lead",
+          "description": "Working as a <b>Software Engineering Consultant & Technical Lead</b> at Capgemini, embedded as a contractor at <b>TIM (Telecom Italia)</b>. Leading and mentoring a team of junior engineers across <b>Smart Mobility</b> and <b>Connected Vehicles</b> projects, architecting Agentic AI systems with LangGraph and MCP, managing IoT telemetry with ThingsBoard, leading React Native cross-platform mobile delivery, and driving talent acquisition.",
           "province": "Milan",
           "country": "IT"
         },
         "it": {
-          "title": "Consulente di Ingegneria Software",
-          "description": "Lavoro come <b>Consulente di Ingegneria Software</b> in Capgemini, distaccato come contractor presso <b>TIM (Telecom Italia)</b>. Contribuisco ai progetti di <b>Smart Mobility</b> e <b>Connected Vehicles</b>, ricoprendo più ruoli in continua evoluzione tra ingegneria, DevOps, IoT, sviluppo mobile e talent acquisition."
+          "title": "Consulente di Ingegneria Software & Technical Lead",
+          "description": "Lavoro come <b>Consulente di Ingegneria Software & Technical Lead</b> in Capgemini, distaccato come contractor presso <b>TIM (Telecom Italia)</b>. Guida e mentoring di un team di ingegneri junior su progetti di <b>Smart Mobility</b> e <b>Connected Vehicles</b>, architettura di sistemi Agentic AI con LangGraph ed MCP, gestione della telemetria IoT con ThingsBoard, sviluppo mobile cross-platform con React Native e talent acquisition."
         }
       },
       "subItems": [
+        {
+          "id": "cap_sub_leadership",
+          "period": ["2026/07", "now"],
+          "faIcon": "fa-solid fa-users-gear",
+          "locales": {
+            "en": {
+              "title": "Technical Team Lead & Mentorship",
+              "description": "Leading and mentoring a team of junior engineers in day-to-day development, architectural design, code reviews, and Agile delivery across Smart Mobility microservices and client apps."
+            },
+            "it": {
+              "title": "Technical Team Lead & Mentoring",
+              "description": "Guida e mentoring di un team di sviluppatori junior nelle attività quotidiane di sviluppo, design architetturale, code review e metodologie Agile su microservizi e applicazioni di Smart Mobility."
+            }
+          }
+        },
+        {
+          "id": "cap_sub_agentic_ai",
+          "period": ["2026/05", "now"],
+          "faIcon": "fa-solid fa-robot",
+          "locales": {
+            "en": {
+              "title": "Agentic AI, LangGraph & MCP Architect",
+              "description": "Architected autonomous <b>LangGraph AI workflows</b> with PostgreSQL checkpointer state persistence, multi-turn reasoning, and custom <b>Model Context Protocol (MCP)</b> servers/tools for transit analytics, live ThingsBoard IoT device telemetry, and real-time SSE streaming to the frontend."
+            },
+            "it": {
+              "title": "Architettura Agentic AI, LangGraph & MCP",
+              "description": "Progettazione e sviluppo di agenti autonomi <b>LangGraph</b> con persistenza dello stato su PostgreSQL, reasoning multi-turn e server/strumenti <b>Model Context Protocol (MCP)</b> personalizzati per analisi di trasporto, telemetria IoT ThingsBoard in tempo reale e streaming SSE verso il frontend."
+            }
+          }
+        },
+        {
+          "id": "cap_sub_mobile",
+          "period": ["2026/05", "now"],
+          "faIcon": "fa-solid fa-mobile-screen",
+          "locales": {
+            "en": {
+              "title": "Cross-Platform Mobile Developer (React Native)",
+              "description": "Developed the mobility tracking app in <b>React Native & Expo</b>: real-time GPS & accelerometer motion detection, offline session caching & auto-sync, ThingsBoard device telemetry streaming (battery, altitude, heading), and reliable background tracking."
+            },
+            "it": {
+              "title": "Sviluppatore Mobile Cross-Platform (React Native)",
+              "description": "Sviluppo dell'applicazione di mobility tracking in <b>React Native & Expo</b>: tracciamento GPS in tempo reale, rilevamento automatico del movimento tramite accelerometro, sincronizzazione offline delle sessioni, streaming telemetrico ThingsBoard e tracking resiliente in background."
+            }
+          }
+        },
         {
           "id": "cap_sub_fullstack",
           "period": ["2024/11", "now"],
           "faIcon": "fa-solid fa-code",
           "locales": {
             "en": {
-              "title": "Full-Stack Developer",
-              "description": "Working as a full-stack developer on Smart Mobility and Connected Vehicles solutions, contributing across backend services and frontend interfaces."
+              "title": "Full-Stack Developer (Go, Vue 3, PostgreSQL)",
+              "description": "Engineered high-throughput Go backend microservices (GTFS streaming ingestion pipeline, spatial GeoJSON analytics) and modern Vue 3 web dashboards with Pinia, SSE streaming, and interactive map route visualization."
             },
             "it": {
-              "title": "Sviluppatore Full-Stack",
-              "description": "Sviluppatore full-stack su soluzioni di Smart Mobility e Connected Vehicles, con contributi sia ai servizi backend sia alle interfacce frontend."
+              "title": "Sviluppatore Full-Stack (Go, Vue 3, PostgreSQL)",
+              "description": "Sviluppo di microservizi backend ad alte prestazioni in Go (pipeline di ingestione streaming GTFS, analytics spaziali GeoJSON) e dashboard web moderne in Vue 3 con Pinia, streaming SSE e visualizzazione interattiva delle rotte su mappa."
             }
           }
         },
         {
-          "id": "cap_sub_talent",
-          "period": ["2025/03", "now"],
-          "faIcon": "fa-solid fa-user-tie",
+          "id": "cap_sub_hackathon",
+          "period": ["2025/06", "2025/07"],
+          "faIcon": "fa-solid fa-trophy",
           "locales": {
             "en": {
-              "title": "Talent Acquisition Team",
-              "description": "Conducting technical interviews and acting as a <b>technical validator</b> to identify the best-fit candidates for the company."
+              "title": "🏆 3rd Place – 2025 AWS Agentic AI Hackathon",
+              "description": "Won <b>3rd place</b> globally among <b>3,291 hackers</b> and 130 project submissions from 45 countries in the AWS Agentic AI Hackathon with Team Digital Hackers (Transforming Businesses with Agentic AI)."
             },
             "it": {
-              "title": "Team Talent Acquisition",
-              "description": "Conduco colloqui tecnici e agisco come <b>validatore tecnico</b> per individuare i candidati più adatti per l'azienda."
+              "title": "🏆 3° Posto – 2025 AWS Agentic AI Hackathon",
+              "description": "Conquistato il <b>3° posto</b> globale su <b>3.291 partecipanti</b> e 130 progetti da 45 paesi nell'AWS Agentic AI Hackathon con il Team Digital Hackers (Transforming Businesses with Agentic AI)."
             }
           }
         },
@@ -171,11 +216,11 @@
           "locales": {
             "en": {
               "title": "DevOps Engineer",
-              "description": "Working with <b>Kubernetes</b> and managing <b>CI/CD pipelines</b> to streamline build, test, and deployment workflows."
+              "description": "Managing <b>Kubernetes</b> clusters and containerized deployments with Docker, automated <b>CI/CD pipelines</b>, and observability across staging and production environments."
             },
             "it": {
               "title": "DevOps Engineer",
-              "description": "Lavoro con <b>Kubernetes</b> e gestisco <b>pipeline CI/CD</b> per ottimizzare i flussi di build, test e deploy."
+              "description": "Gestione di cluster <b>Kubernetes</b> e deploy containerizzati con Docker, pipeline <b>CI/CD</b> automatizzate e monitoraggio degli ambienti di staging e produzione."
             }
           }
         },
@@ -186,26 +231,26 @@
           "locales": {
             "en": {
               "title": "ThingsBoard IoT Development",
-              "description": "Building on <b>ThingsBoard</b>, an open-source IoT platform for device management, data collection, processing, and visualization. Designing <b>rule chains</b> with nodes (including <b>AI nodes</b>) and creating real-time <b>dashboards</b> for monitoring."
+              "description": "Built on <b>ThingsBoard</b> IoT platform for device provisioning, MQTT client integration, token exchange, custom rule chains with <b>AI nodes</b>, and live vehicle diagnostics dashboards."
             },
             "it": {
               "title": "Sviluppo IoT con ThingsBoard",
-              "description": "Sviluppo su <b>ThingsBoard</b>, piattaforma IoT open-source per la gestione di dispositivi, raccolta, elaborazione e visualizzazione dei dati. Progetto <b>rule chain</b> con nodi (inclusi <b>nodi AI</b>) e creo <b>dashboard</b> in tempo reale per il monitoraggio."
+              "description": "Integrazione sulla piattaforma IoT <b>ThingsBoard</b> per provisioning di dispositivi, client MQTT, scambio token, rule chain personalizzate con <b>nodi AI</b> e dashboard di diagnostica in tempo reale."
             }
           }
         },
         {
-          "id": "cap_sub_mobile",
-          "period": ["2026/05", "now"],
-          "faIcon": "fa-solid fa-mobile-screen",
+          "id": "cap_sub_talent",
+          "period": ["2025/03", "now"],
+          "faIcon": "fa-solid fa-user-tie",
           "locales": {
             "en": {
-              "title": "Cross-Platform Mobile Developer",
-              "description": "Developing <b>iOS</b> and <b>Android</b> apps using <b>React Native</b>."
+              "title": "Talent Acquisition & Technical Validator",
+              "description": "Conducting technical interviews and acting as a <b>technical validator</b> to evaluate and onboard high-caliber engineering talent for Capgemini."
             },
             "it": {
-              "title": "Sviluppatore Mobile Cross-Platform",
-              "description": "Sviluppo di app <b>iOS</b> e <b>Android</b> utilizzando <b>React Native</b>."
+              "title": "Talent Acquisition & Validatore Tecnico",
+              "description": "Conduzione di colloqui tecnici e ruolo di <b>validatore tecnico</b> per la valutazione e l'inserimento di nuovi talenti ingegneristici in Capgemini."
             }
           }
         }
