@@ -129,8 +129,35 @@ export function createAppRouter() {
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: routeList,
     scrollBehavior(to, from, savedPosition) {
+      const sectionPath = String(to.path || '').replace(/^\//, '').toLowerCase()
+      const isSectionRoute = sections.some(section => section.id === sectionPath)
+
       if (savedPosition && to.path !== '/') {
         return savedPosition
+      }
+
+      if (isSectionRoute && window.innerWidth >= 992) {
+        return new Promise((resolve) => {
+          let attempts = 0
+          const maxAttempts = 40
+
+          const scrollWhenReady = () => {
+            const target = document.getElementById(sectionPath)
+            if (target) {
+              resolve({ el: `#${sectionPath}`, top: 0 })
+              return
+            }
+
+            attempts++
+            if (attempts < maxAttempts) {
+              setTimeout(scrollWhenReady, 100)
+            } else {
+              resolve(false)
+            }
+          }
+
+          scrollWhenReady()
+        })
       }
 
       // Desktop (all sections on one page): preserve scroll position

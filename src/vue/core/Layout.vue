@@ -55,7 +55,7 @@ onMounted(() => {
   )
   _onWindowChangeEvent()
 
-  _scrollToRouteSectionWithRetry(true)
+  _scrollToRouteSectionWithRetry(false)
 })
 
 /**
@@ -173,8 +173,7 @@ function _getRouteSectionId() {
     return null
   }
 
-  const hasSection = data.getSections().some(section => section.id === targetSection)
-  return hasSection ? targetSection : null
+  return targetSection
 }
 
 /**
@@ -182,6 +181,8 @@ function _getRouteSectionId() {
  * @private
  */
 function _scrollToRouteSectionWithRetry(withInitialDelay) {
+  navigation.update(route.name)
+
   if (!navigation.isAllAtOnceMode()) {
     return
   }
@@ -192,10 +193,12 @@ function _scrollToRouteSectionWithRetry(withInitialDelay) {
   }
 
   let attempts = 0
-  const maxAttempts = 8
+  const maxAttempts = 40
   const attemptScroll = () => {
-    if (document.getElementById(targetSection)) {
-      layout.smoothScrollToElement(targetSection, withInitialDelay)
+    const targetElement = document.getElementById(targetSection)
+    if (targetElement) {
+      // Route deep-links should land deterministically on the target section.
+      layout.instantScrollToElement(targetElement, withInitialDelay)
       return
     }
 

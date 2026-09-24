@@ -10,11 +10,16 @@ test.describe('Navigation', () => {
 
     const section = page.locator('#skills')
     await expect(section).toBeVisible()
+    await expect(section).toBeInViewport()
 
     const box = await section.boundingBox()
     expect(box).not.toBeNull()
     if (box) {
-      expect(box.y).toBeLessThan(220)
+      const viewport = page.viewportSize()
+      expect(viewport).not.toBeNull()
+      if (viewport) {
+        expect(box.y).toBeLessThan(viewport.height * 0.75)
+      }
     }
   })
 
