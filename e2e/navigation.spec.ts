@@ -5,6 +5,19 @@ test.describe('Navigation', () => {
     await page.goto('/about')
   })
 
+  test('should deep-link to skills section from URL', async ({ page }) => {
+    await page.goto('/skills')
+
+    const section = page.locator('#skills')
+    await expect(section).toBeVisible()
+
+    const box = await section.boundingBox()
+    expect(box).not.toBeNull()
+    if (box) {
+      expect(box.y).toBeLessThan(220)
+    }
+  })
+
   test('should highlight the active section in sidebar', async ({ page }) => {
     const activeItem = page.locator('.nav-item-selected')
     await expect(activeItem).toHaveCount(1)

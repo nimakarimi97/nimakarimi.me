@@ -55,10 +55,7 @@ onMounted(() => {
   )
   _onWindowChangeEvent()
 
-  const targetSection = route.name || route.path.replace(/^\//, '')
-  if (navigation.isAllAtOnceMode() && targetSection && targetSection !== 'about' && targetSection !== 'story') {
-    layout.smoothScrollToElement(targetSection, true)
-  }
+  _scrollToRouteSectionWithRetry(true)
 })
 
 /**
@@ -163,6 +160,52 @@ function _onRouteChanged() {
   // }
 
   _onWindowChangeEvent()
+  _scrollToRouteSectionWithRetry(false)
+}
+
+/**
+ * @return {string|null}
+ * @private
+ */
+function _getRouteSectionId() {
+  const targetSection = String(route.name || route.path.replace(/^\//, '') || '').toLowerCase()
+  if (!targetSection || targetSection === 'about' || targetSection === 'story' || targetSection === 'home') {
+    return null
+  }
+
+  const hasSection = data.getSections().some(section => section.id === targetSection)
+  return hasSection ? targetSection : null
+}
+
+/**
+ * @param {boolean} withInitialDelay
+ * @private
+ */
+function _scrollToRouteSectionWithRetry(withInitialDelay) {
+  if (!navigation.isAllAtOnceMode()) {
+    return
+  }
+
+  const targetSection = _getRouteSectionId()
+  if (!targetSection) {
+    return
+  }
+
+  let attempts = 0
+  const maxAttempts = 8
+  const attemptScroll = () => {
+    if (document.getElementById(targetSection)) {
+      layout.smoothScrollToElement(targetSection, withInitialDelay)
+      return
+    }
+
+    attempts++
+    if (attempts < maxAttempts) {
+      setTimeout(attemptScroll, 150)
+    }
+  }
+
+  attemptScroll()
 }
 
 /**
