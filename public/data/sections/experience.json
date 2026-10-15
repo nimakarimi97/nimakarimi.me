@@ -18,11 +18,11 @@
       "locales": {
         "en": {
           "title": "Software Developer Intern",
-          "description": "Developed a <strong>full-stack tweet scheduler application</strong>, gaining hands-on experience in web development across both backend and frontend."
+          "description": "Built a <strong>full-stack tweet-scheduling application</strong>, contributing to both backend and frontend development."
         },
         "it": {
           "title": "Stagista Sviluppatore Software",
-          "description": "Ho sviluppato <strong>un'applicazione full-stack per la pianificazione dei tweet</strong>, acquisendo esperienza pratica nello sviluppo web sia backend che frontend."
+          "description": "Ho realizzato <strong>un'applicazione full-stack per la pianificazione dei tweet</strong>, contribuendo allo sviluppo sia backend che frontend."
         }
       }
     },
@@ -34,11 +34,11 @@
       "locales": {
         "en": {
           "title": "Web Developer Freelancer",
-          "description": "Designed and developed responsive web and mobile applications for various clients, utilizing modern frameworks and tools to deliver high-quality solutions."
+          "description": "Designed and delivered responsive web and mobile applications for clients, selecting modern frameworks and tools to meet their project requirements."
         },
         "it": {
           "title": "Sviluppatore Web Freelance",
-          "description": "Progettato e sviluppato applicazioni web e mobile responsive per diversi clienti, utilizzando framework e strumenti moderni per fornire soluzioni di alta qualità."
+          "description": "Ho progettato e realizzato applicazioni web e mobile responsive per diversi clienti, scegliendo framework e strumenti moderni in base ai requisiti dei progetti."
         }
       }
     },
@@ -50,11 +50,11 @@
       "locales": {
         "en": {
           "title": "Machine Learning (ML) Developer",
-          "description": "Worked as a full-stack developer using C#, Python (Flask), and Angular. Built a ChatGPT-powered chatbot (via LLM) capable of answering users' questions about their documents, events, and tasks."
+          "description": "Developed full-stack features with C#, Python (Flask), and Angular, including an LLM-powered chatbot that answered users' questions about their documents, events, and tasks."
         },
         "it": {
           "title": "Sviluppatore Machine Learning (ML)",
-          "description": "Ho lavorato come sviluppatore full-stack con C#, Python (Flask) e Angular. Ho implementato un chatbot basato su ChatGPT (tramite LLM) in grado di rispondere alle domande degli utenti riguardo ai loro documenti, eventi e attività."
+          "description": "Ho sviluppato funzionalità full-stack con C#, Python (Flask) e Angular, incluso un chatbot basato su LLM per rispondere alle domande degli utenti su documenti, eventi e attività."
         }
       }
     },
@@ -66,11 +66,11 @@
       "locales": {
         "en": {
           "title": "Full-stack Developer and Project Manager",
-          "description": "Joined KeySolution from the ground up, contributing as a <b>full-stack developer</b> and stepping into a <b>project management and team leadership</b> role from day one through August 2024."
+          "description": "Joined KeySolution at its product launch as a <b>full-stack developer</b>, taking on <b>project management and team leadership</b> responsibilities from day one through August 2024."
         },
         "it": {
           "title": "Sviluppatore Full-stack e Project Manager",
-          "description": "Entrato in KeySolution fin dall'inizio, contribuendo come <b>sviluppatore full-stack</b> e assumendo un ruolo di <b>project management e team leadership</b> fin dal primo giorno fino ad agosto 2024."
+          "description": "Sono entrato in KeySolution fin dal lancio del prodotto come <b>sviluppatore full-stack</b>, assumendo responsabilità di <b>project management e team leadership</b> dal primo giorno fino ad agosto 2024."
         }
       },
       "subItems": [
@@ -81,11 +81,11 @@
           "locales": {
             "en": {
               "title": "Full-Stack Developer",
-              "description": "Built two internal products: a <b>Factory Simulation Dashboard</b> (Vue.js, Node.js, PostgreSQL, Express.js) for Big Data Analytics and plant lifecycle management, and a <b>CV Management Tool</b> (Vue.js, Nuxt.js, ChatGPT/LLM integration) to streamline applicant analysis."
+              "description": "Delivered two internal products: a <b>Factory Simulation Dashboard</b> (Vue.js, Node.js, PostgreSQL, Express.js) for big-data analytics and plant lifecycle management, and a <b>CV Management Tool</b> (Vue.js, Nuxt.js, ChatGPT/LLM integration) to streamline applicant analysis."
             },
             "it": {
               "title": "Sviluppatore Full-Stack",
-              "description": "Sviluppato due prodotti interni: una <b>Dashboard di Simulazione di Fabbrica</b> (Vue.js, Node.js, PostgreSQL, Express.js) per Big Data Analytics e gestione del ciclo di vita degli impianti, e uno <b>Strumento di Gestione CV</b> (Vue.js, Nuxt.js, integrazione ChatGPT/LLM) per ottimizzare l'analisi dei candidati."
+              "description": "Ho realizzato due prodotti interni: una <b>Dashboard di Simulazione di Fabbrica</b> (Vue.js, Node.js, PostgreSQL, Express.js) per l'analisi di big data e la gestione del ciclo di vita degli impianti, e uno <b>Strumento di Gestione CV</b> (Vue.js, Nuxt.js, integrazione ChatGPT/LLM) per semplificare l'analisi dei candidati."
             }
           }
         },
@@ -96,11 +96,11 @@
           "locales": {
             "en": {
               "title": "Agile Project Manager & Team Leader",
-              "description": "Led the team using <b>Agile and Scrum</b> methodologies from project kickoff, coordinating sprint planning, managing the full interview and hiring process independently, and driving team building initiatives."
+              "description": "Led project delivery with <b>Agile and Scrum</b> from kickoff, coordinated sprint planning, managed the interview and hiring process, and drove team-building initiatives."
             },
             "it": {
               "title": "Agile Project Manager & Team Leader",
-              "description": "Ho guidato il team con metodologie <b>Agile e Scrum</b> fin dall'avvio del progetto, coordinando la pianificazione degli sprint, gestendo autonomamente il processo di selezione e promuovendo attività di team building."
+              "description": "Ho guidato il progetto con metodologie <b>Agile e Scrum</b> fin dall'avvio, coordinando la pianificazione degli sprint, gestendo il processo di selezione e promuovendo iniziative di team building."
             }
           }
         }
@@ -123,17 +123,32 @@
       "skills": ["AWS", "Agentic AI", "LangGraph", "Model Context Protocol (MCP)", "LLMs", "Go", "Python", "Node.js", "Vue.js", "React Native", "Docker", "Kubernetes", "PostgreSQL", "ThingsBoard", "IoT", "Microservices", "Team Leadership", "Technical Mentoring", "Talent Acquisition", "CI/CD"],
       "locales": {
         "en": {
-          "title": "Software Engineering Consultant & Technical Lead",
-          "description": "Working as a <b>Software Engineering Consultant & Technical Lead</b> at Capgemini, embedded as a contractor at <b>TIM (Telecom Italia)</b>. Leading and mentoring a team of junior engineers across <b>Smart Mobility</b> and <b>Connected Vehicles</b> projects, architecting Agentic AI systems with LangGraph and MCP, managing IoT telemetry with ThingsBoard, leading React Native cross-platform mobile delivery, and driving talent acquisition.",
+          "title": "Senior AI Engineer Consultant & Technical Lead",
+          "description": "At Capgemini, I provide hands-on technical leadership across <b>Smart Mobility</b> and <b>Connected Vehicles</b>, embedded as a contractor at <b>TIM (Telecom Italia Mobile)</b>. I lead and mentor junior engineers, set technical direction, and architect agentic AI systems with LangGraph and MCP, including PostgreSQL-backed state, custom tools, ThingsBoard IoT integrations, and real-time SSE streaming. I also guide React Native delivery and contribute to technical hiring. Since October 2026, I have contributed as a full-stack developer to a <b>Terna</b> project and lead its AWS architecture.",
           "province": "Milan",
           "country": "IT"
         },
         "it": {
-          "title": "Consulente di Ingegneria Software & Technical Lead",
-          "description": "Lavoro come <b>Consulente di Ingegneria Software & Technical Lead</b> in Capgemini, distaccato come contractor presso <b>TIM (Telecom Italia)</b>. Guida e mentoring di un team di ingegneri junior su progetti di <b>Smart Mobility</b> e <b>Connected Vehicles</b>, architettura di sistemi Agentic AI con LangGraph ed MCP, gestione della telemetria IoT con ThingsBoard, sviluppo mobile cross-platform con React Native e talent acquisition."
+          "title": "Senior AI Engineer Consultant & Technical Lead",
+          "description": "In Capgemini guido tecnicamente progetti di <b>Smart Mobility</b> e <b>Connected Vehicles</b>, lavorando come contractor presso <b>TIM (Telecom Italia Mobile)</b>. Affianco ingegneri junior, definisco le scelte tecniche e progetto sistemi Agentic AI con LangGraph e MCP, con stato persistente su PostgreSQL, strumenti personalizzati, integrazioni IoT con ThingsBoard e streaming SSE in tempo reale. Coordino inoltre lo sviluppo mobile con React Native e contribuisco alla selezione tecnica. Da ottobre 2026 contribuisco come sviluppatore full-stack a un progetto <b>Terna</b> e coordino l'architettura AWS."
         }
       },
       "subItems": [
+        {
+          "id": "cap_sub_terna",
+          "period": ["2026/10", "now"],
+          "faIcon": "fa-solid fa-code",
+          "locales": {
+            "en": {
+              "title": "AWS Architecture Lead & Full-Stack Developer (Terna Project)",
+              "description": "Contributing as a full-stack developer and leading the AWS workstream for the Terna project."
+            },
+            "it": {
+              "title": "Responsabile Architettura AWS & Sviluppatore Full-Stack (Progetto Terna)",
+              "description": "Contribuisco come sviluppatore full-stack e coordino il workstream AWS per il progetto Terna."
+            }
+          }
+        },
         {
           "id": "cap_sub_leadership",
           "period": ["2026/07", "now"],
@@ -141,11 +156,11 @@
           "locales": {
             "en": {
               "title": "Technical Team Lead & Mentorship",
-              "description": "Leading and mentoring a team of junior engineers in day-to-day development, architectural design, code reviews, and Agile delivery across Smart Mobility microservices and client apps."
+              "description": "Set day-to-day technical direction and mentor junior engineers across Smart Mobility microservices and client apps, leading architectural design, code reviews, and Agile delivery."
             },
             "it": {
               "title": "Technical Team Lead & Mentoring",
-              "description": "Guida e mentoring di un team di sviluppatori junior nelle attività quotidiane di sviluppo, design architetturale, code review e metodologie Agile su microservizi e applicazioni di Smart Mobility."
+              "description": "Definisco l'indirizzo tecnico quotidiano e affianco sviluppatori junior su microservizi e applicazioni di Smart Mobility, guidando la progettazione architetturale, le code review e la delivery Agile."
             }
           }
         },
@@ -156,11 +171,11 @@
           "locales": {
             "en": {
               "title": "Agentic AI, LangGraph & MCP Architect",
-              "description": "Architected autonomous <b>LangGraph AI workflows</b> with PostgreSQL checkpointer state persistence, multi-turn reasoning, and custom <b>Model Context Protocol (MCP)</b> servers/tools for transit analytics, live ThingsBoard IoT device telemetry, and real-time SSE streaming to the frontend."
+              "description": "Architected autonomous <b>LangGraph AI workflows</b> with PostgreSQL-backed state persistence and multi-turn reasoning. Designed custom <b>Model Context Protocol (MCP)</b> servers and tools for transit analytics and live ThingsBoard IoT telemetry, with real-time SSE streaming to the frontend."
             },
             "it": {
               "title": "Architettura Agentic AI, LangGraph & MCP",
-              "description": "Progettazione e sviluppo di agenti autonomi <b>LangGraph</b> con persistenza dello stato su PostgreSQL, reasoning multi-turn e server/strumenti <b>Model Context Protocol (MCP)</b> personalizzati per analisi di trasporto, telemetria IoT ThingsBoard in tempo reale e streaming SSE verso il frontend."
+              "description": "Ho progettato workflow autonomi di <b>LangGraph</b> con stato persistente su PostgreSQL e ragionamento multi-turno. Ho realizzato server e strumenti <b>Model Context Protocol (MCP)</b> personalizzati per l'analisi dei trasporti e la telemetria IoT ThingsBoard in tempo reale, con streaming SSE verso il frontend."
             }
           }
         },

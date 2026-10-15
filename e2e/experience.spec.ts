@@ -18,7 +18,12 @@ test.describe('Experience Section', () => {
 
   test('should show the most recent experience first (Capgemini)', async ({ page }) => {
     const firstItem = page.locator('#experience .timeline-item').first()
-    await expect(firstItem.locator('.timeline-item-title')).toContainText('Software Engineering Consultant')
+    await expect(firstItem.locator('.timeline-item-title')).toContainText('Senior AI Engineer Consultant')
+  })
+
+  test('should show AWS architecture leadership before full-stack contribution on Terna', async ({ page }) => {
+    const ternaTitle = page.locator('#experience .sub-timeline-item').first().locator('.sub-timeline-title')
+    await expect(ternaTitle).toContainText('AWS Architecture Lead & Full-Stack Developer')
   })
 
   test('should display company logos', async ({ page }) => {
