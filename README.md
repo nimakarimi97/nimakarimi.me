@@ -101,13 +101,13 @@ pnpm preview
 
 ```bash
 # Run E2E tests
-pnpm test:e2e
+pnpm test
 
 # Run tests with UI
-pnpm test:e2e -- --ui
+pnpm test -- --ui
 
 # Run tests in headed mode
-pnpm test:e2e -- --headed
+pnpm test -- --headed
 ```
 
 ### Linting
@@ -189,7 +189,7 @@ This is a personal portfolio website. For suggestions or bug reports, feel free 
 
 1. Create a feature branch
 2. Make your changes
-3. Run tests: `pnpm test:e2e`
+3. Run tests: `pnpm test`
 4. Run linting: `pnpm lint:fix`
 5. Test build: `pnpm build && pnpm preview`
 

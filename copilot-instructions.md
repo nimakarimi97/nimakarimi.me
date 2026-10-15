@@ -8,7 +8,7 @@ This project uses **pnpm** as the package manager. Always use `pnpm` instead of 
 
 - Development: `pnpm run dev`
 - Build: `pnpm run build`
-- Tests (E2E): `pnpm run test:e2e`
+- Tests (E2E): `pnpm run test`
 - Linting: `pnpm run lint`
 - Linting with fixes: `pnpm run lint:fix`
 - Preview: `pnpm run preview`
@@ -26,5 +26,5 @@ Do not use `npm install` or `yarn add`.
 
 ## Testing Guidelines
 
-- Always run `pnpm run test:e2e` (or relevant spec files) and update tests whenever changing copy, data, or components.
+- Always run `pnpm run test` (or relevant spec files) and update tests whenever changing copy, data, or components.
 - Keep tests resilient: avoid overly strict, brittle exact string assertions on paragraph text or bio descriptions that frequently change. Test element presence, structure, and general keywords instead.
