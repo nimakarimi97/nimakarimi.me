@@ -59,6 +59,11 @@ export function createAppRouter() {
       component: () => import('../vue/pages/downloader/DownloaderPage.vue'),
     },
     {
+      path: '/video-hotkeys-privacy',
+      name: 'VideoHotkeysPrivacy',
+      component: () => import('../vue/pages/video-hotkeys-privacy/VideoHotkeysPrivacyPage.vue'),
+    },
+    {
       path: '/cv',
       redirect: () => {
         window.location.href = '/data/NimaKarimiCV.pdf'
