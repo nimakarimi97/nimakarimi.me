@@ -78,7 +78,7 @@ export function createAppRouter() {
     {
       path: '/youtube',
       redirect: () => {
-        window.location.href = 'https://www.youtube.com/@iamNimaKarimi'
+        window.location.href = 'https://www.youtube.com/@nimaTheExplorer'
       },
     },
     {
